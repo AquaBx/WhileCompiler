@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>org.antlr</groupId>
-            <artifactId>antlr-runtime</artifactId>
+            <artifactId>antlr3-maven-plugin</artifactId>
             <version>3.5.3</version>
         </dependency>
         <dependency>
@@ -32,7 +32,7 @@
             <!-- Appel du plugin ANTLR -->
             <plugin>
                 <groupId>org.antlr</groupId>
-                <artifactId>antlr-runtime</artifactId>
+                <artifactId>antlr3-maven-plugin</artifactId>
                 <version>3.5.3</version>
 
                 <executions>
