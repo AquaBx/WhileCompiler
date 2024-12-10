@@ -47,6 +47,11 @@ class Main {
         WhileGrammarLexer lexer = new WhileGrammarLexer(antlrStream);
         WhileGrammarParser parser = new WhileGrammarParser(new CommonTokenStream(lexer));
 
+        TokenRewriteStream tokens = new TokenRewriteStream(lexer);
+
+
+        System.out.println(        tokens.get(0)        );
+
         for (String token:parser.getTokenNames()){
             System.out.println(token);
         }
