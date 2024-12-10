@@ -1,11 +1,7 @@
 package org.esir.nctt.while_compiler;
 
-import java.io.*;
-
 import org.antlr.runtime.*;
-import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.Tree;
-import org.antlr.runtime.tree.TreeNodeStream;
+import org.antlr.runtime.tree.*;
 import org.esir.nctt.antlr.WhileGrammarLexer;
 import org.esir.nctt.antlr.WhileGrammarParser;
 
@@ -50,14 +46,14 @@ class Main {
         TokenStream tokenStream = new CommonTokenStream(lexer);
         WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
 
-        Tree tree = (Tree)parser.program().getTree();
+        CommonTree tree = (CommonTree) parser.program().getTree();
 
-        visitor(tree,0);
+        System.out.println(tree.toStringTree());
     }
 
 
     public static void visitor(Tree tree, Integer depth) {
-        System.out.println(tree.getText());
+        System.out.println(depth.toString() + " " + tree.getText());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
           visitor(tree.getChild(i), depth++);  
