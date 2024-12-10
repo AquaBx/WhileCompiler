@@ -1,5 +1,4 @@
-// Generated from /home/titouan/Documents/ESIR/S7/TLC/Projet/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g by ANTLR 4.9.2
- package org.esir.nctt.antlr; 
+// Generated from /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -10,6 +9,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
+@SuppressWarnings("CheckReturnValue")
 public class WhileGrammarBaseListener implements WhileGrammarListener {
 	/**
 	 * {@inheritDoc}
