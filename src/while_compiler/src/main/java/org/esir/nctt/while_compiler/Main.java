@@ -3,29 +3,52 @@ package org.esir.nctt.while_compiler;
 import java.io.*;
 import java.util.Scanner;
 import org.antlr.runtime.*;
+import org.antlr.runtime.tree.BaseTree;
+import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
+import org.esir.nctt.antlr.WhileGrammarParser;
 
+class Main {
+    public static void main(String[] args) throws RecognitionException {
+        String code = """
+                // Addition of two numbers\s
+                function add :\s
+                read Op1, Op2\s
+                %\s
+                    Result := Op1 ;\s
+                    for Op2 do\s
+                        Result := ( cons nil Result ) \s
+                    od\s
+                %\s
+                write Result\s
+                \s
+                // Soustraction of two numbers (there is no negative number…)\s
+                function sub :\s
+                read Op1, Op2 \s
+                %\s
+                    Result := Op1;\s
+                    for Op2 do\s
+                        Result := (tl Result)\s
+                    od\s
+                %\s
+                write Result\s
+                \s
+                // Multiplication\s
+                function mul :\s
+                read Op1, Op2\s
+                %\s
+                    for Op1 do\s
+                        Result := (add Result Op2)\s
+                    od\s
+                %\s
+                write Result
+                """;
+        ANTLRStringStream antlrStream = new ANTLRStringStream(code);
+        WhileGrammarLexer lexer = new WhileGrammarLexer(antlrStream);
+        WhileGrammarParser parser = new WhileGrammarParser(new CommonTokenStream(lexer));
 
-public class Processor {
-    public static void main(String[] args) throws IOException, RecognitionException {
-        new Processor().processInteractive();
-    }
-    private void processInteractive() throws IOException, RecognitionException {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.print("calculatrice> ");
-            String line = scanner.nextLine().trim();
-            if ("quit".equals(line) || "exit".equals(line)) break;
-            Integer result = processLine(line);
-            System.out.println("Resultat: "+result) ;
+        for (String token:parser.getTokenNames()){
+            System.out.println(token);
         }
-    }
-    private Integer processLine(String line) throws RecognitionException {
-        /*
-        calculatriceLexer lexer = new calculatriceLexer(new ANTLRStringStream(line));
-        calculatricParser tokenParser = new calculatriceParser(new CommonTokenStream(lexer));
-        calculatriceParser.expression_return parserResult = tokenParser.expression(); // start rule method
-        return parserResult.resultat ;
-        */
     }
 }
