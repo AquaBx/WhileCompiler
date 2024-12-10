@@ -52,7 +52,15 @@ class Main {
 
         Tree tree = (Tree)parser.program().getTree();
 
-        System.out.println(tree.getChild(5));
-        
+        visitor(tree,0);
+    }
+
+
+    public static void visitor(Tree tree, Integer depth) {
+        System.out.println(tree.getText());
+
+        for (int i = 0; i < tree.getChildCount(); i++) {
+          visitor(tree.getChild(i), depth++);  
+        } 
     }
 }
