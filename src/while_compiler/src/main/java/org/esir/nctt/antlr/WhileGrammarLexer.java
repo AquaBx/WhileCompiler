@@ -1,4 +1,4 @@
-// $ANTLR 3.5.3 WhileGrammar.g 2024-12-10 16:09:00
+// $ANTLR 3.5.3 WhileGrammar.g 2024-12-10 16:44:08
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
@@ -624,7 +624,7 @@ public class WhileGrammarLexer extends Lexer {
 	// $ANTLR start "DEC"
 	public final void mDEC() throws RecognitionException {
 		try {
-			// WhileGrammar.g:8:13: ( '0' .. '9' )
+			// WhileGrammar.g:12:13: ( '0' .. '9' )
 			// WhileGrammar.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -647,7 +647,7 @@ public class WhileGrammarLexer extends Lexer {
 	// $ANTLR start "MAJ"
 	public final void mMAJ() throws RecognitionException {
 		try {
-			// WhileGrammar.g:9:14: ( 'A' .. 'Z' )
+			// WhileGrammar.g:13:14: ( 'A' .. 'Z' )
 			// WhileGrammar.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -670,7 +670,7 @@ public class WhileGrammarLexer extends Lexer {
 	// $ANTLR start "MIN"
 	public final void mMIN() throws RecognitionException {
 		try {
-			// WhileGrammar.g:10:14: ( 'a' .. 'z' )
+			// WhileGrammar.g:14:14: ( 'a' .. 'z' )
 			// WhileGrammar.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -695,12 +695,12 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = VARIABLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// WhileGrammar.g:12:10: ( MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )? )
-			// WhileGrammar.g:12:12: MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )?
+			// WhileGrammar.g:16:10: ( MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )? )
+			// WhileGrammar.g:16:12: MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )?
 			{
 			mMAJ(); 
 
-			// WhileGrammar.g:12:16: ( MAJ | MIN | DEC )*
+			// WhileGrammar.g:16:16: ( MAJ | MIN | DEC )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -729,7 +729,7 @@ public class WhileGrammarLexer extends Lexer {
 				}
 			}
 
-			// WhileGrammar.g:12:35: ( '!' | '?' )?
+			// WhileGrammar.g:16:35: ( '!' | '?' )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='!'||LA2_0=='?') ) {
@@ -768,12 +768,12 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = SYMBOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// WhileGrammar.g:13:7: ( MIN ( MAJ | MIN | DEC )* ( '!' | '?' )? )
-			// WhileGrammar.g:13:9: MIN ( MAJ | MIN | DEC )* ( '!' | '?' )?
+			// WhileGrammar.g:17:7: ( MIN ( MAJ | MIN | DEC )* ( '!' | '?' )? )
+			// WhileGrammar.g:17:9: MIN ( MAJ | MIN | DEC )* ( '!' | '?' )?
 			{
 			mMIN(); 
 
-			// WhileGrammar.g:13:13: ( MAJ | MIN | DEC )*
+			// WhileGrammar.g:17:13: ( MAJ | MIN | DEC )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -802,7 +802,7 @@ public class WhileGrammarLexer extends Lexer {
 				}
 			}
 
-			// WhileGrammar.g:13:31: ( '!' | '?' )?
+			// WhileGrammar.g:17:31: ( '!' | '?' )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='!'||LA4_0=='?') ) {
@@ -841,8 +841,8 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = IDENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// WhileGrammar.g:15:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// WhileGrammar.g:15:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// WhileGrammar.g:19:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// WhileGrammar.g:19:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -852,7 +852,7 @@ public class WhileGrammarLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// WhileGrammar.g:15:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// WhileGrammar.g:19:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -897,8 +897,8 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// WhileGrammar.g:17:3: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// WhileGrammar.g:17:5: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// WhileGrammar.g:21:3: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// WhileGrammar.g:21:5: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -925,7 +925,7 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// WhileGrammar.g:20:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// WhileGrammar.g:24:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt9=2;
 			int LA9_0 = input.LA(1);
 			if ( (LA9_0=='/') ) {
@@ -959,11 +959,11 @@ public class WhileGrammarLexer extends Lexer {
 
 			switch (alt9) {
 				case 1 :
-					// WhileGrammar.g:20:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// WhileGrammar.g:24:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// WhileGrammar.g:20:14: (~ ( '\\n' | '\\r' ) )*
+					// WhileGrammar.g:24:14: (~ ( '\\n' | '\\r' ) )*
 					loop6:
 					while (true) {
 						int alt6=2;
@@ -992,7 +992,7 @@ public class WhileGrammarLexer extends Lexer {
 						}
 					}
 
-					// WhileGrammar.g:20:28: ( '\\r' )?
+					// WhileGrammar.g:24:28: ( '\\r' )?
 					int alt7=2;
 					int LA7_0 = input.LA(1);
 					if ( (LA7_0=='\r') ) {
@@ -1000,7 +1000,7 @@ public class WhileGrammarLexer extends Lexer {
 					}
 					switch (alt7) {
 						case 1 :
-							// WhileGrammar.g:20:28: '\\r'
+							// WhileGrammar.g:24:28: '\\r'
 							{
 							match('\r'); 
 							}
@@ -1013,11 +1013,11 @@ public class WhileGrammarLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// WhileGrammar.g:21:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// WhileGrammar.g:25:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// WhileGrammar.g:21:14: ( options {greedy=false; } : . )*
+					// WhileGrammar.g:25:14: ( options {greedy=false; } : . )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -1038,7 +1038,7 @@ public class WhileGrammarLexer extends Lexer {
 
 						switch (alt8) {
 						case 1 :
-							// WhileGrammar.g:21:42: .
+							// WhileGrammar.g:25:42: .
 							{
 							matchAny(); 
 							}
