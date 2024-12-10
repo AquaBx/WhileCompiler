@@ -1,5 +1,9 @@
 grammar WhileGrammar;
 
+options {
+    output=AST; // Configure ANTLR pour générer un AST
+}
+
 @parser::header
 { package org.esir.nctt.antlr; }
 @lexer::header
