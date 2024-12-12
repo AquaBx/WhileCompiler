@@ -24,10 +24,17 @@ tokens {
     LEXPR;
     EXPR_CALL;
     COMMAND_NOP;
-    EXPR_BASE1;
+    EXPR_CHILD;
     EXPR_CONSTRUCTOR;
-    EXPR_BASE3;
+    EXPR_PRIMITIVE;
     EXPRS;
+    EXPR_CHILD_RIGHT;
+    EXPR_CHILD_LEFT;
+    EXPR_CONSTRUCTOR_LIST;
+    EXPR_CONSTRUCTOR_CONS;
+    EXPR_NIL;
+    EXPR_VARIABLE;
+    EXPR_SYMBOL;
 }
 
 @parser::header
@@ -85,26 +92,44 @@ command: command_if
         | command_nop
         ;
 
-exprbase1: a=('nil' | VARIABLE | SYMBOL)
- -> ^(EXPR_BASE1 $a)
-;
-expr_constructor: (a='cons'|a='list') lexpr
- -> ^(EXPR_CONSTRUCTOR $a lexpr)
-;
-exprbase3: a=('hd'|'tl') exprbase
- -> ^(EXPR_BASE3 $a exprbase)
-
-;
-expr_call: SYMBOL lexpr
- -> ^(EXPR_CALL SYMBOL lexpr)
+exprbase_symbol: a=SYMBOL
+ -> ^(EXPR_SYMBOL $a)
 ;
 
-exprbase: exprbase1 | ( '(' (expr_constructor | exprbase3 | expr_call) ')' );
+exprbase_variable: a=VARIABLE
+ -> ^(EXPR_VARIABLE $a)
+;
 
-expression: c=exprbase ('=?' d=exprbase)?
+exprbase_nil: 'nil'
+ -> ^(EXPR_NIL)
+;
+
+expr_constructor_list: '(' 'list' lexpr ')' 
+ -> ^(EXPR_CONSTRUCTOR_LIST lexpr)
+;
+
+expr_constructor_cons: '(' 'cons' lexpr ')' 
+ -> ^(EXPR_CONSTRUCTOR_CONS lexpr )
+;
+
+exprbasechildleft: '(' 'hd' exprbase ')' 
+ -> ^(EXPR_CHILD_LEFT exprbase)
+;
+
+exprbasechildright: '(' 'tl' exprbase ')' 
+ -> ^(EXPR_CHILD_RIGHT exprbase)
+;
+
+expr_call: '(' a=SYMBOL lexpr ')'
+ -> ^(EXPR_CALL $a lexpr)
+;
+
+exprbase: exprbase_nil | exprbase_variable | expr_constructor_list | expr_constructor_cons | exprbasechildleft  | exprbasechildright |  expr_call | exprbase_symbol;
+
+expression: c=exprbase '=?' d=exprbase?
     -> ^(EXPRESSION $c $d?)
 ;
 
-lexpr: (exprbase lexpr)? -> ^(LEXPR exprbase? lexpr?);
+lexpr: exprbase* -> ^(LEXPR exprbase*);
 
 
