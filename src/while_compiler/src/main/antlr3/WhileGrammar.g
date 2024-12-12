@@ -63,17 +63,17 @@ program: function* -> ^(PROGRAM function*);
 function: 'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
 definition: 'read' input '%' commands '%' 'write' output -> ^(DEFINITION input commands output);
 input: i=input_stub? -> ^(INPUT $i?);
-input_stub: v=VARIABLE (',' tail=input_stub)? -> ^(INPUT_STUB $v $tail?);
-output: v=VARIABLE (',' tail=output)? -> ^(OUTPUT $v $tail?);
+input_stub: v=VARIABLE (',' tail=VARIABLE)* -> ^(INPUT_STUB $v $tail?);
+output: v=VARIABLE (',' tail=VARIABLE)* -> ^(OUTPUT $v $tail?);
 
-vars: v=VARIABLE (',' var=vars)? -> ^(VARS $v $var?);
+vars: v=VARIABLE (',' var=VARIABLE)* -> ^(VARS $v $var?);
 
-commands: c=command (';' cs=commands)? 
+commands: c=command (';' cs=command)*
     -> ^(COMMANDS $c $cs?)
 ;
 
-exprs: expression (',' exprs)?
-    -> ^(EXPRS expression exprs?)
+exprs: expression (',' c=expression)*
+    -> ^(EXPRS expression $c?)
 ;
 
 command_vars: vars ':=' exprs -> ^(ASSIGMENT vars exprs);
@@ -126,8 +126,11 @@ expr_call: '(' a=SYMBOL lexpr ')'
 
 exprbase: exprbase_nil | exprbase_variable | expr_constructor_list | expr_constructor_cons | exprbasechildleft  | exprbasechildright |  expr_call | exprbase_symbol;
 
-expression: c=exprbase '=?' d=exprbase?
-    -> ^(EXPRESSION $c $d?)
+expression_a: c=exprbase '=?' d=exprbase
+    -> ^(EXPRESSION $c $d)
+;
+
+expression: expression_a | exprbase
 ;
 
 lexpr: exprbase* -> ^(LEXPR exprbase*);
