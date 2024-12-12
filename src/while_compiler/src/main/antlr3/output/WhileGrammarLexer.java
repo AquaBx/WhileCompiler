@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g 2024-12-10 17:58:05
+// $ANTLR 3.5.1 /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g 2024-12-12 08:26:41
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
@@ -646,7 +646,7 @@ public class WhileGrammarLexer extends Lexer {
 	// $ANTLR start "DEC"
 	public final void mDEC() throws RecognitionException {
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:37:13: ( '0' .. '9' )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:38:13: ( '0' .. '9' )
 			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -669,7 +669,7 @@ public class WhileGrammarLexer extends Lexer {
 	// $ANTLR start "MAJ"
 	public final void mMAJ() throws RecognitionException {
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:38:14: ( 'A' .. 'Z' )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:39:14: ( 'A' .. 'Z' )
 			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -692,7 +692,7 @@ public class WhileGrammarLexer extends Lexer {
 	// $ANTLR start "MIN"
 	public final void mMIN() throws RecognitionException {
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:39:14: ( 'a' .. 'z' )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:40:14: ( 'a' .. 'z' )
 			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -717,12 +717,12 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = VARIABLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:41:10: ( MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )? )
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:41:12: MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:10: ( MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )? )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:12: MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )?
 			{
 			mMAJ(); 
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:41:16: ( MAJ | MIN | DEC )*
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:16: ( MAJ | MIN | DEC )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -751,7 +751,7 @@ public class WhileGrammarLexer extends Lexer {
 				}
 			}
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:41:35: ( '!' | '?' )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:35: ( '!' | '?' )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='!'||LA2_0=='?') ) {
@@ -790,12 +790,12 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = SYMBOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:7: ( MIN ( MAJ | MIN | DEC )* ( '!' | '?' )? )
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:9: MIN ( MAJ | MIN | DEC )* ( '!' | '?' )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:43:7: ( MIN ( MAJ | MIN | DEC )* ( '!' | '?' )? )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:43:9: MIN ( MAJ | MIN | DEC )* ( '!' | '?' )?
 			{
 			mMIN(); 
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:13: ( MAJ | MIN | DEC )*
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:43:13: ( MAJ | MIN | DEC )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -824,7 +824,7 @@ public class WhileGrammarLexer extends Lexer {
 				}
 			}
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:42:31: ( '!' | '?' )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:43:31: ( '!' | '?' )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='!'||LA4_0=='?') ) {
@@ -863,8 +863,8 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = IDENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:44:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:44:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:45:6: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:45:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -874,7 +874,7 @@ public class WhileGrammarLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:44:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:45:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -919,8 +919,8 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:46:3: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:46:5: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:47:3: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:47:5: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -947,7 +947,7 @@ public class WhileGrammarLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:49:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt9=2;
 			int LA9_0 = input.LA(1);
 			if ( (LA9_0=='/') ) {
@@ -981,11 +981,11 @@ public class WhileGrammarLexer extends Lexer {
 
 			switch (alt9) {
 				case 1 :
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:49:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:49:14: (~ ( '\\n' | '\\r' ) )*
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:14: (~ ( '\\n' | '\\r' ) )*
 					loop6:
 					while (true) {
 						int alt6=2;
@@ -1014,7 +1014,7 @@ public class WhileGrammarLexer extends Lexer {
 						}
 					}
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:49:28: ( '\\r' )?
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:28: ( '\\r' )?
 					int alt7=2;
 					int LA7_0 = input.LA(1);
 					if ( (LA7_0=='\r') ) {
@@ -1022,7 +1022,7 @@ public class WhileGrammarLexer extends Lexer {
 					}
 					switch (alt7) {
 						case 1 :
-							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:49:28: '\\r'
+							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:28: '\\r'
 							{
 							match('\r'); 
 							}
@@ -1035,11 +1035,11 @@ public class WhileGrammarLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:51:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:14: ( options {greedy=false; } : . )*
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:51:14: ( options {greedy=false; } : . )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -1060,7 +1060,7 @@ public class WhileGrammarLexer extends Lexer {
 
 						switch (alt8) {
 						case 1 :
-							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:50:42: .
+							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:51:42: .
 							{
 							matchAny(); 
 							}

@@ -1,10 +1,12 @@
-// $ANTLR 3.5.1 /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g 2024-12-10 17:58:05
+// $ANTLR 3.5.1 /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g 2024-12-12 08:26:41
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.antlr.runtime.debug.*;
 import java.io.IOException;
@@ -91,10 +93,17 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	public static final String[] ruleNames = new String[] {
-		"invalidRule", "command_while", "program", "definition", "input", "exprbase1", 
-		"command_nop", "expr_call", "exprbase3", "function", "exprs", "command", 
-		"input_stub", "command_for", "vars", "command_if", "commands", "output", 
-		"expression", "command_foreach", "lexpr", "expr_constructor", "command_vars", 
+		"invalidRule", "synpred16_WhileGrammar", "command_if", "synpred9_WhileGrammar", 
+		"synpred19_WhileGrammar", "synpred12_WhileGrammar", "synpred1_WhileGrammar", 
+		"synpred3_WhileGrammar", "synpred10_WhileGrammar", "synpred15_WhileGrammar", 
+		"exprbase3", "program", "synpred8_WhileGrammar", "synpred13_WhileGrammar", 
+		"command_for", "input_stub", "function", "command_foreach", "command_nop", 
+		"synpred4_WhileGrammar", "definition", "synpred11_WhileGrammar", "synpred17_WhileGrammar", 
+		"synpred5_WhileGrammar", "synpred7_WhileGrammar", "synpred21_WhileGrammar", 
+		"expr_constructor", "lexpr", "output", "synpred2_WhileGrammar", "synpred22_WhileGrammar", 
+		"expression", "synpred18_WhileGrammar", "input", "synpred20_WhileGrammar", 
+		"command_while", "command_vars", "exprbase1", "synpred14_WhileGrammar", 
+		"commands", "exprs", "synpred6_WhileGrammar", "vars", "expr_call", "command", 
 		"exprbase"
 	};
 
@@ -161,7 +170,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "program"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:53:1: program : function ( program )? -> ^( PROGRAM function ( program )? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:1: program : ( function )* -> ^( PROGRAM ( function )* ) ;
 	public final WhileGrammarParser.program_return program() throws RecognitionException {
 		WhileGrammarParser.program_return retval = new WhileGrammarParser.program_return();
 		retval.start = input.LT(1);
@@ -169,84 +178,84 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		ParserRuleReturnScope function1 =null;
-		ParserRuleReturnScope program2 =null;
 
 		RewriteRuleSubtreeStream stream_function=new RewriteRuleSubtreeStream(adaptor,"rule function");
-		RewriteRuleSubtreeStream stream_program=new RewriteRuleSubtreeStream(adaptor,"rule program");
 
 		try { dbg.enterRule(getGrammarFileName(), "program");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(53, 0);
+		dbg.location(54, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:53:8: ( function ( program )? -> ^( PROGRAM function ( program )? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:8: ( ( function )* -> ^( PROGRAM ( function )* ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:53:10: function ( program )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:10: ( function )*
 			{
-			dbg.location(53,10);
-			pushFollow(FOLLOW_function_in_program416);
-			function1=function();
-			state._fsp--;
-
-			stream_function.add(function1.getTree());dbg.location(53,19);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:53:19: ( program )?
-			int alt1=2;
+			dbg.location(54,10);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:10: ( function )*
 			try { dbg.enterSubRule(1);
-			try { dbg.enterDecision(1, decisionCanBacktrack[1]);
 
-			int LA1_0 = input.LA(1);
-			if ( (LA1_0==48) ) {
-				alt1=1;
-			}
-			} finally {dbg.exitDecision(1);}
+			loop1:
+			while (true) {
+				int alt1=2;
+				try { dbg.enterDecision(1, decisionCanBacktrack[1]);
 
-			switch (alt1) {
+				int LA1_0 = input.LA(1);
+				if ( (LA1_0==48) ) {
+					alt1=1;
+				}
+
+				} finally {dbg.exitDecision(1);}
+
+				switch (alt1) {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:53:20: program
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:10: function
 					{
-					dbg.location(53,20);
-					pushFollow(FOLLOW_program_in_program419);
-					program2=program();
+					dbg.location(54,10);
+					pushFollow(FOLLOW_function_in_program425);
+					function1=function();
 					state._fsp--;
-
-					stream_program.add(program2.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_function.add(function1.getTree());
 					}
 					break;
 
+				default :
+					break loop1;
+				}
 			}
 			} finally {dbg.exitSubRule(1);}
 
 			// AST REWRITE
-			// elements: function, program
+			// elements: function
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 54:5: -> ^( PROGRAM function ( program )? )
+			// 54:20: -> ^( PROGRAM ( function )* )
 			{
-				dbg.location(54,8);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:8: ^( PROGRAM function ( program )? )
+				dbg.location(54,23);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:23: ^( PROGRAM ( function )* )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(54,10);
+				dbg.location(54,25);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
-				dbg.location(54,18);
-				adaptor.addChild(root_1, stream_function.nextTree());dbg.location(54,27);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:27: ( program )?
-				if ( stream_program.hasNext() ) {
-					dbg.location(54,27);
-					adaptor.addChild(root_1, stream_program.nextTree());
+				dbg.location(54,33);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:54:33: ( function )*
+				while ( stream_function.hasNext() ) {
+					dbg.location(54,33);
+					adaptor.addChild(root_1, stream_function.nextTree());
 				}
-				stream_program.reset();
+				stream_function.reset();
 
 				adaptor.addChild(root_0, root_1);
 				}
@@ -255,14 +264,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -272,7 +283,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(54, 35);
+		dbg.location(54, 42);
 
 		}
 		finally {
@@ -294,21 +305,21 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "function"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:55:1: function : 'function' SYMBOL ':' definition -> ^( FUNCTION SYMBOL definition ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:1: function : 'function' SYMBOL ':' definition -> ^( FUNCTION SYMBOL definition ) ;
 	public final WhileGrammarParser.function_return function() throws RecognitionException {
 		WhileGrammarParser.function_return retval = new WhileGrammarParser.function_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal3=null;
-		Token SYMBOL4=null;
-		Token char_literal5=null;
-		ParserRuleReturnScope definition6 =null;
+		Token string_literal2=null;
+		Token SYMBOL3=null;
+		Token char_literal4=null;
+		ParserRuleReturnScope definition5 =null;
 
-		Object string_literal3_tree=null;
-		Object SYMBOL4_tree=null;
-		Object char_literal5_tree=null;
+		Object string_literal2_tree=null;
+		Object SYMBOL3_tree=null;
+		Object char_literal4_tree=null;
 		RewriteRuleTokenStream stream_SYMBOL=new RewriteRuleTokenStream(adaptor,"token SYMBOL");
 		RewriteRuleTokenStream stream_48=new RewriteRuleTokenStream(adaptor,"token 48");
 		RewriteRuleTokenStream stream_38=new RewriteRuleTokenStream(adaptor,"token 38");
@@ -317,29 +328,29 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "function");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(55, 0);
+		dbg.location(56, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:55:9: ( 'function' SYMBOL ':' definition -> ^( FUNCTION SYMBOL definition ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:9: ( 'function' SYMBOL ':' definition -> ^( FUNCTION SYMBOL definition ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:55:11: 'function' SYMBOL ':' definition
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:11: 'function' SYMBOL ':' definition
 			{
-			dbg.location(55,11);
-			string_literal3=(Token)match(input,48,FOLLOW_48_in_function443);  
-			stream_48.add(string_literal3);
-			dbg.location(55,22);
-			SYMBOL4=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_function445);  
-			stream_SYMBOL.add(SYMBOL4);
-			dbg.location(55,29);
-			char_literal5=(Token)match(input,38,FOLLOW_38_in_function447);  
-			stream_38.add(char_literal5);
-			dbg.location(55,33);
-			pushFollow(FOLLOW_definition_in_function449);
-			definition6=definition();
+			dbg.location(56,11);
+			string_literal2=(Token)match(input,48,FOLLOW_48_in_function442); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_48.add(string_literal2);
+			dbg.location(56,22);
+			SYMBOL3=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_function444); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_SYMBOL.add(SYMBOL3);
+			dbg.location(56,29);
+			char_literal4=(Token)match(input,38,FOLLOW_38_in_function446); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_38.add(char_literal4);
+			dbg.location(56,33);
+			pushFollow(FOLLOW_definition_in_function448);
+			definition5=definition();
 			state._fsp--;
-
-			stream_definition.add(definition6.getTree());
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_definition.add(definition5.getTree());
 			// AST REWRITE
 			// elements: definition, SYMBOL
 			// token labels: 
@@ -347,20 +358,21 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 55:44: -> ^( FUNCTION SYMBOL definition )
+			// 56:44: -> ^( FUNCTION SYMBOL definition )
 			{
-				dbg.location(55,47);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:55:47: ^( FUNCTION SYMBOL definition )
+				dbg.location(56,47);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:47: ^( FUNCTION SYMBOL definition )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(55,49);
+				dbg.location(56,49);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNCTION, "FUNCTION"), root_1);
-				dbg.location(55,58);
-				adaptor.addChild(root_1, stream_SYMBOL.nextNode());dbg.location(55,65);
+				dbg.location(56,58);
+				adaptor.addChild(root_1, stream_SYMBOL.nextNode());dbg.location(56,65);
 				adaptor.addChild(root_1, stream_definition.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -369,14 +381,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -386,7 +400,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(55, 75);
+		dbg.location(56, 75);
 
 		}
 		finally {
@@ -408,25 +422,25 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "definition"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:1: definition : 'read' input '%' commands '%' 'write' output -> ^( DEFINITION input commands output ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:1: definition : 'read' input '%' commands '%' 'write' output -> ^( DEFINITION input commands output ) ;
 	public final WhileGrammarParser.definition_return definition() throws RecognitionException {
 		WhileGrammarParser.definition_return retval = new WhileGrammarParser.definition_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal7=null;
-		Token char_literal9=null;
-		Token char_literal11=null;
-		Token string_literal12=null;
-		ParserRuleReturnScope input8 =null;
-		ParserRuleReturnScope commands10 =null;
-		ParserRuleReturnScope output13 =null;
+		Token string_literal6=null;
+		Token char_literal8=null;
+		Token char_literal10=null;
+		Token string_literal11=null;
+		ParserRuleReturnScope input7 =null;
+		ParserRuleReturnScope commands9 =null;
+		ParserRuleReturnScope output12 =null;
 
-		Object string_literal7_tree=null;
-		Object char_literal9_tree=null;
-		Object char_literal11_tree=null;
-		Object string_literal12_tree=null;
+		Object string_literal6_tree=null;
+		Object char_literal8_tree=null;
+		Object char_literal10_tree=null;
+		Object string_literal11_tree=null;
 		RewriteRuleTokenStream stream_56=new RewriteRuleTokenStream(adaptor,"token 56");
 		RewriteRuleTokenStream stream_34=new RewriteRuleTokenStream(adaptor,"token 34");
 		RewriteRuleTokenStream stream_60=new RewriteRuleTokenStream(adaptor,"token 60");
@@ -437,64 +451,65 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "definition");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(56, 0);
+		dbg.location(57, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:11: ( 'read' input '%' commands '%' 'write' output -> ^( DEFINITION input commands output ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:11: ( 'read' input '%' commands '%' 'write' output -> ^( DEFINITION input commands output ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:13: 'read' input '%' commands '%' 'write' output
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:13: 'read' input '%' commands '%' 'write' output
 			{
-			dbg.location(56,13);
-			string_literal7=(Token)match(input,56,FOLLOW_56_in_definition465);  
-			stream_56.add(string_literal7);
-			dbg.location(56,20);
-			pushFollow(FOLLOW_input_in_definition467);
-			input8=input();
+			dbg.location(57,13);
+			string_literal6=(Token)match(input,56,FOLLOW_56_in_definition464); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_56.add(string_literal6);
+			dbg.location(57,20);
+			pushFollow(FOLLOW_input_in_definition466);
+			input7=input();
 			state._fsp--;
-
-			stream_input.add(input8.getTree());dbg.location(56,26);
-			char_literal9=(Token)match(input,34,FOLLOW_34_in_definition469);  
-			stream_34.add(char_literal9);
-			dbg.location(56,30);
-			pushFollow(FOLLOW_commands_in_definition471);
-			commands10=commands();
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_input.add(input7.getTree());dbg.location(57,26);
+			char_literal8=(Token)match(input,34,FOLLOW_34_in_definition468); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_34.add(char_literal8);
+			dbg.location(57,30);
+			pushFollow(FOLLOW_commands_in_definition470);
+			commands9=commands();
 			state._fsp--;
-
-			stream_commands.add(commands10.getTree());dbg.location(56,39);
-			char_literal11=(Token)match(input,34,FOLLOW_34_in_definition473);  
-			stream_34.add(char_literal11);
-			dbg.location(56,43);
-			string_literal12=(Token)match(input,60,FOLLOW_60_in_definition475);  
-			stream_60.add(string_literal12);
-			dbg.location(56,51);
-			pushFollow(FOLLOW_output_in_definition477);
-			output13=output();
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_commands.add(commands9.getTree());dbg.location(57,39);
+			char_literal10=(Token)match(input,34,FOLLOW_34_in_definition472); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_34.add(char_literal10);
+			dbg.location(57,43);
+			string_literal11=(Token)match(input,60,FOLLOW_60_in_definition474); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_60.add(string_literal11);
+			dbg.location(57,51);
+			pushFollow(FOLLOW_output_in_definition476);
+			output12=output();
 			state._fsp--;
-
-			stream_output.add(output13.getTree());
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_output.add(output12.getTree());
 			// AST REWRITE
-			// elements: commands, output, input
+			// elements: input, commands, output
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 56:58: -> ^( DEFINITION input commands output )
+			// 57:58: -> ^( DEFINITION input commands output )
 			{
-				dbg.location(56,61);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:56:61: ^( DEFINITION input commands output )
+				dbg.location(57,61);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:61: ^( DEFINITION input commands output )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(56,63);
+				dbg.location(57,63);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DEFINITION, "DEFINITION"), root_1);
-				dbg.location(56,74);
-				adaptor.addChild(root_1, stream_input.nextTree());dbg.location(56,80);
-				adaptor.addChild(root_1, stream_commands.nextTree());dbg.location(56,89);
+				dbg.location(57,74);
+				adaptor.addChild(root_1, stream_input.nextTree());dbg.location(57,80);
+				adaptor.addChild(root_1, stream_commands.nextTree());dbg.location(57,89);
 				adaptor.addChild(root_1, stream_output.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -503,14 +518,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -520,7 +537,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(56, 95);
+		dbg.location(57, 95);
 
 		}
 		finally {
@@ -542,7 +559,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "input"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:1: input : (i= input_stub )? -> ^( INPUT ( $i)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:1: input : (i= input_stub )? -> ^( INPUT ( $i)? ) ;
 	public final WhileGrammarParser.input_return input() throws RecognitionException {
 		WhileGrammarParser.input_return retval = new WhileGrammarParser.input_return();
 		retval.start = input.LT(1);
@@ -556,16 +573,16 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "input");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(57, 0);
+		dbg.location(58, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:6: ( (i= input_stub )? -> ^( INPUT ( $i)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:6: ( (i= input_stub )? -> ^( INPUT ( $i)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:8: (i= input_stub )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:8: (i= input_stub )?
 			{
-			dbg.location(57,9);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:9: (i= input_stub )?
+			dbg.location(58,9);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:9: (i= input_stub )?
 			int alt2=2;
 			try { dbg.enterSubRule(2);
 			try { dbg.enterDecision(2, decisionCanBacktrack[2]);
@@ -580,14 +597,14 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:9: i= input_stub
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:9: i= input_stub
 					{
-					dbg.location(57,9);
-					pushFollow(FOLLOW_input_stub_in_input497);
+					dbg.location(58,9);
+					pushFollow(FOLLOW_input_stub_in_input496);
 					i=input_stub();
 					state._fsp--;
-
-					stream_input_stub.add(i.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_input_stub.add(i.getTree());
 					}
 					break;
 
@@ -601,23 +618,24 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_i=new RewriteRuleSubtreeStream(adaptor,"rule i",i!=null?i.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 57:22: -> ^( INPUT ( $i)? )
+			// 58:22: -> ^( INPUT ( $i)? )
 			{
-				dbg.location(57,25);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:25: ^( INPUT ( $i)? )
+				dbg.location(58,25);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:25: ^( INPUT ( $i)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(57,27);
+				dbg.location(58,27);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(INPUT, "INPUT"), root_1);
-				dbg.location(57,34);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:57:34: ( $i)?
+				dbg.location(58,34);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:34: ( $i)?
 				if ( stream_i.hasNext() ) {
-					dbg.location(57,34);
+					dbg.location(58,34);
 					adaptor.addChild(root_1, stream_i.nextTree());
 				}
 				stream_i.reset();
@@ -629,14 +647,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -646,7 +666,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(57, 36);
+		dbg.location(58, 36);
 
 		}
 		finally {
@@ -668,7 +688,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "input_stub"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:1: input_stub : v= VARIABLE ( ',' tail= input_stub )? -> ^( INPUT_STUB $v ( $tail)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:1: input_stub : v= VARIABLE ( ',' tail= input_stub )? -> ^( INPUT_STUB $v ( $tail)? ) ;
 	public final WhileGrammarParser.input_stub_return input_stub() throws RecognitionException {
 		WhileGrammarParser.input_stub_return retval = new WhileGrammarParser.input_stub_return();
 		retval.start = input.LT(1);
@@ -676,11 +696,11 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token v=null;
-		Token char_literal14=null;
+		Token char_literal13=null;
 		ParserRuleReturnScope tail =null;
 
 		Object v_tree=null;
-		Object char_literal14_tree=null;
+		Object char_literal13_tree=null;
 		RewriteRuleTokenStream stream_37=new RewriteRuleTokenStream(adaptor,"token 37");
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
 		RewriteRuleSubtreeStream stream_input_stub=new RewriteRuleSubtreeStream(adaptor,"rule input_stub");
@@ -688,19 +708,19 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "input_stub");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(58, 0);
+		dbg.location(59, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:11: (v= VARIABLE ( ',' tail= input_stub )? -> ^( INPUT_STUB $v ( $tail)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:11: (v= VARIABLE ( ',' tail= input_stub )? -> ^( INPUT_STUB $v ( $tail)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:13: v= VARIABLE ( ',' tail= input_stub )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:13: v= VARIABLE ( ',' tail= input_stub )?
 			{
-			dbg.location(58,14);
-			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_input_stub516);  
-			stream_VARIABLE.add(v);
-			dbg.location(58,24);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:24: ( ',' tail= input_stub )?
+			dbg.location(59,14);
+			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_input_stub515); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_VARIABLE.add(v);
+			dbg.location(59,24);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:24: ( ',' tail= input_stub )?
 			int alt3=2;
 			try { dbg.enterSubRule(3);
 			try { dbg.enterDecision(3, decisionCanBacktrack[3]);
@@ -715,17 +735,17 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:25: ',' tail= input_stub
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:25: ',' tail= input_stub
 					{
-					dbg.location(58,25);
-					char_literal14=(Token)match(input,37,FOLLOW_37_in_input_stub519);  
-					stream_37.add(char_literal14);
-					dbg.location(58,33);
-					pushFollow(FOLLOW_input_stub_in_input_stub523);
+					dbg.location(59,25);
+					char_literal13=(Token)match(input,37,FOLLOW_37_in_input_stub518); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_37.add(char_literal13);
+					dbg.location(59,33);
+					pushFollow(FOLLOW_input_stub_in_input_stub522);
 					tail=input_stub();
 					state._fsp--;
-
-					stream_input_stub.add(tail.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_input_stub.add(tail.getTree());
 					}
 					break;
 
@@ -733,31 +753,32 @@ public class WhileGrammarParser extends DebugParser {
 			} finally {dbg.exitSubRule(3);}
 
 			// AST REWRITE
-			// elements: tail, v
+			// elements: v, tail
 			// token labels: v
 			// rule labels: tail, retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_v=new RewriteRuleTokenStream(adaptor,"token v",v);
 			RewriteRuleSubtreeStream stream_tail=new RewriteRuleSubtreeStream(adaptor,"rule tail",tail!=null?tail.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 58:47: -> ^( INPUT_STUB $v ( $tail)? )
+			// 59:47: -> ^( INPUT_STUB $v ( $tail)? )
 			{
-				dbg.location(58,50);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:50: ^( INPUT_STUB $v ( $tail)? )
+				dbg.location(59,50);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:50: ^( INPUT_STUB $v ( $tail)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(58,52);
+				dbg.location(59,52);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(INPUT_STUB, "INPUT_STUB"), root_1);
-				dbg.location(58,64);
-				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(58,67);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:58:67: ( $tail)?
+				dbg.location(59,64);
+				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(59,67);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:67: ( $tail)?
 				if ( stream_tail.hasNext() ) {
-					dbg.location(58,67);
+					dbg.location(59,67);
 					adaptor.addChild(root_1, stream_tail.nextTree());
 				}
 				stream_tail.reset();
@@ -769,14 +790,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -786,7 +809,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(58, 72);
+		dbg.location(59, 72);
 
 		}
 		finally {
@@ -808,7 +831,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "output"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:1: output : v= VARIABLE ( ',' tail= output )? -> ^( OUTPUT $v ( $tail)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:1: output : v= VARIABLE ( ',' tail= output )? -> ^( OUTPUT $v ( $tail)? ) ;
 	public final WhileGrammarParser.output_return output() throws RecognitionException {
 		WhileGrammarParser.output_return retval = new WhileGrammarParser.output_return();
 		retval.start = input.LT(1);
@@ -816,11 +839,11 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token v=null;
-		Token char_literal15=null;
+		Token char_literal14=null;
 		ParserRuleReturnScope tail =null;
 
 		Object v_tree=null;
-		Object char_literal15_tree=null;
+		Object char_literal14_tree=null;
 		RewriteRuleTokenStream stream_37=new RewriteRuleTokenStream(adaptor,"token 37");
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
 		RewriteRuleSubtreeStream stream_output=new RewriteRuleSubtreeStream(adaptor,"rule output");
@@ -828,19 +851,19 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "output");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(59, 0);
+		dbg.location(60, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:7: (v= VARIABLE ( ',' tail= output )? -> ^( OUTPUT $v ( $tail)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:7: (v= VARIABLE ( ',' tail= output )? -> ^( OUTPUT $v ( $tail)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:9: v= VARIABLE ( ',' tail= output )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:9: v= VARIABLE ( ',' tail= output )?
 			{
-			dbg.location(59,10);
-			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_output546);  
-			stream_VARIABLE.add(v);
-			dbg.location(59,20);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:20: ( ',' tail= output )?
+			dbg.location(60,10);
+			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_output545); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_VARIABLE.add(v);
+			dbg.location(60,20);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:20: ( ',' tail= output )?
 			int alt4=2;
 			try { dbg.enterSubRule(4);
 			try { dbg.enterDecision(4, decisionCanBacktrack[4]);
@@ -855,17 +878,17 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:21: ',' tail= output
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:21: ',' tail= output
 					{
-					dbg.location(59,21);
-					char_literal15=(Token)match(input,37,FOLLOW_37_in_output549);  
-					stream_37.add(char_literal15);
-					dbg.location(59,29);
-					pushFollow(FOLLOW_output_in_output553);
+					dbg.location(60,21);
+					char_literal14=(Token)match(input,37,FOLLOW_37_in_output548); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_37.add(char_literal14);
+					dbg.location(60,29);
+					pushFollow(FOLLOW_output_in_output552);
 					tail=output();
 					state._fsp--;
-
-					stream_output.add(tail.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_output.add(tail.getTree());
 					}
 					break;
 
@@ -873,31 +896,32 @@ public class WhileGrammarParser extends DebugParser {
 			} finally {dbg.exitSubRule(4);}
 
 			// AST REWRITE
-			// elements: v, tail
+			// elements: tail, v
 			// token labels: v
 			// rule labels: tail, retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_v=new RewriteRuleTokenStream(adaptor,"token v",v);
 			RewriteRuleSubtreeStream stream_tail=new RewriteRuleSubtreeStream(adaptor,"rule tail",tail!=null?tail.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 59:39: -> ^( OUTPUT $v ( $tail)? )
+			// 60:39: -> ^( OUTPUT $v ( $tail)? )
 			{
-				dbg.location(59,42);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:42: ^( OUTPUT $v ( $tail)? )
+				dbg.location(60,42);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:42: ^( OUTPUT $v ( $tail)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(59,44);
+				dbg.location(60,44);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(OUTPUT, "OUTPUT"), root_1);
-				dbg.location(59,52);
-				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(59,55);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:59:55: ( $tail)?
+				dbg.location(60,52);
+				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(60,55);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:60:55: ( $tail)?
 				if ( stream_tail.hasNext() ) {
-					dbg.location(59,55);
+					dbg.location(60,55);
 					adaptor.addChild(root_1, stream_tail.nextTree());
 				}
 				stream_tail.reset();
@@ -909,14 +933,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -926,7 +952,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(59, 60);
+		dbg.location(60, 60);
 
 		}
 		finally {
@@ -948,7 +974,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "vars"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:1: vars : v= VARIABLE ( ',' var= vars )? -> ^( VARS $v ( $var)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:1: vars : v= VARIABLE ( ',' var= vars )? -> ^( VARS $v ( $var)? ) ;
 	public final WhileGrammarParser.vars_return vars() throws RecognitionException {
 		WhileGrammarParser.vars_return retval = new WhileGrammarParser.vars_return();
 		retval.start = input.LT(1);
@@ -956,11 +982,11 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token v=null;
-		Token char_literal16=null;
+		Token char_literal15=null;
 		ParserRuleReturnScope var =null;
 
 		Object v_tree=null;
-		Object char_literal16_tree=null;
+		Object char_literal15_tree=null;
 		RewriteRuleTokenStream stream_37=new RewriteRuleTokenStream(adaptor,"token 37");
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
 		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
@@ -968,19 +994,19 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "vars");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(61, 0);
+		dbg.location(62, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:5: (v= VARIABLE ( ',' var= vars )? -> ^( VARS $v ( $var)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:5: (v= VARIABLE ( ',' var= vars )? -> ^( VARS $v ( $var)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:7: v= VARIABLE ( ',' var= vars )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:7: v= VARIABLE ( ',' var= vars )?
 			{
-			dbg.location(61,8);
-			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_vars577);  
-			stream_VARIABLE.add(v);
-			dbg.location(61,18);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:18: ( ',' var= vars )?
+			dbg.location(62,8);
+			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_vars576); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_VARIABLE.add(v);
+			dbg.location(62,18);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:18: ( ',' var= vars )?
 			int alt5=2;
 			try { dbg.enterSubRule(5);
 			try { dbg.enterDecision(5, decisionCanBacktrack[5]);
@@ -995,17 +1021,17 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:19: ',' var= vars
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:19: ',' var= vars
 					{
-					dbg.location(61,19);
-					char_literal16=(Token)match(input,37,FOLLOW_37_in_vars580);  
-					stream_37.add(char_literal16);
-					dbg.location(61,26);
-					pushFollow(FOLLOW_vars_in_vars584);
+					dbg.location(62,19);
+					char_literal15=(Token)match(input,37,FOLLOW_37_in_vars579); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_37.add(char_literal15);
+					dbg.location(62,26);
+					pushFollow(FOLLOW_vars_in_vars583);
 					var=vars();
 					state._fsp--;
-
-					stream_vars.add(var.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_vars.add(var.getTree());
 					}
 					break;
 
@@ -1019,25 +1045,26 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_v=new RewriteRuleTokenStream(adaptor,"token v",v);
 			RewriteRuleSubtreeStream stream_var=new RewriteRuleSubtreeStream(adaptor,"rule var",var!=null?var.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 61:34: -> ^( VARS $v ( $var)? )
+			// 62:34: -> ^( VARS $v ( $var)? )
 			{
-				dbg.location(61,37);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:37: ^( VARS $v ( $var)? )
+				dbg.location(62,37);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:37: ^( VARS $v ( $var)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(61,39);
+				dbg.location(62,39);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VARS, "VARS"), root_1);
-				dbg.location(61,45);
-				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(61,48);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:61:48: ( $var)?
+				dbg.location(62,45);
+				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(62,48);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:62:48: ( $var)?
 				if ( stream_var.hasNext() ) {
-					dbg.location(61,48);
+					dbg.location(62,48);
 					adaptor.addChild(root_1, stream_var.nextTree());
 				}
 				stream_var.reset();
@@ -1049,14 +1076,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1066,7 +1095,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(61, 52);
+		dbg.location(62, 52);
 
 		}
 		finally {
@@ -1088,18 +1117,18 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "commands"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:63:1: commands : c= command ( ';' cs= commands )? -> ^( COMMANDS $c ( $cs)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:1: commands : c= command ( ';' cs= commands )? -> ^( COMMANDS $c ( $cs)? ) ;
 	public final WhileGrammarParser.commands_return commands() throws RecognitionException {
 		WhileGrammarParser.commands_return retval = new WhileGrammarParser.commands_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token char_literal17=null;
+		Token char_literal16=null;
 		ParserRuleReturnScope c =null;
 		ParserRuleReturnScope cs =null;
 
-		Object char_literal17_tree=null;
+		Object char_literal16_tree=null;
 		RewriteRuleTokenStream stream_40=new RewriteRuleTokenStream(adaptor,"token 40");
 		RewriteRuleSubtreeStream stream_command=new RewriteRuleSubtreeStream(adaptor,"rule command");
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
@@ -1107,21 +1136,21 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "commands");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(63, 0);
+		dbg.location(64, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:63:9: (c= command ( ';' cs= commands )? -> ^( COMMANDS $c ( $cs)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:9: (c= command ( ';' cs= commands )? -> ^( COMMANDS $c ( $cs)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:63:11: c= command ( ';' cs= commands )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:11: c= command ( ';' cs= commands )?
 			{
-			dbg.location(63,12);
-			pushFollow(FOLLOW_command_in_commands608);
+			dbg.location(64,12);
+			pushFollow(FOLLOW_command_in_commands607);
 			c=command();
 			state._fsp--;
-
-			stream_command.add(c.getTree());dbg.location(63,21);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:63:21: ( ';' cs= commands )?
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_command.add(c.getTree());dbg.location(64,21);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:21: ( ';' cs= commands )?
 			int alt6=2;
 			try { dbg.enterSubRule(6);
 			try { dbg.enterDecision(6, decisionCanBacktrack[6]);
@@ -1136,17 +1165,17 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:63:22: ';' cs= commands
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:22: ';' cs= commands
 					{
-					dbg.location(63,22);
-					char_literal17=(Token)match(input,40,FOLLOW_40_in_commands611);  
-					stream_40.add(char_literal17);
-					dbg.location(63,28);
-					pushFollow(FOLLOW_commands_in_commands615);
+					dbg.location(64,22);
+					char_literal16=(Token)match(input,40,FOLLOW_40_in_commands610); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_40.add(char_literal16);
+					dbg.location(64,28);
+					pushFollow(FOLLOW_commands_in_commands614);
 					cs=commands();
 					state._fsp--;
-
-					stream_commands.add(cs.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_commands.add(cs.getTree());
 					}
 					break;
 
@@ -1154,31 +1183,32 @@ public class WhileGrammarParser extends DebugParser {
 			} finally {dbg.exitSubRule(6);}
 
 			// AST REWRITE
-			// elements: c, cs
+			// elements: cs, c
 			// token labels: 
 			// rule labels: cs, c, retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_cs=new RewriteRuleSubtreeStream(adaptor,"rule cs",cs!=null?cs.getTree():null);
 			RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 64:5: -> ^( COMMANDS $c ( $cs)? )
+			// 65:5: -> ^( COMMANDS $c ( $cs)? )
 			{
-				dbg.location(64,8);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:8: ^( COMMANDS $c ( $cs)? )
+				dbg.location(65,8);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:65:8: ^( COMMANDS $c ( $cs)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(64,10);
+				dbg.location(65,10);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_1);
-				dbg.location(64,20);
-				adaptor.addChild(root_1, stream_c.nextTree());dbg.location(64,23);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:64:23: ( $cs)?
+				dbg.location(65,20);
+				adaptor.addChild(root_1, stream_c.nextTree());dbg.location(65,23);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:65:23: ( $cs)?
 				if ( stream_cs.hasNext() ) {
-					dbg.location(64,23);
+					dbg.location(65,23);
 					adaptor.addChild(root_1, stream_cs.nextTree());
 				}
 				stream_cs.reset();
@@ -1190,14 +1220,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1207,7 +1239,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(65, 0);
+		dbg.location(66, 0);
 
 		}
 		finally {
@@ -1229,7 +1261,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "exprs"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:67:1: exprs : e= expression ( ',' exp= exprs )? -> ^( EXPRS $e ( $exp)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:1: exprs : expression ( ',' exprs )? -> ^( EXPRS expression ( exprs )? ) ;
 	public final WhileGrammarParser.exprs_return exprs() throws RecognitionException {
 		WhileGrammarParser.exprs_return retval = new WhileGrammarParser.exprs_return();
 		retval.start = input.LT(1);
@@ -1237,8 +1269,8 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token char_literal18=null;
-		ParserRuleReturnScope e =null;
-		ParserRuleReturnScope exp =null;
+		ParserRuleReturnScope expression17 =null;
+		ParserRuleReturnScope exprs19 =null;
 
 		Object char_literal18_tree=null;
 		RewriteRuleTokenStream stream_37=new RewriteRuleTokenStream(adaptor,"token 37");
@@ -1248,21 +1280,21 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "exprs");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(67, 0);
+		dbg.location(68, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:67:6: (e= expression ( ',' exp= exprs )? -> ^( EXPRS $e ( $exp)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:6: ( expression ( ',' exprs )? -> ^( EXPRS expression ( exprs )? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:67:8: e= expression ( ',' exp= exprs )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:8: expression ( ',' exprs )?
 			{
-			dbg.location(67,9);
-			pushFollow(FOLLOW_expression_in_exprs645);
-			e=expression();
+			dbg.location(68,8);
+			pushFollow(FOLLOW_expression_in_exprs642);
+			expression17=expression();
 			state._fsp--;
-
-			stream_expression.add(e.getTree());dbg.location(67,21);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:67:21: ( ',' exp= exprs )?
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expression.add(expression17.getTree());dbg.location(68,19);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:19: ( ',' exprs )?
 			int alt7=2;
 			try { dbg.enterSubRule(7);
 			try { dbg.enterDecision(7, decisionCanBacktrack[7]);
@@ -1277,17 +1309,17 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:67:22: ',' exp= exprs
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:20: ',' exprs
 					{
-					dbg.location(67,22);
-					char_literal18=(Token)match(input,37,FOLLOW_37_in_exprs648);  
-					stream_37.add(char_literal18);
-					dbg.location(67,29);
-					pushFollow(FOLLOW_exprs_in_exprs652);
-					exp=exprs();
+					dbg.location(68,20);
+					char_literal18=(Token)match(input,37,FOLLOW_37_in_exprs645); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_37.add(char_literal18);
+					dbg.location(68,24);
+					pushFollow(FOLLOW_exprs_in_exprs647);
+					exprs19=exprs();
 					state._fsp--;
-
-					stream_exprs.add(exp.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_exprs.add(exprs19.getTree());
 					}
 					break;
 
@@ -1295,34 +1327,33 @@ public class WhileGrammarParser extends DebugParser {
 			} finally {dbg.exitSubRule(7);}
 
 			// AST REWRITE
-			// elements: exp, e
+			// elements: exprs, expression
 			// token labels: 
-			// rule labels: e, exp, retval
+			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
-			RewriteRuleSubtreeStream stream_e=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.getTree():null);
-			RewriteRuleSubtreeStream stream_exp=new RewriteRuleSubtreeStream(adaptor,"rule exp",exp!=null?exp.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 68:5: -> ^( EXPRS $e ( $exp)? )
+			// 69:5: -> ^( EXPRS expression ( exprs )? )
 			{
-				dbg.location(68,8);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:8: ^( EXPRS $e ( $exp)? )
+				dbg.location(69,8);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:69:8: ^( EXPRS expression ( exprs )? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(68,10);
+				dbg.location(69,10);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPRS, "EXPRS"), root_1);
-				dbg.location(68,17);
-				adaptor.addChild(root_1, stream_e.nextTree());dbg.location(68,20);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:68:20: ( $exp)?
-				if ( stream_exp.hasNext() ) {
-					dbg.location(68,20);
-					adaptor.addChild(root_1, stream_exp.nextTree());
+				dbg.location(69,16);
+				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(69,27);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:69:27: ( exprs )?
+				if ( stream_exprs.hasNext() ) {
+					dbg.location(69,27);
+					adaptor.addChild(root_1, stream_exprs.nextTree());
 				}
-				stream_exp.reset();
+				stream_exprs.reset();
 
 				adaptor.addChild(root_0, root_1);
 				}
@@ -1331,14 +1362,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1348,7 +1381,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(69, 0);
+		dbg.location(70, 0);
 
 		}
 		finally {
@@ -1370,18 +1403,18 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command_vars"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:71:1: command_vars : vars ':=' exprs -> ^( ASSIGMENT vars exprs ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:1: command_vars : vars ':=' exprs -> ^( ASSIGMENT vars exprs ) ;
 	public final WhileGrammarParser.command_vars_return command_vars() throws RecognitionException {
 		WhileGrammarParser.command_vars_return retval = new WhileGrammarParser.command_vars_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal20=null;
-		ParserRuleReturnScope vars19 =null;
-		ParserRuleReturnScope exprs21 =null;
+		Token string_literal21=null;
+		ParserRuleReturnScope vars20 =null;
+		ParserRuleReturnScope exprs22 =null;
 
-		Object string_literal20_tree=null;
+		Object string_literal21_tree=null;
 		RewriteRuleTokenStream stream_39=new RewriteRuleTokenStream(adaptor,"token 39");
 		RewriteRuleSubtreeStream stream_exprs=new RewriteRuleSubtreeStream(adaptor,"rule exprs");
 		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
@@ -1389,49 +1422,50 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "command_vars");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(71, 0);
+		dbg.location(72, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:71:13: ( vars ':=' exprs -> ^( ASSIGMENT vars exprs ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:13: ( vars ':=' exprs -> ^( ASSIGMENT vars exprs ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:71:15: vars ':=' exprs
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:15: vars ':=' exprs
 			{
-			dbg.location(71,15);
-			pushFollow(FOLLOW_vars_in_command_vars679);
-			vars19=vars();
+			dbg.location(72,15);
+			pushFollow(FOLLOW_vars_in_command_vars672);
+			vars20=vars();
 			state._fsp--;
-
-			stream_vars.add(vars19.getTree());dbg.location(71,20);
-			string_literal20=(Token)match(input,39,FOLLOW_39_in_command_vars681);  
-			stream_39.add(string_literal20);
-			dbg.location(71,25);
-			pushFollow(FOLLOW_exprs_in_command_vars683);
-			exprs21=exprs();
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_vars.add(vars20.getTree());dbg.location(72,20);
+			string_literal21=(Token)match(input,39,FOLLOW_39_in_command_vars674); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_39.add(string_literal21);
+			dbg.location(72,25);
+			pushFollow(FOLLOW_exprs_in_command_vars676);
+			exprs22=exprs();
 			state._fsp--;
-
-			stream_exprs.add(exprs21.getTree());
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_exprs.add(exprs22.getTree());
 			// AST REWRITE
-			// elements: exprs, vars
+			// elements: vars, exprs
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 71:31: -> ^( ASSIGMENT vars exprs )
+			// 72:31: -> ^( ASSIGMENT vars exprs )
 			{
-				dbg.location(71,34);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:71:34: ^( ASSIGMENT vars exprs )
+				dbg.location(72,34);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:34: ^( ASSIGMENT vars exprs )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(71,36);
+				dbg.location(72,36);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ASSIGMENT, "ASSIGMENT"), root_1);
-				dbg.location(71,46);
-				adaptor.addChild(root_1, stream_vars.nextTree());dbg.location(71,51);
+				dbg.location(72,46);
+				adaptor.addChild(root_1, stream_vars.nextTree());dbg.location(72,51);
 				adaptor.addChild(root_1, stream_exprs.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -1440,14 +1474,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1457,7 +1493,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(71, 56);
+		dbg.location(72, 56);
 
 		}
 		finally {
@@ -1479,25 +1515,25 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command_if"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:1: command_if : 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:1: command_if : 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) ;
 	public final WhileGrammarParser.command_if_return command_if() throws RecognitionException {
 		WhileGrammarParser.command_if_return retval = new WhileGrammarParser.command_if_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal22=null;
-		Token string_literal24=null;
+		Token string_literal23=null;
 		Token string_literal25=null;
 		Token string_literal26=null;
+		Token string_literal27=null;
 		ParserRuleReturnScope b1 =null;
 		ParserRuleReturnScope b2 =null;
-		ParserRuleReturnScope expression23 =null;
+		ParserRuleReturnScope expression24 =null;
 
-		Object string_literal22_tree=null;
-		Object string_literal24_tree=null;
+		Object string_literal23_tree=null;
 		Object string_literal25_tree=null;
 		Object string_literal26_tree=null;
+		Object string_literal27_tree=null;
 		RewriteRuleTokenStream stream_44=new RewriteRuleTokenStream(adaptor,"token 44");
 		RewriteRuleTokenStream stream_45=new RewriteRuleTokenStream(adaptor,"token 45");
 		RewriteRuleTokenStream stream_57=new RewriteRuleTokenStream(adaptor,"token 57");
@@ -1508,32 +1544,32 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "command_if");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(72, 0);
+		dbg.location(73, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:11: ( 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:11: ( 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:13: 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi'
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:13: 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi'
 			{
-			dbg.location(72,13);
-			string_literal22=(Token)match(input,50,FOLLOW_50_in_command_if699);  
-			stream_50.add(string_literal22);
-			dbg.location(72,18);
-			pushFollow(FOLLOW_expression_in_command_if701);
-			expression23=expression();
+			dbg.location(73,13);
+			string_literal23=(Token)match(input,50,FOLLOW_50_in_command_if692); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_50.add(string_literal23);
+			dbg.location(73,18);
+			pushFollow(FOLLOW_expression_in_command_if694);
+			expression24=expression();
 			state._fsp--;
-
-			stream_expression.add(expression23.getTree());dbg.location(72,29);
-			string_literal24=(Token)match(input,57,FOLLOW_57_in_command_if703);  
-			stream_57.add(string_literal24);
-			dbg.location(72,38);
-			pushFollow(FOLLOW_commands_in_command_if707);
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expression.add(expression24.getTree());dbg.location(73,29);
+			string_literal25=(Token)match(input,57,FOLLOW_57_in_command_if696); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_57.add(string_literal25);
+			dbg.location(73,38);
+			pushFollow(FOLLOW_commands_in_command_if700);
 			b1=commands();
 			state._fsp--;
-
-			stream_commands.add(b1.getTree());dbg.location(72,48);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:48: ( 'else' b2= commands )?
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_commands.add(b1.getTree());dbg.location(73,48);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:48: ( 'else' b2= commands )?
 			int alt8=2;
 			try { dbg.enterSubRule(8);
 			try { dbg.enterDecision(8, decisionCanBacktrack[8]);
@@ -1548,53 +1584,54 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:49: 'else' b2= commands
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:49: 'else' b2= commands
 					{
-					dbg.location(72,49);
-					string_literal25=(Token)match(input,44,FOLLOW_44_in_command_if710);  
-					stream_44.add(string_literal25);
-					dbg.location(72,58);
-					pushFollow(FOLLOW_commands_in_command_if714);
+					dbg.location(73,49);
+					string_literal26=(Token)match(input,44,FOLLOW_44_in_command_if703); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_44.add(string_literal26);
+					dbg.location(73,58);
+					pushFollow(FOLLOW_commands_in_command_if707);
 					b2=commands();
 					state._fsp--;
-
-					stream_commands.add(b2.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_commands.add(b2.getTree());
 					}
 					break;
 
 			}
 			} finally {dbg.exitSubRule(8);}
-			dbg.location(72,70);
-			string_literal26=(Token)match(input,45,FOLLOW_45_in_command_if718);  
-			stream_45.add(string_literal26);
+			dbg.location(73,70);
+			string_literal27=(Token)match(input,45,FOLLOW_45_in_command_if711); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_45.add(string_literal27);
 
 			// AST REWRITE
-			// elements: expression, b2, b1
+			// elements: b1, expression, b2
 			// token labels: 
 			// rule labels: b2, retval, b1
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_b2=new RewriteRuleSubtreeStream(adaptor,"rule b2",b2!=null?b2.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 			RewriteRuleSubtreeStream stream_b1=new RewriteRuleSubtreeStream(adaptor,"rule b1",b1!=null?b1.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 72:75: -> ^( IF expression $b1 ( $b2)? )
+			// 73:75: -> ^( IF expression $b1 ( $b2)? )
 			{
-				dbg.location(72,78);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:78: ^( IF expression $b1 ( $b2)? )
+				dbg.location(73,78);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:78: ^( IF expression $b1 ( $b2)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(72,80);
+				dbg.location(73,80);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IF, "IF"), root_1);
-				dbg.location(72,83);
-				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(72,95);
-				adaptor.addChild(root_1, stream_b1.nextTree());dbg.location(72,99);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:72:99: ( $b2)?
+				dbg.location(73,83);
+				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(73,95);
+				adaptor.addChild(root_1, stream_b1.nextTree());dbg.location(73,99);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:99: ( $b2)?
 				if ( stream_b2.hasNext() ) {
-					dbg.location(72,99);
+					dbg.location(73,99);
 					adaptor.addChild(root_1, stream_b2.nextTree());
 				}
 				stream_b2.reset();
@@ -1606,14 +1643,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1623,7 +1662,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(72, 102);
+		dbg.location(73, 102);
 
 		}
 		finally {
@@ -1645,22 +1684,22 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command_while"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:1: command_while : 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:1: command_while : 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) ;
 	public final WhileGrammarParser.command_while_return command_while() throws RecognitionException {
 		WhileGrammarParser.command_while_return retval = new WhileGrammarParser.command_while_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal27=null;
-		Token string_literal29=null;
-		Token string_literal31=null;
-		ParserRuleReturnScope expression28 =null;
-		ParserRuleReturnScope commands30 =null;
+		Token string_literal28=null;
+		Token string_literal30=null;
+		Token string_literal32=null;
+		ParserRuleReturnScope expression29 =null;
+		ParserRuleReturnScope commands31 =null;
 
-		Object string_literal27_tree=null;
-		Object string_literal29_tree=null;
-		Object string_literal31_tree=null;
+		Object string_literal28_tree=null;
+		Object string_literal30_tree=null;
+		Object string_literal32_tree=null;
 		RewriteRuleTokenStream stream_55=new RewriteRuleTokenStream(adaptor,"token 55");
 		RewriteRuleTokenStream stream_59=new RewriteRuleTokenStream(adaptor,"token 59");
 		RewriteRuleTokenStream stream_43=new RewriteRuleTokenStream(adaptor,"token 43");
@@ -1670,33 +1709,33 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "command_while");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(73, 0);
+		dbg.location(74, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:14: ( 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:14: ( 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:16: 'while' expression 'do' commands 'od'
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:16: 'while' expression 'do' commands 'od'
 			{
-			dbg.location(73,16);
-			string_literal27=(Token)match(input,59,FOLLOW_59_in_command_while739);  
-			stream_59.add(string_literal27);
-			dbg.location(73,24);
-			pushFollow(FOLLOW_expression_in_command_while741);
-			expression28=expression();
+			dbg.location(74,16);
+			string_literal28=(Token)match(input,59,FOLLOW_59_in_command_while732); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_59.add(string_literal28);
+			dbg.location(74,24);
+			pushFollow(FOLLOW_expression_in_command_while734);
+			expression29=expression();
 			state._fsp--;
-
-			stream_expression.add(expression28.getTree());dbg.location(73,35);
-			string_literal29=(Token)match(input,43,FOLLOW_43_in_command_while743);  
-			stream_43.add(string_literal29);
-			dbg.location(73,40);
-			pushFollow(FOLLOW_commands_in_command_while745);
-			commands30=commands();
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expression.add(expression29.getTree());dbg.location(74,35);
+			string_literal30=(Token)match(input,43,FOLLOW_43_in_command_while736); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_43.add(string_literal30);
+			dbg.location(74,40);
+			pushFollow(FOLLOW_commands_in_command_while738);
+			commands31=commands();
 			state._fsp--;
-
-			stream_commands.add(commands30.getTree());dbg.location(73,49);
-			string_literal31=(Token)match(input,55,FOLLOW_55_in_command_while747);  
-			stream_55.add(string_literal31);
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_commands.add(commands31.getTree());dbg.location(74,49);
+			string_literal32=(Token)match(input,55,FOLLOW_55_in_command_while740); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_55.add(string_literal32);
 
 			// AST REWRITE
 			// elements: expression, commands
@@ -1705,20 +1744,21 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 73:54: -> ^( WHILE expression commands )
+			// 74:54: -> ^( WHILE expression commands )
 			{
-				dbg.location(73,57);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:73:57: ^( WHILE expression commands )
+				dbg.location(74,57);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:57: ^( WHILE expression commands )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(73,59);
+				dbg.location(74,59);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WHILE, "WHILE"), root_1);
-				dbg.location(73,65);
-				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(73,76);
+				dbg.location(74,65);
+				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(74,76);
 				adaptor.addChild(root_1, stream_commands.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -1727,14 +1767,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1744,7 +1786,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(73, 84);
+		dbg.location(74, 84);
 
 		}
 		finally {
@@ -1766,22 +1808,22 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command_for"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:1: command_for : 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:1: command_for : 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) ;
 	public final WhileGrammarParser.command_for_return command_for() throws RecognitionException {
 		WhileGrammarParser.command_for_return retval = new WhileGrammarParser.command_for_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal32=null;
-		Token string_literal34=null;
-		Token string_literal36=null;
-		ParserRuleReturnScope expression33 =null;
-		ParserRuleReturnScope commands35 =null;
+		Token string_literal33=null;
+		Token string_literal35=null;
+		Token string_literal37=null;
+		ParserRuleReturnScope expression34 =null;
+		ParserRuleReturnScope commands36 =null;
 
-		Object string_literal32_tree=null;
-		Object string_literal34_tree=null;
-		Object string_literal36_tree=null;
+		Object string_literal33_tree=null;
+		Object string_literal35_tree=null;
+		Object string_literal37_tree=null;
 		RewriteRuleTokenStream stream_55=new RewriteRuleTokenStream(adaptor,"token 55");
 		RewriteRuleTokenStream stream_46=new RewriteRuleTokenStream(adaptor,"token 46");
 		RewriteRuleTokenStream stream_43=new RewriteRuleTokenStream(adaptor,"token 43");
@@ -1791,33 +1833,33 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "command_for");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(74, 0);
+		dbg.location(75, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:12: ( 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:12: ( 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:14: 'for' expression 'do' commands 'od'
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:14: 'for' expression 'do' commands 'od'
 			{
-			dbg.location(74,14);
-			string_literal32=(Token)match(input,46,FOLLOW_46_in_command_for763);  
-			stream_46.add(string_literal32);
-			dbg.location(74,20);
-			pushFollow(FOLLOW_expression_in_command_for765);
-			expression33=expression();
+			dbg.location(75,14);
+			string_literal33=(Token)match(input,46,FOLLOW_46_in_command_for756); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_46.add(string_literal33);
+			dbg.location(75,20);
+			pushFollow(FOLLOW_expression_in_command_for758);
+			expression34=expression();
 			state._fsp--;
-
-			stream_expression.add(expression33.getTree());dbg.location(74,31);
-			string_literal34=(Token)match(input,43,FOLLOW_43_in_command_for767);  
-			stream_43.add(string_literal34);
-			dbg.location(74,36);
-			pushFollow(FOLLOW_commands_in_command_for769);
-			commands35=commands();
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expression.add(expression34.getTree());dbg.location(75,31);
+			string_literal35=(Token)match(input,43,FOLLOW_43_in_command_for760); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_43.add(string_literal35);
+			dbg.location(75,36);
+			pushFollow(FOLLOW_commands_in_command_for762);
+			commands36=commands();
 			state._fsp--;
-
-			stream_commands.add(commands35.getTree());dbg.location(74,45);
-			string_literal36=(Token)match(input,55,FOLLOW_55_in_command_for771);  
-			stream_55.add(string_literal36);
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_commands.add(commands36.getTree());dbg.location(75,45);
+			string_literal37=(Token)match(input,55,FOLLOW_55_in_command_for764); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_55.add(string_literal37);
 
 			// AST REWRITE
 			// elements: expression, commands
@@ -1826,20 +1868,21 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 74:50: -> ^( FOR expression commands )
+			// 75:50: -> ^( FOR expression commands )
 			{
-				dbg.location(74,53);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:74:53: ^( FOR expression commands )
+				dbg.location(75,53);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:53: ^( FOR expression commands )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(74,55);
+				dbg.location(75,55);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOR, "FOR"), root_1);
-				dbg.location(74,59);
-				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(74,70);
+				dbg.location(75,59);
+				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(75,70);
 				adaptor.addChild(root_1, stream_commands.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -1848,14 +1891,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -1865,7 +1910,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(74, 78);
+		dbg.location(75, 78);
 
 		}
 		finally {
@@ -1887,7 +1932,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command_foreach"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:1: command_foreach : 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:1: command_foreach : 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) ;
 	public final WhileGrammarParser.command_foreach_return command_foreach() throws RecognitionException {
 		WhileGrammarParser.command_foreach_return retval = new WhileGrammarParser.command_foreach_return();
 		retval.start = input.LT(1);
@@ -1895,18 +1940,18 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token v=null;
-		Token string_literal37=null;
 		Token string_literal38=null;
-		Token string_literal40=null;
-		Token string_literal42=null;
-		ParserRuleReturnScope expression39 =null;
-		ParserRuleReturnScope commands41 =null;
+		Token string_literal39=null;
+		Token string_literal41=null;
+		Token string_literal43=null;
+		ParserRuleReturnScope expression40 =null;
+		ParserRuleReturnScope commands42 =null;
 
 		Object v_tree=null;
-		Object string_literal37_tree=null;
 		Object string_literal38_tree=null;
-		Object string_literal40_tree=null;
-		Object string_literal42_tree=null;
+		Object string_literal39_tree=null;
+		Object string_literal41_tree=null;
+		Object string_literal43_tree=null;
 		RewriteRuleTokenStream stream_55=new RewriteRuleTokenStream(adaptor,"token 55");
 		RewriteRuleTokenStream stream_47=new RewriteRuleTokenStream(adaptor,"token 47");
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
@@ -1918,63 +1963,64 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "command_foreach");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(75, 0);
+		dbg.location(76, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:16: ( 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:16: ( 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:18: 'foreach' v= VARIABLE 'in' expression 'do' commands 'od'
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:18: 'foreach' v= VARIABLE 'in' expression 'do' commands 'od'
 			{
-			dbg.location(75,18);
-			string_literal37=(Token)match(input,47,FOLLOW_47_in_command_foreach787);  
-			stream_47.add(string_literal37);
-			dbg.location(75,29);
-			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command_foreach791);  
-			stream_VARIABLE.add(v);
-			dbg.location(75,39);
-			string_literal38=(Token)match(input,51,FOLLOW_51_in_command_foreach793);  
-			stream_51.add(string_literal38);
-			dbg.location(75,44);
-			pushFollow(FOLLOW_expression_in_command_foreach795);
-			expression39=expression();
+			dbg.location(76,18);
+			string_literal38=(Token)match(input,47,FOLLOW_47_in_command_foreach780); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_47.add(string_literal38);
+			dbg.location(76,29);
+			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command_foreach784); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_VARIABLE.add(v);
+			dbg.location(76,39);
+			string_literal39=(Token)match(input,51,FOLLOW_51_in_command_foreach786); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_51.add(string_literal39);
+			dbg.location(76,44);
+			pushFollow(FOLLOW_expression_in_command_foreach788);
+			expression40=expression();
 			state._fsp--;
-
-			stream_expression.add(expression39.getTree());dbg.location(75,55);
-			string_literal40=(Token)match(input,43,FOLLOW_43_in_command_foreach797);  
-			stream_43.add(string_literal40);
-			dbg.location(75,60);
-			pushFollow(FOLLOW_commands_in_command_foreach799);
-			commands41=commands();
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expression.add(expression40.getTree());dbg.location(76,55);
+			string_literal41=(Token)match(input,43,FOLLOW_43_in_command_foreach790); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_43.add(string_literal41);
+			dbg.location(76,60);
+			pushFollow(FOLLOW_commands_in_command_foreach792);
+			commands42=commands();
 			state._fsp--;
-
-			stream_commands.add(commands41.getTree());dbg.location(75,69);
-			string_literal42=(Token)match(input,55,FOLLOW_55_in_command_foreach801);  
-			stream_55.add(string_literal42);
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_commands.add(commands42.getTree());dbg.location(76,69);
+			string_literal43=(Token)match(input,55,FOLLOW_55_in_command_foreach794); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_55.add(string_literal43);
 
 			// AST REWRITE
-			// elements: v, expression, commands
+			// elements: expression, commands, v
 			// token labels: v
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_v=new RewriteRuleTokenStream(adaptor,"token v",v);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 75:74: -> ^( FOREACH $v expression commands )
+			// 76:74: -> ^( FOREACH $v expression commands )
 			{
-				dbg.location(75,77);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:75:77: ^( FOREACH $v expression commands )
+				dbg.location(76,77);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:77: ^( FOREACH $v expression commands )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(75,79);
+				dbg.location(76,79);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOREACH, "FOREACH"), root_1);
-				dbg.location(75,88);
-				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(75,90);
-				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(75,101);
+				dbg.location(76,88);
+				adaptor.addChild(root_1, stream_v.nextNode());dbg.location(76,90);
+				adaptor.addChild(root_1, stream_expression.nextTree());dbg.location(76,101);
 				adaptor.addChild(root_1, stream_commands.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -1983,14 +2029,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2000,7 +2048,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(75, 109);
+		dbg.location(76, 109);
 
 		}
 		finally {
@@ -2022,32 +2070,32 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command_nop"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:1: command_nop : 'nop' -> ^( COMMAND_NOP ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:77:1: command_nop : 'nop' -> ^( COMMAND_NOP ) ;
 	public final WhileGrammarParser.command_nop_return command_nop() throws RecognitionException {
 		WhileGrammarParser.command_nop_return retval = new WhileGrammarParser.command_nop_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal43=null;
+		Token string_literal44=null;
 
-		Object string_literal43_tree=null;
+		Object string_literal44_tree=null;
 		RewriteRuleTokenStream stream_54=new RewriteRuleTokenStream(adaptor,"token 54");
 
 		try { dbg.enterRule(getGrammarFileName(), "command_nop");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(76, 0);
+		dbg.location(77, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:12: ( 'nop' -> ^( COMMAND_NOP ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:77:12: ( 'nop' -> ^( COMMAND_NOP ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:14: 'nop'
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:77:14: 'nop'
 			{
-			dbg.location(76,14);
-			string_literal43=(Token)match(input,54,FOLLOW_54_in_command_nop820);  
-			stream_54.add(string_literal43);
+			dbg.location(77,14);
+			string_literal44=(Token)match(input,54,FOLLOW_54_in_command_nop813); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_54.add(string_literal44);
 
 			// AST REWRITE
 			// elements: 
@@ -2056,17 +2104,18 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 76:20: -> ^( COMMAND_NOP )
+			// 77:20: -> ^( COMMAND_NOP )
 			{
-				dbg.location(76,23);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:76:23: ^( COMMAND_NOP )
+				dbg.location(77,23);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:77:23: ^( COMMAND_NOP )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(76,25);
+				dbg.location(77,25);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMAND_NOP, "COMMAND_NOP"), root_1);
 				adaptor.addChild(root_0, root_1);
 				}
@@ -2075,14 +2124,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2092,7 +2143,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(77, 0);
+		dbg.location(78, 0);
 
 		}
 		finally {
@@ -2114,28 +2165,28 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "command"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:79:1: command : ( command_if | command_while | command_for | command_foreach | command_vars | command_nop );
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:80:1: command : ( command_if | command_while | command_for | command_foreach | command_vars | command_nop );
 	public final WhileGrammarParser.command_return command() throws RecognitionException {
 		WhileGrammarParser.command_return retval = new WhileGrammarParser.command_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		ParserRuleReturnScope command_if44 =null;
-		ParserRuleReturnScope command_while45 =null;
-		ParserRuleReturnScope command_for46 =null;
-		ParserRuleReturnScope command_foreach47 =null;
-		ParserRuleReturnScope command_vars48 =null;
-		ParserRuleReturnScope command_nop49 =null;
+		ParserRuleReturnScope command_if45 =null;
+		ParserRuleReturnScope command_while46 =null;
+		ParserRuleReturnScope command_for47 =null;
+		ParserRuleReturnScope command_foreach48 =null;
+		ParserRuleReturnScope command_vars49 =null;
+		ParserRuleReturnScope command_nop50 =null;
 
 
 		try { dbg.enterRule(getGrammarFileName(), "command");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(79, 0);
+		dbg.location(80, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:79:8: ( command_if | command_while | command_for | command_foreach | command_vars | command_nop )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:80:8: ( command_if | command_while | command_for | command_foreach | command_vars | command_nop )
 			int alt9=6;
 			try { dbg.enterDecision(9, decisionCanBacktrack[9]);
 
@@ -2171,6 +2222,7 @@ public class WhileGrammarParser extends DebugParser {
 				}
 				break;
 			default:
+				if (state.backtracking>0) {state.failed=true; return retval;}
 				NoViableAltException nvae =
 					new NoViableAltException("", 9, 0, input);
 				dbg.recognitionException(nvae);
@@ -2182,102 +2234,102 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:79:10: command_if
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:80:10: command_if
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					dbg.location(79,10);
-					pushFollow(FOLLOW_command_if_in_command834);
-					command_if44=command_if();
+					dbg.location(80,10);
+					pushFollow(FOLLOW_command_if_in_command827);
+					command_if45=command_if();
 					state._fsp--;
-
-					adaptor.addChild(root_0, command_if44.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_if45.getTree());
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:80:11: command_while
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:81:11: command_while
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					dbg.location(80,11);
-					pushFollow(FOLLOW_command_while_in_command847);
-					command_while45=command_while();
+					dbg.location(81,11);
+					pushFollow(FOLLOW_command_while_in_command840);
+					command_while46=command_while();
 					state._fsp--;
-
-					adaptor.addChild(root_0, command_while45.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_while46.getTree());
 
 					}
 					break;
 				case 3 :
 					dbg.enterAlt(3);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:81:11: command_for
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:82:11: command_for
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					dbg.location(81,11);
-					pushFollow(FOLLOW_command_for_in_command860);
-					command_for46=command_for();
+					dbg.location(82,11);
+					pushFollow(FOLLOW_command_for_in_command853);
+					command_for47=command_for();
 					state._fsp--;
-
-					adaptor.addChild(root_0, command_for46.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_for47.getTree());
 
 					}
 					break;
 				case 4 :
 					dbg.enterAlt(4);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:82:11: command_foreach
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:83:11: command_foreach
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					dbg.location(82,11);
-					pushFollow(FOLLOW_command_foreach_in_command873);
-					command_foreach47=command_foreach();
+					dbg.location(83,11);
+					pushFollow(FOLLOW_command_foreach_in_command866);
+					command_foreach48=command_foreach();
 					state._fsp--;
-
-					adaptor.addChild(root_0, command_foreach47.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_foreach48.getTree());
 
 					}
 					break;
 				case 5 :
 					dbg.enterAlt(5);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:83:11: command_vars
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:84:11: command_vars
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					dbg.location(83,11);
-					pushFollow(FOLLOW_command_vars_in_command885);
-					command_vars48=command_vars();
+					dbg.location(84,11);
+					pushFollow(FOLLOW_command_vars_in_command878);
+					command_vars49=command_vars();
 					state._fsp--;
-
-					adaptor.addChild(root_0, command_vars48.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_vars49.getTree());
 
 					}
 					break;
 				case 6 :
 					dbg.enterAlt(6);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:84:11: command_nop
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:85:11: command_nop
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					dbg.location(84,11);
-					pushFollow(FOLLOW_command_nop_in_command897);
-					command_nop49=command_nop();
+					dbg.location(85,11);
+					pushFollow(FOLLOW_command_nop_in_command890);
+					command_nop50=command_nop();
 					state._fsp--;
-
-					adaptor.addChild(root_0, command_nop49.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_nop50.getTree());
 
 					}
 					break;
@@ -2285,9 +2337,10 @@ public class WhileGrammarParser extends DebugParser {
 			}
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2367,6 +2420,7 @@ public class WhileGrammarParser extends DebugParser {
 				}
 				break;
 			default:
+				if (state.backtracking>0) {state.failed=true; return retval;}
 				NoViableAltException nvae =
 					new NoViableAltException("", 10, 0, input);
 				dbg.recognitionException(nvae);
@@ -2381,8 +2435,8 @@ public class WhileGrammarParser extends DebugParser {
 					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:88:15: 'nil'
 					{
 					dbg.location(88,15);
-					a=(Token)match(input,53,FOLLOW_53_in_exprbase1917);  
-					stream_53.add(a);
+					a=(Token)match(input,53,FOLLOW_53_in_exprbase1909); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_53.add(a);
 
 					}
 					break;
@@ -2392,8 +2446,8 @@ public class WhileGrammarParser extends DebugParser {
 					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:88:23: VARIABLE
 					{
 					dbg.location(88,23);
-					a=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_exprbase1921);  
-					stream_VARIABLE.add(a);
+					a=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_exprbase1913); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_VARIABLE.add(a);
 
 					}
 					break;
@@ -2403,8 +2457,8 @@ public class WhileGrammarParser extends DebugParser {
 					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:88:34: SYMBOL
 					{
 					dbg.location(88,34);
-					a=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_exprbase1925);  
-					stream_SYMBOL.add(a);
+					a=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_exprbase1917); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_SYMBOL.add(a);
 
 					}
 					break;
@@ -2419,6 +2473,7 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_a=new RewriteRuleTokenStream(adaptor,"token a",a);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
@@ -2441,14 +2496,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2480,7 +2537,7 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "expr_constructor"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:1: expr_constructor : a= ( 'cons' | 'list' ) lexpr -> ^( EXPR_CONSTRUCTOR $a lexpr ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:1: expr_constructor : (a= 'cons' |a= 'list' ) lexpr -> ^( EXPR_CONSTRUCTOR $a lexpr ) ;
 	public final WhileGrammarParser.expr_constructor_return expr_constructor() throws RecognitionException {
 		WhileGrammarParser.expr_constructor_return retval = new WhileGrammarParser.expr_constructor_return();
 		retval.start = input.LT(1);
@@ -2488,7 +2545,7 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token a=null;
-		ParserRuleReturnScope lexpr50 =null;
+		ParserRuleReturnScope lexpr51 =null;
 
 		Object a_tree=null;
 		RewriteRuleTokenStream stream_52=new RewriteRuleTokenStream(adaptor,"token 52");
@@ -2501,13 +2558,13 @@ public class WhileGrammarParser extends DebugParser {
 		dbg.location(91, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:17: (a= ( 'cons' | 'list' ) lexpr -> ^( EXPR_CONSTRUCTOR $a lexpr ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:17: ( (a= 'cons' |a= 'list' ) lexpr -> ^( EXPR_CONSTRUCTOR $a lexpr ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:19: a= ( 'cons' | 'list' ) lexpr
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:19: (a= 'cons' |a= 'list' ) lexpr
 			{
-			dbg.location(91,20);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:21: ( 'cons' | 'list' )
+			dbg.location(91,19);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:19: (a= 'cons' |a= 'list' )
 			int alt11=2;
 			try { dbg.enterSubRule(11);
 			try { dbg.enterDecision(11, decisionCanBacktrack[11]);
@@ -2521,6 +2578,7 @@ public class WhileGrammarParser extends DebugParser {
 			}
 
 			else {
+				if (state.backtracking>0) {state.failed=true; return retval;}
 				NoViableAltException nvae =
 					new NoViableAltException("", 11, 0, input);
 				dbg.recognitionException(nvae);
@@ -2533,41 +2591,42 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:22: 'cons'
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:20: a= 'cons'
 					{
-					dbg.location(91,22);
-					a=(Token)match(input,42,FOLLOW_42_in_expr_constructor946);  
-					stream_42.add(a);
+					dbg.location(91,21);
+					a=(Token)match(input,42,FOLLOW_42_in_expr_constructor938); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_42.add(a);
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:29: 'list'
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:91:29: a= 'list'
 					{
-					dbg.location(91,29);
-					a=(Token)match(input,52,FOLLOW_52_in_expr_constructor948);  
-					stream_52.add(a);
+					dbg.location(91,30);
+					a=(Token)match(input,52,FOLLOW_52_in_expr_constructor942); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_52.add(a);
 
 					}
 					break;
 
 			}
 			} finally {dbg.exitSubRule(11);}
-			dbg.location(91,37);
-			pushFollow(FOLLOW_lexpr_in_expr_constructor951);
-			lexpr50=lexpr();
+			dbg.location(91,39);
+			pushFollow(FOLLOW_lexpr_in_expr_constructor945);
+			lexpr51=lexpr();
 			state._fsp--;
-
-			stream_lexpr.add(lexpr50.getTree());
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_lexpr.add(lexpr51.getTree());
 			// AST REWRITE
-			// elements: lexpr, a
+			// elements: a, lexpr
 			// token labels: a
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_a=new RewriteRuleTokenStream(adaptor,"token a",a);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
@@ -2591,14 +2650,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2638,7 +2699,7 @@ public class WhileGrammarParser extends DebugParser {
 		Object root_0 = null;
 
 		Token a=null;
-		ParserRuleReturnScope exprbase51 =null;
+		ParserRuleReturnScope exprbase52 =null;
 
 		Object a_tree=null;
 		RewriteRuleTokenStream stream_58=new RewriteRuleTokenStream(adaptor,"token 58");
@@ -2671,6 +2732,7 @@ public class WhileGrammarParser extends DebugParser {
 			}
 
 			else {
+				if (state.backtracking>0) {state.failed=true; return retval;}
 				NoViableAltException nvae =
 					new NoViableAltException("", 12, 0, input);
 				dbg.recognitionException(nvae);
@@ -2686,8 +2748,8 @@ public class WhileGrammarParser extends DebugParser {
 					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:94:15: 'hd'
 					{
 					dbg.location(94,15);
-					a=(Token)match(input,49,FOLLOW_49_in_exprbase3973);  
-					stream_49.add(a);
+					a=(Token)match(input,49,FOLLOW_49_in_exprbase3967); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_49.add(a);
 
 					}
 					break;
@@ -2697,8 +2759,8 @@ public class WhileGrammarParser extends DebugParser {
 					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:94:20: 'tl'
 					{
 					dbg.location(94,20);
-					a=(Token)match(input,58,FOLLOW_58_in_exprbase3975);  
-					stream_58.add(a);
+					a=(Token)match(input,58,FOLLOW_58_in_exprbase3969); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_58.add(a);
 
 					}
 					break;
@@ -2706,18 +2768,19 @@ public class WhileGrammarParser extends DebugParser {
 			}
 			} finally {dbg.exitSubRule(12);}
 			dbg.location(94,26);
-			pushFollow(FOLLOW_exprbase_in_exprbase3978);
-			exprbase51=exprbase();
+			pushFollow(FOLLOW_exprbase_in_exprbase3972);
+			exprbase52=exprbase();
 			state._fsp--;
-
-			stream_exprbase.add(exprbase51.getTree());
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_exprbase.add(exprbase52.getTree());
 			// AST REWRITE
-			// elements: exprbase, a
+			// elements: a, exprbase
 			// token labels: a
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleTokenStream stream_a=new RewriteRuleTokenStream(adaptor,"token a",a);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
@@ -2741,14 +2804,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2787,10 +2852,10 @@ public class WhileGrammarParser extends DebugParser {
 
 		Object root_0 = null;
 
-		Token SYMBOL52=null;
-		ParserRuleReturnScope lexpr53 =null;
+		Token SYMBOL53=null;
+		ParserRuleReturnScope lexpr54 =null;
 
-		Object SYMBOL52_tree=null;
+		Object SYMBOL53_tree=null;
 		RewriteRuleTokenStream stream_SYMBOL=new RewriteRuleTokenStream(adaptor,"token SYMBOL");
 		RewriteRuleSubtreeStream stream_lexpr=new RewriteRuleSubtreeStream(adaptor,"rule lexpr");
 
@@ -2806,14 +2871,14 @@ public class WhileGrammarParser extends DebugParser {
 			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:98:12: SYMBOL lexpr
 			{
 			dbg.location(98,12);
-			SYMBOL52=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_expr_call998);  
-			stream_SYMBOL.add(SYMBOL52);
+			SYMBOL53=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_expr_call992); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_SYMBOL.add(SYMBOL53);
 			dbg.location(98,19);
-			pushFollow(FOLLOW_lexpr_in_expr_call1000);
-			lexpr53=lexpr();
+			pushFollow(FOLLOW_lexpr_in_expr_call994);
+			lexpr54=lexpr();
 			state._fsp--;
-
-			stream_lexpr.add(lexpr53.getTree());
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_lexpr.add(lexpr54.getTree());
 			// AST REWRITE
 			// elements: lexpr, SYMBOL
 			// token labels: 
@@ -2821,6 +2886,7 @@ public class WhileGrammarParser extends DebugParser {
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
@@ -2843,14 +2909,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -2882,27 +2950,22 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "exprbase"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:1: exprbase : ( ( exprbase1 -> ^( EXPR_BASE exprbase1 ) ) | ( '(' c= ( expr_constructor | exprbase3 | expr_call ) ')' -> ^( EXPR_BASE $c) ) );
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:1: exprbase : ( exprbase1 | ( '(' ( expr_constructor | exprbase3 | expr_call ) ')' ) );
 	public final WhileGrammarParser.exprbase_return exprbase() throws RecognitionException {
 		WhileGrammarParser.exprbase_return retval = new WhileGrammarParser.exprbase_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token c=null;
-		Token char_literal55=null;
 		Token char_literal56=null;
-		ParserRuleReturnScope exprbase154 =null;
+		Token char_literal60=null;
+		ParserRuleReturnScope exprbase155 =null;
+		ParserRuleReturnScope expr_constructor57 =null;
+		ParserRuleReturnScope exprbase358 =null;
+		ParserRuleReturnScope expr_call59 =null;
 
-		Object c_tree=null;
-		Object char_literal55_tree=null;
 		Object char_literal56_tree=null;
-		RewriteRuleTokenStream stream_35=new RewriteRuleTokenStream(adaptor,"token 35");
-		RewriteRuleTokenStream stream_36=new RewriteRuleTokenStream(adaptor,"token 36");
-		RewriteRuleSubtreeStream stream_expr_call=new RewriteRuleSubtreeStream(adaptor,"rule expr_call");
-		RewriteRuleSubtreeStream stream_expr_constructor=new RewriteRuleSubtreeStream(adaptor,"rule expr_constructor");
-		RewriteRuleSubtreeStream stream_exprbase1=new RewriteRuleSubtreeStream(adaptor,"rule exprbase1");
-		RewriteRuleSubtreeStream stream_exprbase3=new RewriteRuleSubtreeStream(adaptor,"rule exprbase3");
+		Object char_literal60_tree=null;
 
 		try { dbg.enterRule(getGrammarFileName(), "exprbase");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
@@ -2910,7 +2973,7 @@ public class WhileGrammarParser extends DebugParser {
 		dbg.location(102, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:9: ( ( exprbase1 -> ^( EXPR_BASE exprbase1 ) ) | ( '(' c= ( expr_constructor | exprbase3 | expr_call ) ')' -> ^( EXPR_BASE $c) ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:9: ( exprbase1 | ( '(' ( expr_constructor | exprbase3 | expr_call ) ')' ) )
 			int alt14=2;
 			try { dbg.enterDecision(14, decisionCanBacktrack[14]);
 
@@ -2923,6 +2986,7 @@ public class WhileGrammarParser extends DebugParser {
 			}
 
 			else {
+				if (state.backtracking>0) {state.failed=true; return retval;}
 				NoViableAltException nvae =
 					new NoViableAltException("", 14, 0, input);
 				dbg.recognitionException(nvae);
@@ -2935,69 +2999,42 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:103:5: ( exprbase1 -> ^( EXPR_BASE exprbase1 ) )
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:11: exprbase1
 					{
-					dbg.location(103,5);
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:103:5: ( exprbase1 -> ^( EXPR_BASE exprbase1 ) )
-					dbg.enterAlt(1);
-
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:103:6: exprbase1
-					{
-					dbg.location(103,6);
-					pushFollow(FOLLOW_exprbase1_in_exprbase1025);
-					exprbase154=exprbase1();
-					state._fsp--;
-
-					stream_exprbase1.add(exprbase154.getTree());
-					// AST REWRITE
-					// elements: exprbase1
-					// token labels: 
-					// rule labels: retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
 					root_0 = (Object)adaptor.nil();
-					// 103:16: -> ^( EXPR_BASE exprbase1 )
-					{
-						dbg.location(103,19);
-						// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:103:19: ^( EXPR_BASE exprbase1 )
-						{
-						Object root_1 = (Object)adaptor.nil();
-						dbg.location(103,21);
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPR_BASE, "EXPR_BASE"), root_1);
-						dbg.location(103,31);
-						adaptor.addChild(root_1, stream_exprbase1.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
 
 
-					retval.tree = root_0;
-
-					}
+					dbg.location(102,11);
+					pushFollow(FOLLOW_exprbase1_in_exprbase1013);
+					exprbase155=exprbase1();
+					state._fsp--;
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, exprbase155.getTree());
 
 					}
 					break;
 				case 2 :
 					dbg.enterAlt(2);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:7: ( '(' c= ( expr_constructor | exprbase3 | expr_call ) ')' -> ^( EXPR_BASE $c) )
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:23: ( '(' ( expr_constructor | exprbase3 | expr_call ) ')' )
 					{
-					dbg.location(104,7);
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:7: ( '(' c= ( expr_constructor | exprbase3 | expr_call ) ')' -> ^( EXPR_BASE $c) )
+					root_0 = (Object)adaptor.nil();
+
+
+					dbg.location(102,23);
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:23: ( '(' ( expr_constructor | exprbase3 | expr_call ) ')' )
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:8: '(' c= ( expr_constructor | exprbase3 | expr_call ) ')'
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:25: '(' ( expr_constructor | exprbase3 | expr_call ) ')'
 					{
-					dbg.location(104,8);
-					char_literal55=(Token)match(input,35,FOLLOW_35_in_exprbase1045);  
-					stream_35.add(char_literal55);
-					dbg.location(104,13);
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:14: ( expr_constructor | exprbase3 | expr_call )
+					dbg.location(102,25);
+					char_literal56=(Token)match(input,35,FOLLOW_35_in_exprbase1019); if (state.failed) return retval;
+					if ( state.backtracking==0 ) {
+					char_literal56_tree = (Object)adaptor.create(char_literal56);
+					adaptor.addChild(root_0, char_literal56_tree);
+					}
+					dbg.location(102,29);
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:29: ( expr_constructor | exprbase3 | expr_call )
 					int alt13=3;
 					try { dbg.enterSubRule(13);
 					try { dbg.enterDecision(13, decisionCanBacktrack[13]);
@@ -3021,6 +3058,7 @@ public class WhileGrammarParser extends DebugParser {
 						}
 						break;
 					default:
+						if (state.backtracking>0) {state.failed=true; return retval;}
 						NoViableAltException nvae =
 							new NoViableAltException("", 13, 0, input);
 						dbg.recognitionException(nvae);
@@ -3032,78 +3070,54 @@ public class WhileGrammarParser extends DebugParser {
 						case 1 :
 							dbg.enterAlt(1);
 
-							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:15: expr_constructor
+							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:30: expr_constructor
 							{
-							dbg.location(104,15);
-							pushFollow(FOLLOW_expr_constructor_in_exprbase1050);
-							c=expr_constructor();
+							dbg.location(102,30);
+							pushFollow(FOLLOW_expr_constructor_in_exprbase1022);
+							expr_constructor57=expr_constructor();
 							state._fsp--;
+							if (state.failed) return retval;
+							if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_constructor57.getTree());
 
-							stream_expr_constructor.add(c.getTree());
 							}
 							break;
 						case 2 :
 							dbg.enterAlt(2);
 
-							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:34: exprbase3
+							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:49: exprbase3
 							{
-							dbg.location(104,34);
-							pushFollow(FOLLOW_exprbase3_in_exprbase1054);
-							c=exprbase3();
+							dbg.location(102,49);
+							pushFollow(FOLLOW_exprbase3_in_exprbase1026);
+							exprbase358=exprbase3();
 							state._fsp--;
+							if (state.failed) return retval;
+							if ( state.backtracking==0 ) adaptor.addChild(root_0, exprbase358.getTree());
 
-							stream_exprbase3.add(c.getTree());
 							}
 							break;
 						case 3 :
 							dbg.enterAlt(3);
 
-							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:46: expr_call
+							// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:102:61: expr_call
 							{
-							dbg.location(104,46);
-							pushFollow(FOLLOW_expr_call_in_exprbase1058);
-							c=expr_call();
+							dbg.location(102,61);
+							pushFollow(FOLLOW_expr_call_in_exprbase1030);
+							expr_call59=expr_call();
 							state._fsp--;
+							if (state.failed) return retval;
+							if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_call59.getTree());
 
-							stream_expr_call.add(c.getTree());
 							}
 							break;
 
 					}
 					} finally {dbg.exitSubRule(13);}
-					dbg.location(104,57);
-					char_literal56=(Token)match(input,36,FOLLOW_36_in_exprbase1061);  
-					stream_36.add(char_literal56);
-
-					// AST REWRITE
-					// elements: c
-					// token labels: c
-					// rule labels: retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleTokenStream stream_c=new RewriteRuleTokenStream(adaptor,"token c",c);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 104:61: -> ^( EXPR_BASE $c)
-					{
-						dbg.location(104,64);
-						// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:64: ^( EXPR_BASE $c)
-						{
-						Object root_1 = (Object)adaptor.nil();
-						dbg.location(104,66);
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPR_BASE, "EXPR_BASE"), root_1);
-						dbg.location(104,77);
-						adaptor.addChild(root_1, stream_c.nextNode());
-						adaptor.addChild(root_0, root_1);
-						}
-
+					dbg.location(102,72);
+					char_literal60=(Token)match(input,36,FOLLOW_36_in_exprbase1033); if (state.failed) return retval;
+					if ( state.backtracking==0 ) {
+					char_literal60_tree = (Object)adaptor.create(char_literal60);
+					adaptor.addChild(root_0, char_literal60_tree);
 					}
-
-
-					retval.tree = root_0;
 
 					}
 
@@ -3113,9 +3127,10 @@ public class WhileGrammarParser extends DebugParser {
 			}
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -3125,7 +3140,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(105, 0);
+		dbg.location(102, 76);
 
 		}
 		finally {
@@ -3147,39 +3162,39 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "expression"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:107:1: expression : c= exprbase ( '=?' d= exprbase )? -> ^( EXPRESSION $c ( $d)? ) ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:1: expression : c= exprbase ( '=?' d= exprbase )? -> ^( EXPRESSION $c ( $d)? ) ;
 	public final WhileGrammarParser.expression_return expression() throws RecognitionException {
 		WhileGrammarParser.expression_return retval = new WhileGrammarParser.expression_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal57=null;
+		Token string_literal61=null;
 		ParserRuleReturnScope c =null;
 		ParserRuleReturnScope d =null;
 
-		Object string_literal57_tree=null;
+		Object string_literal61_tree=null;
 		RewriteRuleTokenStream stream_41=new RewriteRuleTokenStream(adaptor,"token 41");
 		RewriteRuleSubtreeStream stream_exprbase=new RewriteRuleSubtreeStream(adaptor,"rule exprbase");
 
 		try { dbg.enterRule(getGrammarFileName(), "expression");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(107, 0);
+		dbg.location(104, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:107:11: (c= exprbase ( '=?' d= exprbase )? -> ^( EXPRESSION $c ( $d)? ) )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:11: (c= exprbase ( '=?' d= exprbase )? -> ^( EXPRESSION $c ( $d)? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:107:13: c= exprbase ( '=?' d= exprbase )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:13: c= exprbase ( '=?' d= exprbase )?
 			{
-			dbg.location(107,14);
-			pushFollow(FOLLOW_exprbase_in_expression1082);
+			dbg.location(104,14);
+			pushFollow(FOLLOW_exprbase_in_expression1044);
 			c=exprbase();
 			state._fsp--;
-
-			stream_exprbase.add(c.getTree());dbg.location(107,24);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:107:24: ( '=?' d= exprbase )?
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_exprbase.add(c.getTree());dbg.location(104,24);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:24: ( '=?' d= exprbase )?
 			int alt15=2;
 			try { dbg.enterSubRule(15);
 			try { dbg.enterDecision(15, decisionCanBacktrack[15]);
@@ -3194,17 +3209,17 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:107:25: '=?' d= exprbase
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:104:25: '=?' d= exprbase
 					{
-					dbg.location(107,25);
-					string_literal57=(Token)match(input,41,FOLLOW_41_in_expression1085);  
-					stream_41.add(string_literal57);
-					dbg.location(107,31);
-					pushFollow(FOLLOW_exprbase_in_expression1089);
+					dbg.location(104,25);
+					string_literal61=(Token)match(input,41,FOLLOW_41_in_expression1047); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_41.add(string_literal61);
+					dbg.location(104,31);
+					pushFollow(FOLLOW_exprbase_in_expression1051);
 					d=exprbase();
 					state._fsp--;
-
-					stream_exprbase.add(d.getTree());
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_exprbase.add(d.getTree());
 					}
 					break;
 
@@ -3212,31 +3227,32 @@ public class WhileGrammarParser extends DebugParser {
 			} finally {dbg.exitSubRule(15);}
 
 			// AST REWRITE
-			// elements: c, d
+			// elements: d, c
 			// token labels: 
 			// rule labels: c, d, retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
+			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
 			RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.getTree():null);
 			RewriteRuleSubtreeStream stream_d=new RewriteRuleSubtreeStream(adaptor,"rule d",d!=null?d.getTree():null);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 108:5: -> ^( EXPRESSION $c ( $d)? )
+			// 105:5: -> ^( EXPRESSION $c ( $d)? )
 			{
-				dbg.location(108,8);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:8: ^( EXPRESSION $c ( $d)? )
+				dbg.location(105,8);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:105:8: ^( EXPRESSION $c ( $d)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(108,10);
+				dbg.location(105,10);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPRESSION, "EXPRESSION"), root_1);
-				dbg.location(108,22);
-				adaptor.addChild(root_1, stream_c.nextTree());dbg.location(108,25);
-				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:25: ( $d)?
+				dbg.location(105,22);
+				adaptor.addChild(root_1, stream_c.nextTree());dbg.location(105,25);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:105:25: ( $d)?
 				if ( stream_d.hasNext() ) {
-					dbg.location(108,25);
+					dbg.location(105,25);
 					adaptor.addChild(root_1, stream_d.nextTree());
 				}
 				stream_d.reset();
@@ -3248,14 +3264,16 @@ public class WhileGrammarParser extends DebugParser {
 
 
 			retval.tree = root_0;
+			}
 
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -3265,7 +3283,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(109, 0);
+		dbg.location(106, 0);
 
 		}
 		finally {
@@ -3287,15 +3305,15 @@ public class WhileGrammarParser extends DebugParser {
 
 
 	// $ANTLR start "lexpr"
-	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:111:1: lexpr : ( exprbase lexpr -> ^( LEXPR exprbase lexpr ) )? ;
+	// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:1: lexpr : ( exprbase lexpr )? -> ^( LEXPR ( exprbase )? ( lexpr )? ) ;
 	public final WhileGrammarParser.lexpr_return lexpr() throws RecognitionException {
 		WhileGrammarParser.lexpr_return retval = new WhileGrammarParser.lexpr_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		ParserRuleReturnScope exprbase58 =null;
-		ParserRuleReturnScope lexpr59 =null;
+		ParserRuleReturnScope exprbase62 =null;
+		ParserRuleReturnScope lexpr63 =null;
 
 		RewriteRuleSubtreeStream stream_lexpr=new RewriteRuleSubtreeStream(adaptor,"rule lexpr");
 		RewriteRuleSubtreeStream stream_exprbase=new RewriteRuleSubtreeStream(adaptor,"rule exprbase");
@@ -3303,16 +3321,16 @@ public class WhileGrammarParser extends DebugParser {
 		try { dbg.enterRule(getGrammarFileName(), "lexpr");
 		if ( getRuleLevel()==0 ) {dbg.commence();}
 		incRuleLevel();
-		dbg.location(111, 0);
+		dbg.location(108, 0);
 
 		try {
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:111:6: ( ( exprbase lexpr -> ^( LEXPR exprbase lexpr ) )? )
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:6: ( ( exprbase lexpr )? -> ^( LEXPR ( exprbase )? ( lexpr )? ) )
 			dbg.enterAlt(1);
 
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:111:8: ( exprbase lexpr -> ^( LEXPR exprbase lexpr ) )?
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:8: ( exprbase lexpr )?
 			{
-			dbg.location(111,8);
-			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:111:8: ( exprbase lexpr -> ^( LEXPR exprbase lexpr ) )?
+			dbg.location(108,8);
+			// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:8: ( exprbase lexpr )?
 			int alt16=2;
 			try { dbg.enterSubRule(16);
 			try { dbg.enterDecision(16, decisionCanBacktrack[16]);
@@ -3327,62 +3345,77 @@ public class WhileGrammarParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:111:9: exprbase lexpr
+					// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:9: exprbase lexpr
 					{
-					dbg.location(111,9);
-					pushFollow(FOLLOW_exprbase_in_lexpr1117);
-					exprbase58=exprbase();
+					dbg.location(108,9);
+					pushFollow(FOLLOW_exprbase_in_lexpr1079);
+					exprbase62=exprbase();
 					state._fsp--;
-
-					stream_exprbase.add(exprbase58.getTree());dbg.location(111,18);
-					pushFollow(FOLLOW_lexpr_in_lexpr1119);
-					lexpr59=lexpr();
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_exprbase.add(exprbase62.getTree());dbg.location(108,18);
+					pushFollow(FOLLOW_lexpr_in_lexpr1081);
+					lexpr63=lexpr();
 					state._fsp--;
-
-					stream_lexpr.add(lexpr59.getTree());
-					// AST REWRITE
-					// elements: lexpr, exprbase
-					// token labels: 
-					// rule labels: retval
-					// token list labels: 
-					// rule list labels: 
-					// wildcard labels: 
-					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-					root_0 = (Object)adaptor.nil();
-					// 111:24: -> ^( LEXPR exprbase lexpr )
-					{
-						dbg.location(111,27);
-						// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:111:27: ^( LEXPR exprbase lexpr )
-						{
-						Object root_1 = (Object)adaptor.nil();
-						dbg.location(111,29);
-						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(LEXPR, "LEXPR"), root_1);
-						dbg.location(111,35);
-						adaptor.addChild(root_1, stream_exprbase.nextTree());dbg.location(111,44);
-						adaptor.addChild(root_1, stream_lexpr.nextTree());
-						adaptor.addChild(root_0, root_1);
-						}
-
-					}
-
-
-					retval.tree = root_0;
-
+					if (state.failed) return retval;
+					if ( state.backtracking==0 ) stream_lexpr.add(lexpr63.getTree());
 					}
 					break;
 
 			}
 			} finally {dbg.exitSubRule(16);}
 
+			// AST REWRITE
+			// elements: exprbase, lexpr
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			if ( state.backtracking==0 ) {
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 108:26: -> ^( LEXPR ( exprbase )? ( lexpr )? )
+			{
+				dbg.location(108,29);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:29: ^( LEXPR ( exprbase )? ( lexpr )? )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				dbg.location(108,31);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(LEXPR, "LEXPR"), root_1);
+				dbg.location(108,37);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:37: ( exprbase )?
+				if ( stream_exprbase.hasNext() ) {
+					dbg.location(108,37);
+					adaptor.addChild(root_1, stream_exprbase.nextTree());
+				}
+				stream_exprbase.reset();
+				dbg.location(108,47);
+				// /Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/src/main/antlr3/WhileGrammar.g:108:47: ( lexpr )?
+				if ( stream_lexpr.hasNext() ) {
+					dbg.location(108,47);
+					adaptor.addChild(root_1, stream_lexpr.nextTree());
+				}
+				stream_lexpr.reset();
+
+				adaptor.addChild(root_0, root_1);
+				}
+
+			}
+
+
+			retval.tree = root_0;
+			}
+
 			}
 
 			retval.stop = input.LT(-1);
 
+			if ( state.backtracking==0 ) {
 			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
 			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
+			}
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -3392,7 +3425,7 @@ public class WhileGrammarParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(111, 51);
+		dbg.location(108, 53);
 
 		}
 		finally {
@@ -3409,89 +3442,88 @@ public class WhileGrammarParser extends DebugParser {
 
 
 
-	public static final BitSet FOLLOW_function_in_program416 = new BitSet(new long[]{0x0001000000000002L});
-	public static final BitSet FOLLOW_program_in_program419 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_48_in_function443 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_SYMBOL_in_function445 = new BitSet(new long[]{0x0000004000000000L});
-	public static final BitSet FOLLOW_38_in_function447 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_definition_in_function449 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_56_in_definition465 = new BitSet(new long[]{0x0000000440000000L});
-	public static final BitSet FOLLOW_input_in_definition467 = new BitSet(new long[]{0x0000000400000000L});
-	public static final BitSet FOLLOW_34_in_definition469 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_definition471 = new BitSet(new long[]{0x0000000400000000L});
-	public static final BitSet FOLLOW_34_in_definition473 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_60_in_definition475 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_output_in_definition477 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_input_stub_in_input497 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VARIABLE_in_input_stub516 = new BitSet(new long[]{0x0000002000000002L});
-	public static final BitSet FOLLOW_37_in_input_stub519 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_input_stub_in_input_stub523 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VARIABLE_in_output546 = new BitSet(new long[]{0x0000002000000002L});
-	public static final BitSet FOLLOW_37_in_output549 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_output_in_output553 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VARIABLE_in_vars577 = new BitSet(new long[]{0x0000002000000002L});
-	public static final BitSet FOLLOW_37_in_vars580 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_vars_in_vars584 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_in_commands608 = new BitSet(new long[]{0x0000010000000002L});
-	public static final BitSet FOLLOW_40_in_commands611 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_commands615 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expression_in_exprs645 = new BitSet(new long[]{0x0000002000000002L});
-	public static final BitSet FOLLOW_37_in_exprs648 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_exprs_in_exprs652 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_vars_in_command_vars679 = new BitSet(new long[]{0x0000008000000000L});
-	public static final BitSet FOLLOW_39_in_command_vars681 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_exprs_in_command_vars683 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_50_in_command_if699 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_expression_in_command_if701 = new BitSet(new long[]{0x0200000000000000L});
-	public static final BitSet FOLLOW_57_in_command_if703 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_command_if707 = new BitSet(new long[]{0x0000300000000000L});
-	public static final BitSet FOLLOW_44_in_command_if710 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_command_if714 = new BitSet(new long[]{0x0000200000000000L});
-	public static final BitSet FOLLOW_45_in_command_if718 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_59_in_command_while739 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_expression_in_command_while741 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_command_while743 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_command_while745 = new BitSet(new long[]{0x0080000000000000L});
-	public static final BitSet FOLLOW_55_in_command_while747 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_46_in_command_for763 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_expression_in_command_for765 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_command_for767 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_command_for769 = new BitSet(new long[]{0x0080000000000000L});
-	public static final BitSet FOLLOW_55_in_command_for771 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_47_in_command_foreach787 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_VARIABLE_in_command_foreach791 = new BitSet(new long[]{0x0008000000000000L});
-	public static final BitSet FOLLOW_51_in_command_foreach793 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_expression_in_command_foreach795 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_command_foreach797 = new BitSet(new long[]{0x0844C00040000000L});
-	public static final BitSet FOLLOW_commands_in_command_foreach799 = new BitSet(new long[]{0x0080000000000000L});
-	public static final BitSet FOLLOW_55_in_command_foreach801 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_54_in_command_nop820 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_if_in_command834 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_while_in_command847 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_for_in_command860 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_foreach_in_command873 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_vars_in_command885 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_nop_in_command897 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_53_in_exprbase1917 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VARIABLE_in_exprbase1921 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SYMBOL_in_exprbase1925 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_42_in_expr_constructor946 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_52_in_expr_constructor948 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_lexpr_in_expr_constructor951 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_49_in_exprbase3973 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_58_in_exprbase3975 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_exprbase_in_exprbase3978 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SYMBOL_in_expr_call998 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_lexpr_in_expr_call1000 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_exprbase1_in_exprbase1025 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_35_in_exprbase1045 = new BitSet(new long[]{0x0412040020000000L});
-	public static final BitSet FOLLOW_expr_constructor_in_exprbase1050 = new BitSet(new long[]{0x0000001000000000L});
-	public static final BitSet FOLLOW_exprbase3_in_exprbase1054 = new BitSet(new long[]{0x0000001000000000L});
-	public static final BitSet FOLLOW_expr_call_in_exprbase1058 = new BitSet(new long[]{0x0000001000000000L});
-	public static final BitSet FOLLOW_36_in_exprbase1061 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_exprbase_in_expression1082 = new BitSet(new long[]{0x0000020000000002L});
-	public static final BitSet FOLLOW_41_in_expression1085 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_exprbase_in_expression1089 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_exprbase_in_lexpr1117 = new BitSet(new long[]{0x0020000860000000L});
-	public static final BitSet FOLLOW_lexpr_in_lexpr1119 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_function_in_program425 = new BitSet(new long[]{0x0001000000000002L});
+	public static final BitSet FOLLOW_48_in_function442 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_SYMBOL_in_function444 = new BitSet(new long[]{0x0000004000000000L});
+	public static final BitSet FOLLOW_38_in_function446 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_definition_in_function448 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_56_in_definition464 = new BitSet(new long[]{0x0000000440000000L});
+	public static final BitSet FOLLOW_input_in_definition466 = new BitSet(new long[]{0x0000000400000000L});
+	public static final BitSet FOLLOW_34_in_definition468 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_definition470 = new BitSet(new long[]{0x0000000400000000L});
+	public static final BitSet FOLLOW_34_in_definition472 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_60_in_definition474 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_output_in_definition476 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_input_stub_in_input496 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VARIABLE_in_input_stub515 = new BitSet(new long[]{0x0000002000000002L});
+	public static final BitSet FOLLOW_37_in_input_stub518 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_input_stub_in_input_stub522 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VARIABLE_in_output545 = new BitSet(new long[]{0x0000002000000002L});
+	public static final BitSet FOLLOW_37_in_output548 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_output_in_output552 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VARIABLE_in_vars576 = new BitSet(new long[]{0x0000002000000002L});
+	public static final BitSet FOLLOW_37_in_vars579 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_vars_in_vars583 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_in_commands607 = new BitSet(new long[]{0x0000010000000002L});
+	public static final BitSet FOLLOW_40_in_commands610 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_commands614 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expression_in_exprs642 = new BitSet(new long[]{0x0000002000000002L});
+	public static final BitSet FOLLOW_37_in_exprs645 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_exprs_in_exprs647 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_vars_in_command_vars672 = new BitSet(new long[]{0x0000008000000000L});
+	public static final BitSet FOLLOW_39_in_command_vars674 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_exprs_in_command_vars676 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_50_in_command_if692 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_expression_in_command_if694 = new BitSet(new long[]{0x0200000000000000L});
+	public static final BitSet FOLLOW_57_in_command_if696 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_command_if700 = new BitSet(new long[]{0x0000300000000000L});
+	public static final BitSet FOLLOW_44_in_command_if703 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_command_if707 = new BitSet(new long[]{0x0000200000000000L});
+	public static final BitSet FOLLOW_45_in_command_if711 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_59_in_command_while732 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_expression_in_command_while734 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_command_while736 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_command_while738 = new BitSet(new long[]{0x0080000000000000L});
+	public static final BitSet FOLLOW_55_in_command_while740 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_46_in_command_for756 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_expression_in_command_for758 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_command_for760 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_command_for762 = new BitSet(new long[]{0x0080000000000000L});
+	public static final BitSet FOLLOW_55_in_command_for764 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_47_in_command_foreach780 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_VARIABLE_in_command_foreach784 = new BitSet(new long[]{0x0008000000000000L});
+	public static final BitSet FOLLOW_51_in_command_foreach786 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_expression_in_command_foreach788 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_command_foreach790 = new BitSet(new long[]{0x0844C00040000000L});
+	public static final BitSet FOLLOW_commands_in_command_foreach792 = new BitSet(new long[]{0x0080000000000000L});
+	public static final BitSet FOLLOW_55_in_command_foreach794 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_54_in_command_nop813 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_if_in_command827 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_while_in_command840 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_for_in_command853 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_foreach_in_command866 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_vars_in_command878 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_nop_in_command890 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_53_in_exprbase1909 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VARIABLE_in_exprbase1913 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SYMBOL_in_exprbase1917 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_42_in_expr_constructor938 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_52_in_expr_constructor942 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_lexpr_in_expr_constructor945 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_49_in_exprbase3967 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_58_in_exprbase3969 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_exprbase_in_exprbase3972 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SYMBOL_in_expr_call992 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_lexpr_in_expr_call994 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_exprbase1_in_exprbase1013 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_35_in_exprbase1019 = new BitSet(new long[]{0x0412040020000000L});
+	public static final BitSet FOLLOW_expr_constructor_in_exprbase1022 = new BitSet(new long[]{0x0000001000000000L});
+	public static final BitSet FOLLOW_exprbase3_in_exprbase1026 = new BitSet(new long[]{0x0000001000000000L});
+	public static final BitSet FOLLOW_expr_call_in_exprbase1030 = new BitSet(new long[]{0x0000001000000000L});
+	public static final BitSet FOLLOW_36_in_exprbase1033 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_exprbase_in_expression1044 = new BitSet(new long[]{0x0000020000000002L});
+	public static final BitSet FOLLOW_41_in_expression1047 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_exprbase_in_expression1051 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_exprbase_in_lexpr1079 = new BitSet(new long[]{0x0020000860000000L});
+	public static final BitSet FOLLOW_lexpr_in_lexpr1081 = new BitSet(new long[]{0x0000000000000002L});
 }

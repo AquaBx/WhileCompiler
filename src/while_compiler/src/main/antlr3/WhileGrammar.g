@@ -2,6 +2,7 @@ grammar WhileGrammar;
 
 options {
     output=AST; // Configure ANTLR pour générer un AST
+    backtrack=true;
 }
 
 tokens {
@@ -50,8 +51,8 @@ COMMENT
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
     
-program: function (program)? 
-    -> ^(PROGRAM function program?);
+program: function* -> ^(PROGRAM function*);
+
 function: 'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
 definition: 'read' input '%' commands '%' 'write' output -> ^(DEFINITION input commands output);
 input: i=input_stub? -> ^(INPUT $i?);
@@ -64,8 +65,8 @@ commands: c=command (';' cs=commands)?
     -> ^(COMMANDS $c $cs?)
 ;
 
-exprs: e=expression (',' exp=exprs)?
-    -> ^(EXPRS $e $exp?)
+exprs: expression (',' exprs)?
+    -> ^(EXPRS expression exprs?)
 ;
 
 command_vars: vars ':=' exprs -> ^(ASSIGMENT vars exprs);
@@ -82,13 +83,12 @@ command: command_if
         | command_foreach
         | command_vars
         | command_nop
-
         ;
 
 exprbase1: a=('nil' | VARIABLE | SYMBOL)
  -> ^(EXPR_BASE1 $a)
 ;
-expr_constructor: a=('cons'|'list') lexpr
+expr_constructor: (a='cons'|a='list') lexpr
  -> ^(EXPR_CONSTRUCTOR $a lexpr)
 ;
 exprbase3: a=('hd'|'tl') exprbase
@@ -99,15 +99,12 @@ expr_call: SYMBOL lexpr
  -> ^(EXPR_CALL SYMBOL lexpr)
 ;
 
-exprbase: 
-    (exprbase1 -> ^(EXPR_BASE exprbase1) ) 
-    | ('(' c=(expr_constructor | exprbase3 | expr_call) ')' -> ^(EXPR_BASE $c) )
-;
+exprbase: exprbase1 | ( '(' (expr_constructor | exprbase3 | expr_call) ')' );
 
 expression: c=exprbase ('=?' d=exprbase)?
     -> ^(EXPRESSION $c $d?)
 ;
 
-lexpr: (exprbase lexpr -> ^(LEXPR exprbase lexpr))?;
+lexpr: (exprbase lexpr)? -> ^(LEXPR exprbase? lexpr?);
 
 
