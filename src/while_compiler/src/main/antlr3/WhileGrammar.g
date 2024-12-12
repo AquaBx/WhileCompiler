@@ -58,18 +58,16 @@ COMMENT
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
     
-program: function* -> ^(PROGRAM function*);
+program: function^*;
 
 function: 'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
-definition: 'read' input '%' commands '%' 'write' output -> ^(DEFINITION input commands output);
-input: i=input_stub? -> ^(INPUT $i?);
-input_stub: v=VARIABLE (',' tail=VARIABLE)* -> ^(INPUT_STUB $v $tail?);
-output: v=VARIABLE (',' tail=VARIABLE)* -> ^(OUTPUT $v $tail?);
+definition: 'read' i=io '%' c=commands '%' 'write' o=io -> ^(INPUT $i) ^(OUTPUT $o) $c;
+io: VARIABLE? (',' VARIABLE)* -> VARIABLE*;
 
 vars: v=VARIABLE (',' var=VARIABLE)* -> ^(VARS $v $var?);
 
-commands: c=command (';' cs=command)*
-    -> ^(COMMANDS $c $cs?)
+commands: command (';' command)*
+    -> ^(COMMANDS command*)
 ;
 
 exprs: expression (',' c=expression)*
