@@ -46,9 +46,10 @@ class Main {
         TokenStream tokenStream = new CommonTokenStream(lexer);
         WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
 
-        CommonTree tree = (CommonTree) parser.program().getTree();
+        Tree tree = (Tree) parser.program().getTree();
 
-        System.out.println(tree.toStringTree());
+
+        visitor(tree,0);
     }
 
 
