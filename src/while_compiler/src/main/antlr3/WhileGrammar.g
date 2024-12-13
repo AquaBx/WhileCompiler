@@ -61,8 +61,8 @@ COMMENT
 program: function*;
 
 function: 'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
-definition: 'read' i=io '%' c=commands '%' 'write' o=io -> ^(INPUT $i) ^(OUTPUT $o) $c;
-io: VARIABLE? (',' VARIABLE)* -> VARIABLE*;
+definition: 'read' i=io? '%' c=commands '%' 'write' o=io -> ^(INPUT $i?) ^(OUTPUT $o) $c;
+io: VARIABLE (',' VARIABLE)* -> VARIABLE*;
 
 vars: v=VARIABLE (',' var=VARIABLE)* -> ^(VARS $v $var?);
 
