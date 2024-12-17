@@ -1,6 +1,6 @@
 package org.esir.nctt.while_compiler;
 
-abstract class SymbolInfo {
+class SymbolInfo {
     private Integer line;
     private Integer column; // position du premier caractère du symbole
     private String content;
@@ -33,5 +33,9 @@ abstract class SymbolInfo {
 
     public void setContent(String c) {
         this.content = c;
+    }
+
+    public String toString() {
+        return String.format("%s (%d:%d)", this.content, this.line, this.column);
     }
 }
