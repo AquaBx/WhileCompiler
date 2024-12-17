@@ -1,4 +1,4 @@
-// $ANTLR 3.5.3 WhileGrammar.g 2024-12-17 09:26:53
+// $ANTLR 3.5.3 WhileGrammar.g 2024-12-17 10:30:40
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
@@ -36,41 +36,41 @@ public class WhileGrammarLexer extends Lexer {
 	public static final int T__65=65;
 	public static final int T__66=66;
 	public static final int T__67=67;
-	public static final int ASSIGMENT=4;
+	public static final int ASSIGNEMENT=4;
 	public static final int COMMANDS=5;
 	public static final int COMMAND_NOP=6;
 	public static final int COMMENT=7;
 	public static final int DEC=8;
 	public static final int DEFINITION=9;
 	public static final int EXPRESSION=10;
-	public static final int EXPRS=11;
+	public static final int EXPRESSIONS=11;
 	public static final int EXPR_BASE=12;
 	public static final int EXPR_CALL=13;
 	public static final int EXPR_CHILD=14;
-	public static final int EXPR_CHILD_LEFT=15;
-	public static final int EXPR_CHILD_RIGHT=16;
-	public static final int EXPR_CONSTRUCTOR=17;
-	public static final int EXPR_CONSTRUCTOR_CONS=18;
-	public static final int EXPR_CONSTRUCTOR_LIST=19;
+	public static final int EXPR_COMPARE=15;
+	public static final int EXPR_CONSTRUCTOR=16;
+	public static final int EXPR_CONSTRUCTOR_CONS=17;
+	public static final int EXPR_CONSTRUCTOR_LIST=18;
+	public static final int EXPR_HEAD=19;
 	public static final int EXPR_NIL=20;
 	public static final int EXPR_PRIMITIVE=21;
 	public static final int EXPR_SYMBOL=22;
-	public static final int EXPR_VARIABLE=23;
-	public static final int FOR=24;
-	public static final int FOREACH=25;
-	public static final int FUNCTION=26;
-	public static final int IDENT=27;
-	public static final int IF=28;
-	public static final int INPUT=29;
-	public static final int INPUT_STUB=30;
-	public static final int LEXPR=31;
+	public static final int EXPR_TAIL=23;
+	public static final int EXPR_VARIABLE=24;
+	public static final int FOR=25;
+	public static final int FOREACH=26;
+	public static final int FUNCTION=27;
+	public static final int IDENT=28;
+	public static final int IF=29;
+	public static final int INPUT=30;
+	public static final int INPUT_STUB=31;
 	public static final int MAJ=32;
 	public static final int MIN=33;
 	public static final int OUTPUT=34;
 	public static final int PROGRAM=35;
 	public static final int SYMBOL=36;
 	public static final int VARIABLE=37;
-	public static final int VARS=38;
+	public static final int VARIABLES=38;
 	public static final int WHILE=39;
 	public static final int WS=40;
 

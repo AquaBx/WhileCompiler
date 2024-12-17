@@ -12,8 +12,8 @@ tokens {
     WHILE;
     FOR;
     IF;
-    ASSIGMENT;
-    VARS;
+    ASSIGNEMENT;
+    VARIABLES;
     COMMANDS;
     FOREACH;
     INPUT;
@@ -21,20 +21,20 @@ tokens {
     OUTPUT;
     EXPR_BASE;
     EXPRESSION;
-    LEXPR;
     EXPR_CALL;
     COMMAND_NOP;
     EXPR_CHILD;
     EXPR_CONSTRUCTOR;
     EXPR_PRIMITIVE;
-    EXPRS;
-    EXPR_CHILD_RIGHT;
-    EXPR_CHILD_LEFT;
+    EXPRESSIONS;
+    EXPR_TAIL;
+    EXPR_HEAD;
     EXPR_CONSTRUCTOR_LIST;
     EXPR_CONSTRUCTOR_CONS;
     EXPR_NIL;
     EXPR_VARIABLE;
     EXPR_SYMBOL;
+    EXPR_COMPARE;
 }
 
 @parser::header
@@ -64,17 +64,13 @@ function: 'function' SYMBOL ':' definition -> ^(FUNCTION SYMBOL definition);
 definition: 'read' i=io? '%' c=commands '%' 'write' o=io -> ^(INPUT $i?) ^(OUTPUT $o) $c;
 io: VARIABLE (',' VARIABLE)* -> VARIABLE*;
 
-vars: v=VARIABLE (',' var=VARIABLE)* -> ^(VARS $v $var?);
+vars: v=VARIABLE (',' var=VARIABLE)* -> ^(VARIABLES $v $var?);
 
 commands: command (';' command)*
     -> ^(COMMANDS command*)
 ;
 
-exprs: expression (',' c=expression)*
-    -> ^(EXPRS expression $c?)
-;
-
-command_vars: vars ':=' exprs -> ^(ASSIGMENT vars exprs);
+command_vars: vars ':=' exprs -> ^(ASSIGNEMENT vars exprs);
 command_if: 'if' expression 'then' b1=commands ('else' b2=commands)? 'fi' -> ^(IF expression $b1 $b2?);
 command_while: 'while' expression 'do' commands 'od' -> ^(WHILE expression commands);
 command_for: 'for' expression 'do' commands 'od' -> ^(FOR expression commands);
@@ -110,27 +106,28 @@ expr_constructor_cons: '(' 'cons' lexpr ')'
  -> ^(EXPR_CONSTRUCTOR_CONS lexpr )
 ;
 
-exprbasechildleft: '(' 'hd' exprbase ')' 
- -> ^(EXPR_CHILD_LEFT exprbase)
+exprbasehead: '(' 'hd' exprbase ')' 
+ -> ^(EXPR_HEAD exprbase)
 ;
 
-exprbasechildright: '(' 'tl' exprbase ')' 
- -> ^(EXPR_CHILD_RIGHT exprbase)
+exprbasetail: '(' 'tl' exprbase ')' 
+ -> ^(EXPR_TAIL exprbase)
 ;
 
 expr_call: '(' a=SYMBOL lexpr ')'
  -> ^(EXPR_CALL $a lexpr)
 ;
 
-exprbase: exprbase_nil | exprbase_variable | expr_constructor_list | expr_constructor_cons | exprbasechildleft  | exprbasechildright |  expr_call | exprbase_symbol;
+exprbase: exprbase_nil | exprbase_variable | expr_constructor_list | expr_constructor_cons | exprbasehead  | exprbasetail |  expr_call | exprbase_symbol;
 
-expression_a: c=exprbase '=?' d=exprbase
-    -> ^(EXPRESSION $c $d)
+expression_comparaison: c=exprbase '=?' d=exprbase
+    -> ^(EXPR_COMPARE $c $d)
 ;
 
-expression: expression_a | exprbase
+expression: expression_comparaison | exprbase
 ;
 
-lexpr: exprbase* -> ^(LEXPR exprbase*);
+lexpr: exprbase* -> ^(EXPRESSIONS exprbase*);
 
-
+exprs: expression (',' expression)*
+    -> ^(EXPRESSIONS expression*);
