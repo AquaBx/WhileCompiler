@@ -37,3 +37,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/src/while_compiler/src/main/java/org/esir/nctt/antlr
