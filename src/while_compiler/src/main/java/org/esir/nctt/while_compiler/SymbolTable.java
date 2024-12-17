@@ -3,24 +3,24 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class SymbolTable {
-    private Stack<HashMap<Symbol, Integer>> symbolTable;
+    private Stack<HashMap<String, SymbolInfo>> symbolTable;
 
     public SymbolTable() {
-        this.symbolTable = new Stack<HashMap<Symbol, Integer>>();
+        this.symbolTable = new Stack<HashMap<String, SymbolInfo>>();
     }
 
-    public void push(Symbol s, Integer i) {
-        HashMap<Symbol, Integer> h = new HashMap<>();
+    public void push(String s, SymbolInfo i) {
+        HashMap<String, SymbolInfo> h = new HashMap<>();
         h.put(s, i);
         this.symbolTable.push(h);
     }
 
-    public void pop(Symbol s, Integer i) {
+    public void pop() {
         assert !this.symbolTable.isEmpty();
         this.symbolTable.pop();
     }
 
-    public HashMap<Symbol, Integer> peek() {
+    public HashMap<String, SymbolInfo> peek() {
         assert !this.symbolTable.isEmpty();        
         return this.symbolTable.peek();
     }
