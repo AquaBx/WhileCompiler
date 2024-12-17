@@ -49,8 +49,6 @@ fragment MIN : 'a'..'z';
 VARIABLE : MAJ (MAJ | MIN | DEC)* ('!'|'?')?;
 SYMBOL: MIN (MAJ | MIN | DEC)*('!'|'?')?;
 
-IDENT: ( 'a'..'z'|'A'..'Z'|'_' ) ( 'a'..'z'|'A'..'Z'|'0'..'9'|'_' )*;
-
 WS: (' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;};
 
 COMMENT
