@@ -14,14 +14,14 @@ class Main {
                 %
                     Result := Op1 ;
                     for Op2 do
-                        Result := ( cons nil Result ) 
+                        Result := ( cons nil Result )
                     od
                 %
                 write Result
-                
+
                 // Soustraction of two numbers (there is no negative number…)
                 function sub :
-                read Op1, Op2 
+                read Op1, Op2
                 %
                     Result := Op1;
                     for Op2 do
@@ -29,7 +29,7 @@ class Main {
                     od
                 %
                 write Result
-                
+
                 // Multiplication
                 function mul :
                 read Op1, Op2
