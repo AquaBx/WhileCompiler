@@ -12,7 +12,7 @@ tokens {
     WHILE;
     FOR;
     IF;
-    ASSIGNEMENT;
+    ASSIGNMENT;
     VARIABLES;
     COMMANDS;
     FOREACH;
@@ -70,7 +70,7 @@ commands: command (';' command)*
     -> ^(COMMANDS command*)
 ;
 
-command_vars: vars ':=' exprs -> ^(ASSIGNEMENT vars exprs);
+command_vars: vars ':=' exprs -> ^(ASSIGNMENT vars exprs);
 command_if: 'if' expression 'then' b1=commands ('else' b2=commands)? 'fi' -> ^(IF expression $b1 $b2?);
 command_while: 'while' expression 'do' commands 'od' -> ^(WHILE expression commands);
 command_for: 'for' expression 'do' commands 'od' -> ^(FOR expression commands);
