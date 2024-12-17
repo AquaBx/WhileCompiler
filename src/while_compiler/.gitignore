@@ -37,4 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/src/main/java/org/esir/nctt/antlr/*
 /src/main/java/org/esir/nctt/antlr/
+/src/main/java/org/esir/nctt/antlr
