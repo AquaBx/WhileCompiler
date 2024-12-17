@@ -16,7 +16,7 @@ public class SymbolTable {
     }
 
     public void pop(Symbol s, Integer i) {
-        assert this.symbolTable.isEmpty();
+        assert !this.symbolTable.isEmpty();
         this.symbolTable.pop();
     }
 
