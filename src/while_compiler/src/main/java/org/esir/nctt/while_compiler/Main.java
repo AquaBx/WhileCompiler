@@ -57,7 +57,7 @@ class Main {
         System.out.println(depth.toString() + " " + tree.getText());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
-          visitor(tree.getChild(i), depth++);  
+          visitor(tree.getChild(i), depth+1);
         } 
     }
 }
