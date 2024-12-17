@@ -1,4 +1,4 @@
-// $ANTLR 3.5.3 WhileGrammar.g 2024-12-17 10:30:40
+// $ANTLR 3.5.3 WhileGrammar.g 2024-12-17 11:08:37
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
@@ -14,7 +14,7 @@ import org.antlr.runtime.tree.*;
 @SuppressWarnings("all")
 public class WhileGrammarParser extends Parser {
 	public static final String[] tokenNames = new String[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ASSIGNEMENT", "COMMANDS", "COMMAND_NOP", 
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ASSIGNMENT", "COMMANDS", "COMMAND_NOP", 
 		"COMMENT", "DEC", "DEFINITION", "EXPRESSION", "EXPRESSIONS", "EXPR_BASE", 
 		"EXPR_CALL", "EXPR_CHILD", "EXPR_COMPARE", "EXPR_CONSTRUCTOR", "EXPR_CONSTRUCTOR_CONS", 
 		"EXPR_CONSTRUCTOR_LIST", "EXPR_HEAD", "EXPR_NIL", "EXPR_PRIMITIVE", "EXPR_SYMBOL", 
@@ -53,7 +53,7 @@ public class WhileGrammarParser extends Parser {
 	public static final int T__65=65;
 	public static final int T__66=66;
 	public static final int T__67=67;
-	public static final int ASSIGNEMENT=4;
+	public static final int ASSIGNMENT=4;
 	public static final int COMMANDS=5;
 	public static final int COMMAND_NOP=6;
 	public static final int COMMENT=7;
@@ -371,7 +371,7 @@ public class WhileGrammarParser extends Parser {
 			if ( state.backtracking==0 ) stream_io.add(o.getTree());
 
 			// AST REWRITE
-			// elements: c, o, i
+			// elements: c, i, o
 			// token labels: 
 			// rule labels: c, i, retval, o
 			// token list labels: 
@@ -788,7 +788,7 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command_vars"
-	// WhileGrammar.g:73:1: command_vars : vars ':=' exprs -> ^( ASSIGNEMENT vars exprs ) ;
+	// WhileGrammar.g:73:1: command_vars : vars ':=' exprs -> ^( ASSIGNMENT vars exprs ) ;
 	public final WhileGrammarParser.command_vars_return command_vars() throws RecognitionException {
 		WhileGrammarParser.command_vars_return retval = new WhileGrammarParser.command_vars_return();
 		retval.start = input.LT(1);
@@ -805,7 +805,7 @@ public class WhileGrammarParser extends Parser {
 		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
 
 		try {
-			// WhileGrammar.g:73:13: ( vars ':=' exprs -> ^( ASSIGNEMENT vars exprs ) )
+			// WhileGrammar.g:73:13: ( vars ':=' exprs -> ^( ASSIGNMENT vars exprs ) )
 			// WhileGrammar.g:73:15: vars ':=' exprs
 			{
 			pushFollow(FOLLOW_vars_in_command_vars627);
@@ -823,7 +823,7 @@ public class WhileGrammarParser extends Parser {
 			if ( state.backtracking==0 ) stream_exprs.add(exprs19.getTree());
 
 			// AST REWRITE
-			// elements: exprs, vars
+			// elements: vars, exprs
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -834,12 +834,12 @@ public class WhileGrammarParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 73:31: -> ^( ASSIGNEMENT vars exprs )
+			// 73:31: -> ^( ASSIGNMENT vars exprs )
 			{
-				// WhileGrammar.g:73:34: ^( ASSIGNEMENT vars exprs )
+				// WhileGrammar.g:73:34: ^( ASSIGNMENT vars exprs )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ASSIGNEMENT, "ASSIGNEMENT"), root_1);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ASSIGNMENT, "ASSIGNMENT"), root_1);
 				adaptor.addChild(root_1, stream_vars.nextTree());
 				adaptor.addChild(root_1, stream_exprs.nextTree());
 				adaptor.addChild(root_0, root_1);
@@ -1290,7 +1290,7 @@ public class WhileGrammarParser extends Parser {
 
 
 			// AST REWRITE
-			// elements: expression, commands, v
+			// elements: commands, v, expression
 			// token labels: v
 			// rule labels: retval
 			// token list labels: 
@@ -2260,7 +2260,7 @@ public class WhileGrammarParser extends Parser {
 
 
 			// AST REWRITE
-			// elements: a, lexpr
+			// elements: lexpr, a
 			// token labels: a
 			// rule labels: retval
 			// token list labels: 

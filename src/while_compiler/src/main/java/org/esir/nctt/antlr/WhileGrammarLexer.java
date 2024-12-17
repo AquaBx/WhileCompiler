@@ -1,4 +1,4 @@
-// $ANTLR 3.5.3 WhileGrammar.g 2024-12-17 10:30:40
+// $ANTLR 3.5.3 WhileGrammar.g 2024-12-17 11:08:37
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
@@ -36,7 +36,7 @@ public class WhileGrammarLexer extends Lexer {
 	public static final int T__65=65;
 	public static final int T__66=66;
 	public static final int T__67=67;
-	public static final int ASSIGNEMENT=4;
+	public static final int ASSIGNMENT=4;
 	public static final int COMMANDS=5;
 	public static final int COMMAND_NOP=6;
 	public static final int COMMENT=7;

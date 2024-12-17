@@ -55,6 +55,10 @@ class Main {
     public static void visitor(Tree tree, Integer depth) {
         System.out.println(depth.toString() + " " + tree.getText());
 
+//        if (depth>0){
+//            System.out.println( Symbol.valueOf(tree.getText()) );
+//        }
+
         for (int i = 0; i < tree.getChildCount(); i++) {
           visitor(tree.getChild(i), depth+1);
         } 
