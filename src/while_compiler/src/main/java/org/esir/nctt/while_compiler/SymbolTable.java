@@ -20,4 +20,9 @@ public class SymbolTable {
         this.symbolTable.pop();
     }
 
+    public HashMap<Symbol, Integer> peek() {
+        assert !this.symbolTable.isEmpty();        
+        return this.symbolTable.peek();
+    }
+
 }
