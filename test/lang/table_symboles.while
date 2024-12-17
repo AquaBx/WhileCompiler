@@ -1,0 +1,18 @@
+// fichier test pour la table des symboles
+
+function add3 :
+read Op
+%
+EntierTrois := (cons nil (cons nil (cons nil Op)));    // accès à INPUT
+EntierTrois := (cons nil EntierMain)                   // ERROR (entiermain pas accessible)
+%
+write EntierTrois
+
+function main :
+read
+%
+EntierMain := (add3 (cons nil nil)); // accès au symbole add3 fonction
+EntierMain := (cons nil EntierMain); // accès à symbole du même contexte
+EntierMain := (cons nil EntierTrois) // (ERROR) accès à symbole autre contexte
+%
+write EntierMain
