@@ -1,6 +1,6 @@
 package org.esir.nctt.while_compiler;
 
-public enum Symbol {
+public enum SymbolsEnum {
     FUNCTION,
     DEFINITION,
     WHILE,
@@ -28,5 +28,7 @@ public enum Symbol {
     EXPR_NIL,
     EXPR_VARIABLE,
     EXPR_SYMBOL,
-    EXPR_COMPARE;
+    EXPR_COMPARE,
+    VARIABLE,
+    SYMBOL;
 }
