@@ -47,17 +47,7 @@ class Main {
         WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
 
         Tree tree = (Tree) parser.program().getTree();
-
-
-        visitor(tree,0);
-    }
-
-
-    public static void visitor(Tree tree, Integer depth) {
-        System.out.println("  ".repeat(depth) + tree.getText());
-
-        for (int i = 0; i < tree.getChildCount(); i++) {
-          visitor(tree.getChild(i), depth+1);
-        } 
+        Visitor visitor = new Visitor();
+        visitor.visit_program(tree);
     }
 }
