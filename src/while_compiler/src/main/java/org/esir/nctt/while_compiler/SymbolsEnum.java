@@ -15,7 +15,7 @@ public enum SymbolsEnum {
     OUTPUT,
     EXPRESSION,
     EXPR_CALL,
-    COMMAND_NOP,
+    NOP,
     EXPR_CHILD,
     EXPR_CONSTRUCTOR,
     EXPR_PRIMITIVE,
