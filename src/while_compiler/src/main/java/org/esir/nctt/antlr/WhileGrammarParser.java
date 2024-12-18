@@ -1,4 +1,4 @@
-// $ANTLR 3.5.3 WhileGrammar.g 2024-12-18 00:59:18
+// $ANTLR 3.5.3 WhileGrammar.g 2024-12-18 13:03:29
  package org.esir.nctt.antlr; 
 
 import org.antlr.runtime.*;
@@ -14,16 +14,16 @@ import org.antlr.runtime.tree.*;
 @SuppressWarnings("all")
 public class WhileGrammarParser extends Parser {
 	public static final String[] tokenNames = new String[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ASSIGNMENT", "COMMANDS", "COMMAND_NOP", 
-		"COMMENT", "DEC", "DEFINITION", "EXPRESSION", "EXPRESSIONS", "EXPR_CALL", 
-		"EXPR_CHILD", "EXPR_COMPARE", "EXPR_CONSTRUCTOR", "EXPR_CONSTRUCTOR_CONS", 
-		"EXPR_CONSTRUCTOR_LIST", "EXPR_HEAD", "EXPR_NIL", "EXPR_PRIMITIVE", "EXPR_SYMBOL", 
-		"EXPR_TAIL", "EXPR_VARIABLE", "FOR", "FOREACH", "FUNCTION", "IF", "INPUT", 
-		"INPUT_STUB", "MAJ", "MIN", "OUTPUT", "PROGRAM", "SYMBOL", "VARIABLE", 
-		"VARIABLES", "WHILE", "WS", "'%'", "'('", "')'", "','", "':'", "':='", 
-		"';'", "'=?'", "'cons'", "'do'", "'else'", "'fi'", "'for'", "'foreach'", 
-		"'function'", "'hd'", "'if'", "'in'", "'list'", "'nil'", "'nop'", "'od'", 
-		"'read'", "'then'", "'tl'", "'while'", "'write'"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ASSIGNMENT", "COMMANDS", "COMMENT", 
+		"DEC", "DEFINITION", "EXPRESSION", "EXPRESSIONS", "EXPR_CALL", "EXPR_CHILD", 
+		"EXPR_COMPARE", "EXPR_CONSTRUCTOR", "EXPR_CONSTRUCTOR_CONS", "EXPR_CONSTRUCTOR_LIST", 
+		"EXPR_HEAD", "EXPR_NIL", "EXPR_PRIMITIVE", "EXPR_SYMBOL", "EXPR_TAIL", 
+		"EXPR_VARIABLE", "FOR", "FOREACH", "FUNCTION", "IF", "INPUT", "INPUT_STUB", 
+		"MAJ", "MIN", "NOP", "OUTPUT", "PROGRAM", "SYMBOL", "VARIABLE", "VARIABLES", 
+		"WHILE", "WS", "'%'", "'('", "')'", "','", "':'", "':='", "';'", "'=?'", 
+		"'cons'", "'do'", "'else'", "'fi'", "'for'", "'foreach'", "'function'", 
+		"'hd'", "'if'", "'in'", "'list'", "'nil'", "'nop'", "'od'", "'read'", 
+		"'then'", "'tl'", "'while'", "'write'"
 	};
 	public static final int EOF=-1;
 	public static final int T__39=39;
@@ -55,32 +55,32 @@ public class WhileGrammarParser extends Parser {
 	public static final int T__65=65;
 	public static final int ASSIGNMENT=4;
 	public static final int COMMANDS=5;
-	public static final int COMMAND_NOP=6;
-	public static final int COMMENT=7;
-	public static final int DEC=8;
-	public static final int DEFINITION=9;
-	public static final int EXPRESSION=10;
-	public static final int EXPRESSIONS=11;
-	public static final int EXPR_CALL=12;
-	public static final int EXPR_CHILD=13;
-	public static final int EXPR_COMPARE=14;
-	public static final int EXPR_CONSTRUCTOR=15;
-	public static final int EXPR_CONSTRUCTOR_CONS=16;
-	public static final int EXPR_CONSTRUCTOR_LIST=17;
-	public static final int EXPR_HEAD=18;
-	public static final int EXPR_NIL=19;
-	public static final int EXPR_PRIMITIVE=20;
-	public static final int EXPR_SYMBOL=21;
-	public static final int EXPR_TAIL=22;
-	public static final int EXPR_VARIABLE=23;
-	public static final int FOR=24;
-	public static final int FOREACH=25;
-	public static final int FUNCTION=26;
-	public static final int IF=27;
-	public static final int INPUT=28;
-	public static final int INPUT_STUB=29;
-	public static final int MAJ=30;
-	public static final int MIN=31;
+	public static final int COMMENT=6;
+	public static final int DEC=7;
+	public static final int DEFINITION=8;
+	public static final int EXPRESSION=9;
+	public static final int EXPRESSIONS=10;
+	public static final int EXPR_CALL=11;
+	public static final int EXPR_CHILD=12;
+	public static final int EXPR_COMPARE=13;
+	public static final int EXPR_CONSTRUCTOR=14;
+	public static final int EXPR_CONSTRUCTOR_CONS=15;
+	public static final int EXPR_CONSTRUCTOR_LIST=16;
+	public static final int EXPR_HEAD=17;
+	public static final int EXPR_NIL=18;
+	public static final int EXPR_PRIMITIVE=19;
+	public static final int EXPR_SYMBOL=20;
+	public static final int EXPR_TAIL=21;
+	public static final int EXPR_VARIABLE=22;
+	public static final int FOR=23;
+	public static final int FOREACH=24;
+	public static final int FUNCTION=25;
+	public static final int IF=26;
+	public static final int INPUT=27;
+	public static final int INPUT_STUB=28;
+	public static final int MAJ=29;
+	public static final int MIN=30;
+	public static final int NOP=31;
 	public static final int OUTPUT=32;
 	public static final int PROGRAM=33;
 	public static final int SYMBOL=34;
@@ -369,7 +369,7 @@ public class WhileGrammarParser extends Parser {
 			if ( state.backtracking==0 ) stream_io.add(o.getTree());
 
 			// AST REWRITE
-			// elements: i, c, o
+			// elements: o, i, c
 			// token labels: 
 			// rule labels: c, i, retval, o
 			// token list labels: 
@@ -604,16 +604,16 @@ public class WhileGrammarParser extends Parser {
 
 
 			// AST REWRITE
-			// elements: v, var
-			// token labels: v, var
+			// elements: var, v
+			// token labels: var, v
 			// rule labels: retval
 			// token list labels: 
 			// rule list labels: 
 			// wildcard labels: 
 			if ( state.backtracking==0 ) {
 			retval.tree = root_0;
-			RewriteRuleTokenStream stream_v=new RewriteRuleTokenStream(adaptor,"token v",v);
 			RewriteRuleTokenStream stream_var=new RewriteRuleTokenStream(adaptor,"token var",var);
+			RewriteRuleTokenStream stream_v=new RewriteRuleTokenStream(adaptor,"token v",v);
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
@@ -778,99 +778,6 @@ public class WhileGrammarParser extends Parser {
 	// $ANTLR end "commands"
 
 
-	public static class command_vars_return extends ParserRuleReturnScope {
-		Object tree;
-		@Override
-		public Object getTree() { return tree; }
-	};
-
-
-	// $ANTLR start "command_vars"
-	// WhileGrammar.g:70:1: command_vars : vars ':=' exprs -> ^( ASSIGNMENT vars exprs ) ;
-	public final WhileGrammarParser.command_vars_return command_vars() throws RecognitionException {
-		WhileGrammarParser.command_vars_return retval = new WhileGrammarParser.command_vars_return();
-		retval.start = input.LT(1);
-
-		Object root_0 = null;
-
-		Token string_literal18=null;
-		ParserRuleReturnScope vars17 =null;
-		ParserRuleReturnScope exprs19 =null;
-
-		Object string_literal18_tree=null;
-		RewriteRuleTokenStream stream_44=new RewriteRuleTokenStream(adaptor,"token 44");
-		RewriteRuleSubtreeStream stream_exprs=new RewriteRuleSubtreeStream(adaptor,"rule exprs");
-		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
-
-		try {
-			// WhileGrammar.g:70:13: ( vars ':=' exprs -> ^( ASSIGNMENT vars exprs ) )
-			// WhileGrammar.g:70:15: vars ':=' exprs
-			{
-			pushFollow(FOLLOW_vars_in_command_vars582);
-			vars17=vars();
-			state._fsp--;
-			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_vars.add(vars17.getTree());
-			string_literal18=(Token)match(input,44,FOLLOW_44_in_command_vars584); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_44.add(string_literal18);
-
-			pushFollow(FOLLOW_exprs_in_command_vars586);
-			exprs19=exprs();
-			state._fsp--;
-			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_exprs.add(exprs19.getTree());
-
-			// AST REWRITE
-			// elements: exprs, vars
-			// token labels: 
-			// rule labels: retval
-			// token list labels: 
-			// rule list labels: 
-			// wildcard labels: 
-			if ( state.backtracking==0 ) {
-			retval.tree = root_0;
-			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-			root_0 = (Object)adaptor.nil();
-			// 70:31: -> ^( ASSIGNMENT vars exprs )
-			{
-				// WhileGrammar.g:70:34: ^( ASSIGNMENT vars exprs )
-				{
-				Object root_1 = (Object)adaptor.nil();
-				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ASSIGNMENT, "ASSIGNMENT"), root_1);
-				adaptor.addChild(root_1, stream_vars.nextTree());
-				adaptor.addChild(root_1, stream_exprs.nextTree());
-				adaptor.addChild(root_0, root_1);
-				}
-
-			}
-
-
-			retval.tree = root_0;
-			}
-
-			}
-
-			retval.stop = input.LT(-1);
-
-			if ( state.backtracking==0 ) {
-			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
-			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-			}
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		return retval;
-	}
-	// $ANTLR end "command_vars"
-
-
 	public static class command_if_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
@@ -879,25 +786,25 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command_if"
-	// WhileGrammar.g:71:1: command_if : 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) ;
+	// WhileGrammar.g:70:1: command_if : 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) ;
 	public final WhileGrammarParser.command_if_return command_if() throws RecognitionException {
 		WhileGrammarParser.command_if_return retval = new WhileGrammarParser.command_if_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
+		Token string_literal17=null;
+		Token string_literal19=null;
 		Token string_literal20=null;
-		Token string_literal22=null;
-		Token string_literal23=null;
-		Token string_literal24=null;
+		Token string_literal21=null;
 		ParserRuleReturnScope b1 =null;
 		ParserRuleReturnScope b2 =null;
-		ParserRuleReturnScope expression21 =null;
+		ParserRuleReturnScope expression18 =null;
 
+		Object string_literal17_tree=null;
+		Object string_literal19_tree=null;
 		Object string_literal20_tree=null;
-		Object string_literal22_tree=null;
-		Object string_literal23_tree=null;
-		Object string_literal24_tree=null;
+		Object string_literal21_tree=null;
 		RewriteRuleTokenStream stream_55=new RewriteRuleTokenStream(adaptor,"token 55");
 		RewriteRuleTokenStream stream_49=new RewriteRuleTokenStream(adaptor,"token 49");
 		RewriteRuleTokenStream stream_50=new RewriteRuleTokenStream(adaptor,"token 50");
@@ -906,26 +813,26 @@ public class WhileGrammarParser extends Parser {
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
 		try {
-			// WhileGrammar.g:71:11: ( 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) )
-			// WhileGrammar.g:71:13: 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi'
+			// WhileGrammar.g:70:11: ( 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi' -> ^( IF expression $b1 ( $b2)? ) )
+			// WhileGrammar.g:70:13: 'if' expression 'then' b1= commands ( 'else' b2= commands )? 'fi'
 			{
-			string_literal20=(Token)match(input,55,FOLLOW_55_in_command_if602); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_55.add(string_literal20);
+			string_literal17=(Token)match(input,55,FOLLOW_55_in_command_if582); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_55.add(string_literal17);
 
-			pushFollow(FOLLOW_expression_in_command_if604);
-			expression21=expression();
+			pushFollow(FOLLOW_expression_in_command_if584);
+			expression18=expression();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_expression.add(expression21.getTree());
-			string_literal22=(Token)match(input,62,FOLLOW_62_in_command_if606); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_62.add(string_literal22);
+			if ( state.backtracking==0 ) stream_expression.add(expression18.getTree());
+			string_literal19=(Token)match(input,62,FOLLOW_62_in_command_if586); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_62.add(string_literal19);
 
-			pushFollow(FOLLOW_commands_in_command_if610);
+			pushFollow(FOLLOW_commands_in_command_if590);
 			b1=commands();
 			state._fsp--;
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_commands.add(b1.getTree());
-			// WhileGrammar.g:71:48: ( 'else' b2= commands )?
+			// WhileGrammar.g:70:48: ( 'else' b2= commands )?
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==49) ) {
@@ -933,12 +840,12 @@ public class WhileGrammarParser extends Parser {
 			}
 			switch (alt6) {
 				case 1 :
-					// WhileGrammar.g:71:49: 'else' b2= commands
+					// WhileGrammar.g:70:49: 'else' b2= commands
 					{
-					string_literal23=(Token)match(input,49,FOLLOW_49_in_command_if613); if (state.failed) return retval; 
-					if ( state.backtracking==0 ) stream_49.add(string_literal23);
+					string_literal20=(Token)match(input,49,FOLLOW_49_in_command_if593); if (state.failed) return retval; 
+					if ( state.backtracking==0 ) stream_49.add(string_literal20);
 
-					pushFollow(FOLLOW_commands_in_command_if617);
+					pushFollow(FOLLOW_commands_in_command_if597);
 					b2=commands();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -948,12 +855,12 @@ public class WhileGrammarParser extends Parser {
 
 			}
 
-			string_literal24=(Token)match(input,50,FOLLOW_50_in_command_if621); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_50.add(string_literal24);
+			string_literal21=(Token)match(input,50,FOLLOW_50_in_command_if601); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_50.add(string_literal21);
 
 
 			// AST REWRITE
-			// elements: b1, expression, b2
+			// elements: expression, b1, b2
 			// token labels: 
 			// rule labels: b2, retval, b1
 			// token list labels: 
@@ -966,15 +873,15 @@ public class WhileGrammarParser extends Parser {
 			RewriteRuleSubtreeStream stream_b1=new RewriteRuleSubtreeStream(adaptor,"rule b1",b1!=null?b1.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 71:75: -> ^( IF expression $b1 ( $b2)? )
+			// 70:75: -> ^( IF expression $b1 ( $b2)? )
 			{
-				// WhileGrammar.g:71:78: ^( IF expression $b1 ( $b2)? )
+				// WhileGrammar.g:70:78: ^( IF expression $b1 ( $b2)? )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IF, "IF"), root_1);
 				adaptor.addChild(root_1, stream_expression.nextTree());
 				adaptor.addChild(root_1, stream_b1.nextTree());
-				// WhileGrammar.g:71:99: ( $b2)?
+				// WhileGrammar.g:70:99: ( $b2)?
 				if ( stream_b2.hasNext() ) {
 					adaptor.addChild(root_1, stream_b2.nextTree());
 				}
@@ -1019,22 +926,22 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command_while"
-	// WhileGrammar.g:72:1: command_while : 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) ;
+	// WhileGrammar.g:71:1: command_while : 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) ;
 	public final WhileGrammarParser.command_while_return command_while() throws RecognitionException {
 		WhileGrammarParser.command_while_return retval = new WhileGrammarParser.command_while_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal25=null;
-		Token string_literal27=null;
-		Token string_literal29=null;
-		ParserRuleReturnScope expression26 =null;
-		ParserRuleReturnScope commands28 =null;
+		Token string_literal22=null;
+		Token string_literal24=null;
+		Token string_literal26=null;
+		ParserRuleReturnScope expression23 =null;
+		ParserRuleReturnScope commands25 =null;
 
-		Object string_literal25_tree=null;
-		Object string_literal27_tree=null;
-		Object string_literal29_tree=null;
+		Object string_literal22_tree=null;
+		Object string_literal24_tree=null;
+		Object string_literal26_tree=null;
 		RewriteRuleTokenStream stream_48=new RewriteRuleTokenStream(adaptor,"token 48");
 		RewriteRuleTokenStream stream_60=new RewriteRuleTokenStream(adaptor,"token 60");
 		RewriteRuleTokenStream stream_64=new RewriteRuleTokenStream(adaptor,"token 64");
@@ -1042,27 +949,27 @@ public class WhileGrammarParser extends Parser {
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
 		try {
-			// WhileGrammar.g:72:14: ( 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) )
-			// WhileGrammar.g:72:16: 'while' expression 'do' commands 'od'
+			// WhileGrammar.g:71:14: ( 'while' expression 'do' commands 'od' -> ^( WHILE expression commands ) )
+			// WhileGrammar.g:71:16: 'while' expression 'do' commands 'od'
 			{
-			string_literal25=(Token)match(input,64,FOLLOW_64_in_command_while642); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_64.add(string_literal25);
+			string_literal22=(Token)match(input,64,FOLLOW_64_in_command_while622); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_64.add(string_literal22);
 
-			pushFollow(FOLLOW_expression_in_command_while644);
-			expression26=expression();
+			pushFollow(FOLLOW_expression_in_command_while624);
+			expression23=expression();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_expression.add(expression26.getTree());
-			string_literal27=(Token)match(input,48,FOLLOW_48_in_command_while646); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_48.add(string_literal27);
+			if ( state.backtracking==0 ) stream_expression.add(expression23.getTree());
+			string_literal24=(Token)match(input,48,FOLLOW_48_in_command_while626); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_48.add(string_literal24);
 
-			pushFollow(FOLLOW_commands_in_command_while648);
-			commands28=commands();
+			pushFollow(FOLLOW_commands_in_command_while628);
+			commands25=commands();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_commands.add(commands28.getTree());
-			string_literal29=(Token)match(input,60,FOLLOW_60_in_command_while650); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_60.add(string_literal29);
+			if ( state.backtracking==0 ) stream_commands.add(commands25.getTree());
+			string_literal26=(Token)match(input,60,FOLLOW_60_in_command_while630); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_60.add(string_literal26);
 
 
 			// AST REWRITE
@@ -1077,9 +984,9 @@ public class WhileGrammarParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 72:54: -> ^( WHILE expression commands )
+			// 71:54: -> ^( WHILE expression commands )
 			{
-				// WhileGrammar.g:72:57: ^( WHILE expression commands )
+				// WhileGrammar.g:71:57: ^( WHILE expression commands )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WHILE, "WHILE"), root_1);
@@ -1124,22 +1031,22 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command_for"
-	// WhileGrammar.g:73:1: command_for : 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) ;
+	// WhileGrammar.g:72:1: command_for : 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) ;
 	public final WhileGrammarParser.command_for_return command_for() throws RecognitionException {
 		WhileGrammarParser.command_for_return retval = new WhileGrammarParser.command_for_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token string_literal30=null;
-		Token string_literal32=null;
-		Token string_literal34=null;
-		ParserRuleReturnScope expression31 =null;
-		ParserRuleReturnScope commands33 =null;
+		Token string_literal27=null;
+		Token string_literal29=null;
+		Token string_literal31=null;
+		ParserRuleReturnScope expression28 =null;
+		ParserRuleReturnScope commands30 =null;
 
-		Object string_literal30_tree=null;
-		Object string_literal32_tree=null;
-		Object string_literal34_tree=null;
+		Object string_literal27_tree=null;
+		Object string_literal29_tree=null;
+		Object string_literal31_tree=null;
 		RewriteRuleTokenStream stream_48=new RewriteRuleTokenStream(adaptor,"token 48");
 		RewriteRuleTokenStream stream_60=new RewriteRuleTokenStream(adaptor,"token 60");
 		RewriteRuleTokenStream stream_51=new RewriteRuleTokenStream(adaptor,"token 51");
@@ -1147,31 +1054,31 @@ public class WhileGrammarParser extends Parser {
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
 		try {
-			// WhileGrammar.g:73:12: ( 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) )
-			// WhileGrammar.g:73:14: 'for' expression 'do' commands 'od'
+			// WhileGrammar.g:72:12: ( 'for' expression 'do' commands 'od' -> ^( FOR expression commands ) )
+			// WhileGrammar.g:72:14: 'for' expression 'do' commands 'od'
 			{
-			string_literal30=(Token)match(input,51,FOLLOW_51_in_command_for666); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_51.add(string_literal30);
+			string_literal27=(Token)match(input,51,FOLLOW_51_in_command_for646); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_51.add(string_literal27);
 
-			pushFollow(FOLLOW_expression_in_command_for668);
-			expression31=expression();
+			pushFollow(FOLLOW_expression_in_command_for648);
+			expression28=expression();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_expression.add(expression31.getTree());
-			string_literal32=(Token)match(input,48,FOLLOW_48_in_command_for670); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_48.add(string_literal32);
+			if ( state.backtracking==0 ) stream_expression.add(expression28.getTree());
+			string_literal29=(Token)match(input,48,FOLLOW_48_in_command_for650); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_48.add(string_literal29);
 
-			pushFollow(FOLLOW_commands_in_command_for672);
-			commands33=commands();
+			pushFollow(FOLLOW_commands_in_command_for652);
+			commands30=commands();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_commands.add(commands33.getTree());
-			string_literal34=(Token)match(input,60,FOLLOW_60_in_command_for674); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_60.add(string_literal34);
+			if ( state.backtracking==0 ) stream_commands.add(commands30.getTree());
+			string_literal31=(Token)match(input,60,FOLLOW_60_in_command_for654); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_60.add(string_literal31);
 
 
 			// AST REWRITE
-			// elements: expression, commands
+			// elements: commands, expression
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1182,9 +1089,9 @@ public class WhileGrammarParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 73:50: -> ^( FOR expression commands )
+			// 72:50: -> ^( FOR expression commands )
 			{
-				// WhileGrammar.g:73:53: ^( FOR expression commands )
+				// WhileGrammar.g:72:53: ^( FOR expression commands )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOR, "FOR"), root_1);
@@ -1229,7 +1136,7 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command_foreach"
-	// WhileGrammar.g:74:1: command_foreach : 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) ;
+	// WhileGrammar.g:73:1: command_foreach : 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) ;
 	public final WhileGrammarParser.command_foreach_return command_foreach() throws RecognitionException {
 		WhileGrammarParser.command_foreach_return retval = new WhileGrammarParser.command_foreach_return();
 		retval.start = input.LT(1);
@@ -1237,18 +1144,18 @@ public class WhileGrammarParser extends Parser {
 		Object root_0 = null;
 
 		Token v=null;
+		Token string_literal32=null;
+		Token string_literal33=null;
 		Token string_literal35=null;
-		Token string_literal36=null;
-		Token string_literal38=null;
-		Token string_literal40=null;
-		ParserRuleReturnScope expression37 =null;
-		ParserRuleReturnScope commands39 =null;
+		Token string_literal37=null;
+		ParserRuleReturnScope expression34 =null;
+		ParserRuleReturnScope commands36 =null;
 
 		Object v_tree=null;
+		Object string_literal32_tree=null;
+		Object string_literal33_tree=null;
 		Object string_literal35_tree=null;
-		Object string_literal36_tree=null;
-		Object string_literal38_tree=null;
-		Object string_literal40_tree=null;
+		Object string_literal37_tree=null;
 		RewriteRuleTokenStream stream_56=new RewriteRuleTokenStream(adaptor,"token 56");
 		RewriteRuleTokenStream stream_48=new RewriteRuleTokenStream(adaptor,"token 48");
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
@@ -1258,37 +1165,37 @@ public class WhileGrammarParser extends Parser {
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
 		try {
-			// WhileGrammar.g:74:16: ( 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) )
-			// WhileGrammar.g:74:18: 'foreach' v= VARIABLE 'in' expression 'do' commands 'od'
+			// WhileGrammar.g:73:16: ( 'foreach' v= VARIABLE 'in' expression 'do' commands 'od' -> ^( FOREACH $v expression commands ) )
+			// WhileGrammar.g:73:18: 'foreach' v= VARIABLE 'in' expression 'do' commands 'od'
 			{
-			string_literal35=(Token)match(input,52,FOLLOW_52_in_command_foreach690); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_52.add(string_literal35);
+			string_literal32=(Token)match(input,52,FOLLOW_52_in_command_foreach670); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_52.add(string_literal32);
 
-			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command_foreach694); if (state.failed) return retval; 
+			v=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command_foreach674); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_VARIABLE.add(v);
 
-			string_literal36=(Token)match(input,56,FOLLOW_56_in_command_foreach696); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_56.add(string_literal36);
+			string_literal33=(Token)match(input,56,FOLLOW_56_in_command_foreach676); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_56.add(string_literal33);
 
-			pushFollow(FOLLOW_expression_in_command_foreach698);
-			expression37=expression();
+			pushFollow(FOLLOW_expression_in_command_foreach678);
+			expression34=expression();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_expression.add(expression37.getTree());
-			string_literal38=(Token)match(input,48,FOLLOW_48_in_command_foreach700); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_48.add(string_literal38);
+			if ( state.backtracking==0 ) stream_expression.add(expression34.getTree());
+			string_literal35=(Token)match(input,48,FOLLOW_48_in_command_foreach680); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_48.add(string_literal35);
 
-			pushFollow(FOLLOW_commands_in_command_foreach702);
-			commands39=commands();
+			pushFollow(FOLLOW_commands_in_command_foreach682);
+			commands36=commands();
 			state._fsp--;
 			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_commands.add(commands39.getTree());
-			string_literal40=(Token)match(input,60,FOLLOW_60_in_command_foreach704); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_60.add(string_literal40);
+			if ( state.backtracking==0 ) stream_commands.add(commands36.getTree());
+			string_literal37=(Token)match(input,60,FOLLOW_60_in_command_foreach684); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_60.add(string_literal37);
 
 
 			// AST REWRITE
-			// elements: commands, expression, v
+			// elements: expression, v, commands
 			// token labels: v
 			// rule labels: retval
 			// token list labels: 
@@ -1300,9 +1207,9 @@ public class WhileGrammarParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 74:74: -> ^( FOREACH $v expression commands )
+			// 73:74: -> ^( FOREACH $v expression commands )
 			{
-				// WhileGrammar.g:74:77: ^( FOREACH $v expression commands )
+				// WhileGrammar.g:73:77: ^( FOREACH $v expression commands )
 				{
 				Object root_1 = (Object)adaptor.nil();
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOREACH, "FOREACH"), root_1);
@@ -1340,6 +1247,99 @@ public class WhileGrammarParser extends Parser {
 	// $ANTLR end "command_foreach"
 
 
+	public static class command_assignment_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "command_assignment"
+	// WhileGrammar.g:74:1: command_assignment : vars ':=' exprs -> ^( ASSIGNMENT vars exprs ) ;
+	public final WhileGrammarParser.command_assignment_return command_assignment() throws RecognitionException {
+		WhileGrammarParser.command_assignment_return retval = new WhileGrammarParser.command_assignment_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal39=null;
+		ParserRuleReturnScope vars38 =null;
+		ParserRuleReturnScope exprs40 =null;
+
+		Object string_literal39_tree=null;
+		RewriteRuleTokenStream stream_44=new RewriteRuleTokenStream(adaptor,"token 44");
+		RewriteRuleSubtreeStream stream_exprs=new RewriteRuleSubtreeStream(adaptor,"rule exprs");
+		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
+
+		try {
+			// WhileGrammar.g:74:19: ( vars ':=' exprs -> ^( ASSIGNMENT vars exprs ) )
+			// WhileGrammar.g:74:21: vars ':=' exprs
+			{
+			pushFollow(FOLLOW_vars_in_command_assignment703);
+			vars38=vars();
+			state._fsp--;
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_vars.add(vars38.getTree());
+			string_literal39=(Token)match(input,44,FOLLOW_44_in_command_assignment705); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_44.add(string_literal39);
+
+			pushFollow(FOLLOW_exprs_in_command_assignment707);
+			exprs40=exprs();
+			state._fsp--;
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_exprs.add(exprs40.getTree());
+
+			// AST REWRITE
+			// elements: vars, exprs
+			// token labels: 
+			// rule labels: retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			if ( state.backtracking==0 ) {
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 74:37: -> ^( ASSIGNMENT vars exprs )
+			{
+				// WhileGrammar.g:74:40: ^( ASSIGNMENT vars exprs )
+				{
+				Object root_1 = (Object)adaptor.nil();
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ASSIGNMENT, "ASSIGNMENT"), root_1);
+				adaptor.addChild(root_1, stream_vars.nextTree());
+				adaptor.addChild(root_1, stream_exprs.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
+			}
+
+
+			retval.tree = root_0;
+			}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			if ( state.backtracking==0 ) {
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+			}
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "command_assignment"
+
+
 	public static class command_nop_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
@@ -1348,7 +1348,7 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command_nop"
-	// WhileGrammar.g:75:1: command_nop : 'nop' -> ^( COMMAND_NOP ) ;
+	// WhileGrammar.g:75:1: command_nop : 'nop' -> ^( NOP ) ;
 	public final WhileGrammarParser.command_nop_return command_nop() throws RecognitionException {
 		WhileGrammarParser.command_nop_return retval = new WhileGrammarParser.command_nop_return();
 		retval.start = input.LT(1);
@@ -1361,7 +1361,7 @@ public class WhileGrammarParser extends Parser {
 		RewriteRuleTokenStream stream_59=new RewriteRuleTokenStream(adaptor,"token 59");
 
 		try {
-			// WhileGrammar.g:75:12: ( 'nop' -> ^( COMMAND_NOP ) )
+			// WhileGrammar.g:75:12: ( 'nop' -> ^( NOP ) )
 			// WhileGrammar.g:75:14: 'nop'
 			{
 			string_literal41=(Token)match(input,59,FOLLOW_59_in_command_nop723); if (state.failed) return retval; 
@@ -1380,12 +1380,12 @@ public class WhileGrammarParser extends Parser {
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 			root_0 = (Object)adaptor.nil();
-			// 75:20: -> ^( COMMAND_NOP )
+			// 75:20: -> ^( NOP )
 			{
-				// WhileGrammar.g:75:23: ^( COMMAND_NOP )
+				// WhileGrammar.g:75:23: ^( NOP )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMAND_NOP, "COMMAND_NOP"), root_1);
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(NOP, "NOP"), root_1);
 				adaptor.addChild(root_0, root_1);
 				}
 
@@ -1425,7 +1425,7 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "command"
-	// WhileGrammar.g:78:1: command : ( command_if | command_while | command_for | command_foreach | command_vars | command_nop );
+	// WhileGrammar.g:78:1: command : ( command_if | command_while | command_for | command_foreach | command_assignment | command_nop );
 	public final WhileGrammarParser.command_return command() throws RecognitionException {
 		WhileGrammarParser.command_return retval = new WhileGrammarParser.command_return();
 		retval.start = input.LT(1);
@@ -1436,12 +1436,12 @@ public class WhileGrammarParser extends Parser {
 		ParserRuleReturnScope command_while43 =null;
 		ParserRuleReturnScope command_for44 =null;
 		ParserRuleReturnScope command_foreach45 =null;
-		ParserRuleReturnScope command_vars46 =null;
+		ParserRuleReturnScope command_assignment46 =null;
 		ParserRuleReturnScope command_nop47 =null;
 
 
 		try {
-			// WhileGrammar.g:78:8: ( command_if | command_while | command_for | command_foreach | command_vars | command_nop )
+			// WhileGrammar.g:78:8: ( command_if | command_while | command_for | command_foreach | command_assignment | command_nop )
 			int alt7=6;
 			switch ( input.LA(1) ) {
 			case 55:
@@ -1538,16 +1538,16 @@ public class WhileGrammarParser extends Parser {
 					}
 					break;
 				case 5 :
-					// WhileGrammar.g:82:11: command_vars
+					// WhileGrammar.g:82:11: command_assignment
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_command_vars_in_command788);
-					command_vars46=command_vars();
+					pushFollow(FOLLOW_command_assignment_in_command788);
+					command_assignment46=command_assignment();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_vars46.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, command_assignment46.getTree());
 
 					}
 					break;
@@ -2309,6 +2309,100 @@ public class WhileGrammarParser extends Parser {
 	// $ANTLR end "expr_call"
 
 
+	public static class expr_compare_return extends ParserRuleReturnScope {
+		Object tree;
+		@Override
+		public Object getTree() { return tree; }
+	};
+
+
+	// $ANTLR start "expr_compare"
+	// WhileGrammar.g:118:1: expr_compare : c= expr '=?' d= expr -> ^( EXPR_COMPARE $c $d) ;
+	public final WhileGrammarParser.expr_compare_return expr_compare() throws RecognitionException {
+		WhileGrammarParser.expr_compare_return retval = new WhileGrammarParser.expr_compare_return();
+		retval.start = input.LT(1);
+
+		Object root_0 = null;
+
+		Token string_literal68=null;
+		ParserRuleReturnScope c =null;
+		ParserRuleReturnScope d =null;
+
+		Object string_literal68_tree=null;
+		RewriteRuleTokenStream stream_46=new RewriteRuleTokenStream(adaptor,"token 46");
+		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+
+		try {
+			// WhileGrammar.g:118:13: (c= expr '=?' d= expr -> ^( EXPR_COMPARE $c $d) )
+			// WhileGrammar.g:118:15: c= expr '=?' d= expr
+			{
+			pushFollow(FOLLOW_expr_in_expr_compare998);
+			c=expr();
+			state._fsp--;
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expr.add(c.getTree());
+			string_literal68=(Token)match(input,46,FOLLOW_46_in_expr_compare1000); if (state.failed) return retval; 
+			if ( state.backtracking==0 ) stream_46.add(string_literal68);
+
+			pushFollow(FOLLOW_expr_in_expr_compare1004);
+			d=expr();
+			state._fsp--;
+			if (state.failed) return retval;
+			if ( state.backtracking==0 ) stream_expr.add(d.getTree());
+
+			// AST REWRITE
+			// elements: c, d
+			// token labels: 
+			// rule labels: c, d, retval
+			// token list labels: 
+			// rule list labels: 
+			// wildcard labels: 
+			if ( state.backtracking==0 ) {
+			retval.tree = root_0;
+			RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.getTree():null);
+			RewriteRuleSubtreeStream stream_d=new RewriteRuleSubtreeStream(adaptor,"rule d",d!=null?d.getTree():null);
+			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+
+			root_0 = (Object)adaptor.nil();
+			// 119:5: -> ^( EXPR_COMPARE $c $d)
+			{
+				// WhileGrammar.g:119:8: ^( EXPR_COMPARE $c $d)
+				{
+				Object root_1 = (Object)adaptor.nil();
+				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPR_COMPARE, "EXPR_COMPARE"), root_1);
+				adaptor.addChild(root_1, stream_c.nextTree());
+				adaptor.addChild(root_1, stream_d.nextTree());
+				adaptor.addChild(root_0, root_1);
+				}
+
+			}
+
+
+			retval.tree = root_0;
+			}
+
+			}
+
+			retval.stop = input.LT(-1);
+
+			if ( state.backtracking==0 ) {
+			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+			}
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return retval;
+	}
+	// $ANTLR end "expr_compare"
+
+
 	public static class expr_return extends ParserRuleReturnScope {
 		Object tree;
 		@Override
@@ -2317,25 +2411,25 @@ public class WhileGrammarParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// WhileGrammar.g:118:1: expr : ( expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head | expr_tail | expr_call | expr_symbol );
+	// WhileGrammar.g:122:1: expr : ( expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head | expr_tail | expr_call | expr_symbol );
 	public final WhileGrammarParser.expr_return expr() throws RecognitionException {
 		WhileGrammarParser.expr_return retval = new WhileGrammarParser.expr_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		ParserRuleReturnScope expr_nil68 =null;
-		ParserRuleReturnScope expr_variable69 =null;
-		ParserRuleReturnScope expr_constructor_list70 =null;
-		ParserRuleReturnScope expr_constructor_cons71 =null;
-		ParserRuleReturnScope expr_head72 =null;
-		ParserRuleReturnScope expr_tail73 =null;
-		ParserRuleReturnScope expr_call74 =null;
-		ParserRuleReturnScope expr_symbol75 =null;
+		ParserRuleReturnScope expr_nil69 =null;
+		ParserRuleReturnScope expr_variable70 =null;
+		ParserRuleReturnScope expr_constructor_list71 =null;
+		ParserRuleReturnScope expr_constructor_cons72 =null;
+		ParserRuleReturnScope expr_head73 =null;
+		ParserRuleReturnScope expr_tail74 =null;
+		ParserRuleReturnScope expr_call75 =null;
+		ParserRuleReturnScope expr_symbol76 =null;
 
 
 		try {
-			// WhileGrammar.g:118:5: ( expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head | expr_tail | expr_call | expr_symbol )
+			// WhileGrammar.g:122:5: ( expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head | expr_tail | expr_call | expr_symbol )
 			int alt8=8;
 			switch ( input.LA(1) ) {
 			case 58:
@@ -2403,114 +2497,114 @@ public class WhileGrammarParser extends Parser {
 			}
 			switch (alt8) {
 				case 1 :
-					// WhileGrammar.g:118:7: expr_nil
+					// WhileGrammar.g:122:7: expr_nil
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_nil_in_expr996);
-					expr_nil68=expr_nil();
+					pushFollow(FOLLOW_expr_nil_in_expr1028);
+					expr_nil69=expr_nil();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_nil68.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_nil69.getTree());
 
 					}
 					break;
 				case 2 :
-					// WhileGrammar.g:118:18: expr_variable
+					// WhileGrammar.g:122:18: expr_variable
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_variable_in_expr1000);
-					expr_variable69=expr_variable();
+					pushFollow(FOLLOW_expr_variable_in_expr1032);
+					expr_variable70=expr_variable();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_variable69.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_variable70.getTree());
 
 					}
 					break;
 				case 3 :
-					// WhileGrammar.g:118:34: expr_constructor_list
+					// WhileGrammar.g:122:34: expr_constructor_list
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_constructor_list_in_expr1004);
-					expr_constructor_list70=expr_constructor_list();
+					pushFollow(FOLLOW_expr_constructor_list_in_expr1036);
+					expr_constructor_list71=expr_constructor_list();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_constructor_list70.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_constructor_list71.getTree());
 
 					}
 					break;
 				case 4 :
-					// WhileGrammar.g:118:58: expr_constructor_cons
+					// WhileGrammar.g:122:58: expr_constructor_cons
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_constructor_cons_in_expr1008);
-					expr_constructor_cons71=expr_constructor_cons();
+					pushFollow(FOLLOW_expr_constructor_cons_in_expr1040);
+					expr_constructor_cons72=expr_constructor_cons();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_constructor_cons71.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_constructor_cons72.getTree());
 
 					}
 					break;
 				case 5 :
-					// WhileGrammar.g:118:82: expr_head
+					// WhileGrammar.g:122:82: expr_head
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_head_in_expr1012);
-					expr_head72=expr_head();
+					pushFollow(FOLLOW_expr_head_in_expr1044);
+					expr_head73=expr_head();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_head72.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_head73.getTree());
 
 					}
 					break;
 				case 6 :
-					// WhileGrammar.g:118:95: expr_tail
+					// WhileGrammar.g:122:95: expr_tail
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_tail_in_expr1017);
-					expr_tail73=expr_tail();
+					pushFollow(FOLLOW_expr_tail_in_expr1049);
+					expr_tail74=expr_tail();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_tail73.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_tail74.getTree());
 
 					}
 					break;
 				case 7 :
-					// WhileGrammar.g:118:108: expr_call
+					// WhileGrammar.g:122:108: expr_call
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_call_in_expr1022);
-					expr_call74=expr_call();
+					pushFollow(FOLLOW_expr_call_in_expr1054);
+					expr_call75=expr_call();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_call74.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_call75.getTree());
 
 					}
 					break;
 				case 8 :
-					// WhileGrammar.g:118:120: expr_symbol
+					// WhileGrammar.g:122:120: expr_symbol
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					pushFollow(FOLLOW_expr_symbol_in_expr1026);
-					expr_symbol75=expr_symbol();
+					pushFollow(FOLLOW_expr_symbol_in_expr1058);
+					expr_symbol76=expr_symbol();
 					state._fsp--;
 					if (state.failed) return retval;
-					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_symbol75.getTree());
+					if ( state.backtracking==0 ) adaptor.addChild(root_0, expr_symbol76.getTree());
 
 					}
 					break;
@@ -2534,100 +2628,6 @@ public class WhileGrammarParser extends Parser {
 		return retval;
 	}
 	// $ANTLR end "expr"
-
-
-	public static class expr_compare_return extends ParserRuleReturnScope {
-		Object tree;
-		@Override
-		public Object getTree() { return tree; }
-	};
-
-
-	// $ANTLR start "expr_compare"
-	// WhileGrammar.g:120:1: expr_compare : c= expr '=?' d= expr -> ^( EXPR_COMPARE $c $d) ;
-	public final WhileGrammarParser.expr_compare_return expr_compare() throws RecognitionException {
-		WhileGrammarParser.expr_compare_return retval = new WhileGrammarParser.expr_compare_return();
-		retval.start = input.LT(1);
-
-		Object root_0 = null;
-
-		Token string_literal76=null;
-		ParserRuleReturnScope c =null;
-		ParserRuleReturnScope d =null;
-
-		Object string_literal76_tree=null;
-		RewriteRuleTokenStream stream_46=new RewriteRuleTokenStream(adaptor,"token 46");
-		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
-
-		try {
-			// WhileGrammar.g:120:13: (c= expr '=?' d= expr -> ^( EXPR_COMPARE $c $d) )
-			// WhileGrammar.g:120:15: c= expr '=?' d= expr
-			{
-			pushFollow(FOLLOW_expr_in_expr_compare1035);
-			c=expr();
-			state._fsp--;
-			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_expr.add(c.getTree());
-			string_literal76=(Token)match(input,46,FOLLOW_46_in_expr_compare1037); if (state.failed) return retval; 
-			if ( state.backtracking==0 ) stream_46.add(string_literal76);
-
-			pushFollow(FOLLOW_expr_in_expr_compare1041);
-			d=expr();
-			state._fsp--;
-			if (state.failed) return retval;
-			if ( state.backtracking==0 ) stream_expr.add(d.getTree());
-
-			// AST REWRITE
-			// elements: c, d
-			// token labels: 
-			// rule labels: c, d, retval
-			// token list labels: 
-			// rule list labels: 
-			// wildcard labels: 
-			if ( state.backtracking==0 ) {
-			retval.tree = root_0;
-			RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.getTree():null);
-			RewriteRuleSubtreeStream stream_d=new RewriteRuleSubtreeStream(adaptor,"rule d",d!=null?d.getTree():null);
-			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
-
-			root_0 = (Object)adaptor.nil();
-			// 121:5: -> ^( EXPR_COMPARE $c $d)
-			{
-				// WhileGrammar.g:121:8: ^( EXPR_COMPARE $c $d)
-				{
-				Object root_1 = (Object)adaptor.nil();
-				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPR_COMPARE, "EXPR_COMPARE"), root_1);
-				adaptor.addChild(root_1, stream_c.nextTree());
-				adaptor.addChild(root_1, stream_d.nextTree());
-				adaptor.addChild(root_0, root_1);
-				}
-
-			}
-
-
-			retval.tree = root_0;
-			}
-
-			}
-
-			retval.stop = input.LT(-1);
-
-			if ( state.backtracking==0 ) {
-			retval.tree = (Object)adaptor.rulePostProcessing(root_0);
-			adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-			}
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-			retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		return retval;
-	}
-	// $ANTLR end "expr_compare"
 
 
 	public static class expression_return extends ParserRuleReturnScope {
@@ -3034,39 +3034,39 @@ public class WhileGrammarParser extends Parser {
 	public static final BitSet FOLLOW_command_in_commands554 = new BitSet(new long[]{0x0000200000000002L});
 	public static final BitSet FOLLOW_45_in_commands557 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
 	public static final BitSet FOLLOW_command_in_commands559 = new BitSet(new long[]{0x0000200000000002L});
-	public static final BitSet FOLLOW_vars_in_command_vars582 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_44_in_command_vars584 = new BitSet(new long[]{0x0400010C00000000L});
-	public static final BitSet FOLLOW_exprs_in_command_vars586 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_command_if602 = new BitSet(new long[]{0x0400010C00000000L});
-	public static final BitSet FOLLOW_expression_in_command_if604 = new BitSet(new long[]{0x4000000000000000L});
-	public static final BitSet FOLLOW_62_in_command_if606 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_commands_in_command_if610 = new BitSet(new long[]{0x0006000000000000L});
-	public static final BitSet FOLLOW_49_in_command_if613 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_commands_in_command_if617 = new BitSet(new long[]{0x0004000000000000L});
-	public static final BitSet FOLLOW_50_in_command_if621 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_64_in_command_while642 = new BitSet(new long[]{0x0400010C00000000L});
-	public static final BitSet FOLLOW_expression_in_command_while644 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_48_in_command_while646 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_commands_in_command_while648 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_60_in_command_while650 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_51_in_command_for666 = new BitSet(new long[]{0x0400010C00000000L});
-	public static final BitSet FOLLOW_expression_in_command_for668 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_48_in_command_for670 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_commands_in_command_for672 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_60_in_command_for674 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_52_in_command_foreach690 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_VARIABLE_in_command_foreach694 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_command_foreach696 = new BitSet(new long[]{0x0400010C00000000L});
-	public static final BitSet FOLLOW_expression_in_command_foreach698 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_48_in_command_foreach700 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_commands_in_command_foreach702 = new BitSet(new long[]{0x1000000000000000L});
-	public static final BitSet FOLLOW_60_in_command_foreach704 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_command_if582 = new BitSet(new long[]{0x0400010C00000000L});
+	public static final BitSet FOLLOW_expression_in_command_if584 = new BitSet(new long[]{0x4000000000000000L});
+	public static final BitSet FOLLOW_62_in_command_if586 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_commands_in_command_if590 = new BitSet(new long[]{0x0006000000000000L});
+	public static final BitSet FOLLOW_49_in_command_if593 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_commands_in_command_if597 = new BitSet(new long[]{0x0004000000000000L});
+	public static final BitSet FOLLOW_50_in_command_if601 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_64_in_command_while622 = new BitSet(new long[]{0x0400010C00000000L});
+	public static final BitSet FOLLOW_expression_in_command_while624 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_48_in_command_while626 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_commands_in_command_while628 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_60_in_command_while630 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_51_in_command_for646 = new BitSet(new long[]{0x0400010C00000000L});
+	public static final BitSet FOLLOW_expression_in_command_for648 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_48_in_command_for650 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_commands_in_command_for652 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_60_in_command_for654 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_52_in_command_foreach670 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_VARIABLE_in_command_foreach674 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_command_foreach676 = new BitSet(new long[]{0x0400010C00000000L});
+	public static final BitSet FOLLOW_expression_in_command_foreach678 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_48_in_command_foreach680 = new BitSet(new long[]{0x0898000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_commands_in_command_foreach682 = new BitSet(new long[]{0x1000000000000000L});
+	public static final BitSet FOLLOW_60_in_command_foreach684 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_vars_in_command_assignment703 = new BitSet(new long[]{0x0000100000000000L});
+	public static final BitSet FOLLOW_44_in_command_assignment705 = new BitSet(new long[]{0x0400010C00000000L});
+	public static final BitSet FOLLOW_exprs_in_command_assignment707 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_59_in_command_nop723 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_command_if_in_command737 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_command_while_in_command750 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_command_for_in_command763 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_command_foreach_in_command776 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_command_vars_in_command788 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_command_assignment_in_command788 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_command_nop_in_command800 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_SYMBOL_in_expr_symbol818 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_VARIABLE_in_expr_variable838 = new BitSet(new long[]{0x0000000000000002L});
@@ -3091,17 +3091,17 @@ public class WhileGrammarParser extends Parser {
 	public static final BitSet FOLLOW_SYMBOL_in_expr_call972 = new BitSet(new long[]{0x0400030C00000000L});
 	public static final BitSet FOLLOW_lexpr_in_expr_call974 = new BitSet(new long[]{0x0000020000000000L});
 	public static final BitSet FOLLOW_41_in_expr_call976 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_nil_in_expr996 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_variable_in_expr1000 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_constructor_list_in_expr1004 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_constructor_cons_in_expr1008 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_head_in_expr1012 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_tail_in_expr1017 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_call_in_expr1022 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_symbol_in_expr1026 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_expr_compare1035 = new BitSet(new long[]{0x0000400000000000L});
-	public static final BitSet FOLLOW_46_in_expr_compare1037 = new BitSet(new long[]{0x0400010C00000000L});
-	public static final BitSet FOLLOW_expr_in_expr_compare1041 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_expr_compare998 = new BitSet(new long[]{0x0000400000000000L});
+	public static final BitSet FOLLOW_46_in_expr_compare1000 = new BitSet(new long[]{0x0400010C00000000L});
+	public static final BitSet FOLLOW_expr_in_expr_compare1004 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_nil_in_expr1028 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_variable_in_expr1032 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_constructor_list_in_expr1036 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_constructor_cons_in_expr1040 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_head_in_expr1044 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_tail_in_expr1049 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_call_in_expr1054 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_symbol_in_expr1058 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_compare_in_expression1065 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_in_expression1069 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_expr_in_lexpr1077 = new BitSet(new long[]{0x0400010C00000002L});

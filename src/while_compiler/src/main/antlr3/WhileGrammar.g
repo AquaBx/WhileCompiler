@@ -21,7 +21,7 @@ tokens {
     OUTPUT;
     EXPRESSION;
     EXPR_CALL;
-    COMMAND_NOP;
+    NOP;
     EXPR_CHILD;
     EXPR_CONSTRUCTOR;
     EXPR_PRIMITIVE;
@@ -67,19 +67,19 @@ commands: command (';' command)*
     -> ^(COMMANDS command*)
 ;
 
-command_vars: vars ':=' exprs -> ^(ASSIGNMENT vars exprs);
 command_if: 'if' expression 'then' b1=commands ('else' b2=commands)? 'fi' -> ^(IF expression $b1 $b2?);
 command_while: 'while' expression 'do' commands 'od' -> ^(WHILE expression commands);
 command_for: 'for' expression 'do' commands 'od' -> ^(FOR expression commands);
 command_foreach: 'foreach' v=VARIABLE 'in' expression 'do' commands 'od' -> ^(FOREACH $v expression commands);
-command_nop: 'nop' -> ^(COMMAND_NOP)
+command_assignment: vars ':=' exprs -> ^(ASSIGNMENT vars exprs);
+command_nop: 'nop' -> ^(NOP)
 ;
 
 command: command_if 
         | command_while 
         | command_for 
         | command_foreach
-        | command_vars
+        | command_assignment
         | command_nop
         ;
 
@@ -115,11 +115,11 @@ expr_call: '(' a=SYMBOL lexpr ')'
  -> ^(EXPR_CALL $a lexpr)
 ;
 
-expr: expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head  | expr_tail |  expr_call | expr_symbol;
-
 expr_compare: c=expr '=?' d=expr
     -> ^(EXPR_COMPARE $c $d)
 ;
+
+expr: expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head  | expr_tail |  expr_call | expr_symbol;
 
 expression: expr_compare | expr
 ;
