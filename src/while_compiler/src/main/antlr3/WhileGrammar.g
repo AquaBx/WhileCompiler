@@ -19,7 +19,6 @@ tokens {
     INPUT;
     INPUT_STUB;
     OUTPUT;
-    EXPR_BASE;
     EXPRESSION;
     EXPR_CALL;
     COMMAND_NOP;
@@ -84,15 +83,15 @@ command: command_if
         | command_nop
         ;
 
-exprbase_symbol: a=SYMBOL
+expr_symbol: a=SYMBOL
  -> ^(EXPR_SYMBOL $a)
 ;
 
-exprbase_variable: a=VARIABLE
+expr_variable: a=VARIABLE
  -> ^(EXPR_VARIABLE $a)
 ;
 
-exprbase_nil: 'nil'
+expr_nil: 'nil'
  -> ^(EXPR_NIL)
 ;
 
@@ -104,28 +103,28 @@ expr_constructor_cons: '(' 'cons' lexpr ')'
  -> ^(EXPR_CONSTRUCTOR_CONS lexpr )
 ;
 
-exprbasehead: '(' 'hd' exprbase ')' 
- -> ^(EXPR_HEAD exprbase)
+expr_head: '(' 'hd' expr ')' 
+ -> ^(EXPR_HEAD expr)
 ;
 
-exprbasetail: '(' 'tl' exprbase ')' 
- -> ^(EXPR_TAIL exprbase)
+expr_tail: '(' 'tl' expr ')' 
+ -> ^(EXPR_TAIL expr)
 ;
 
 expr_call: '(' a=SYMBOL lexpr ')'
  -> ^(EXPR_CALL $a lexpr)
 ;
 
-exprbase: exprbase_nil | exprbase_variable | expr_constructor_list | expr_constructor_cons | exprbasehead  | exprbasetail |  expr_call | exprbase_symbol;
+expr: expr_nil | expr_variable | expr_constructor_list | expr_constructor_cons | expr_head  | expr_tail |  expr_call | expr_symbol;
 
-expression_comparaison: c=exprbase '=?' d=exprbase
+expr_compare: c=expr '=?' d=expr
     -> ^(EXPR_COMPARE $c $d)
 ;
 
-expression: expression_comparaison | exprbase
+expression: expr_compare | expr
 ;
 
-lexpr: exprbase* -> ^(EXPRESSIONS exprbase*);
+lexpr: expr* -> ^(EXPRESSIONS expr*);
 
 exprs: expression (',' expression)*
     -> ^(EXPRESSIONS expression*);

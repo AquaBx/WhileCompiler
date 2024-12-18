@@ -13,7 +13,6 @@ public enum SymbolsEnum {
     INPUT,
     INPUT_STUB,
     OUTPUT,
-    EXPR_BASE,
     EXPRESSION,
     EXPR_CALL,
     COMMAND_NOP,
