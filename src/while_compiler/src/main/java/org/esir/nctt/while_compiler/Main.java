@@ -53,9 +53,12 @@ class Main {
         WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
 
         Tree ast = (Tree) parser.program().getTree();
-        Visitor visitor = new Visitor();
+        SymbolsVisitor visitor = new SymbolsVisitor();
 
         // symbols analysis
+        visitor.visit_program(ast);
+
+        // types analysis
         visitor.visit_program(ast);
 
         // Three-address code generation
