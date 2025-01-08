@@ -9,11 +9,11 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class FileManager {
-    public static Path getPath(String path){
+    public static Path getPath(String path) {
         return Paths.get(path);
     }
 
-    public static String readFile(File file){
+    public static String readFile(File file) {
         try {
             Scanner myReader = new Scanner(file);
             StringBuilder data = new StringBuilder();
@@ -27,7 +27,7 @@ public class FileManager {
         }
     }
 
-    public static void writeFile(File file, String data){
+    public static void writeFile(File file, String data) {
         try {
             FileWriter myObj = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(myObj);

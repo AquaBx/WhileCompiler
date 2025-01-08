@@ -5,7 +5,7 @@ import org.esir.nctt.antlr.WhileGrammarLexer;
 
 import static org.junit.Assert.assertEquals;
 
-public class SymbolsVisitor extends Visitor{
+public class SymbolsVisitor extends Visitor {
     SymbolTable lookupTable = new SymbolTable();
 
     public void visit_program(Tree program) {
