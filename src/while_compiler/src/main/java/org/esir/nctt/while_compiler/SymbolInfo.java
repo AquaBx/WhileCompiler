@@ -15,20 +15,20 @@ class SymbolInfo {
         return this.line;
     }
 
-    public Integer getColumn() {
-        return this.column;
-    }
-
-    public String getContent() {
-        return this.content;
-    }
-
     public void setLine(Integer l) {
         this.line = l;
     }
 
+    public Integer getColumn() {
+        return this.column;
+    }
+
     public void setColumn(Integer c) {
         this.column = c;
+    }
+
+    public String getContent() {
+        return this.content;
     }
 
     public void setContent(String c) {

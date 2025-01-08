@@ -29,5 +29,5 @@ public enum SymbolsEnum {
     EXPR_SYMBOL,
     EXPR_COMPARE,
     VARIABLE,
-    SYMBOL;
+    SYMBOL
 }

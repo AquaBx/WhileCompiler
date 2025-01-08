@@ -1,12 +1,19 @@
 package org.esir.nctt.while_compiler;
 
-import org.antlr.runtime.*;
-import org.antlr.runtime.tree.*;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
 import org.esir.nctt.antlr.WhileGrammarParser;
 
 class Main {
     public static void main(String[] args) throws RecognitionException {
+        for (String arg : args) {
+            // faire une gestion des args pour le compilateur
+            System.out.println();
+        }
         String code = """
                 // Addition of two numbers
                 function add :
@@ -18,7 +25,7 @@ class Main {
                     od
                 %
                 write Result
-
+                
                 // Soustraction of two numbers (there is no negative number…)
                 function sub :
                 read Op1, Op2
@@ -29,7 +36,7 @@ class Main {
                     od
                 %
                 write Result
-
+                
                 // Multiplication
                 function mul :
                 read Op1, Op2
@@ -41,13 +48,17 @@ class Main {
                 write Result
                 """;
         ANTLRStringStream antlrStream = new ANTLRStringStream(code);
-
         WhileGrammarLexer lexer = new WhileGrammarLexer(antlrStream);
         TokenStream tokenStream = new CommonTokenStream(lexer);
         WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
 
-        Tree tree = (Tree) parser.program().getTree();
+        Tree ast = (Tree) parser.program().getTree();
         Visitor visitor = new Visitor();
-        visitor.visit_program(tree);
+
+        // symbols analysis
+        visitor.visit_program(ast);
+
+        // Three-address code generation
+        // visitor.generate_program(ast);
     }
 }

@@ -1,32 +1,36 @@
 package org.esir.nctt.while_compiler;
 
-import static org.junit.Assert.assertTrue;
-
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
+
+import static org.junit.Assert.assertEquals;
 
 public class Visitor {
     SymbolTable lookupTable = new SymbolTable();
 
-    public void visit_program(Tree tree) {
+    public void visit_program(Tree program) {
         // Start the global scope
         lookupTable.beginScope();
 
-        // Push Function symbol to sympol table (global)
-        for (int i = 0; i < tree.getChildCount(); i++) {
-            Tree function = tree.getChild(i);
+        // Push Function symbol to symbol table (global)
+        for (int i = 0; i < program.getChildCount(); i++) {
+            Tree function = program.getChild(i);
             Tree function_name = function.getChild(0);
             String function_name_string = function_name.getText();
 
-            // Push Function symbol to sympol table (global)
-            lookupTable.put(function_name_string,
-                    new SymbolInfo(function_name.getLine(), function_name.getCharPositionInLine(),
-                            function_name_string));
+            // Push Function symbol to symbol table (global)
+            lookupTable.put(
+                    function_name_string,
+                    new SymbolInfo(
+                            function_name.getLine(),
+                            function_name.getCharPositionInLine(),
+                            function_name_string
+                    )
+            );
         }
-
         // visit each function
-        for (int i = 0; i < tree.getChildCount(); i++) {
-            visit_function(tree.getChild(i));
+        for (int i = 0; i < program.getChildCount(); i++) {
+            visit_function(program.getChild(i));
         }
 
         // pop the global scope
@@ -34,7 +38,7 @@ public class Visitor {
     }
 
     private void visit_function(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.FUNCTION);
+        assertEquals(WhileGrammarLexer.FUNCTION, tree.getType());
 
         lookupTable.beginScope();
 
@@ -52,7 +56,7 @@ public class Visitor {
     }
 
     private void visit_inputs(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.INPUT);
+        assertEquals(WhileGrammarLexer.INPUT, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
             Tree input = tree.getChild(i);
@@ -65,7 +69,7 @@ public class Visitor {
     }
 
     private void visit_outputs(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.OUTPUT);
+        assertEquals(WhileGrammarLexer.OUTPUT, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
             Tree output = tree.getChild(i);
@@ -78,15 +82,15 @@ public class Visitor {
     }
 
     private void visit_commands(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.COMMANDS);
+        assertEquals(WhileGrammarLexer.COMMANDS, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
             visit_command(tree.getChild(i));
         }
-    }  
+    }
 
     private void visit_if(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.IF);
+        assertEquals(WhileGrammarLexer.IF, tree.getType());
 
         visit_expression(tree.getChild(0));
 
@@ -96,21 +100,21 @@ public class Visitor {
     }
 
     private void visit_while(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.WHILE);
+        assertEquals(WhileGrammarLexer.WHILE, tree.getType());
 
         visit_expression(tree.getChild(0));
         visit_commands(tree.getChild(1));
     }
 
     private void visit_for(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.FOR);
+        assertEquals(WhileGrammarLexer.FOR, tree.getType());
 
         visit_expression(tree.getChild(0));
         visit_commands(tree.getChild(1));
     }
 
     private void visit_foreach(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.FOREACH);
+        assertEquals(WhileGrammarLexer.FOREACH, tree.getType());
 
         visit_expression(tree.getChild(1));
 
@@ -119,13 +123,13 @@ public class Visitor {
 
         // Push Variable to scope
         lookupTable.put(variable_string,
-        new SymbolInfo(variable.getLine(), variable.getCharPositionInLine(), variable_string));
+                new SymbolInfo(variable.getLine(), variable.getCharPositionInLine(), variable_string));
 
         visit_commands(tree.getChild(2));
     }
 
     private void visit_assignement(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.ASSIGNMENT);
+        assertEquals(WhileGrammarLexer.ASSIGNMENT, tree.getType());
 
         // Important: we visit expressions before the variables
         visit_expressions(tree.getChild(1));
@@ -133,7 +137,7 @@ public class Visitor {
     }
 
     private void visit_nop(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.NOP);
+        assertEquals(WhileGrammarLexer.NOP, tree.getType());
 
         // Nothings to do with the looking table here
     }
@@ -155,73 +159,72 @@ public class Visitor {
     }
 
     private void visit_expr_symbol(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_SYMBOL);
+        assertEquals(WhileGrammarLexer.EXPR_SYMBOL, tree.getType());
 
         Tree symbol = tree.getChild(0);
         String symbol_string = symbol.getText();
 
         if (!lookupTable.inScope(symbol_string)) {
-            System.out.println("Error: Symbol " + symbol_string + " is not defined");
+            System.out.printf("Error: Symbol %s is not defined\n", symbol_string);
         }
     }
 
     private void visit_expr_variable(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_VARIABLE);
+        assertEquals(WhileGrammarLexer.EXPR_VARIABLE, tree.getType());
 
         Tree variable = tree.getChild(0);
         String variable_string = variable.getText();
 
         if (!lookupTable.inScope(variable_string)) {
-            System.out.println("Error: Variable " + variable_string + " is not defined");
+            System.out.printf("Error: Variable %s is not defined\n", variable_string);
         }
     }
 
     private void visit_expr_nil(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_NIL);
+        assertEquals(WhileGrammarLexer.EXPR_NIL, tree.getType());
 
         // Nothings to do with the looking table here
     }
 
     private void visit_expr_construcor_list(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_CONSTRUCTOR_LIST);
+        assertEquals(WhileGrammarLexer.EXPR_CONSTRUCTOR_LIST, tree.getType());
 
         visit_expressions(tree.getChild(0));
     }
 
     private void visit_expr_construcor_cons(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_CONSTRUCTOR_CONS);
+        assertEquals(WhileGrammarLexer.EXPR_CONSTRUCTOR_CONS, tree.getType());
 
         visit_expressions(tree.getChild(0));
     }
 
     private void visit_expr_head(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_HEAD);
+        assertEquals(WhileGrammarLexer.EXPR_HEAD, tree.getType());
 
         visit_expression(tree.getChild(0));
     }
 
     private void visit_expr_tail(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_TAIL);
+        assertEquals(WhileGrammarLexer.EXPR_TAIL, tree.getType());
 
         visit_expression(tree.getChild(0));
     }
 
     private void visit_expr_call(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_CALL);
+        assertEquals(WhileGrammarLexer.EXPR_CALL, tree.getType());
 
         // check if function symbol exist
         Tree function_symbol = tree.getChild(0);
         String function_name = function_symbol.getText();
         if (!lookupTable.inScope(function_name)) {
             // TODO make better error
-            System.out.println("Error: Function " + function_name + " is not defined" );
+            System.err.printf("Error: Function %s is not defined\n", function_name);
         }
-
         visit_expressions(tree.getChild(1));
     }
 
     private void visit_expr_compare(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPR_COMPARE);
+        assertEquals(WhileGrammarLexer.EXPR_COMPARE, tree.getType());
 
         visit_expression(tree.getChild(0));
         visit_expression(tree.getChild(1));
@@ -250,7 +253,7 @@ public class Visitor {
     }
 
     private void visit_expressions(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.EXPRESSIONS);
+        assertEquals(WhileGrammarLexer.EXPRESSIONS, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
             Tree expression = tree.getChild(i);
@@ -259,7 +262,7 @@ public class Visitor {
     }
 
     private void visit_variables(Tree tree) {
-        assertTrue(tree.getType() == WhileGrammarLexer.VARIABLES);
+        assertEquals(WhileGrammarLexer.VARIABLES, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
             Tree variable = tree.getChild(i);
