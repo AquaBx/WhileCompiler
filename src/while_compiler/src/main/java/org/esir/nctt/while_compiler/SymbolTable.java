@@ -1,13 +1,12 @@
 package org.esir.nctt.while_compiler;
 
-import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 public class SymbolTable {
-    private Stack<Map<String, SymbolInfo>> scopes;
+    private final Stack<Map<String, SymbolInfo>> scopes;
 
     public SymbolTable() {
         this.scopes = new Stack<Map<String, SymbolInfo>>();
@@ -28,7 +27,7 @@ public class SymbolTable {
 
     /**
      * Add element to the local scope
-     * 
+     *
      * @throws EmptyStackException if the scopes stack is empty.
      */
     public void put(String symbol, SymbolInfo symbol_info) {
@@ -48,7 +47,7 @@ public class SymbolTable {
         StringBuilder builder = new StringBuilder();
         for (Map<String, SymbolInfo> scope : scopes) {
             for (SymbolInfo symbole : scope.values()) {
-                builder.append(symbole + "\n");
+                builder.append(String.format("%s\n", symbole));
             }
         }
         return builder.toString();
