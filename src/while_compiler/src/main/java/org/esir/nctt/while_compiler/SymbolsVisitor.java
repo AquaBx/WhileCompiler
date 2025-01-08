@@ -68,6 +68,7 @@ public class SymbolsVisitor extends Visitor{
         }
     }
 
+    @Override
     protected void visit_outputs(Tree tree) {
         assertEquals(WhileGrammarLexer.OUTPUT, tree.getType());
 
@@ -79,38 +80,6 @@ public class SymbolsVisitor extends Visitor{
             lookupTable.put(output_string,
                     new SymbolInfo(output.getLine(), output.getCharPositionInLine(), output_string));
         }
-    }
-
-    protected void visit_commands(Tree tree) {
-        assertEquals(WhileGrammarLexer.COMMANDS, tree.getType());
-
-        for (int i = 0; i < tree.getChildCount(); i++) {
-            visit_command(tree.getChild(i));
-        }
-    }
-
-    protected void visit_if(Tree tree) {
-        assertEquals(WhileGrammarLexer.IF, tree.getType());
-
-        visit_expression(tree.getChild(0));
-
-        for (int i = 1; i < tree.getChildCount(); i++) {
-            visit_commands(tree.getChild(i));
-        }
-    }
-
-    protected void visit_while(Tree tree) {
-        assertEquals(WhileGrammarLexer.WHILE, tree.getType());
-
-        visit_expression(tree.getChild(0));
-        visit_commands(tree.getChild(1));
-    }
-
-    protected void visit_for(Tree tree) {
-        assertEquals(WhileGrammarLexer.FOR, tree.getType());
-
-        visit_expression(tree.getChild(0));
-        visit_commands(tree.getChild(1));
     }
 
     protected void visit_foreach(Tree tree) {
@@ -128,34 +97,10 @@ public class SymbolsVisitor extends Visitor{
         visit_commands(tree.getChild(2));
     }
 
-    protected void visit_assignement(Tree tree) {
-        assertEquals(WhileGrammarLexer.ASSIGNMENT, tree.getType());
-
-        // Important: we visit expressions before the variables
-        visit_expressions(tree.getChild(1));
-        visit_variables(tree.getChild(0));
-    }
-
     protected void visit_nop(Tree tree) {
         assertEquals(WhileGrammarLexer.NOP, tree.getType());
 
         // Nothings to do with the looking table here
-    }
-
-    protected void visit_command(Tree command) {
-        if (command.getType() == WhileGrammarLexer.IF) {
-            visit_if(command);
-        } else if (command.getType() == WhileGrammarLexer.WHILE) {
-            visit_while(command);
-        } else if (command.getType() == WhileGrammarLexer.FOR) {
-            visit_for(command);
-        } else if (command.getType() == WhileGrammarLexer.FOREACH) {
-            visit_foreach(command);
-        } else if (command.getType() == WhileGrammarLexer.ASSIGNMENT) {
-            visit_assignement(command);
-        } else if (command.getType() == WhileGrammarLexer.NOP) {
-            visit_nop(command);
-        }
     }
 
     protected void visit_expr_symbol(Tree tree) {
@@ -198,18 +143,6 @@ public class SymbolsVisitor extends Visitor{
         visit_expressions(tree.getChild(0));
     }
 
-    protected void visit_expr_head(Tree tree) {
-        assertEquals(WhileGrammarLexer.EXPR_HEAD, tree.getType());
-
-        visit_expression(tree.getChild(0));
-    }
-
-    protected void visit_expr_tail(Tree tree) {
-        assertEquals(WhileGrammarLexer.EXPR_TAIL, tree.getType());
-
-        visit_expression(tree.getChild(0));
-    }
-
     protected void visit_expr_call(Tree tree) {
         assertEquals(WhileGrammarLexer.EXPR_CALL, tree.getType());
 
@@ -228,37 +161,6 @@ public class SymbolsVisitor extends Visitor{
 
         visit_expression(tree.getChild(0));
         visit_expression(tree.getChild(1));
-    }
-
-    protected void visit_expression(Tree expression) {
-        if (expression.getType() == WhileGrammarLexer.EXPR_SYMBOL) {
-            visit_expr_symbol(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_VARIABLE) {
-            visit_expr_variable(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_NIL) {
-            visit_expr_nil(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_CONSTRUCTOR_LIST) {
-            visit_expr_construcor_list(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_CONSTRUCTOR_CONS) {
-            visit_expr_construcor_cons(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_HEAD) {
-            visit_expr_head(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_TAIL) {
-            visit_expr_tail(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_CALL) {
-            visit_expr_call(expression);
-        } else if (expression.getType() == WhileGrammarLexer.EXPR_COMPARE) {
-            visit_expr_compare(expression);
-        }
-    }
-
-    protected void visit_expressions(Tree tree) {
-        assertEquals(WhileGrammarLexer.EXPRESSIONS, tree.getType());
-
-        for (int i = 0; i < tree.getChildCount(); i++) {
-            Tree expression = tree.getChild(i);
-            visit_expression(expression);
-        }
     }
 
     protected void visit_variables(Tree tree) {
