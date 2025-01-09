@@ -1,19 +1,17 @@
-package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
+package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class Instruction {
-    private final InstructionType operator;
+public abstract class Instruction {
     private String arg1;
     private Integer arg2;
 
-    Instruction(InstructionType o, String arg1, Integer arg2) {
-        this.operator = o;
+    public Instruction(String arg1, Integer arg2) {
         this.arg1 = arg1;
         this.arg2 = arg2;
     }
 
     // getters
-    public InstructionType getOperator() {
-        return operator;
+    public String getOperator() {
+        return this.getClass().getSimpleName();
     }
 
     public String getArg1() {
@@ -28,9 +26,8 @@ public class Instruction {
         this.arg2 = arg;
     }
 
-    public String toString() {
-        return String.format("%s %s %s", operator, arg1, arg2);
-    }
+    public abstract String toString();
+    public abstract String toCpp();
 
     // setters
 

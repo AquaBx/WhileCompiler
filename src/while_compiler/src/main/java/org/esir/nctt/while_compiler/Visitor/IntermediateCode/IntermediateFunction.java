@@ -1,5 +1,7 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
 
+import org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,8 +30,9 @@ public class IntermediateFunction {
         return registerToAddress.get(label);
     }
 
-    public void addInstruction(Instruction i) {
+    public int addInstruction(Instruction i) {
         instructions.add(i);
+        return instructionsCount() - 1;
     }
 
     public int instructionsCount() {
@@ -54,13 +57,20 @@ public class IntermediateFunction {
     Création des instructions
      */
 
-    /*
-    Crée un label
-    il ne stocke pas de valeur, il permet juste de se marquer un endroit
-     */
-    public int createLabel(InstructionType label) {
-        addInstruction(new Instruction(label, null, null));
-        return instructionsCount() - 1;
+    public int createGoto() {
+        return addInstruction(new Goto());
+    }
+
+    public int createElse() {
+        return addInstruction(new Else());
+    }
+
+    public int createEndif() {
+        return addInstruction(new Endif());
+    }
+
+    public int createIf(int address) {
+        return addInstruction(new If(address));
     }
 
     /*
@@ -68,57 +78,68 @@ public class IntermediateFunction {
      */
     public String createDefine() {
         String label = registerFromAddress(instructionsCount());
-
-        return entry(InstructionType.Define, label, null);
+        return createDefine(label);
     }
 
     /*
     Crée un registre avec un label prédéfini (par exemple pour un input)
      */
     public String createDefine(String label) {
-        return entry(InstructionType.Define, label, null);
+        if (!registerToAddress.containsKey(label)) {
+            registerToAddress.put(label, instructionsCount());
+        }
+        int nAddress = registerToAddress.getOrDefault(label, instructionsCount());
+        String register = registerFromAddress(nAddress);
+        addInstruction(new Define(label));
+        return register;
     }
 
     /*
     Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
-    public String createMov(String label, Integer address) {
-        return entry(InstructionType.Mov, label, address);
+    public void createMov(String register, Integer address) {
+        addInstruction(new Mov(register,address));
+    }
+
+    public void createSetHead(String register, Integer address) {
+        addInstruction(new SetHead(register,address));
+    }
+
+    public void createSetTail(String register, Integer address) {
+        addInstruction(new SetTail(register,address));
     }
 
     /*
     Crée un appel de pop, crée le registre automatiquement et stock la valeur dedans
      */
     public String createPop() {
-        String reg = createDefine();
-        addInstruction(new Instruction(InstructionType.Pop, reg, null));
-        return reg;
+        String register = createDefine();
+        addInstruction(new Pop(register));
+        return register;
     }
 
     /*
     Crée un appel de pop et le stock dans le registre label
      */
-    public void setPop(String label) {
-        String reg = createDefine(label);
-        addInstruction(new Instruction(InstructionType.Pop, reg, null));
+    public String createPop(String label) {
+        String register = createDefine(label);
+        addInstruction(new Pop(register));
+        return register;
     }
 
     /*
     Crée un nouvel élément push
      */
     public void createPush(int address) {
-        addInstruction(new Instruction(InstructionType.Push, null, address));
+        addInstruction(new Push(address));
     }
 
+    public void createCall(String functionName, int parametersCount) {
+        addInstruction(new Call(functionName,parametersCount));
+    }
 
-    public String entry(InstructionType type, String label, Integer address) {
-        if (!registerToAddress.containsKey(label)) {
-            registerToAddress.put(label, instructionsCount());
-        }
-        int nAddress = registerToAddress.getOrDefault(label, instructionsCount());
-        String register = registerFromAddress(nAddress);
-        addInstruction(new Instruction(type, register, address));
-        return register;
+    public void createInc(String register, int value) {
+        addInstruction(new Inc(register,value));
     }
 
     public String exportCPP() {
