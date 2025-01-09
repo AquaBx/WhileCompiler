@@ -1,0 +1,16 @@
++-----------+----------------------+----------------------+-----------------------------------------------------------------+
+| Operation |         arg1         |         arg2         |                          explaination                           |
++-----------+----------------------+----------------------+-----------------------------------------------------------------+
+| pop       | register's label     | null                 | pop on the stack and store in the register provided             |
+| push      | null                 | register's address   | push on the stack the value contained at the address            |
+| define    | new register's label | tree                 | create a new nil tree                                           |
+| mov       | register's label     | register's address   | set the value contained at the address in the selected register |
+| setHead   | register's label     | register's address   | set the tree's head at the address                              |
+| setTail   | register's label     | register's address   | set the tree's tail at the address                              |
+| call      | function's label     | number of parameters | call the function                                               |
+| if        | null                 | register's address   | followed with a goto which point to the else statement          |
+| else      | null                 | null                 | (not mandatory) a label to signify the else's statement start   |
+| endif     | null                 | null                 | (not mandatory) a label to signify the if's statement end       |
+| goto      | null                 | register's address   | jump to the address                                             |
+| inc       | register's label     | value                | increment the register by the value                             |
++-----------+----------------------+----------------------+-----------------------------------------------------------------+

@@ -1,7 +1,8 @@
-package org.esir.nctt.while_compiler;
+package org.esir.nctt.while_compiler.Visitor.Symbols;
 
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
+import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 import static org.junit.Assert.assertEquals;
 
@@ -131,13 +132,13 @@ public class SymbolsVisitor extends Visitor {
         // Nothings to do with the looking table here
     }
 
-    protected void visit_expr_construcor_list(Tree tree) {
+    protected void visit_expr_constructor_list(Tree tree) {
         assertEquals(WhileGrammarLexer.EXPR_CONSTRUCTOR_LIST, tree.getType());
 
         visit_expressions(tree.getChild(0));
     }
 
-    protected void visit_expr_construcor_cons(Tree tree) {
+    protected void visit_expr_constructor_cons(Tree tree) {
         assertEquals(WhileGrammarLexer.EXPR_CONSTRUCTOR_CONS, tree.getType());
 
         visit_expressions(tree.getChild(0));

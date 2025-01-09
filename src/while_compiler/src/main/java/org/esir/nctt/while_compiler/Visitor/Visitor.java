@@ -1,22 +1,35 @@
-package org.esir.nctt.while_compiler;
-import static org.junit.Assert.assertEquals;
+package org.esir.nctt.while_compiler.Visitor;
 
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
 
+import static org.junit.Assert.assertEquals;
+
 public abstract class Visitor {
     public abstract void visit_program(Tree program);
+
     protected abstract void visit_function(Tree tree);
+
     protected abstract void visit_inputs(Tree tree);
+
     protected abstract void visit_outputs(Tree tree);
+
     protected abstract void visit_nop(Tree tree);
+
     protected abstract void visit_expr_symbol(Tree tree);
+
     protected abstract void visit_expr_variable(Tree tree);
+
     protected abstract void visit_expr_nil(Tree tree);
-    protected abstract void visit_expr_construcor_list(Tree tree);
-    protected abstract void visit_expr_construcor_cons(Tree tree);
+
+    protected abstract void visit_expr_constructor_list(Tree tree);
+
+    protected abstract void visit_expr_constructor_cons(Tree tree);
+
     protected abstract void visit_expr_call(Tree tree);
+
     protected abstract void visit_expr_compare(Tree tree);
+
     protected abstract void visit_variables(Tree tree);
 
     protected void visit_expr_head(Tree tree) {
@@ -55,9 +68,9 @@ public abstract class Visitor {
         } else if (expression.getType() == WhileGrammarLexer.EXPR_NIL) {
             visit_expr_nil(expression);
         } else if (expression.getType() == WhileGrammarLexer.EXPR_CONSTRUCTOR_LIST) {
-            visit_expr_construcor_list(expression);
+            visit_expr_constructor_list(expression);
         } else if (expression.getType() == WhileGrammarLexer.EXPR_CONSTRUCTOR_CONS) {
-            visit_expr_construcor_cons(expression);
+            visit_expr_constructor_cons(expression);
         } else if (expression.getType() == WhileGrammarLexer.EXPR_HEAD) {
             visit_expr_head(expression);
         } else if (expression.getType() == WhileGrammarLexer.EXPR_TAIL) {

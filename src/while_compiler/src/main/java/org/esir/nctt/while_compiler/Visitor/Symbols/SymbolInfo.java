@@ -1,4 +1,4 @@
-package org.esir.nctt.while_compiler;
+package org.esir.nctt.while_compiler.Visitor.Symbols;
 
 class SymbolInfo {
     private Integer line;
