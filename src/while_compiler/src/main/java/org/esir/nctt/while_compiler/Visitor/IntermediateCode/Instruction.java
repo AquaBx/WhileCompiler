@@ -1,18 +1,18 @@
-package org.esir.nctt.while_compiler.Visitor.IntermediarCode;
+package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
 
-public class IntermediarCode {
-    private final Instructions operator;
+public class Instruction {
+    private final InstructionType operator;
     private String arg1;
     private Integer arg2;
 
-    IntermediarCode(Instructions o, String arg1, Integer arg2) {
+    Instruction(InstructionType o, String arg1, Integer arg2) {
         this.operator = o;
         this.arg1 = arg1;
         this.arg2 = arg2;
     }
 
     // getters
-    public Instructions getOperator() {
+    public InstructionType getOperator() {
         return operator;
     }
 
@@ -20,7 +20,7 @@ public class IntermediarCode {
         return arg1;
     }
 
-    public Integer getArg2() {
+    public int getArg2() {
         return arg2;
     }
 
@@ -28,17 +28,18 @@ public class IntermediarCode {
         this.arg2 = arg;
     }
 
-    // // setters
-    // public void setOperator(String operator) {
-    //     this.operator = operator;
-    // }
-
     public String toString() {
         return String.format("%s %s %s", operator, arg1, arg2);
     }
 
+    // setters
+
     public void setRes1(String arg) {
         this.arg1 = arg;
+    }
+
+    public void setRes2(Integer arg) {
+        this.arg2 = arg;
     }
 
     // methods

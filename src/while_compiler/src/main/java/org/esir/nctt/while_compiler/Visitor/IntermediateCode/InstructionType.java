@@ -1,6 +1,6 @@
-package org.esir.nctt.while_compiler.Visitor.IntermediarCode;
+package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
 
-public enum Instructions {
+public enum InstructionType {
     Pop,
     Push,
     Define,
