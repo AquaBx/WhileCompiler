@@ -13,7 +13,6 @@ public class Mov extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("%s = t%s;",getArg1(),getArg2());
     }
 }

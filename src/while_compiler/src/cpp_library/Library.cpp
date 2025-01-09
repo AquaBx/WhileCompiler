@@ -1,4 +1,4 @@
-#pragma once
+#include <stack>
 
 class Tree {
 private: 
@@ -68,3 +68,9 @@ Tree * generateSymbol();
 Génère une liste d'arbre
 */
 Tree * generateList();
+
+
+class TreeManager {
+    public:
+        static std::stack<Tree*> Stack();
+};

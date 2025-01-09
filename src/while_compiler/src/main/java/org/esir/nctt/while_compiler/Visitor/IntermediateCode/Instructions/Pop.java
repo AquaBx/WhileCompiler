@@ -13,7 +13,6 @@ public class Pop extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("%s = TreeManager::Stack.back(); TreeManager::Stack.pop_back();",getArg1());
     }
 }

@@ -1,6 +1,7 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
 
 import org.antlr.runtime.tree.Tree;
+import org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions.Instruction;
 import org.esir.nctt.while_compiler.Visitor.Visitor;
 import java.util.HashMap;
 
@@ -35,6 +36,16 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     // Visitor
+
+    public String toCpp() {
+        StringBuilder out = new StringBuilder();
+
+        for (IntermediateFunction fun : functions.values()) {
+            out.append(fun.toCpp());
+        }
+
+        return out.toString();
+    }
 
     @Override
     public void visit_program(Tree program) {
@@ -194,19 +205,19 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_expression(expression);
 
         functionActual.createIf(expressionAddress);
-        int gotoElseAddress = functionActual.createGoto();
+        int gotoElseAddress = functionActual.createGoto(null);
 
         visit_commands(tree.getChild(1));
-        int gotoEndifAddress = functionActual.createGoto();
+        int gotoEndifAddress = functionActual.createGoto(null);
 
         if (tree.getChildCount() > 2) {
-            int elseAd = functionActual.createElse();
-            functionActual.getInstruction(gotoElseAddress).setArg2(elseAd);
+            String elseAd = functionActual.createLabel();
+            functionActual.getInstruction(gotoElseAddress).setArg1(elseAd);
             visit_commands(tree.getChild(2));
         }
 
-        int endifAd = functionActual.createEndif();
-        functionActual.getInstruction(gotoEndifAddress).setArg2(endifAd);
+        String endifAd = functionActual.createLabel();
+        functionActual.getInstruction(gotoEndifAddress).setArg1(endifAd);
     }
 
     @Override
@@ -223,16 +234,17 @@ public class IntermediateCodeVisitor extends Visitor {
         int expressionAddress = functionActual.instructionsCount();
         visit_expression(expression);
 
-        int whileStart = functionActual.createIf(expressionAddress);
-        int gotoEndWhileGotoAddress = functionActual.createGoto();
+        String labelIf = functionActual.createLabel();
+        functionActual.createIf(expressionAddress);
+        int gotoEndWhileGotoAddress = functionActual.createGoto(null);
 
         visit_commands(commands);
 
-        int gotoStartWhileGotoAddress = functionActual.createGoto();
-        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg2(whileStart);
+        int gotoStartWhileGotoAddress = functionActual.createGoto(null);
+        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(labelIf);
 
-        int endifAd = functionActual.createEndif();
-        functionActual.getInstruction(gotoEndWhileGotoAddress).setArg2(endifAd);
+        String endifAd = functionActual.createLabel();
+        functionActual.getInstruction(gotoEndWhileGotoAddress).setArg1(endifAd);
     }
 
     @Override
@@ -247,21 +259,22 @@ public class IntermediateCodeVisitor extends Visitor {
         int counterAddress = functionActual.instructionsCount();
         String counterRegister = functionActual.createDefine();
 
-        int compareValueAddress = createCall("compare", new int[]{valueAddress, counterAddress});
+        String compareCall = functionActual.createLabel();
+        createCall("compare", new int[]{valueAddress, counterAddress});
         String reg = functionActual.createPop();
 
         functionActual.createIf(functionActual.addressFromLabel(reg));
-        int gotoEndForGotoAddress = functionActual.createGoto();
+        int gotoEndForGotoAddress = functionActual.createGoto(null);
 
         visit_commands(commands);
 
         functionActual.createInc(counterRegister, 1);
 
-        int gotoStartWhileGotoAddress = functionActual.createGoto();
-        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg2(compareValueAddress);
+        int gotoStartWhileGotoAddress = functionActual.createGoto(null);
+        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(compareCall);
 
-        functionActual.getInstruction(gotoEndForGotoAddress).setArg2(functionActual.instructionsCount());
-        functionActual.createEndif();
+        String endifAd = functionActual.createLabel();
+        functionActual.getInstruction(gotoEndForGotoAddress).setArg1(endifAd);
     }
 
     @Override

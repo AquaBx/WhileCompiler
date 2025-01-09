@@ -13,7 +13,6 @@ public class Inc extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("%s += %s;",getArg1(),getArg2());
     }
 }

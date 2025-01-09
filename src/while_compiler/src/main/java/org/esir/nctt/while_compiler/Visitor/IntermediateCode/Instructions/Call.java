@@ -1,9 +1,8 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public class Call extends Instruction{
-
-    public Call(String functionName, int parametersCount) {
-        super(functionName,parametersCount);
+    public Call(String functionName, int parameters) {
+        super(functionName,parameters);
     }
 
     @Override
@@ -13,7 +12,6 @@ public class Call extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("%s();", getArg1());
     }
 }

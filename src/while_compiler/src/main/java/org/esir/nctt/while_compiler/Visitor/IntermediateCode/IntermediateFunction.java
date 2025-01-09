@@ -8,6 +8,7 @@ import java.util.HashMap;
 public class IntermediateFunction {
     private final ArrayList<Instruction> instructions = new ArrayList<>();
     private final HashMap<String, Integer> registerToAddress = new HashMap<>();
+    private final HashMap<Integer, String> addressToRegister = new HashMap<>();
     private final String name;
     public int inputs;
     public int outputs;
@@ -23,7 +24,7 @@ public class IntermediateFunction {
     }
 
     public String registerFromAddress(int i) {
-        return String.format("t%s", i);
+        return addressToRegister.getOrDefault(i,String.format("t%s",i));
     }
 
     public int addressFromLabel(String label) {
@@ -57,16 +58,16 @@ public class IntermediateFunction {
     Création des instructions
      */
 
-    public int createGoto() {
-        return addInstruction(new Goto());
+    public int createGoto(String label) {
+        return addInstruction(new Goto(label));
     }
 
-    public int createElse() {
-        return addInstruction(new Else());
-    }
-
-    public int createEndif() {
-        return addInstruction(new Endif());
+    public String createLabel() {
+        String label = String.format("label%s",instructionsCount());
+        int address = addInstruction(new Label(label));
+        registerToAddress.put(label, address);
+        addressToRegister.put(address,label);
+        return label;
     }
 
     public int createIf(int address) {
@@ -87,6 +88,7 @@ public class IntermediateFunction {
     public String createDefine(String label) {
         if (!registerToAddress.containsKey(label)) {
             registerToAddress.put(label, instructionsCount());
+            addressToRegister.put(instructionsCount(),label);
         }
         int nAddress = registerToAddress.getOrDefault(label, instructionsCount());
         String register = registerFromAddress(nAddress);
@@ -131,19 +133,26 @@ public class IntermediateFunction {
     Crée un nouvel élément push
      */
     public void createPush(int address) {
-        addInstruction(new Push(address));
+        addInstruction(new Push(registerFromAddress(address)));
     }
 
-    public void createCall(String functionName, int parametersCount) {
-        addInstruction(new Call(functionName,parametersCount));
+    public void createCall(String functionName, int parameters) {
+        addInstruction(new Call(functionName,parameters));
     }
 
     public void createInc(String register, int value) {
         addInstruction(new Inc(register,value));
     }
 
-    public String exportCPP() {
-        // todo
-        return "";
+    public String toCpp() {
+        StringBuilder out = new StringBuilder();
+        out.append(String.format("void %s() {\n", name));
+        for (Instruction ins : instructions) {
+            out.append("    ");
+            out.append(ins.toCpp());
+            out.append("\n");
+        }
+        out.append("}\n");
+        return out.toString();
     }
 }
