@@ -7,6 +7,10 @@ import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
 import org.esir.nctt.antlr.WhileGrammarParser;
+import org.esir.nctt.while_compiler.Visitor.IntermediarCode.IntermediarCodeVisitor;
+import org.esir.nctt.while_compiler.Visitor.Symbols.SymbolsVisitor;
+import org.esir.nctt.while_compiler.Visitor.Types.TypesVisitor;
+import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 class Main {
     public static void main(String[] args) throws RecognitionException {
@@ -23,16 +27,21 @@ class Main {
         Tree ast = (Tree) parser.program().getTree();
         Visitor symbolsVisitor = new SymbolsVisitor();
         Visitor typesVisitor = new TypesVisitor();
+        Visitor intermediarCodeVisitor = new IntermediarCodeVisitor();
 
-        // symbols analysis
-        symbolsVisitor.visit_program(ast);
+        try {
+            // symbols analysis
+            symbolsVisitor.visit_program(ast);
 
-        // types analysis
-        typesVisitor.visit_program(ast);
+            // types analysis
+            typesVisitor.visit_program(ast);
 
-        // Three-address code generation
-        // visitor.generate_program(ast);
+            // Three-address code generation
+            intermediarCodeVisitor.visit_program(ast);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
-        
+
     }
 }

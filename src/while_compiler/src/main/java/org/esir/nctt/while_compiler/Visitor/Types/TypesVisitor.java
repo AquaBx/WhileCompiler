@@ -1,13 +1,14 @@
-package org.esir.nctt.while_compiler;
+package org.esir.nctt.while_compiler.Visitor.Types;
 
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
-
-import static org.junit.Assert.assertEquals;
+import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
 
-public class TypesVisitor extends Visitor{
+import static org.junit.Assert.assertEquals;
+
+public class TypesVisitor extends Visitor {
 
     HashMap<String, Integer[]> functionSignatures = new HashMap<>();
 
@@ -16,8 +17,8 @@ public class TypesVisitor extends Visitor{
         for (int i = 0; i < program.getChildCount(); i++) {
             Tree function = program.getChild(i);
 
-            Integer input = function.getChild(1).getChildCount();
-            Integer output = function.getChild(2).getChildCount();
+            int input = function.getChild(1).getChildCount();
+            int output = function.getChild(2).getChildCount();
 
             String function_name = function.getChild(0).getText();
 
@@ -48,6 +49,7 @@ public class TypesVisitor extends Visitor{
             return 1;
         }
     }
+
     protected Integer visit_expressions2(Tree tree) {
         assertEquals(WhileGrammarLexer.EXPRESSIONS, tree.getType());
         Integer sum = 0;
@@ -55,7 +57,7 @@ public class TypesVisitor extends Visitor{
             Tree expression = tree.getChild(i);
             sum += visit_expression2(expression);
         }
-        return sum;        
+        return sum;
     }
 
     @Override
@@ -76,32 +78,42 @@ public class TypesVisitor extends Visitor{
     }
 
     @Override
-    protected void visit_expr_compare(Tree tree) {}
+    protected void visit_expr_compare(Tree tree) {
+    }
 
     @Override
-    protected void visit_variables(Tree tree) {}
+    protected void visit_variables(Tree tree) {
+    }
 
     @Override
-    protected void visit_nop(Tree tree) {}
+    protected void visit_nop(Tree tree) {
+    }
 
     @Override
-    protected void visit_expr_symbol(Tree tree) {}
+    protected void visit_expr_symbol(Tree tree) {
+    }
 
     @Override
-    protected void visit_expr_variable(Tree tree) {}
+    protected void visit_expr_variable(Tree tree) {
+    }
 
     @Override
-    protected void visit_expr_nil(Tree tree) {}
+    protected void visit_expr_nil(Tree tree) {
+    }
 
     @Override
-    protected void visit_expr_construcor_list(Tree tree) {}
+    protected void visit_expr_constructor_list(Tree tree) {
+    }
 
     @Override
-    protected void visit_expr_construcor_cons(Tree tree) {}
+    protected void visit_expr_constructor_cons(Tree tree) {
+    }
 
     @Override
-    protected void visit_inputs(Tree tree) {}
+    protected void visit_inputs(Tree tree) {
+    }
 
     @Override
-    protected void visit_outputs(Tree tree) {}
+    protected void visit_outputs(Tree tree) {
+    }
 }

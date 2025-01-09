@@ -1,4 +1,4 @@
-package org.esir.nctt.while_compiler;
+package org.esir.nctt.while_compiler.Visitor.Symbols;
 
 import java.util.EmptyStackException;
 import java.util.HashMap;
