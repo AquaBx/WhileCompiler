@@ -2,8 +2,8 @@ package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public class Goto extends Instruction{
 
-    public Goto() {
-        super(null,null);
+    public Goto(String label) {
+        super(label,null);
     }
 
     @Override
@@ -13,7 +13,6 @@ public class Goto extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("goto %s;",getArg1());
     }
 }

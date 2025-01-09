@@ -17,6 +17,7 @@ class Main {
         ArgsManager ArgM = new ArgsManager(args);
 
         String inputFilePath = ArgM.getArg("inputFile");
+        String outputFilePath = ArgM.getArg("outputFile");
         String code = FileManager.readFile(FileManager.getPath(inputFilePath).toFile());
 
         ANTLRStringStream antlrStream = new ANTLRStringStream(code);
@@ -25,9 +26,9 @@ class Main {
         WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
 
         Tree ast = (Tree) parser.program().getTree();
-        Visitor symbolsVisitor = new SymbolsVisitor();
-        Visitor typesVisitor = new TypesVisitor();
-        Visitor intermediarCodeVisitor = new IntermediateCodeVisitor();
+        SymbolsVisitor symbolsVisitor = new SymbolsVisitor();
+        TypesVisitor typesVisitor = new TypesVisitor();
+        IntermediateCodeVisitor intermediateCodeVisitor = new IntermediateCodeVisitor();
 
         try {
             // symbols analysis
@@ -37,7 +38,9 @@ class Main {
             typesVisitor.visit_program(ast);
 
             // Three-address code generation
-            intermediarCodeVisitor.visit_program(ast);
+            intermediateCodeVisitor.visit_program(ast);
+            String lib = FileManager.readFile(FileManager.getPath("src/cpp_library/Library.cpp").toFile());
+            FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(),lib+intermediateCodeVisitor.toCpp());
         } catch (Exception e) {
             System.err.println(e);
         }

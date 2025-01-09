@@ -13,7 +13,6 @@ public class SetHead extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("%s->setHead(t%s)",getArg1(),getArg2());
     }
 }

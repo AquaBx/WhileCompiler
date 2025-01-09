@@ -22,6 +22,9 @@ public abstract class Instruction {
         return arg2;
     }
 
+    public void setArg1(String arg) {
+        this.arg1 = arg;
+    }
     public void setArg2(Integer arg) {
         this.arg2 = arg;
     }

@@ -13,7 +13,6 @@ public class Define extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("Tree * %s = nullptr;",getArg1());
     }
 }

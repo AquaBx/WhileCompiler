@@ -2,18 +2,17 @@ package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public class Push extends Instruction{
 
-    public Push(int address) {
-        super(null,address);
+    public Push(String register) {
+        super(register,null);
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s", getOperator(), getArg2());
+        return String.format("%s %s", getOperator(), getArg1());
     }
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("TreeManager::Stack.push_back(%s);",getArg1());
     }
 }

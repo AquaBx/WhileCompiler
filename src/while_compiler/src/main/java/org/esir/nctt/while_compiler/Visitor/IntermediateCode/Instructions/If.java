@@ -13,7 +13,6 @@ public class If extends Instruction{
 
     @Override
     public String toCpp() {
-        // todo
-        return "";
+        return String.format("if ( t%s->isFalse() )",getArg2());
     }
 }
