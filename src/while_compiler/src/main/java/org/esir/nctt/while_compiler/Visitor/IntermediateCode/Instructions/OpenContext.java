@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class Goto extends Instruction {
+public class OpenContext extends Instruction {
 
-    public Goto(String label) {
-        super(label, null);
+    public OpenContext() {
+        super(null, null);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class Goto extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("goto %s;", getArg1());
+        return "{";
     }
 }

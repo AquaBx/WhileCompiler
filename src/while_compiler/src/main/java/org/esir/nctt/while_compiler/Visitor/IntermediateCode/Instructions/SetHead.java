@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class SetHead extends Instruction{
+public class SetHead extends Instruction {
 
     public SetHead(String register, int address) {
-        super(register,address);
+        super(register, address);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class SetHead extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("%s->setHead(t%s);",getArg1(),getArg2());
+        return String.format("%s->setHead(t%s);", getArg1(), getArg2());
     }
 }

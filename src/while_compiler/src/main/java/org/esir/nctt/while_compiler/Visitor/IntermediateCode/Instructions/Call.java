@@ -1,8 +1,8 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class Call extends Instruction{
+public class Call extends Instruction {
     public Call(String functionName, int parameters) {
-        super(functionName,parameters);
+        super(functionName, parameters);
     }
 
     @Override

@@ -18,18 +18,20 @@ public abstract class Instruction {
         return arg1;
     }
 
+    public void setArg1(String arg) {
+        this.arg1 = arg;
+    }
+
     public int getArg2() {
         return arg2;
     }
 
-    public void setArg1(String arg) {
-        this.arg1 = arg;
-    }
     public void setArg2(Integer arg) {
         this.arg2 = arg;
     }
 
     public abstract String toString();
+
     public abstract String toCpp();
 
     // setters

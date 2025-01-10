@@ -24,7 +24,7 @@ public class IntermediateFunction {
     }
 
     public String registerFromAddress(int i) {
-        return addressToRegister.getOrDefault(i,String.format("t%s",i));
+        return addressToRegister.getOrDefault(i, String.format("t%s", i));
     }
 
     public int addressFromLabel(String label) {
@@ -63,10 +63,10 @@ public class IntermediateFunction {
     }
 
     public String createLabel() {
-        String label = String.format("label%s",instructionsCount());
+        String label = String.format("label%s", instructionsCount());
         int address = addInstruction(new Label(label));
         registerToAddress.put(label, address);
-        addressToRegister.put(address,label);
+        addressToRegister.put(address, label);
         return label;
     }
 
@@ -74,8 +74,12 @@ public class IntermediateFunction {
         return addInstruction(new If(address));
     }
 
-    public int createSymbol(String symbol) {
-        return addInstruction(new Symbol(symbol));
+    public int createOpenContext() {
+        return addInstruction(new OpenContext());
+    }
+
+    public int createCloseContext() {
+        return addInstruction(new CloseContext());
     }
 
 
@@ -93,7 +97,7 @@ public class IntermediateFunction {
     public String createDefine(String label) {
         if (!registerToAddress.containsKey(label)) {
             registerToAddress.put(label, instructionsCount());
-            addressToRegister.put(instructionsCount(),label);
+            addressToRegister.put(instructionsCount(), label);
         }
         int nAddress = registerToAddress.getOrDefault(label, instructionsCount());
         String register = registerFromAddress(nAddress);
@@ -105,15 +109,15 @@ public class IntermediateFunction {
     Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
     public void createMov(String register, Integer address) {
-        addInstruction(new Mov(register,registerFromAddress(address)));
+        addInstruction(new Mov(register, registerFromAddress(address)));
     }
 
     public void createSetHead(String register, Integer address) {
-        addInstruction(new SetHead(register,address));
+        addInstruction(new SetHead(register, address));
     }
 
     public void createSetTail(String register, Integer address) {
-        addInstruction(new SetTail(register,address));
+        addInstruction(new SetTail(register, address));
     }
 
     /*
@@ -147,19 +151,20 @@ public class IntermediateFunction {
     }
 
     public void createCall(String functionName, int parameters) {
-        addInstruction(new Call(functionName,parameters));
+        addInstruction(new Call(functionName, parameters));
     }
 
     public void createInc(String register, int value) {
-        addInstruction(new Inc(register,value));
+        addInstruction(new Inc(register, value));
     }
 
     public String toCppSignature() {
         return String.format("void fun_%s()", name);
     }
+
     public String toCpp() {
         StringBuilder out = new StringBuilder();
-        out.append(String.format("%s {\n",this.toCppSignature()));
+        out.append(String.format("%s {\n", this.toCppSignature()));
         for (Instruction ins : instructions) {
             out.append("    ");
             out.append(ins.toCpp());

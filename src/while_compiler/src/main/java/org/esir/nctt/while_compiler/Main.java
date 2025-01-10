@@ -10,7 +10,6 @@ import org.esir.nctt.antlr.WhileGrammarParser;
 import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
 import org.esir.nctt.while_compiler.Visitor.Symbols.SymbolsVisitor;
 import org.esir.nctt.while_compiler.Visitor.Types.TypesVisitor;
-import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 class Main {
     public static void main(String[] args) throws RecognitionException {
@@ -40,7 +39,7 @@ class Main {
             // Three-address code generation
             intermediateCodeVisitor.visit_program(ast);
             String lib = FileManager.readFile(FileManager.getPath("src/cpp_library/Library.cpp").toFile());
-            FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(),lib+intermediateCodeVisitor.toCpp());
+            FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), lib + intermediateCodeVisitor.toCpp());
         } catch (Exception e) {
             System.err.println(e);
         }
