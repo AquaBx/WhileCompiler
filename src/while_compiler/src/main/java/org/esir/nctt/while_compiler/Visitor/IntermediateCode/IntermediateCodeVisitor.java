@@ -9,34 +9,6 @@ public class IntermediateCodeVisitor extends Visitor {
     HashMap<String, IntermediateFunction> functions = new HashMap<>();
     IntermediateFunction functionActual;
 
-    /*
-    Crée un appel vers une fonction
-    Initialise tous les push à effectuer
-     */
-    protected int createCall(String label, Tree parameters) {
-        for (int i = parameters.getChildCount() - 1; i >= 0; i--) {
-            int size = functionActual.instructionsCount();
-            visit_expression(parameters.getChild(i));
-            functionActual.createPush(size);
-        }
-        functionActual.createCall(label, parameters.getChildCount());
-        return functionActual.instructionsCount() - 1;
-    }
-
-    /*
-    Crée un appel vers une fonction
-    Initialise tous les push à effectuer
-     */
-    protected int createCall(String label, int[] addresses) {
-        for (int i = addresses.length - 1; i >= 0; i--) {
-            functionActual.createPush(addresses[i]);
-        }
-        functionActual.createCall(label, addresses.length);
-        return functionActual.instructionsCount() - 1;
-    }
-
-    // Visitor
-
     public String toCpp() {
         StringBuilder out = new StringBuilder();
 
@@ -51,8 +23,12 @@ public class IntermediateCodeVisitor extends Visitor {
         return out.toString();
     }
 
+    // Visitor
+
     @Override
     public void visit_program(Tree program) {
+
+        LibraryFunctions.addTo(functions);
 
         for (int i = 0; i < program.getChildCount(); i++) {
             Tree function = program.getChild(i);
@@ -162,17 +138,15 @@ public class IntermediateCodeVisitor extends Visitor {
         String label = tree.getChild(0).getText();
         Tree parameters = tree.getChild(1);
 
-        IntermediateFunction selected = functions.get(label);
+        int[] addresses = new int[parameters.getChildCount()];
 
-        for (int i = 0; i < selected.outputs; i++) {
-            functionActual.createDefine();
+        for (int i = 0; i < parameters.getChildCount(); i++) {
+            int addressOfParam = functionActual.instructionsCount();
+            visit_expression(parameters.getChild(i));
+            addresses[i] = addressOfParam;
         }
 
-        int callAddress = createCall(label, parameters);
-
-        for (int i = 0; i < selected.outputs; i++) {
-            functionActual.setPop(functionActual.registerFromAddress(callAddress - selected.outputs - selected.inputs * 2 + i));
-        }
+        functionActual.createCall(functions.get(label), addresses);
     }
 
     @Override
@@ -184,18 +158,22 @@ public class IntermediateCodeVisitor extends Visitor {
         int i2 = functionActual.instructionsCount();
         visit_expression(tree.getChild(1));
 
-        String popRegister = functionActual.createDefine();
-        int callAddress = createCall("compare", new int[]{i1, i2});
-        functionActual.createPop(popRegister);
+        functionActual.createCall(functions.get("compare"), new int[]{i1, i2});
     }
 
     @Override
     protected void visit_expr_constructor_list(Tree tree) {
         // seems ok
-        Tree expressions = tree.getChild(0);
-        String popRegister = functionActual.createDefine();
-        int callAddress = createCall("generateList", expressions);
-        functionActual.createPop(popRegister);
+        Tree parameters = tree.getChild(0);
+
+        int[] addresses = new int[parameters.getChildCount()];
+
+        for (int i = 0; i < parameters.getChildCount(); i++) {
+            int addressOfParam = functionActual.instructionsCount();
+            visit_expression(parameters.getChild(i));
+            addresses[i] = addressOfParam;
+        }
+        functionActual.createCall(functions.get("generateList"), addresses);
     }
 
     @Override
@@ -203,9 +181,7 @@ public class IntermediateCodeVisitor extends Visitor {
         // to be verified
         String label = tree.getText();
         int address = functionActual.addressFromLabel(label);
-        String popRegister = functionActual.createDefine();
-        int callAddress = createCall("generateSymbol", new int[]{address});
-        functionActual.createPop(popRegister);
+        functionActual.createCall(functions.get("generateSymbol"), new int[]{address});
     }
 
     @Override
@@ -274,7 +250,7 @@ public class IntermediateCodeVisitor extends Visitor {
         String counterRegister = functionActual.createDefine();
 
         String compareCall = functionActual.createLabel();
-        createCall("compare", new int[]{valueAddress, counterAddress});
+        functionActual.createCall(functions.get("compare"), new int[]{valueAddress, counterAddress});
         String reg = functionActual.createPop();
 
         functionActual.createIf(functionActual.addressFromLabel(reg));

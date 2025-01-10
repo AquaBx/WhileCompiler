@@ -23,6 +23,10 @@ public class IntermediateFunction {
         this.outputs = outputs;
     }
 
+    String getName() {
+        return name;
+    }
+
     public String registerFromAddress(int i) {
         return addressToRegister.getOrDefault(i, String.format("t%s", i));
     }
@@ -150,8 +154,25 @@ public class IntermediateFunction {
         addInstruction(new Push(registerFromAddress(address)));
     }
 
-    public void createCall(String functionName, int parameters) {
-        addInstruction(new Call(functionName, parameters));
+    public void createCall(IntermediateFunction function, int[] addresses) {
+        // création registres de retour
+        for (int i = 0; i < function.outputs; i++) {
+            createDefine();
+        }
+
+        // push sur la stack les paramètres
+        for (int i = addresses.length - 1; i >= 0; i--) {
+            createPush(addresses[i]);
+        }
+
+        addInstruction(new Call(function.getName(), addresses.length));
+
+        int callAddress = instructionsCount() - 1;
+
+        // récupère de la stack et met dans les registres préalablement définis
+        for (int i = 0; i < function.outputs; i++) {
+            setPop(registerFromAddress(callAddress - function.outputs - function.inputs * 2 + i));
+        }
     }
 
     public void createInc(String register, int value) {
