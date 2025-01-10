@@ -5,19 +5,14 @@ private:
     Tree * head;
     Tree * tail;
 public:
-    Tree(){}
+    Tree() : head(nullptr), tail(nullptr){}
 
-    ~Tree(){
-        delete head;
-        delete tail;
-    }
-
-    Tree(Tree & old){
-        if (old.getHead() != nullptr){
-            this->head = new Tree(*old.getHead());
+    Tree(Tree * old){
+        if (old->getHead() != nullptr){
+            this->head = new Tree(old->getHead());
         }
-        if (old.getTail() != nullptr){
-            this->tail = new Tree(*old.getTail());
+        if (old->getTail() != nullptr){
+            this->tail = new Tree(old->getTail());
         }
     }
 
@@ -30,14 +25,21 @@ public:
     }
 
     void setTail(Tree * tail){
-        this->tail = new Tree(*tail);
+        this->tail = new Tree(tail);
     }
 
     void setHead(Tree * head){
-        this->head = new Tree(*head);
+        this->head = new Tree(head);
     }
 
-
+    ~Tree(){
+        if (head != nullptr){
+            delete head;
+        }
+        if (head != nullptr){
+            delete tail;
+        }
+    }
 };
 
 /*
@@ -62,28 +64,27 @@ Tree * compare(Tree * t1, Tree * t2){
 /*
 Génère un symbol sous forme d'arbre
 */
-Tree * generateSymbol();
+Tree * generateSymbol(){
+    return nullptr;
+}
 
 /*
 Génère une liste d'arbre
 */
-Tree * generateList();
+Tree * generateList(){
+    return nullptr;
+}
 
 
-class TreeManager {
-    private:
-        static std::stack<Tree*> * Stack;
-    public:
-        static std::stack<Tree*> * getStack(){
-            if (TreeManager::Stack == nullptr){
-                TreeManager::Stack = new std::stack<Tree*>();
-            }
-            return TreeManager::Stack;
+namespace TreeManager {
+    std::stack<Tree*> * Stack;
+
+    static std::stack<Tree*> * getStack(){
+        if (TreeManager::Stack == nullptr){
+            TreeManager::Stack = new std::stack<Tree*>();
         }
-
-        ~TreeManager(){
-            delete TreeManager::Stack;
-        }
+        return TreeManager::Stack;
+    }
 };
 void fun_not();
 void fun_and();
@@ -180,3 +181,5 @@ void fun_false() {
     Result = t1;
     TreeManager::getStack()->push(Result);
 }
+
+int main(){}
