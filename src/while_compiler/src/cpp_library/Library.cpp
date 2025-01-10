@@ -5,14 +5,14 @@ private:
     Tree * head;
     Tree * tail;
 public:
-    Tree::Tree(){}
+    Tree(){}
 
-    Tree::~Tree(){
+    ~Tree(){
         delete head;
         delete tail;
     }
 
-    Tree::Tree(Tree & old){
+    Tree(Tree & old){
         if (old.getHead() != nullptr){
             this->head = new Tree(*old.getHead());
         }
@@ -81,7 +81,7 @@ class TreeManager {
             return TreeManager::Stack;
         }
 
-        TreeManager::~TreeManager(){
+        ~TreeManager(){
             delete TreeManager::Stack;
         }
 };

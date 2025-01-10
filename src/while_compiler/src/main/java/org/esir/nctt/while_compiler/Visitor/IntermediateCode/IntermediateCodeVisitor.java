@@ -41,6 +41,10 @@ public class IntermediateCodeVisitor extends Visitor {
         StringBuilder out = new StringBuilder();
 
         for (IntermediateFunction fun : functions.values()) {
+            out.append(String.format("%s;\n",fun.toCppSignature()));
+        }
+
+        for (IntermediateFunction fun : functions.values()) {
             out.append(fun.toCpp());
         }
 
@@ -157,10 +161,17 @@ public class IntermediateCodeVisitor extends Visitor {
 
         String label = tree.getChild(0).getText();
         Tree parameters = tree.getChild(1);
+
+        IntermediateFunction selected = functions.get(label);
+
+        for (int i = 0; i < selected.outputs; i++) {
+            functionActual.createDefine();
+        }
+
         int callAddress = createCall(label, parameters);
 
-        for (int i = 0; i < functionActual.inputs; i++) {
-            functionActual.createPop();
+        for (int i = 0; i < selected.outputs; i++) {
+            functionActual.setPop(functionActual.registerFromAddress(callAddress-selected.outputs-selected.inputs*2+i));
         }
     }
 
@@ -206,16 +217,19 @@ public class IntermediateCodeVisitor extends Visitor {
 
         functionActual.createIf(expressionAddress);
         int gotoElseAddress = functionActual.createGoto(null);
+        functionActual.createSymbol("{");
 
         visit_commands(tree.getChild(1));
         int gotoEndifAddress = functionActual.createGoto(null);
+        functionActual.createSymbol("}");
+        functionActual.createSymbol("{");
 
         if (tree.getChildCount() > 2) {
             String elseAd = functionActual.createLabel();
             functionActual.getInstruction(gotoElseAddress).setArg1(elseAd);
             visit_commands(tree.getChild(2));
         }
-
+        functionActual.createSymbol("}");
         String endifAd = functionActual.createLabel();
         functionActual.getInstruction(gotoEndifAddress).setArg1(endifAd);
     }
@@ -237,12 +251,12 @@ public class IntermediateCodeVisitor extends Visitor {
         String labelIf = functionActual.createLabel();
         functionActual.createIf(expressionAddress);
         int gotoEndWhileGotoAddress = functionActual.createGoto(null);
-
+        functionActual.createSymbol("{");
         visit_commands(commands);
 
         int gotoStartWhileGotoAddress = functionActual.createGoto(null);
         functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(labelIf);
-
+        functionActual.createSymbol("}");
         String endifAd = functionActual.createLabel();
         functionActual.getInstruction(gotoEndWhileGotoAddress).setArg1(endifAd);
     }
@@ -265,6 +279,7 @@ public class IntermediateCodeVisitor extends Visitor {
 
         functionActual.createIf(functionActual.addressFromLabel(reg));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
+        functionActual.createSymbol("{");
 
         visit_commands(commands);
 
@@ -273,6 +288,7 @@ public class IntermediateCodeVisitor extends Visitor {
         int gotoStartWhileGotoAddress = functionActual.createGoto(null);
         functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(compareCall);
 
+        functionActual.createSymbol("}");
         String endifAd = functionActual.createLabel();
         functionActual.getInstruction(gotoEndForGotoAddress).setArg1(endifAd);
     }
