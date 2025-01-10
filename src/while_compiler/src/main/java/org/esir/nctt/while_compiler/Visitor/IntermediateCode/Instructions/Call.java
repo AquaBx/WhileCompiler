@@ -12,6 +12,6 @@ public class Call extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("%s();", getArg1());
+        return String.format("fun_%s();", getArg1());
     }
 }

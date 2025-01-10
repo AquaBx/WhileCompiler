@@ -13,6 +13,6 @@ public class Push extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("TreeManager::Stack.push_back(%s);",getArg1());
+        return String.format("TreeManager::getStack()->push(%s);",getArg1());
     }
 }

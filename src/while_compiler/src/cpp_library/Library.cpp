@@ -71,6 +71,17 @@ Tree * generateList();
 
 
 class TreeManager {
+    private:
+        static std::stack<Tree*> * Stack;
     public:
-        static std::stack<Tree*> Stack();
+        static std::stack<Tree*> * getStack(){
+            if (TreeManager::Stack == nullptr){
+                TreeManager::Stack = new std::stack<Tree*>();
+            }
+            return TreeManager::Stack;
+        }
+
+        TreeManager::~TreeManager(){
+            delete TreeManager::Stack;
+        }
 };

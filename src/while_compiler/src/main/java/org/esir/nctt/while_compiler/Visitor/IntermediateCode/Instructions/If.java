@@ -13,6 +13,6 @@ public class If extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("if ( t%s->isFalse() )",getArg2());
+        return String.format("if ( t%s == nullptr )",getArg2());
     }
 }

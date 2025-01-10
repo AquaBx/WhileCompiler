@@ -13,6 +13,6 @@ public class SetTail extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("%s->setTail(t%s)",getArg1(),getArg2());
+        return String.format("%s->setTail(t%s);",getArg1(),getArg2());
     }
 }
