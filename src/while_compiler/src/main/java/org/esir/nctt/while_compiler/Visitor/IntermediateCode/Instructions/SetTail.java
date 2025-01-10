@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class SetTail extends Instruction{
+public class SetTail extends Instruction {
 
     public SetTail(String register, int address) {
-        super(register,address);
+        super(register, address);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class SetTail extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("%s->setTail(t%s);",getArg1(),getArg2());
+        return String.format("%s->setTail(t%s);", getArg1(), getArg2());
     }
 }

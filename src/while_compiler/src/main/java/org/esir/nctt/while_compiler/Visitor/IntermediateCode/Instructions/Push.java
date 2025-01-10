@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class Push extends Instruction{
+public class Push extends Instruction {
 
     public Push(String register) {
-        super(register,null);
+        super(register, null);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class Push extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("TreeManager::getStack()->push(%s);",getArg1());
+        return String.format("TreeManager::getStack()->push(%s);", getArg1());
     }
 }

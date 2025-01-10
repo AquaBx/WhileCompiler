@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class Inc extends Instruction{
+public class Inc extends Instruction {
 
     public Inc(String register, int value) {
-        super(register,value);
+        super(register, value);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class Inc extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("%s += %s;",getArg1(),getArg2());
+        return String.format("%s += %s;", getArg1(), getArg2());
     }
 }

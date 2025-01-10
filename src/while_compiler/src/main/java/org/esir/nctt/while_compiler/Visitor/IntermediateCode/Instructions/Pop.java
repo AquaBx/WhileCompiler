@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class Pop extends Instruction{
+public class Pop extends Instruction {
 
     public Pop(String register) {
-        super(register,null);
+        super(register, null);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class Pop extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("%s = TreeManager::getStack()->top(); TreeManager::getStack()->pop();",getArg1());
+        return String.format("%s = TreeManager::getStack()->top(); TreeManager::getStack()->pop();", getArg1());
     }
 }

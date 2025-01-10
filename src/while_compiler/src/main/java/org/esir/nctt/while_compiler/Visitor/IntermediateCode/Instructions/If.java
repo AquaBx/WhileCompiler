@@ -1,9 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
-public class If extends Instruction{
+public class If extends Instruction {
 
     public If(int address) {
-        super(null,address);
+        super(null, address);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class If extends Instruction{
 
     @Override
     public String toCpp() {
-        return String.format("if ( t%s == nullptr )",getArg2());
+        return String.format("if ( t%s == nullptr )", getArg2());
     }
 }
