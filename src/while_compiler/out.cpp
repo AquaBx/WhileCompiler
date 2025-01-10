@@ -5,14 +5,14 @@ private:
     Tree * head;
     Tree * tail;
 public:
-    Tree::Tree(){}
+    Tree(){}
 
-    Tree::~Tree(){
+    ~Tree(){
         delete head;
         delete tail;
     }
 
-    Tree::Tree(Tree & old){
+    Tree(Tree & old){
         if (old.getHead() != nullptr){
             this->head = new Tree(*old.getHead());
         }
@@ -81,29 +81,37 @@ class TreeManager {
             return TreeManager::Stack;
         }
 
-        TreeManager::~TreeManager(){
+        ~TreeManager(){
             delete TreeManager::Stack;
         }
 };
+void fun_not();
+void fun_and();
+void fun_true();
+void fun_false();
 void fun_not() {
     Tree * Op1 = nullptr;
     Op1 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
     Tree * Result = nullptr;
     Tree * t3 = nullptr;
-    t3 = t0;
+    t3 = Op1;
     if ( t3 == nullptr )
-    goto label12;
-    fun_false();
+    goto label15;
+    {
     Tree * t8 = nullptr;
+    fun_false();
     t8 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Result = t7;
-    goto label17;
-    label12 :
+    Result = t8;
+    goto label21;
+    }
+    {
+    label15 :
+    Tree * t16 = nullptr;
     fun_true();
-    Tree * t14 = nullptr;
-    t14 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Result = t13;
-    label17 :
+    t16 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    Result = t16;
+    }
+    label21 :
     TreeManager::getStack()->push(Result);
 }
 void fun_and() {
@@ -113,49 +121,47 @@ void fun_and() {
     Op2 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
     Tree * Result = nullptr;
     Tree * t5 = nullptr;
-    t5 = t0;
-    TreeManager::getStack()->push(t5);
+    Tree * t6 = nullptr;
+    t6 = Op1;
+    TreeManager::getStack()->push(t6);
     fun_not();
-    Tree * t9 = nullptr;
-    t9 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * t11 = nullptr;
-    t11 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t6 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
     if ( t5 == nullptr )
-    goto label22;
+    goto label21;
+    {
+    Tree * t14 = nullptr;
     fun_false();
-    Tree * t16 = nullptr;
-    t16 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * t18 = nullptr;
-    t18 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Result = t15;
-    goto label48;
-    label22 :
+    t14 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    Result = t14;
+    goto label46;
+    }
+    {
+    label21 :
+    Tree * t22 = nullptr;
     Tree * t23 = nullptr;
-    t23 = t2;
+    t23 = Op2;
     TreeManager::getStack()->push(t23);
     fun_not();
-    Tree * t27 = nullptr;
-    t27 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * t29 = nullptr;
-    t29 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    if ( t23 == nullptr )
-    goto label40;
+    t23 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    if ( t22 == nullptr )
+    goto label38;
+    {
+    Tree * t31 = nullptr;
     fun_false();
-    Tree * t34 = nullptr;
-    t34 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * t36 = nullptr;
-    t36 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Result = t33;
-    goto label47;
-    label40 :
+    t31 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    Result = t31;
+    goto label44;
+    }
+    {
+    label38 :
+    Tree * t39 = nullptr;
     fun_true();
-    Tree * t42 = nullptr;
-    t42 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * t44 = nullptr;
-    t44 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Result = t41;
-    label47 :
-    label48 :
+    t39 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    Result = t39;
+    }
+    label44 :
+    }
+    label46 :
     TreeManager::getStack()->push(Result);
 }
 void fun_true() {

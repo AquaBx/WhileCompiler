@@ -74,6 +74,11 @@ public class IntermediateFunction {
         return addInstruction(new If(address));
     }
 
+    public int createSymbol(String symbol) {
+        return addInstruction(new Symbol(symbol));
+    }
+
+
     /*
     Crée un registre avec un label automatique
      */
@@ -100,7 +105,7 @@ public class IntermediateFunction {
     Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
     public void createMov(String register, Integer address) {
-        addInstruction(new Mov(register,address));
+        addInstruction(new Mov(register,registerFromAddress(address)));
     }
 
     public void createSetHead(String register, Integer address) {
@@ -129,6 +134,11 @@ public class IntermediateFunction {
         return register;
     }
 
+    public String setPop(String label) {
+        addInstruction(new Pop(label));
+        return label;
+    }
+
     /*
     Crée un nouvel élément push
      */
@@ -144,9 +154,12 @@ public class IntermediateFunction {
         addInstruction(new Inc(register,value));
     }
 
+    public String toCppSignature() {
+        return String.format("void fun_%s()", name);
+    }
     public String toCpp() {
         StringBuilder out = new StringBuilder();
-        out.append(String.format("void fun_%s() {\n", name));
+        out.append(String.format("%s {\n",this.toCppSignature()));
         for (Instruction ins : instructions) {
             out.append("    ");
             out.append(ins.toCpp());
