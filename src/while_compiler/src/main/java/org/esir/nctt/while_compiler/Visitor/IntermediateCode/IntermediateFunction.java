@@ -146,7 +146,7 @@ public class IntermediateFunction {
 
     public String toCpp() {
         StringBuilder out = new StringBuilder();
-        out.append(String.format("void %s() {\n", name));
+        out.append(String.format("void fun_%s() {\n", name));
         for (Instruction ins : instructions) {
             out.append("    ");
             out.append(ins.toCpp());
