@@ -73,52 +73,45 @@ namespace WhileStandard
                 this->setTail(newTail);
             }
         }
-    };
 
-    std::stack<Tree *> *Stack;
-    static std::stack<Tree *> *getStack()
-    {
-        if (Stack == nullptr)
-        {
-            Stack = new std::stack<Tree *>();
+        operator int(){
+            if ( this -> isNil() ){
+                return 0;
+            }
+            return 1 + *(this -> getTail());
         }
-        return Stack;
-    }
+    }; 
 
-    /*
-    Compare 2 arbres
-    - Renvoie un arbre si les deux sont égaux
-    - Renvoie nullptr sinon
-    */
-
-    bool compare(Tree *t1, Tree *t2) {
+    bool compare2(Tree *t1, Tree *t2) {
         if (t1->isNil() && t2->isNil()) {
             return true;
         } else if (t1 == nullptr || t2 == nullptr) {
             return false;
         } else {
-            bool cond1 = compare(t1->getHead(), t2->getHead());
-            bool cond2 = compare(t1->getTail(), t2->getTail());
+            bool cond1 = compare2(t1->getHead(), t2->getHead());
+            bool cond2 = compare2(t1->getTail(), t2->getTail());
             return cond1 && cond2;
         }
     }
 
-    void compare() {
-        Tree *t1 = getStack()->top(); getStack()->pop();
-        Tree *t2 = getStack()->top(); getStack()->pop();
-
+   /*
+    Compare 2 arbres
+    - Renvoie un arbre non vide si les deux sont égaux
+    - Renvoie un arbre vide sinon sinon
+    */
+    Tree * compare(Tree *t1, Tree *t2) {
         Tree * temp1 = new Tree();
-        if (compare(t1,t2)){
+        if (compare2(t1,t2)){
             Tree * temp2 = new Tree();
-            temp1->setTail(temp2);
+            return temp2;
         }
-        getStack()->push(temp1);        
+        return temp1;        
     }
 
     /*
     Print sur la sortie standard
     */
-    void print(Tree * t)
+    Tree * print(Tree * t)
     {
         if (t->getHead() != nullptr){
             print(t->getHead());
@@ -127,202 +120,163 @@ namespace WhileStandard
         if (t->getTail() != nullptr){
             print(t->getTail());
         }
-    }
-
-    void print()
-    {
-        Tree *t1 = getStack()->top();
-        print(t1);
+        return new Tree();
     }
 };
-void fun_add();
-void fun_sub();
-void fun_not();
-void fun_mul();
-void fun_and();
-void fun_true();
-void fun_false();
+WhileStandard::Tree * fun_add(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2);
+WhileStandard::Tree * fun_sub(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2);
+WhileStandard::Tree * fun_not(WhileStandard::Tree * Op1);
+WhileStandard::Tree * fun_mul(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2);
+WhileStandard::Tree * fun_and(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2);
+WhileStandard::Tree * fun_true();
+WhileStandard::Tree * fun_false();
 int main();
-void fun_add() {
-    WhileStandard::Tree * Op1 = new WhileStandard::Tree();
-    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Op2 = new WhileStandard::Tree();
-    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+WhileStandard::Tree * fun_add(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2) {
     WhileStandard::Tree * Result = new WhileStandard::Tree();
-    WhileStandard::Tree * t5 = new WhileStandard::Tree();
-    t5 = new WhileStandard::Tree(Op1);
-    Result = new WhileStandard::Tree(t5);
+    WhileStandard::Tree * t1 = new WhileStandard::Tree();
+    t1 = new WhileStandard::Tree(Op1);
+    Result = new WhileStandard::Tree(t1);
+    WhileStandard::Tree * t4 = new WhileStandard::Tree();
+    t4 = new WhileStandard::Tree(Op2);
+    WhileStandard::Tree * t6 = new WhileStandard::Tree();
+    label7 :
     WhileStandard::Tree * t8 = new WhileStandard::Tree();
-    t8 = new WhileStandard::Tree(Op2);
-    WhileStandard::Tree * t10 = new WhileStandard::Tree();
-    label11 :
-    WhileStandard::Tree * t12 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t10);
-    WhileStandard::getStack()->push(t8);
-    WhileStandard::compare();
-    t12 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * t17 = new WhileStandard::Tree();
-    t17 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    if ( t17->isNil() )
-    goto label32;
-    {
-    WhileStandard::Tree * t22 = new WhileStandard::Tree();
-    WhileStandard::Tree * t23 = new WhileStandard::Tree();
-    WhileStandard::Tree * t24 = new WhileStandard::Tree();
-    t24 = new WhileStandard::Tree(Result);
-    t22->setHead(t23);
-    t22->setTail(t24);
-    Result = new WhileStandard::Tree(t22);
-    *t10 += 1;
-    goto label11;
-    }
-    label32 :
-    WhileStandard::getStack()->push(Result);
-}
-void fun_sub() {
-    WhileStandard::Tree * Op1 = new WhileStandard::Tree();
-    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Op2 = new WhileStandard::Tree();
-    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Result = new WhileStandard::Tree();
-    WhileStandard::Tree * t5 = new WhileStandard::Tree();
-    t5 = new WhileStandard::Tree(Op1);
-    Result = new WhileStandard::Tree(t5);
-    WhileStandard::Tree * t8 = new WhileStandard::Tree();
-    t8 = new WhileStandard::Tree(Op2);
-    WhileStandard::Tree * t10 = new WhileStandard::Tree();
-    label11 :
-    WhileStandard::Tree * t12 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t10);
-    WhileStandard::getStack()->push(t8);
-    WhileStandard::compare();
-    t12 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * t17 = new WhileStandard::Tree();
-    t17 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    if ( t17->isNil() )
-    goto label28;
-    {
-    WhileStandard::Tree * t22 = new WhileStandard::Tree();
-    t22 = new WhileStandard::Tree(Result);
-    Result = new WhileStandard::Tree(t22);
-    *t10 += 1;
-    goto label11;
-    }
-    label28 :
-    WhileStandard::getStack()->push(Result);
-}
-void fun_not() {
-    WhileStandard::Tree * Op1 = new WhileStandard::Tree();
-    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Result = new WhileStandard::Tree();
-    WhileStandard::Tree * t3 = new WhileStandard::Tree();
-    t3 = new WhileStandard::Tree(Op1);
-    if ( t3->isNil() )
-    goto label15;
-    {
-    WhileStandard::Tree * t8 = new WhileStandard::Tree();
-    fun_false();
-    t8 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = new WhileStandard::Tree(t8);
-    goto label21;
-    }
-    {
-    label15 :
-    WhileStandard::Tree * t16 = new WhileStandard::Tree();
-    fun_true();
-    t16 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = new WhileStandard::Tree(t16);
-    }
-    label21 :
-    WhileStandard::getStack()->push(Result);
-}
-void fun_mul() {
-    WhileStandard::Tree * Op1 = new WhileStandard::Tree();
-    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Op2 = new WhileStandard::Tree();
-    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Result = new WhileStandard::Tree();
-    WhileStandard::Tree * t5 = new WhileStandard::Tree();
-    t5 = new WhileStandard::Tree(Op1);
-    WhileStandard::Tree * t7 = new WhileStandard::Tree();
-    label8 :
     WhileStandard::Tree * t9 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t7);
-    WhileStandard::getStack()->push(t5);
-    WhileStandard::compare();
-    t9 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    t9 = WhileStandard::compare(t4,t6);
+    if ( t8->isNil() )
+    goto label24;
+    {
     WhileStandard::Tree * t14 = new WhileStandard::Tree();
-    t14 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    if ( t14->isNil() )
+    WhileStandard::Tree * t15 = new WhileStandard::Tree();
+    WhileStandard::Tree * t16 = new WhileStandard::Tree();
+    t16 = new WhileStandard::Tree(Result);
+    t14->setHead(t15);
+    t14->setTail(t16);
+    Result = new WhileStandard::Tree(t14);
+    *t6 += 1;
+    goto label7;
+    }
+    label24 :
+    return Result;
+}
+WhileStandard::Tree * fun_sub(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2) {
+    WhileStandard::Tree * Result = new WhileStandard::Tree();
+    WhileStandard::Tree * t1 = new WhileStandard::Tree();
+    t1 = new WhileStandard::Tree(Op1);
+    Result = new WhileStandard::Tree(t1);
+    WhileStandard::Tree * t4 = new WhileStandard::Tree();
+    t4 = new WhileStandard::Tree(Op2);
+    WhileStandard::Tree * t6 = new WhileStandard::Tree();
+    label7 :
+    WhileStandard::Tree * t8 = new WhileStandard::Tree();
+    WhileStandard::Tree * t9 = new WhileStandard::Tree();
+    t9 = WhileStandard::compare(t4,t6);
+    if ( t8->isNil() )
+    goto label20;
+    {
+    WhileStandard::Tree * t14 = new WhileStandard::Tree();
+    t14 = new WhileStandard::Tree(Result);
+    Result = new WhileStandard::Tree(t14);
+    *t6 += 1;
+    goto label7;
+    }
+    label20 :
+    return Result;
+}
+WhileStandard::Tree * fun_not(WhileStandard::Tree * Op1) {
+    WhileStandard::Tree * Result = new WhileStandard::Tree();
+    WhileStandard::Tree * t1 = new WhileStandard::Tree();
+    t1 = new WhileStandard::Tree(Op1);
+    if ( t1->isNil() )
+    goto label13;
+    {
+    WhileStandard::Tree * t6 = new WhileStandard::Tree();
+    WhileStandard::Tree * t7 = new WhileStandard::Tree();
+    t7 = fun_false();
+    Result = new WhileStandard::Tree(t6);
+    goto label19;
+    }
+    {
+    label13 :
+    WhileStandard::Tree * t14 = new WhileStandard::Tree();
+    WhileStandard::Tree * t15 = new WhileStandard::Tree();
+    t15 = fun_true();
+    Result = new WhileStandard::Tree(t14);
+    }
+    label19 :
+    return Result;
+}
+WhileStandard::Tree * fun_mul(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2) {
+    WhileStandard::Tree * Result = new WhileStandard::Tree();
+    WhileStandard::Tree * t1 = new WhileStandard::Tree();
+    t1 = new WhileStandard::Tree(Op1);
+    WhileStandard::Tree * t3 = new WhileStandard::Tree();
+    label4 :
+    WhileStandard::Tree * t5 = new WhileStandard::Tree();
+    WhileStandard::Tree * t6 = new WhileStandard::Tree();
+    t6 = WhileStandard::compare(t1,t3);
+    if ( t5->isNil() )
+    goto label22;
+    {
+    WhileStandard::Tree * t11 = new WhileStandard::Tree();
+    t11 = new WhileStandard::Tree(Result);
+    WhileStandard::Tree * t13 = new WhileStandard::Tree();
+    t13 = new WhileStandard::Tree(Op2);
+    WhileStandard::Tree * t15 = new WhileStandard::Tree();
+    WhileStandard::Tree * t16 = new WhileStandard::Tree();
+    t16 = fun_add(t11,t13);
+    Result = new WhileStandard::Tree(t11);
+    *t3 += 1;
+    goto label4;
+    }
+    label22 :
+    return Result;
+}
+WhileStandard::Tree * fun_and(WhileStandard::Tree * Op1,WhileStandard::Tree * Op2) {
+    WhileStandard::Tree * Result = new WhileStandard::Tree();
+    WhileStandard::Tree * t1 = new WhileStandard::Tree();
+    t1 = new WhileStandard::Tree(Op1);
+    WhileStandard::Tree * t3 = new WhileStandard::Tree();
+    WhileStandard::Tree * t4 = new WhileStandard::Tree();
+    t4 = fun_not(t1);
+    if ( t1->isNil() )
+    goto label16;
+    {
+    WhileStandard::Tree * t9 = new WhileStandard::Tree();
+    WhileStandard::Tree * t10 = new WhileStandard::Tree();
+    t10 = fun_false();
+    Result = new WhileStandard::Tree(t9);
+    goto label40;
+    }
+    {
+    label16 :
+    WhileStandard::Tree * t17 = new WhileStandard::Tree();
+    t17 = new WhileStandard::Tree(Op2);
+    WhileStandard::Tree * t19 = new WhileStandard::Tree();
+    WhileStandard::Tree * t20 = new WhileStandard::Tree();
+    t20 = fun_not(t17);
+    if ( t17->isNil() )
     goto label32;
     {
-    WhileStandard::Tree * t19 = new WhileStandard::Tree();
-    t19 = new WhileStandard::Tree(Result);
-    WhileStandard::Tree * t21 = new WhileStandard::Tree();
-    t21 = new WhileStandard::Tree(Op2);
-    WhileStandard::Tree * t23 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t21);
-    WhileStandard::getStack()->push(t19);
-    fun_add();
-    t23 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = new WhileStandard::Tree(t19);
-    *t7 += 1;
-    goto label8;
-    }
-    label32 :
-    WhileStandard::getStack()->push(Result);
-}
-void fun_and() {
-    WhileStandard::Tree * Op1 = new WhileStandard::Tree();
-    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Op2 = new WhileStandard::Tree();
-    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    WhileStandard::Tree * Result = new WhileStandard::Tree();
-    WhileStandard::Tree * t5 = new WhileStandard::Tree();
-    t5 = new WhileStandard::Tree(Op1);
-    WhileStandard::Tree * t7 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t5);
-    fun_not();
-    t7 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    if ( t5->isNil() )
-    goto label21;
-    {
-    WhileStandard::Tree * t14 = new WhileStandard::Tree();
-    fun_false();
-    t14 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = new WhileStandard::Tree(t14);
-    goto label46;
-    }
-    {
-    label21 :
-    WhileStandard::Tree * t22 = new WhileStandard::Tree();
-    t22 = new WhileStandard::Tree(Op2);
-    WhileStandard::Tree * t24 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t22);
-    fun_not();
-    t24 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    if ( t22->isNil() )
+    WhileStandard::Tree * t25 = new WhileStandard::Tree();
+    WhileStandard::Tree * t26 = new WhileStandard::Tree();
+    t26 = fun_false();
+    Result = new WhileStandard::Tree(t25);
     goto label38;
-    {
-    WhileStandard::Tree * t31 = new WhileStandard::Tree();
-    fun_false();
-    t31 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = new WhileStandard::Tree(t31);
-    goto label44;
     }
     {
+    label32 :
+    WhileStandard::Tree * t33 = new WhileStandard::Tree();
+    WhileStandard::Tree * t34 = new WhileStandard::Tree();
+    t34 = fun_true();
+    Result = new WhileStandard::Tree(t33);
+    }
     label38 :
-    WhileStandard::Tree * t39 = new WhileStandard::Tree();
-    fun_true();
-    t39 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = new WhileStandard::Tree(t39);
     }
-    label44 :
-    }
-    label46 :
-    WhileStandard::getStack()->push(Result);
+    label40 :
+    return Result;
 }
-void fun_true() {
+WhileStandard::Tree * fun_true() {
     WhileStandard::Tree * Result = new WhileStandard::Tree();
     WhileStandard::Tree * t1 = new WhileStandard::Tree();
     WhileStandard::Tree * t2 = new WhileStandard::Tree();
@@ -330,13 +284,13 @@ void fun_true() {
     t1->setHead(t2);
     t1->setTail(t3);
     Result = new WhileStandard::Tree(t1);
-    WhileStandard::getStack()->push(Result);
+    return Result;
 }
-void fun_false() {
+WhileStandard::Tree * fun_false() {
     WhileStandard::Tree * Result = new WhileStandard::Tree();
     WhileStandard::Tree * t1 = new WhileStandard::Tree();
     Result = new WhileStandard::Tree(t1);
-    WhileStandard::getStack()->push(Result);
+    return Result;
 }
 int main() {
     WhileStandard::Tree * Result = new WhileStandard::Tree();
@@ -346,10 +300,8 @@ int main() {
     WhileStandard::Tree * t4 = new WhileStandard::Tree();
     t4 = new WhileStandard::Tree(Text);
     WhileStandard::Tree * t6 = new WhileStandard::Tree();
-    WhileStandard::getStack()->push(t4);
-    WhileStandard::print();
-    t6 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * t7 = new WhileStandard::Tree();
+    t7 = WhileStandard::print(t4);
     Result = new WhileStandard::Tree(t4);
-    WhileStandard::getStack()->push(Result);
-return 0;
+    return *Result;
 }

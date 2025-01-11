@@ -8,27 +8,25 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class IntermediateFunction extends FunctionSignature {
     private final ArrayList<Instruction> instructions = new ArrayList<>();
     private final HashMap<String, Integer> registerToAddress = new HashMap<>();
     private final HashMap<Integer, String> addressToRegister = new HashMap<>();
 
+    private final ArrayList<String> inputsLabel = new ArrayList<>();
+    private final ArrayList<String> outputsLabel = new ArrayList<>();
+
     private boolean isSTD = false;
 
-    public boolean isSTD() {
-        return isSTD;
+    // constructeur de fonction défini par l'utilisateur
+    IntermediateFunction(String name, int inputs, int outputs) {
+        super(name, inputs, outputs);
     }
 
     /*
         Getters & Setters
      */
-
-    // constructeur de fonction défini par l'utilisateur
-    IntermediateFunction(String name, int inputs, int outputs){
-        super(name,inputs,outputs);
-    }
 
     // constructeur de fonction de la lib standard, le code sera déjà importé donc pas besoin de le générer
     public IntermediateFunction() {
@@ -36,12 +34,16 @@ public class IntermediateFunction extends FunctionSignature {
         isSTD = true;
     }
 
+    public boolean isSTD() {
+        return isSTD;
+    }
+
     public String registerFromAddress(int i) {
         return addressToRegister.getOrDefault(i, String.format("t%s", i));
     }
 
     public int addressFromLabel(String label) {
-        return registerToAddress.getOrDefault(label,-1);
+        return registerToAddress.getOrDefault(label, -1);
     }
 
     public int addInstruction(Instruction i) {
@@ -55,6 +57,10 @@ public class IntermediateFunction extends FunctionSignature {
 
     public Instruction getInstruction(int i) {
         return instructions.get(i);
+    }
+
+    public String getOutput(int i) {
+        return outputsLabel.get(i);
     }
 
     public String toString() {
@@ -117,7 +123,7 @@ public class IntermediateFunction extends FunctionSignature {
      */
     public String createSymbol(String value) {
         String label = registerFromAddress(instructionsCount());
-        return createDefine(label,value);
+        return createDefine(label, value);
     }
 
     /*
@@ -138,7 +144,7 @@ public class IntermediateFunction extends FunctionSignature {
     Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
     public void createMov(String register, String source) {
-        if (addressFromLabel(register) == -1){
+        if (addressFromLabel(register) == -1) {
             createDefine(register);
         }
         addInstruction(new Mov(register, source));
@@ -149,7 +155,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public void createSetTail(String register, String source) {
-        addInstruction(new SetTail(register,source));
+        addInstruction(new SetTail(register, source));
     }
 
     public void createGetHead(String source, String dest) {
@@ -160,54 +166,39 @@ public class IntermediateFunction extends FunctionSignature {
         addInstruction(new GetTail(source, dest));
     }
 
-    /*
-    Crée un appel de pop, crée le registre automatiquement et stock la valeur dedans
-     */
-    public String createPop() {
-        String register = createDefine();
-        addInstruction(new Pop(register));
-        return register;
+    public void addInput(String label) {
+        registerToAddress.put(label, instructionsCount());
+        addressToRegister.put(instructionsCount(), label);
+        inputsLabel.add(label);
     }
 
-    /*
-    Crée un appel de pop et le stock dans le registre label
-     */
-    public String createPop(String label) {
-        String register = createDefine(label);
-        addInstruction(new Pop(register));
-        return register;
+    public void addOutput(String label) {
+        outputsLabel.add(label);
     }
 
-    public String setPop(String label) {
-        addInstruction(new Pop(label));
-        return label;
-    }
+    public int createCall(IntermediateFunction function, int[] addresses) {
+        String[] inputs = new String[addresses.length];
 
-    /*
-    Crée un nouvel élément push
-     */
-    public void createPush(String register) {
-        addInstruction(new Push(register));
-    }
+        for (int i = 0; i < addresses.length; i++) {
+            inputs[i] = registerFromAddress(addresses[i]);
+        }
 
-    public void createCall(IntermediateFunction function, int[] addresses) {
+        int retourAd = instructionsCount();
+
         // création registres de retour
         for (int i = 0; i < function.getOutputs(); i++) {
             createDefine();
         }
 
-        // push sur la stack les paramètres
-        for (int i = addresses.length - 1; i >= 0; i--) {
-            createPush(registerFromAddress(addresses[i]));
-        }
-
-        int callAddress = instructionsCount();
-        addInstruction(new Call(function.getName(), addresses.length,function.isSTD()));
+        String returns = createDefine();
+        int callAddress = addInstruction(new Call(returns, function.getName(), inputs, function.isSTD()));
 
         // récupère de la stack et met dans les registres préalablement définis
-        for (int i = 0; i < function.getOutputs(); i++) {
-            setPop(registerFromAddress(callAddress - function.getOutputs() - function.getInputs() + i));
+        for (int i = 1; i < function.getOutputs(); i++) {
+            createGetHead(returns, registerFromAddress(callAddress - 1 - function.getOutputs() + i));
+            createGetTail(returns, returns);
         }
+        return retourAd;
     }
 
     public void createInc(String register, int value) {
@@ -215,16 +206,22 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toCppSignature() {
-        assertFalse("STD function, do no call this method",isSTD);
+        assertFalse("STD function, do no call this method", isSTD);
 
-        if (Objects.equals(getName(), "main")){
+        if (Objects.equals(getName(), "main")) {
             return String.format("int %s()", getName());
         }
-        return String.format("void fun_%s()", getName());
+
+        ArrayList<String> params = new ArrayList<>();
+        inputsLabel.forEach(val -> params.add(String.format("WhileStandard::Tree * %s", val)));
+
+        String returnT = getOutputs() == 0 ? "void" : "WhileStandard::Tree *";
+
+        return String.format("%s fun_%s(%s)", returnT, getName(), String.join(",", params));
     }
 
     public String toCpp() {
-        assertFalse("STD function, do no call this method",isSTD);
+        assertFalse("STD function, do no call this method", isSTD);
         StringBuilder out = new StringBuilder();
         out.append(String.format("%s {\n", this.toCppSignature()));
         for (Instruction ins : instructions) {
@@ -232,8 +229,11 @@ public class IntermediateFunction extends FunctionSignature {
             out.append(ins.toCpp());
             out.append("\n");
         }
-        if (Objects.equals(getName(), "main")){
-            out.append("return 0;\n");
+        out.append("    ");
+        if (Objects.equals(getName(), "main")) {
+            out.append(String.format("return *%s;\n", outputsLabel.getFirst()));
+        } else {
+            out.append(String.format("return %s;\n", outputsLabel.getFirst()));
         }
         out.append("}\n");
         return out.toString();

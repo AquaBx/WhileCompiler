@@ -11,7 +11,7 @@ public class FunctionSignature {
         this.outputs = outputs;
     }
 
-    public FunctionSignature(){
+    public FunctionSignature() {
         this.name = "name";
         this.inputs = -1;
         this.outputs = -1;
@@ -37,7 +37,8 @@ public class FunctionSignature {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 }
