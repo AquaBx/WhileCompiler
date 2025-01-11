@@ -58,6 +58,13 @@ namespace WhileStandard
         }
     };
     
+    Tree * copyTree(Tree * ptr){
+        if (ptr == nullptr){
+            return nullptr;
+        }
+        return new Tree(ptr);
+    }
+
     std::stack<Tree *> *Stack;
     static std::stack<Tree *> *getStack()
     {
