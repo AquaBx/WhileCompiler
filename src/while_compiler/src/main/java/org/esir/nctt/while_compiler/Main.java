@@ -11,11 +11,8 @@ import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateCodeVis
 import org.esir.nctt.while_compiler.Visitor.Symbols.SymbolsVisitor;
 import org.esir.nctt.while_compiler.Visitor.Types.TypesVisitor;
 
-import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Base64;
 
 class Main {
     public static void main(String[] args) throws RecognitionException {
@@ -36,17 +33,19 @@ class Main {
         IntermediateCodeVisitor intermediateCodeVisitor = new IntermediateCodeVisitor();
 
         try {
-            // symbols analysis
+            System.out.println("Symbols analysis");
             symbolsVisitor.visit_program(ast);
 
-            // types analysis
+            System.out.println("Types analysis");
             typesVisitor.visit_program(ast);
 
-            // Three-address code generation
+            System.out.println("Three-address code generation");
             intermediateCodeVisitor.visit_program(ast);
 
+            System.out.println("C++ generation");
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
             InputStream library = classloader.getResourceAsStream("Library.cpp");
+            assert library != null;
             String lib = new String(library.readAllBytes(), StandardCharsets.UTF_8);
             FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), lib + intermediateCodeVisitor.toCpp());
         } catch (Exception e) {

@@ -1,17 +1,23 @@
 #include <stack>
+#include <string>
 namespace WhileStandard
 {
 
     class Tree
     {
     private:
-        Tree *head;
-        Tree *tail;
+        Tree * head;
+        Tree * tail;
+        std::string symbol;
 
     public:
-        Tree() : head(nullptr), tail(nullptr)
-        {
+        bool isNil() {
+            return head == nullptr && tail == nullptr;
         }
+
+        std::string getSymbol() { return symbol ;}
+
+        Tree(std::string symbol = "") : head(nullptr), tail(nullptr), symbol(symbol) {}
 
         Tree(Tree *old)
         {
@@ -57,13 +63,6 @@ namespace WhileStandard
             }
         }
     };
-    
-    Tree * copyTree(Tree * ptr){
-        if (ptr == nullptr){
-            return nullptr;
-        }
-        return new Tree(ptr);
-    }
 
     std::stack<Tree *> *Stack;
     static std::stack<Tree *> *getStack()
@@ -80,65 +79,47 @@ namespace WhileStandard
     - Renvoie un arbre si les deux sont égaux
     - Renvoie nullptr sinon
     */
-    void compare()
-    {
-        Tree *t1 = getStack()->top();
-        getStack()->pop();
-        Tree *t2 = getStack()->top();
-        getStack()->pop();
 
-        if (t1 == nullptr && t2 == nullptr)
-        {
-            getStack()->push(new Tree());
-        }
-        else if (t1 == nullptr || t2 == nullptr)
-        {
-            getStack()->push(nullptr);
-        }
-        else
-        {
-            getStack()->push(t2->getHead());
-            getStack()->push(t1->getHead());
-            compare();
-            Tree *cond1 = getStack()->top();
-            getStack()->pop();
-
-            getStack()->push(t2->getTail());
-            getStack()->push(t1->getTail());
-            compare();
-            Tree *cond2 = getStack()->top();
-            getStack()->pop();
-
-            getStack()->push(cond2);
-            getStack()->push(cond1);
-            compare();
-
-            /* pas utile mais pour l'explication
-            Tree *retour = getStack()->top();
-            getStack()->pop();
-            getStack()->push(retour);
-            */
+    bool compare(Tree *t1, Tree *t2) {
+        if (t1->isNil() && t2->isNil()) {
+            return true;
+        } else if (t1 == nullptr || t2 == nullptr) {
+            return false;
+        } else {
+            bool cond1 = compare(t1->getHead(), t2->getHead());
+            bool cond2 = compare(t1->getTail(), t2->getTail());
+            return cond1 && cond2;
         }
     }
 
-    /*
-    Génère un symbol sous forme d'arbre
-    */
-    void generateSymbol()
-    {
-    }
+    void compare() {
+        Tree *t1 = getStack()->top(); getStack()->pop();
+        Tree *t2 = getStack()->top(); getStack()->pop();
 
-    /*
-    Génère une liste d'arbre
-    */
-    void generateList()
-    {
+        Tree * temp1 = new Tree();
+        if (compare(t1,t2)){
+            Tree * temp2 = new Tree();
+            temp1->setTail(temp2);
+        }
+        getStack()->push(temp1);        
     }
 
     /*
     Print sur la sortie standard
     */
+    void print(Tree * t)
+    {
+        if (t->getHead() != nullptr){
+            print(t->getHead());
+        }        printf("%s",t->getSymbol());
+        if (t->getTail() != nullptr){
+            print(t->getTail());
+        }
+    }
+
     void print()
     {
+        Tree *t1 = getStack()->top(); getStack()->pop();
+        print(t1);
     }
 };

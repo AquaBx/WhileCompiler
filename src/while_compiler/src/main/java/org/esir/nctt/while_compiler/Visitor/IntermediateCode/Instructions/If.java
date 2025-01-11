@@ -2,17 +2,17 @@ package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public class If extends Instruction {
 
-    public If(int address) {
-        super(null, address);
+    public If(String register) {
+        super(register, null);
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s", getOperator(), getArg2());
+        return String.format("%s %s", getOperator(), getArg1());
     }
 
     @Override
     public String toCpp() {
-        return String.format("if ( t%s == nullptr )", getArg2());
+        return String.format("if ( %s->isNil() )", getArg1());
     }
 }

@@ -2,8 +2,15 @@ package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public class Define extends Instruction {
 
-    public Define(String register) {
+    String value;
+
+    public Define(String register, String value) {
         super(register, null);
+        if (!value.isEmpty()) {
+            this.value = String.format("\"%s\"", value);
+        } else {
+            this.value = value;
+        }
     }
 
     @Override
@@ -13,6 +20,8 @@ public class Define extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("WhileStandard::Tree * %s = nullptr;", getArg1());
+        return String.format(
+                "WhileStandard::Tree * %s = new WhileStandard::Tree(%s);", this.getArg1(), this.value
+        );
     }
 }
