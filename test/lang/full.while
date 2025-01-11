@@ -76,6 +76,6 @@ function main:
 read 
 % 
 Text := salutIZNIJADBZHABUHB;
-Result := (print nil);
+Result := (print Text);
 % 
 write Result 

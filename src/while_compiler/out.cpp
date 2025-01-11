@@ -1,5 +1,6 @@
 #include <stack>
 #include <string>
+#include <iostream>
 namespace WhileStandard
 {
 
@@ -29,6 +30,7 @@ namespace WhileStandard
             {
                 this->tail = new Tree(old->getTail());
             }
+            this -> symbol = old->getSymbol();
         }
 
         Tree *getTail()
@@ -60,6 +62,15 @@ namespace WhileStandard
             if (head != nullptr)
             {
                 delete tail;
+            }
+        }
+
+        Tree & operator += (int v){
+            for (int i = 0 ; i < v ; i++){
+                Tree * oldTail = this -> getTail();
+                Tree * newTail = new Tree();
+                newTail->setTail(oldTail);
+                this->setTail(newTail);
             }
         }
     };
@@ -111,7 +122,8 @@ namespace WhileStandard
     {
         if (t->getHead() != nullptr){
             print(t->getHead());
-        }        printf("%s",t->getSymbol());
+        }        
+        std::cout << t->getSymbol() << std::endl;
         if (t->getTail() != nullptr){
             print(t->getTail());
         }
@@ -119,7 +131,7 @@ namespace WhileStandard
 
     void print()
     {
-        Tree *t1 = getStack()->top(); getStack()->pop();
+        Tree *t1 = getStack()->top();
         print(t1);
     }
 };
@@ -332,10 +344,11 @@ int main() {
     WhileStandard::Tree * Text = new WhileStandard::Tree();
     Text = new WhileStandard::Tree(t1);
     WhileStandard::Tree * t4 = new WhileStandard::Tree();
-    WhileStandard::Tree * t5 = new WhileStandard::Tree();
+    t4 = new WhileStandard::Tree(Text);
+    WhileStandard::Tree * t6 = new WhileStandard::Tree();
     WhileStandard::getStack()->push(t4);
     WhileStandard::print();
-    t5 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    t6 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     Result = new WhileStandard::Tree(t4);
     WhileStandard::getStack()->push(Result);
 return 0;
