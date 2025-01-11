@@ -14,13 +14,13 @@ public class IntermediateCodeVisitor extends Visitor {
         StringBuilder out = new StringBuilder();
 
         for (IntermediateFunction fun : functions.values()) {
-            if (!fun.isSTD()) {
+            if (!fun.isSTD()){
                 out.append(String.format("%s;\n", fun.toCppSignature()));
             }
         }
 
         for (IntermediateFunction fun : functions.values()) {
-            if (!fun.isSTD()) {
+            if (!fun.isSTD()){
                 out.append(fun.toCpp());
             }
         }
@@ -52,7 +52,7 @@ public class IntermediateCodeVisitor extends Visitor {
     protected void visit_function(Tree tree) {
 
         String functionLabel = tree.getChild(0).getText();
-        functionActual = functions.get(functionLabel);
+        functionActual =  functions.get(functionLabel);
 
         visit_inputs(tree.getChild(1)); // generate pop
         visit_outputs_init(tree.getChild(2));
@@ -118,7 +118,7 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_expressions(tree.getChild(0));
 
         functionActual.createSetHead(register, functionActual.registerFromAddress(address));
-        functionActual.createSetTail(register, functionActual.registerFromAddress(address + 1));
+        functionActual.createSetTail(register, functionActual.registerFromAddress(address+1));
     }
 
     @Override
@@ -171,12 +171,12 @@ public class IntermediateCodeVisitor extends Visitor {
         Tree parameters = tree.getChild(0);
         String ListR = functionActual.createDefine();
 
-        for (int i = parameters.getChildCount() - 1; i >= 0; i--) {
+        for (int i = parameters.getChildCount()-1; i >= 0; i--) {
             int addressOfParam = functionActual.instructionsCount();
             visit_expression(parameters.getChild(i));
 
-            functionActual.createSetTail(ListR, ListR);
-            functionActual.createSetHead(ListR, functionActual.registerFromAddress(addressOfParam));
+            functionActual.createSetTail(ListR,ListR);
+            functionActual.createSetHead(ListR,functionActual.registerFromAddress(addressOfParam));
         }
     }
 
@@ -241,11 +241,11 @@ public class IntermediateCodeVisitor extends Visitor {
         int gotoEndForGotoAddress = functionActual.createGoto(null);
         functionActual.createOpenContext();
 
-        functionActual.createGetHead(listeRegister, itemRegister);
+        functionActual.createGetHead(listeRegister,itemRegister);
 
         visit_commands(commands);
 
-        functionActual.createGetTail(listeRegister, listeRegister);
+        functionActual.createGetTail(listeRegister,listeRegister);
 
         int gotoStartWhileGotoAddress = functionActual.createGoto(null);
         functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(compareCall);

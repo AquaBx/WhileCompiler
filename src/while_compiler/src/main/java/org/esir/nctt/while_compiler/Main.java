@@ -11,8 +11,11 @@ import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateCodeVis
 import org.esir.nctt.while_compiler.Visitor.Symbols.SymbolsVisitor;
 import org.esir.nctt.while_compiler.Visitor.Types.TypesVisitor;
 
+import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
 
 class Main {
     public static void main(String[] args) throws RecognitionException {

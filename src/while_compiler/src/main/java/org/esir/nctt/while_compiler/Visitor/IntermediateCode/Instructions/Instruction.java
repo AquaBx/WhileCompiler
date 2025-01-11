@@ -2,9 +2,9 @@ package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public abstract class Instruction {
     private String arg1;
-    private Integer arg2;
+    private String arg2;
 
-    public Instruction(String arg1, Integer arg2) {
+    public Instruction(String arg1, String arg2) {
         this.arg1 = arg1;
         this.arg2 = arg2;
     }
@@ -22,11 +22,11 @@ public abstract class Instruction {
         this.arg1 = arg;
     }
 
-    public int getArg2() {
+    public String getArg2() {
         return arg2;
     }
 
-    public void setArg2(Integer arg) {
+    public void setArg2(String arg) {
         this.arg2 = arg;
     }
 
@@ -40,7 +40,7 @@ public abstract class Instruction {
         this.arg1 = arg;
     }
 
-    public void setRes2(Integer arg) {
+    public void setRes2(String arg) {
         this.arg2 = arg;
     }
 

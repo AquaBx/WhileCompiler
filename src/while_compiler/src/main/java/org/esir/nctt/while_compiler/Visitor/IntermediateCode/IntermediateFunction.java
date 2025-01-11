@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class IntermediateFunction extends FunctionSignature {
     private final ArrayList<Instruction> instructions = new ArrayList<>();
@@ -16,14 +17,18 @@ public class IntermediateFunction extends FunctionSignature {
 
     private boolean isSTD = false;
 
-    // constructeur de fonction défini par l'utilisateur
-    IntermediateFunction(String name, int inputs, int outputs) {
-        super(name, inputs, outputs);
+    public boolean isSTD() {
+        return isSTD;
     }
 
     /*
         Getters & Setters
      */
+
+    // constructeur de fonction défini par l'utilisateur
+    IntermediateFunction(String name, int inputs, int outputs){
+        super(name,inputs,outputs);
+    }
 
     // constructeur de fonction de la lib standard, le code sera déjà importé donc pas besoin de le générer
     public IntermediateFunction() {
@@ -31,16 +36,12 @@ public class IntermediateFunction extends FunctionSignature {
         isSTD = true;
     }
 
-    public boolean isSTD() {
-        return isSTD;
-    }
-
     public String registerFromAddress(int i) {
         return addressToRegister.getOrDefault(i, String.format("t%s", i));
     }
 
     public int addressFromLabel(String label) {
-        return registerToAddress.getOrDefault(label, -1);
+        return registerToAddress.getOrDefault(label,-1);
     }
 
     public int addInstruction(Instruction i) {
@@ -116,7 +117,7 @@ public class IntermediateFunction extends FunctionSignature {
      */
     public String createSymbol(String value) {
         String label = registerFromAddress(instructionsCount());
-        return createDefine(label, value);
+        return createDefine(label,value);
     }
 
     /*
@@ -137,7 +138,7 @@ public class IntermediateFunction extends FunctionSignature {
     Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
     public void createMov(String register, String source) {
-        if (addressFromLabel(register) == -1) {
+        if (addressFromLabel(register) == -1){
             createDefine(register);
         }
         addInstruction(new Mov(register, source));
@@ -148,7 +149,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public void createSetTail(String register, String source) {
-        addInstruction(new SetTail(register, source));
+        addInstruction(new SetTail(register,source));
     }
 
     public void createGetHead(String source, String dest) {
@@ -201,7 +202,7 @@ public class IntermediateFunction extends FunctionSignature {
         }
 
         int callAddress = instructionsCount();
-        addInstruction(new Call(function.getName(), addresses.length, function.isSTD()));
+        addInstruction(new Call(function.getName(), addresses.length,function.isSTD()));
 
         // récupère de la stack et met dans les registres préalablement définis
         for (int i = 0; i < function.getOutputs(); i++) {
@@ -214,16 +215,16 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toCppSignature() {
-        assertFalse("STD function, do no call this method", isSTD);
+        assertFalse("STD function, do no call this method",isSTD);
 
-        if (Objects.equals(getName(), "main")) {
+        if (Objects.equals(getName(), "main")){
             return String.format("int %s()", getName());
         }
         return String.format("void fun_%s()", getName());
     }
 
     public String toCpp() {
-        assertFalse("STD function, do no call this method", isSTD);
+        assertFalse("STD function, do no call this method",isSTD);
         StringBuilder out = new StringBuilder();
         out.append(String.format("%s {\n", this.toCppSignature()));
         for (Instruction ins : instructions) {
@@ -231,7 +232,7 @@ public class IntermediateFunction extends FunctionSignature {
             out.append(ins.toCpp());
             out.append("\n");
         }
-        if (Objects.equals(getName(), "main")) {
+        if (Objects.equals(getName(), "main")){
             out.append("return 0;\n");
         }
         out.append("}\n");

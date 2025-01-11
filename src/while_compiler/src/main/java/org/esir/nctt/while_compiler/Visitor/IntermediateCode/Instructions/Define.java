@@ -1,16 +1,9 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions;
 
 public class Define extends Instruction {
-
-    String value;
-
     public Define(String register, String value) {
-        super(register, null);
-        if (!value.isEmpty()) {
-            this.value = String.format("\"%s\"", value);
-        } else {
-            this.value = value;
-        }
+        super(register, value);
+
     }
 
     @Override
@@ -20,8 +13,9 @@ public class Define extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format(
-                "WhileStandard::Tree * %s = new WhileStandard::Tree(%s);", this.getArg1(), this.value
-        );
+        if (getArg2().isEmpty()) {
+            return String.format("WhileStandard::Tree * %s = new WhileStandard::Tree();", this.getArg1());
+        }
+        return String.format("WhileStandard::Tree * %s = new WhileStandard::Tree(\"%s\");", this.getArg1(), getArg2());
     }
 }
