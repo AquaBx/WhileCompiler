@@ -15,6 +15,6 @@ public class Mov extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("%s = %s;", getArg1(), this.source);
+        return String.format("%s = new WhileStandard::Tree(%s);", getArg1(), this.source);
     }
 }

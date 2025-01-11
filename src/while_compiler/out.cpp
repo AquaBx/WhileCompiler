@@ -150,10 +150,10 @@ void fun_add() {
     Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     WhileStandard::Tree * Result = nullptr;
     WhileStandard::Tree * t5 = nullptr;
-    t5 = Op1;
-    Result = t5;
+    t5 = new WhileStandard::Tree(Op1);
+    Result = new WhileStandard::Tree(t5);
     WhileStandard::Tree * t8 = nullptr;
-    t8 = Op2;
+    t8 = new WhileStandard::Tree(Op2);
     WhileStandard::Tree * t10 = nullptr;
     label11 :
     WhileStandard::Tree * t12 = nullptr;
@@ -169,10 +169,10 @@ void fun_add() {
     WhileStandard::Tree * t22 = nullptr;
     WhileStandard::Tree * t23 = nullptr;
     WhileStandard::Tree * t24 = nullptr;
-    t24 = Result;
+    t24 = new WhileStandard::Tree(Result);
     t22->setHead(t23);
     t22->setTail(t24);
-    Result = t22;
+    Result = new WhileStandard::Tree(t22);
     t10 += 1;
     goto label11;
     }
@@ -186,10 +186,10 @@ void fun_sub() {
     Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     WhileStandard::Tree * Result = nullptr;
     WhileStandard::Tree * t5 = nullptr;
-    t5 = Op1;
-    Result = t5;
+    t5 = new WhileStandard::Tree(Op1);
+    Result = new WhileStandard::Tree(t5);
     WhileStandard::Tree * t8 = nullptr;
-    t8 = Op2;
+    t8 = new WhileStandard::Tree(Op2);
     WhileStandard::Tree * t10 = nullptr;
     label11 :
     WhileStandard::Tree * t12 = nullptr;
@@ -203,8 +203,8 @@ void fun_sub() {
     goto label28;
     {
     WhileStandard::Tree * t22 = nullptr;
-    t22 = Result;
-    Result = t22;
+    t22 = new WhileStandard::Tree(Result);
+    Result = new WhileStandard::Tree(t22);
     t10 += 1;
     goto label11;
     }
@@ -216,14 +216,14 @@ void fun_not() {
     Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     WhileStandard::Tree * Result = nullptr;
     WhileStandard::Tree * t3 = nullptr;
-    t3 = Op1;
+    t3 = new WhileStandard::Tree(Op1);
     if ( t3 == nullptr )
     goto label15;
     {
     WhileStandard::Tree * t8 = nullptr;
     fun_false();
     t8 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t8;
+    Result = new WhileStandard::Tree(t8);
     goto label21;
     }
     {
@@ -231,7 +231,7 @@ void fun_not() {
     WhileStandard::Tree * t16 = nullptr;
     fun_true();
     t16 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t16;
+    Result = new WhileStandard::Tree(t16);
     }
     label21 :
     WhileStandard::getStack()->push(Result);
@@ -243,7 +243,7 @@ void fun_mul() {
     Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     WhileStandard::Tree * Result = nullptr;
     WhileStandard::Tree * t5 = nullptr;
-    t5 = Op1;
+    t5 = new WhileStandard::Tree(Op1);
     WhileStandard::Tree * t7 = nullptr;
     label8 :
     WhileStandard::Tree * t9 = nullptr;
@@ -257,15 +257,15 @@ void fun_mul() {
     goto label32;
     {
     WhileStandard::Tree * t19 = nullptr;
-    t19 = Result;
+    t19 = new WhileStandard::Tree(Result);
     WhileStandard::Tree * t21 = nullptr;
-    t21 = Op2;
+    t21 = new WhileStandard::Tree(Op2);
     WhileStandard::Tree * t23 = nullptr;
     WhileStandard::getStack()->push(t21);
     WhileStandard::getStack()->push(t19);
     fun_add();
     t23 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t19;
+    Result = new WhileStandard::Tree(t19);
     t7 += 1;
     goto label8;
     }
@@ -279,7 +279,7 @@ void fun_and() {
     Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     WhileStandard::Tree * Result = nullptr;
     WhileStandard::Tree * t5 = nullptr;
-    t5 = Op1;
+    t5 = new WhileStandard::Tree(Op1);
     WhileStandard::Tree * t7 = nullptr;
     WhileStandard::getStack()->push(t5);
     fun_not();
@@ -290,13 +290,13 @@ void fun_and() {
     WhileStandard::Tree * t14 = nullptr;
     fun_false();
     t14 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t14;
+    Result = new WhileStandard::Tree(t14);
     goto label46;
     }
     {
     label21 :
     WhileStandard::Tree * t22 = nullptr;
-    t22 = Op2;
+    t22 = new WhileStandard::Tree(Op2);
     WhileStandard::Tree * t24 = nullptr;
     WhileStandard::getStack()->push(t22);
     fun_not();
@@ -307,7 +307,7 @@ void fun_and() {
     WhileStandard::Tree * t31 = nullptr;
     fun_false();
     t31 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t31;
+    Result = new WhileStandard::Tree(t31);
     goto label44;
     }
     {
@@ -315,7 +315,7 @@ void fun_and() {
     WhileStandard::Tree * t39 = nullptr;
     fun_true();
     t39 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t39;
+    Result = new WhileStandard::Tree(t39);
     }
     label44 :
     }
@@ -329,13 +329,13 @@ void fun_true() {
     WhileStandard::Tree * t3 = nullptr;
     t1->setHead(t2);
     t1->setTail(t3);
-    Result = t1;
+    Result = new WhileStandard::Tree(t1);
     WhileStandard::getStack()->push(Result);
 }
 void fun_false() {
     WhileStandard::Tree * Result = nullptr;
     WhileStandard::Tree * t1 = nullptr;
-    Result = t1;
+    Result = new WhileStandard::Tree(t1);
     WhileStandard::getStack()->push(Result);
 }
 int main() {
@@ -345,7 +345,7 @@ int main() {
     WhileStandard::getStack()->push(t1);
     WhileStandard::print();
     t2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
-    Result = t1;
+    Result = new WhileStandard::Tree(t1);
     WhileStandard::getStack()->push(Result);
 return 0;
 }
