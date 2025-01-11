@@ -86,10 +86,18 @@ namespace TreeManager {
         return TreeManager::Stack;
     }
 };
+void fun_print();
+void fun_compare();
 void fun_not();
+void fun_generateSymbol();
 void fun_and();
 void fun_true();
 void fun_false();
+void fun_generateList();
+void fun_print() {
+}
+void fun_compare() {
+}
 void fun_not() {
     Tree * Op1 = nullptr;
     Op1 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
@@ -115,6 +123,8 @@ void fun_not() {
     label21 :
     TreeManager::getStack()->push(Result);
 }
+void fun_generateSymbol() {
+}
 void fun_and() {
     Tree * Op1 = nullptr;
     Op1 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
@@ -122,9 +132,9 @@ void fun_and() {
     Op2 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
     Tree * Result = nullptr;
     Tree * t5 = nullptr;
-    Tree * t6 = nullptr;
-    t6 = Op1;
-    TreeManager::getStack()->push(t6);
+    t5 = Op1;
+    Tree * t7 = nullptr;
+    TreeManager::getStack()->push(t5);
     fun_not();
     t6 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
     if ( t5 == nullptr )
@@ -139,9 +149,9 @@ void fun_and() {
     {
     label21 :
     Tree * t22 = nullptr;
-    Tree * t23 = nullptr;
-    t23 = Op2;
-    TreeManager::getStack()->push(t23);
+    t22 = Op2;
+    Tree * t24 = nullptr;
+    TreeManager::getStack()->push(t22);
     fun_not();
     t23 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
     if ( t22 == nullptr )
@@ -180,4 +190,6 @@ void fun_false() {
     Tree * t1 = nullptr;
     Result = t1;
     TreeManager::getStack()->push(Result);
+}
+void fun_generateList() {
 }
