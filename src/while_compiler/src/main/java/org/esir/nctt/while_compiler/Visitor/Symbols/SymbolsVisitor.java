@@ -113,9 +113,14 @@ public class SymbolsVisitor extends Visitor {
         Tree symbol = tree.getChild(0);
         String symbol_string = symbol.getText();
 
+        /*
+        c'est une string
+
         if (!lookupTable.inScope(symbol_string)) {
             System.out.printf("Error: Symbol %s is not defined\n", symbol_string);
         }
+
+        */
     }
 
     protected void visit_expr_variable(Tree tree) {
