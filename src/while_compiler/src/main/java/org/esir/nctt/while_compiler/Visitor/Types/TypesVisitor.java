@@ -4,6 +4,7 @@ import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
 import org.esir.nctt.while_compiler.FunctionSignature;
 import org.esir.nctt.while_compiler.LibraryFunctions;
+import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateFunction;
 import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class TypesVisitor extends Visitor {
             String function_name = function.getChild(0).getText();
 
             // Push Function signature in functionSignatures
-            functionSignatures.put(function_name, new FunctionSignature(function_name, input, output));
+            functionSignatures.put(function_name, new FunctionSignature(function_name,input, output));
         }
 
         // visit each function
