@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     '/Users/tomchauvel/Documents/GitHub/s7-tlc-projet/src/while_compiler/out'
-relocations:     []
-...
