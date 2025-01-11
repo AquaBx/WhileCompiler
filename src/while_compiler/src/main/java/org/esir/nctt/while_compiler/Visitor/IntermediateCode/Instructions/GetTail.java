@@ -15,6 +15,6 @@ public class GetTail extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("%s = %s->GetTail();", getArg2(), getArg1());
+        return String.format("%s = %s->getTail();", getArg2(), getArg1());
     }
 }

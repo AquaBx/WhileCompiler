@@ -73,52 +73,45 @@ namespace WhileStandard
                 this->setTail(newTail);
             }
         }
-    };
 
-    std::stack<Tree *> *Stack;
-    static std::stack<Tree *> *getStack()
-    {
-        if (Stack == nullptr)
-        {
-            Stack = new std::stack<Tree *>();
+        operator int(){
+            if ( this -> isNil() ){
+                return 0;
+            }
+            return 1 + *(this -> getTail());
         }
-        return Stack;
-    }
+    }; 
 
-    /*
-    Compare 2 arbres
-    - Renvoie un arbre si les deux sont égaux
-    - Renvoie nullptr sinon
-    */
-
-    bool compare(Tree *t1, Tree *t2) {
+    bool compare2(Tree *t1, Tree *t2) {
         if (t1->isNil() && t2->isNil()) {
             return true;
         } else if (t1 == nullptr || t2 == nullptr) {
             return false;
         } else {
-            bool cond1 = compare(t1->getHead(), t2->getHead());
-            bool cond2 = compare(t1->getTail(), t2->getTail());
+            bool cond1 = compare2(t1->getHead(), t2->getHead());
+            bool cond2 = compare2(t1->getTail(), t2->getTail());
             return cond1 && cond2;
         }
     }
 
-    void compare() {
-        Tree *t1 = getStack()->top(); getStack()->pop();
-        Tree *t2 = getStack()->top(); getStack()->pop();
-
+   /*
+    Compare 2 arbres
+    - Renvoie un arbre non vide si les deux sont égaux
+    - Renvoie un arbre vide sinon sinon
+    */
+    Tree * compare(Tree *t1, Tree *t2) {
         Tree * temp1 = new Tree();
-        if (compare(t1,t2)){
+        if (compare2(t1,t2)){
             Tree * temp2 = new Tree();
-            temp1->setTail(temp2);
+            return temp2;
         }
-        getStack()->push(temp1);        
+        return temp1;        
     }
 
     /*
     Print sur la sortie standard
     */
-    void print(Tree * t)
+    Tree * print(Tree * t)
     {
         if (t->getHead() != nullptr){
             print(t->getHead());
@@ -127,11 +120,6 @@ namespace WhileStandard
         if (t->getTail() != nullptr){
             print(t->getTail());
         }
-    }
-
-    void print()
-    {
-        Tree *t1 = getStack()->top();
-        print(t1);
+        return new Tree();
     }
 };

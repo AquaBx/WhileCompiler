@@ -14,13 +14,13 @@ public class IntermediateCodeVisitor extends Visitor {
         StringBuilder out = new StringBuilder();
 
         for (IntermediateFunction fun : functions.values()) {
-            if (!fun.isSTD()){
+            if (!fun.isSTD()) {
                 out.append(String.format("%s;\n", fun.toCppSignature()));
             }
         }
 
         for (IntermediateFunction fun : functions.values()) {
-            if (!fun.isSTD()){
+            if (!fun.isSTD()) {
                 out.append(fun.toCpp());
             }
         }
@@ -52,13 +52,18 @@ public class IntermediateCodeVisitor extends Visitor {
     protected void visit_function(Tree tree) {
 
         String functionLabel = tree.getChild(0).getText();
-        functionActual =  functions.get(functionLabel);
+        functionActual = functions.get(functionLabel);
 
-        visit_inputs(tree.getChild(1)); // generate pop
-        visit_outputs_init(tree.getChild(2));
+        visit_inputs(tree.getChild(1));
+        visit_outputs(tree.getChild(2));
         visit_commands(tree.getChild(3));
-        visit_outputs(tree.getChild(2)); // generate push
 
+        for (int i = functionActual.getOutputs() - 1; i > 0; i--) { // strict à 0 normal
+            String child = functionActual.getOutput(i);
+            String parent = functionActual.getOutput(i - 1);
+            functionActual.createSetHead(parent, parent);
+            functionActual.createSetTail(parent, child);
+        }
         System.out.println(functionActual);
     }
 
@@ -82,24 +87,16 @@ public class IntermediateCodeVisitor extends Visitor {
         // seems ok
         for (int i = 0; i < tree.getChildCount(); i++) {
             String label = tree.getChild(i).getText();
-            functionActual.createPop(label);
+            functionActual.addInput(label);
         }
     }
 
-    protected void visit_outputs_init(Tree tree) {
-        // seems ok
-        for (int i = tree.getChildCount() - 1; i >= 0; i--) {
-            String label = tree.getChild(i).getText();
-            functionActual.createDefine(label);
-        }
-    }
-
-    @Override
     protected void visit_outputs(Tree tree) {
         // seems ok
         for (int i = tree.getChildCount() - 1; i >= 0; i--) {
             String label = tree.getChild(i).getText();
-            functionActual.createPush(label);
+            functionActual.createDefine(label);
+            functionActual.addOutput(label);
         }
     }
 
@@ -118,7 +115,7 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_expressions(tree.getChild(0));
 
         functionActual.createSetHead(register, functionActual.registerFromAddress(address));
-        functionActual.createSetTail(register, functionActual.registerFromAddress(address+1));
+        functionActual.createSetTail(register, functionActual.registerFromAddress(address + 1));
     }
 
     @Override
@@ -171,12 +168,12 @@ public class IntermediateCodeVisitor extends Visitor {
         Tree parameters = tree.getChild(0);
         String ListR = functionActual.createDefine();
 
-        for (int i = parameters.getChildCount()-1; i >= 0; i--) {
+        for (int i = parameters.getChildCount() - 1; i >= 0; i--) {
             int addressOfParam = functionActual.instructionsCount();
             visit_expression(parameters.getChild(i));
 
-            functionActual.createSetTail(ListR,ListR);
-            functionActual.createSetHead(ListR,functionActual.registerFromAddress(addressOfParam));
+            functionActual.createSetTail(ListR, ListR);
+            functionActual.createSetHead(ListR, functionActual.registerFromAddress(addressOfParam));
         }
     }
 
@@ -234,18 +231,17 @@ public class IntermediateCodeVisitor extends Visitor {
 
         // compare liste et nil
         String compareCall = functionActual.createLabel();
-        functionActual.createCall(functions.get("compare"), new int[]{listeAddress, nilAddress});
-        String reg = functionActual.createPop();
+        int retour = functionActual.createCall(functions.get("compare"), new int[]{listeAddress, nilAddress});
 
-        functionActual.createIf(reg);
+        functionActual.createIf(functionActual.registerFromAddress(retour));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
         functionActual.createOpenContext();
 
-        functionActual.createGetHead(listeRegister,itemRegister);
+        functionActual.createGetHead(listeRegister, itemRegister);
 
         visit_commands(commands);
 
-        functionActual.createGetTail(listeRegister,listeRegister);
+        functionActual.createGetTail(listeRegister, listeRegister);
 
         int gotoStartWhileGotoAddress = functionActual.createGoto(null);
         functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(compareCall);
@@ -290,10 +286,9 @@ public class IntermediateCodeVisitor extends Visitor {
         String counterRegister = functionActual.createDefine();
 
         String compareCall = functionActual.createLabel();
-        functionActual.createCall(functions.get("compare"), new int[]{valueAddress, counterAddress});
-        String reg = functionActual.createPop();
+        int retour = functionActual.createCall(functions.get("compare"), new int[]{valueAddress, counterAddress});
 
-        functionActual.createIf(reg);
+        functionActual.createIf(functionActual.registerFromAddress(retour));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
         functionActual.createOpenContext();
 
