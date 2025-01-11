@@ -2,6 +2,7 @@ package org.esir.nctt.while_compiler.Visitor.Symbols;
 
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
+import org.esir.nctt.while_compiler.LibraryFunctions;
 import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 import static org.junit.Assert.assertEquals;
@@ -12,6 +13,8 @@ public class SymbolsVisitor extends Visitor {
     public void visit_program(Tree program) {
         // Start the global scope
         lookupTable.beginScope();
+
+        LibraryFunctions.addTo(lookupTable);
 
         // Push Function symbol to symbol table (global)
         for (int i = 0; i < program.getChildCount(); i++) {

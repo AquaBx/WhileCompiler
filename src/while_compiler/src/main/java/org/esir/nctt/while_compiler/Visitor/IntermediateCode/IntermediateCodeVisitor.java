@@ -1,6 +1,7 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
 
 import org.antlr.runtime.tree.Tree;
+import org.esir.nctt.while_compiler.LibraryFunctions;
 import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
@@ -13,11 +14,15 @@ public class IntermediateCodeVisitor extends Visitor {
         StringBuilder out = new StringBuilder();
 
         for (IntermediateFunction fun : functions.values()) {
-            out.append(String.format("%s;\n", fun.toCppSignature()));
+            if (!fun.isSTD()){
+                out.append(String.format("%s;\n", fun.toCppSignature()));
+            }
         }
 
         for (IntermediateFunction fun : functions.values()) {
-            out.append(fun.toCpp());
+            if (!fun.isSTD()){
+                out.append(fun.toCpp());
+            }
         }
 
         return out.toString();
@@ -28,7 +33,7 @@ public class IntermediateCodeVisitor extends Visitor {
     @Override
     public void visit_program(Tree program) {
 
-        LibraryFunctions.addTo(functions);
+        LibraryFunctions.addTo(functions, IntermediateFunction::new);
 
         for (int i = 0; i < program.getChildCount(); i++) {
             Tree function = program.getChild(i);
@@ -47,7 +52,7 @@ public class IntermediateCodeVisitor extends Visitor {
     protected void visit_function(Tree tree) {
 
         String functionLabel = tree.getChild(0).getText();
-        functionActual = functions.get(functionLabel);
+        functionActual =  functions.get(functionLabel);
 
         visit_inputs(tree.getChild(1));
         visit_outputs_init(tree.getChild(2));

@@ -13,6 +13,6 @@ public class Define extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("Tree * %s = nullptr;", getArg1());
+        return String.format("WhileStandard::Tree * %s = nullptr;", getArg1());
     }
 }

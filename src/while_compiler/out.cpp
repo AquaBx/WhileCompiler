@@ -1,195 +1,351 @@
 #include <stack>
+namespace WhileStandard
+{
 
-class Tree {
-private:
-    Tree *head;
-    Tree *tail;
+    class Tree
+    {
+    private:
+        Tree *head;
+        Tree *tail;
 
-public:
-    Tree() : head(nullptr), tail(nullptr) {
-    }
-
-    Tree(Tree *old) {
-        if (old->getHead() != nullptr) {
-            this->head = new Tree(old->getHead());
+    public:
+        Tree() : head(nullptr), tail(nullptr)
+        {
         }
-        if (old->getTail() != nullptr) {
-            this->tail = new Tree(old->getTail());
+
+        Tree(Tree *old)
+        {
+            if (old->getHead() != nullptr)
+            {
+                this->head = new Tree(old->getHead());
+            }
+            if (old->getTail() != nullptr)
+            {
+                this->tail = new Tree(old->getTail());
+            }
         }
-    }
 
-    Tree *getTail() {
-        return this->tail;
-    }
-
-    Tree *getHead() {
-        return this->head;
-    }
-
-    void setTail(Tree *tail) {
-        this->tail = new Tree(tail);
-    }
-
-    void setHead(Tree *head) {
-        this->head = new Tree(head);
-    }
-
-    ~Tree() {
-        if (head != nullptr) {
-            delete head;
+        Tree *getTail()
+        {
+            return this->tail;
         }
-        if (head != nullptr) {
-            delete tail;
+
+        Tree *getHead()
+        {
+            return this->head;
         }
-    }
-};
 
-/*
-Compare 2 arbres
-- Renvoie un arbre si les deux sont égaux
-- Renvoie nullptr sinon
-*/
-Tree *compare(Tree *t1, Tree *t2) {
-    if (t1 == nullptr && t2 == nullptr) {
-        return new Tree();
-    } else if (t1 == nullptr || t2 == nullptr) {
-        return nullptr;
-    } else {
-        Tree *cond1 = compare(t1->getHead(), t2->getHead());
-        Tree *cond2 = compare(t1->getTail(), t2->getTail());
-        return compare(cond1, cond2);
-    }
-}
+        void setTail(Tree *tail)
+        {
+            this->tail = new Tree(tail);
+        }
 
-/*
-Génère un symbol sous forme d'arbre
-*/
-Tree *generateSymbol() {
-    return nullptr;
-}
+        void setHead(Tree *head)
+        {
+            this->head = new Tree(head);
+        }
 
-/*
-Génère une liste d'arbre
-*/
-Tree *generateList() {
-    return nullptr;
-}
-
-
-namespace TreeManager {
+        ~Tree()
+        {
+            if (head != nullptr)
+            {
+                delete head;
+            }
+            if (head != nullptr)
+            {
+                delete tail;
+            }
+        }
+    };
+    
     std::stack<Tree *> *Stack;
-
-    static std::stack<Tree *> *getStack() {
-        if (TreeManager::Stack == nullptr) {
-            TreeManager::Stack = new std::stack<Tree *>();
+    static std::stack<Tree *> *getStack()
+    {
+        if (Stack == nullptr)
+        {
+            Stack = new std::stack<Tree *>();
         }
-        return TreeManager::Stack;
+        return Stack;
+    }
+
+    /*
+    Compare 2 arbres
+    - Renvoie un arbre si les deux sont égaux
+    - Renvoie nullptr sinon
+    */
+    void compare()
+    {
+        Tree *t1 = getStack()->top();
+        getStack()->pop();
+        Tree *t2 = getStack()->top();
+        getStack()->pop();
+
+        if (t1 == nullptr && t2 == nullptr)
+        {
+            getStack()->push(new Tree());
+        }
+        else if (t1 == nullptr || t2 == nullptr)
+        {
+            getStack()->push(nullptr);
+        }
+        else
+        {
+            getStack()->push(t2->getHead());
+            getStack()->push(t1->getHead());
+            compare();
+            Tree *cond1 = getStack()->top();
+            getStack()->pop();
+
+            getStack()->push(t2->getTail());
+            getStack()->push(t1->getTail());
+            compare();
+            Tree *cond2 = getStack()->top();
+            getStack()->pop();
+
+            getStack()->push(cond2);
+            getStack()->push(cond1);
+            compare();
+
+            /* pas utile mais pour l'explication
+            Tree *retour = getStack()->top();
+            getStack()->pop();
+            getStack()->push(retour);
+            */
+        }
+    }
+
+    /*
+    Génère un symbol sous forme d'arbre
+    */
+    void generateSymbol()
+    {
+    }
+
+    /*
+    Génère une liste d'arbre
+    */
+    void generateList()
+    {
+    }
+
+    /*
+    Print sur la sortie standard
+    */
+    void print()
+    {
     }
 };
-void fun_print();
-void fun_compare();
+void fun_add();
+void fun_sub();
 void fun_not();
-void fun_generateSymbol();
+void fun_mul();
 void fun_and();
 void fun_true();
 void fun_false();
-void fun_generateList();
-void fun_print() {
+int main();
+void fun_add() {
+    WhileStandard::Tree * Op1 = nullptr;
+    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Op2 = nullptr;
+    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t5 = nullptr;
+    t5 = Op1;
+    Result = t5;
+    WhileStandard::Tree * t8 = nullptr;
+    t8 = Op2;
+    WhileStandard::Tree * t10 = nullptr;
+    label11 :
+    WhileStandard::Tree * t12 = nullptr;
+    WhileStandard::getStack()->push(t10);
+    WhileStandard::getStack()->push(t8);
+    WhileStandard::compare();
+    t12 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * t17 = nullptr;
+    t17 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    if ( t17 == nullptr )
+    goto label32;
+    {
+    WhileStandard::Tree * t22 = nullptr;
+    WhileStandard::Tree * t23 = nullptr;
+    WhileStandard::Tree * t24 = nullptr;
+    t24 = Result;
+    t22->setHead(t23);
+    t22->setTail(t24);
+    Result = t22;
+    t10 += 1;
+    goto label11;
+    }
+    label32 :
+    WhileStandard::getStack()->push(Result);
 }
-void fun_compare() {
+void fun_sub() {
+    WhileStandard::Tree * Op1 = nullptr;
+    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Op2 = nullptr;
+    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t5 = nullptr;
+    t5 = Op1;
+    Result = t5;
+    WhileStandard::Tree * t8 = nullptr;
+    t8 = Op2;
+    WhileStandard::Tree * t10 = nullptr;
+    label11 :
+    WhileStandard::Tree * t12 = nullptr;
+    WhileStandard::getStack()->push(t10);
+    WhileStandard::getStack()->push(t8);
+    WhileStandard::compare();
+    t12 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * t17 = nullptr;
+    t17 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    if ( t17 == nullptr )
+    goto label28;
+    {
+    WhileStandard::Tree * t22 = nullptr;
+    t22 = Result;
+    Result = t22;
+    t10 += 1;
+    goto label11;
+    }
+    label28 :
+    WhileStandard::getStack()->push(Result);
 }
 void fun_not() {
-    Tree * Op1 = nullptr;
-    Op1 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * Result = nullptr;
-    Tree * t3 = nullptr;
+    WhileStandard::Tree * Op1 = nullptr;
+    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t3 = nullptr;
     t3 = Op1;
     if ( t3 == nullptr )
     goto label15;
     {
-    Tree * t8 = nullptr;
+    WhileStandard::Tree * t8 = nullptr;
     fun_false();
-    t8 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t8 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     Result = t8;
     goto label21;
     }
     {
     label15 :
-    Tree * t16 = nullptr;
+    WhileStandard::Tree * t16 = nullptr;
     fun_true();
-    t16 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t16 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     Result = t16;
     }
     label21 :
-    TreeManager::getStack()->push(Result);
+    WhileStandard::getStack()->push(Result);
 }
-void fun_generateSymbol() {
+void fun_mul() {
+    WhileStandard::Tree * Op1 = nullptr;
+    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Op2 = nullptr;
+    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t5 = nullptr;
+    t5 = Op1;
+    WhileStandard::Tree * t7 = nullptr;
+    label8 :
+    WhileStandard::Tree * t9 = nullptr;
+    WhileStandard::getStack()->push(t7);
+    WhileStandard::getStack()->push(t5);
+    WhileStandard::compare();
+    t9 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * t14 = nullptr;
+    t14 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    if ( t14 == nullptr )
+    goto label32;
+    {
+    WhileStandard::Tree * t19 = nullptr;
+    t19 = Result;
+    WhileStandard::Tree * t21 = nullptr;
+    t21 = Op2;
+    WhileStandard::Tree * t23 = nullptr;
+    WhileStandard::getStack()->push(t21);
+    WhileStandard::getStack()->push(t19);
+    fun_add();
+    t23 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    Result = t19;
+    t7 += 1;
+    goto label8;
+    }
+    label32 :
+    WhileStandard::getStack()->push(Result);
 }
 void fun_and() {
-    Tree * Op1 = nullptr;
-    Op1 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * Op2 = nullptr;
-    Op2 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
-    Tree * Result = nullptr;
-    Tree * t5 = nullptr;
+    WhileStandard::Tree * Op1 = nullptr;
+    Op1 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Op2 = nullptr;
+    Op2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t5 = nullptr;
     t5 = Op1;
-    Tree * t7 = nullptr;
-    TreeManager::getStack()->push(t5);
+    WhileStandard::Tree * t7 = nullptr;
+    WhileStandard::getStack()->push(t5);
     fun_not();
-    t6 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t7 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     if ( t5 == nullptr )
     goto label21;
     {
-    Tree * t14 = nullptr;
+    WhileStandard::Tree * t14 = nullptr;
     fun_false();
-    t14 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t14 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     Result = t14;
     goto label46;
     }
     {
     label21 :
-    Tree * t22 = nullptr;
+    WhileStandard::Tree * t22 = nullptr;
     t22 = Op2;
-    Tree * t24 = nullptr;
-    TreeManager::getStack()->push(t22);
+    WhileStandard::Tree * t24 = nullptr;
+    WhileStandard::getStack()->push(t22);
     fun_not();
-    t23 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t24 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     if ( t22 == nullptr )
     goto label38;
     {
-    Tree * t31 = nullptr;
+    WhileStandard::Tree * t31 = nullptr;
     fun_false();
-    t31 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t31 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     Result = t31;
     goto label44;
     }
     {
     label38 :
-    Tree * t39 = nullptr;
+    WhileStandard::Tree * t39 = nullptr;
     fun_true();
-    t39 = TreeManager::getStack()->top(); TreeManager::getStack()->pop();
+    t39 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
     Result = t39;
     }
     label44 :
     }
     label46 :
-    TreeManager::getStack()->push(Result);
+    WhileStandard::getStack()->push(Result);
 }
 void fun_true() {
-    Tree * Result = nullptr;
-    Tree * t1 = nullptr;
-    Tree * t2 = nullptr;
-    Tree * t3 = nullptr;
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t1 = nullptr;
+    WhileStandard::Tree * t2 = nullptr;
+    WhileStandard::Tree * t3 = nullptr;
     t1->setHead(t2);
     t1->setTail(t3);
     Result = t1;
-    TreeManager::getStack()->push(Result);
+    WhileStandard::getStack()->push(Result);
 }
 void fun_false() {
-    Tree * Result = nullptr;
-    Tree * t1 = nullptr;
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t1 = nullptr;
     Result = t1;
-    TreeManager::getStack()->push(Result);
+    WhileStandard::getStack()->push(Result);
 }
-void fun_generateList() {
+int main() {
+    WhileStandard::Tree * Result = nullptr;
+    WhileStandard::Tree * t1 = nullptr;
+    WhileStandard::Tree * t2 = nullptr;
+    WhileStandard::getStack()->push(t1);
+    WhileStandard::print();
+    t2 = WhileStandard::getStack()->top(); WhileStandard::getStack()->pop();
+    Result = t1;
+    WhileStandard::getStack()->push(Result);
+return 0;
 }
