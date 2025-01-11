@@ -11,6 +11,12 @@ import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateCodeVis
 import org.esir.nctt.while_compiler.Visitor.Symbols.SymbolsVisitor;
 import org.esir.nctt.while_compiler.Visitor.Types.TypesVisitor;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
+
 class Main {
     public static void main(String[] args) throws RecognitionException {
         ArgsManager ArgM = new ArgsManager(args);
@@ -38,12 +44,13 @@ class Main {
 
             // Three-address code generation
             intermediateCodeVisitor.visit_program(ast);
-            String lib = FileManager.readFile(FileManager.getPath("src/cpp_library/Library.cpp").toFile());
+
+            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            InputStream library = classloader.getResourceAsStream("Library.cpp");
+            String lib = new String(library.readAllBytes(), StandardCharsets.UTF_8);
             FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), lib + intermediateCodeVisitor.toCpp());
         } catch (Exception e) {
             System.err.println(e);
         }
-
-
     }
 }
