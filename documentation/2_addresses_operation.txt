@@ -1,16 +1,17 @@
-+-----------+----------------------+----------------------+-----------------------------------------------------------------+
-| Operation |         arg1         |         arg2         |                          explaination                           |
-+-----------+----------------------+----------------------+-----------------------------------------------------------------+
-| pop       | register's label     | null                 | pop on the stack and store in the register provided             |
-| push      | null                 | register's address   | push on the stack the value contained at the address            |
-| define    | new register's label | tree                 | create a new nil tree                                           |
-| mov       | register's label     | register's address   | set the value contained at the address in the selected register |
-| setHead   | register's label     | register's address   | set the tree's head at the address                              |
-| setTail   | register's label     | register's address   | set the tree's tail at the address                              |
-| call      | function's label     | number of parameters | call the function                                               |
-| if        | null                 | register's address   | followed with a goto which point to the else statement          |
-| else      | null                 | null                 | (not mandatory) a label to signify the else's statement start   |
-| endif     | null                 | null                 | (not mandatory) a label to signify the if's statement end       |
-| goto      | null                 | register's address   | jump to the address                                             |
-| inc       | register's label     | value                | increment the register by the value                             |
-+-----------+----------------------+----------------------+-----------------------------------------------------------------+
++-----------+----------------------+----------------------+-------------------------------------------------------------------+
+| Operation |         arg1         |         arg2         |                          explaination                             |
++-----------+----------------------+----------------------+-------------------------------------------------------------------+
+| define    | new register's label |                      | create a new nil tree                                             |
+| define    | new register's label | value                | create a new nil tree with a string value                         |
+| mov       | R1                   | R2                   | copy the R2's value into R1                                       |
+| setHead   | R1                   | R2                   | set a copy of R2 as the head of R1                                |
+| setTail   | R1                   | R2                   | set a copy of R2 as the tail of R1                                |
+| getHead   | R1                   | R2                   | set a copy of R1's Head into R2                                   |
+| getTail   | R1                   | R2                   | set a copy of R1's Tail into R2                                   |
+| call      | function's label     | number of parameters | call the function                                                 |
+| if        | R1                   |                      | check if R1 is false and if it is the case, execute the next goto |
+| else      | null                 | null                 | (not mandatory) a label to signify the else's statement start     |
+| endif     | null                 | null                 | (not mandatory) a label to signify the if's statement end         |
+| goto      | label                |                      | jump to the label                                                 |
+| inc       | R1                   | value                | increment R1 by the value                                         |
++-----------+----------------------+----------------------+-------------------------------------------------------------------+
