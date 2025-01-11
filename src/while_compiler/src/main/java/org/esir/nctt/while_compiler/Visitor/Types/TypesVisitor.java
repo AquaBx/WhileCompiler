@@ -2,6 +2,9 @@ package org.esir.nctt.while_compiler.Visitor.Types;
 
 import org.antlr.runtime.tree.Tree;
 import org.esir.nctt.antlr.WhileGrammarLexer;
+import org.esir.nctt.while_compiler.FunctionSignature;
+import org.esir.nctt.while_compiler.LibraryFunctions;
+import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateFunction;
 import org.esir.nctt.while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
@@ -10,10 +13,13 @@ import static org.junit.Assert.assertEquals;
 
 public class TypesVisitor extends Visitor {
 
-    HashMap<String, Integer[]> functionSignatures = new HashMap<>();
+    HashMap<String, FunctionSignature> functionSignatures = new HashMap<>();
 
     @Override
     public void visit_program(Tree program) {
+
+        LibraryFunctions.addTo(functionSignatures, FunctionSignature::new);
+
         for (int i = 0; i < program.getChildCount(); i++) {
             Tree function = program.getChild(i);
 
@@ -23,7 +29,7 @@ public class TypesVisitor extends Visitor {
             String function_name = function.getChild(0).getText();
 
             // Push Function signature in functionSignatures
-            functionSignatures.put(function_name, new Integer[]{input, output});
+            functionSignatures.put(function_name, new FunctionSignature(function_name,input, output));
         }
 
         // visit each function
@@ -44,7 +50,7 @@ public class TypesVisitor extends Visitor {
     protected Integer visit_expression2(Tree expression) {
         if (expression.getType() == WhileGrammarLexer.EXPR_CALL) {
             visit_expr_call(expression);
-            return functionSignatures.get(expression.getChild(0).getText())[1];
+            return functionSignatures.get(expression.getChild(0).getText()).getOutputs();
         } else {
             return 1;
         }
@@ -73,8 +79,12 @@ public class TypesVisitor extends Visitor {
 
     @Override
     protected void visit_expr_call(Tree tree) {
-        Integer nbParameters = visit_expressions2(tree.getChild(1));
-        assertEquals(String.format("%s", tree.getChild(0).getText()), functionSignatures.get(tree.getChild(0).getText())[0], nbParameters);
+        int nbParameters = visit_expressions2(tree.getChild(1));
+        assertEquals(
+                String.format("%s", tree.getChild(0).getText()),
+                functionSignatures.get(tree.getChild(0).getText()).getInputs(),
+                nbParameters
+        );
     }
 
     @Override

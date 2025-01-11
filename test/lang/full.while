@@ -75,7 +75,6 @@ write Result
 function main: 
 read 
 % 
-Test := (not (true));
-Result := (print nil nil);
+Result := (print nil);
 % 
 write Result 
