@@ -1,8 +1,8 @@
 
-#let title = "Projet"
+#let title = "Rapport de projet"
 #let course_id = "TLC-S7"
 #let instructor = "LAMARCHE Fabrice"
-#let due_time = "../../.."
+#let due_time = "Pour le 26/01/2025"
 #set enum(numbering: "a)")
 
 #let prob(body) = {
@@ -101,29 +101,123 @@
   depth: 3,
 )
 
-#highlight(
-  "
+#highlight()[
 Le rapport de projet aborde à la fois la partie technique de la réalisation du compilateur ainsi que la
-partie organisationnelle du projet. Il devra contenir les informations suivantes (pas forcément dans
-l’ordre fourni)
-- Description technique
-  - Description de l’architecture du compilateur et de la chaine de compilation depuis le
-  - de source en WHILE à la récupération d’un programme exécutable
-  - Description de l’AST
-  - Description de la génération de code 3 adresses à partir de l’AST
-  - Description de l’optimisation de code si elle a été réalisée
-  - Description de la génération de code à partir du code 3 adresses
-  - Description de la bibliothèque runtime de WHILE écrite dans le langage cible
-- Description de la validation du compilateur
-  - Quelle a été la méthodologie utilisée
-  - Quelle est la couverture de vos tests ?
-  - Qu’est-ce qui fonctionne ? Qu’est-ce qui ne fonctionne pas en fin du projet ou quelles
-sont les fonctionnalités restant à implémenter ?
-- Description de la méthodologie de gestion de projet
-  - Outils utilisés pour la gestion du projet
-  - Etapes de développement / découpage des tâches
-  - Rapport de travail individuel
-- Post mortem
-  - Qu’est-ce qui a bien fonctionné, moins bien fonctionné dans votre organisation de projet ?
-  - Avec plus de recul, comment feriez-vous maintenant ?
-")
+partie organisationnelle du projet.
+]
+
+#pagebreak()
+= Description technique
+
+== #highlight()[Architecture du compilateur et de la chaine de compilation]
+
+(depuis le code source en WHILE à la récupération d’un programme exécutable)
+
+== AST
+
+Voici notre AST. Nous avons essayé de le rendre le plus propre possible. Nous l'avons contruit à partir du fichier `full.while` (répertoire `test/lang`) :
+
+#image("resources/ast.jpg")
+
+Sur cet AST, nous remarquons que notre programme contient 3 fonctions :
+
+- Une fonction `add`
+  - 2 paramètres d'entrée : `Op1` et `Op2`
+  - 1 paramètre de sortie : `Result`
+  - Une suite de commandes : 
+    - Une assignation stockée dans la variable `Result` prenant la valeur de `Op1`
+    - Une boucle `for` itérant sur `Op2`. Elle stocke dans `Result` la construction d'un arbre ayant pour fils gauche `nil` et pour fis droit `Result`
+
+- Une fonction `sub`
+  - 2 paramètres d'entrée : `Op1` et `Op2`
+  - 1 paramètre de sortie : `Result`
+  - Une suite de commandes : 
+    - Une assignation stockée dans la variable `Result` prenant la valeur de `Op1`
+    - Une boucle `for` itérant sur `Op2`. Elle stocke dans `Result` la `tail` de `Result`
+
+- Une fonction `mul`
+  - 2 paramètres d'entrée : `Op1` et `Op2`
+  - 1 paramètre de sortie : `Result`
+  - Une bouce `for` itérant sur `Op1`. Elle stocke dans `Result` le résultat de la fonction `add` qui est appelée sur les paramètres `Result` et `Op2`
+
+== Table des symboles
+
+- Nous avons implémenté une classe `SymbolInfo` qui a pour attributs `line` (numéro de ligne), `column` (numéro de colonne) et `content` (contenu du symbol). Elle permetd'énumérer les informatation concernant le symbole.
+
+- Ensuite, nous avons implémenté `SymbolTable`, la table des symboles. Nous l'avons représenté en `Stack<Map<String, SymbolInfo>>`. Nous y avons implémenté plusieurs méthodes pour ajouter des symboles à un contexte, ajouter un contexte à la table des symboles, vérifier si le symbole est dans un contexte etc.
+
+#highlight()[
+attention symbols enum c'est de la d ça sert null part, je fais un git blame pour voir c'est qui qui a fait 
+]
+
+== Design Pattern Visiteur
+
+Nous avons mis en place une classe abstraite `Visitor.java` se basant sur le Design Pattern visitor. Elle permet de visiter n'importe quel label présent dans l'AST (fonctions, inputs, outputs, expressions, variables etc.)
+
+Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table des symboles (`SymbolsVisitor.java`).
+
+== Génération de code 3 adresses à partir de l’AST
+
+- visiteur pour le code 3 adresses (`IntermediateCodeVisitor.java`)
+
+parler de FunctionSignature - les types (`TypesVisitor.java`)
+
+```
++-----------+----------------------+----------------------+
+| Operation |         arg1         |         arg2         |
++-----------+----------------------+----------------------+
+| input     | input name           | stack position       |
+| return    |                      | register's address   |
+| define    | new register's label | tree                 |
+| retrieve  | new register's label | register's address   |
+| mov       | register's label     | register's address   |
+| setHead   | register's label     | register's address   |
+| setTail   | register's label     | register's address   |
+| call      | function's label     | number of parameters |
+| param     |                      | register's address   |
+| return    |                      | register's address   |
++-----------+----------------------+----------------------+
+```
+
+#highlight()[
+Traduction complète d'un programme !!
+]
+
+== Optimisation de code #highlight()[si elle a été réalisée]
+
+== Génération de code à partir du code 3 adresses
+
+== Bibliothèque runtime de WHILE écrite dans le langage cible
+
+#pagebreak()
+= Description de la validation du compilateur
+
+== Méthodologie utilisée
+
+== Code coverage
+
+== Bilan
+
+=== Ce qui fonctionne
+
+=== Ce qui ne fonctionne pas
+
+=== Fonctionnalités restant à implémenter ?
+
+#pagebreak()
+= Description de la méthodologie de gestion de projet
+
+== Outils utilisés pour la gestion du projet
+
+== Etapes de développement et découpage des tâches
+
+== Rapport de travail individuel
+
+#pagebreak()
+= Post mortem : Organisation du projet
+
+== Ce qui a bien fonctionné
+
+== Ce qui a moins bien fonctionné
+
+== Avec plus de recul, que ferions-vous ?
