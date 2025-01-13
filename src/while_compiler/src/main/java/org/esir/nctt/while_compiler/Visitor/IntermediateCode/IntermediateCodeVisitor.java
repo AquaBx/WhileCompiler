@@ -75,6 +75,7 @@ public class IntermediateCodeVisitor extends Visitor {
         Tree variables = tree.getChild(0);
 
         for (int i = 0; i < expressions.getChildCount(); i++) {
+            // todo problème si plusieurs assignations à gauche et une seule à droite (exemple fonction)
             int size = functionActual.instructionsCount();
             visit_expression(expressions.getChild(i));
             String label = variables.getChild(i).getText();
