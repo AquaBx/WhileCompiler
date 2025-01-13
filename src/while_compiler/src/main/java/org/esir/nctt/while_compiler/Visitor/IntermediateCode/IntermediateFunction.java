@@ -15,8 +15,11 @@ public class IntermediateFunction extends FunctionSignature {
     private final HashMap<Integer, String> addressToRegister = new HashMap<>();
 
     private final ArrayList<String> inputsLabel = new ArrayList<>();
+
+    // Nom des output de la fonctions
     private final ArrayList<String> outputsLabel = new ArrayList<>();
 
+    // Function is in the standard library see constructor
     private boolean isSTD = false;
 
     // constructeur de fonction défini par l'utilisateur
@@ -64,7 +67,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toString() {
-        if (isSTD) return "";
+        if (isSTD()) return "";
         StringBuilder out = new StringBuilder();
         out.append(String.format("function %s\n", getName()));
         for (int i = 0; i < instructionsCount(); i++) {
@@ -194,10 +197,16 @@ public class IntermediateFunction extends FunctionSignature {
         int callAddress = addInstruction(new Call(returns, function.getName(), inputs, function.isSTD()));
 
         // récupère de la stack et met dans les registres préalablement définis
-        for (int i = 1; i < function.getOutputs(); i++) {
-            createGetHead(returns, registerFromAddress(callAddress - 1 - function.getOutputs() + i));
-            createGetTail(returns, returns);
+        if (function.getOutputs() == 1){
+            createMov(registerFromAddress(callAddress - 2 ),returns);
         }
+        else{
+            for (int i = 0; i < function.getOutputs(); i++) {
+                createGetHead(returns, registerFromAddress(callAddress - 1 - function.getOutputs() + i));
+                createGetTail(returns, returns);
+            }
+        }
+
         return retourAd;
     }
 
@@ -221,20 +230,28 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toCpp() {
-        assertFalse("STD function, do no call this method", isSTD);
+        assertFalse("STD function, do no call this method", isSTD());
+
         StringBuilder out = new StringBuilder();
+
         out.append(String.format("%s {\n", this.toCppSignature()));
+
+        // Ajouter des instruction dans la fonction
         for (Instruction ins : instructions) {
             out.append("    ");
             out.append(ins.toCpp());
             out.append("\n");
         }
+
         out.append("    ");
+        
+        // 
         if (Objects.equals(getName(), "main")) {
             out.append(String.format("return *%s;\n", outputsLabel.getFirst()));
         } else {
             out.append(String.format("return %s;\n", outputsLabel.getFirst()));
         }
+
         out.append("}\n");
         return out.toString();
     }
