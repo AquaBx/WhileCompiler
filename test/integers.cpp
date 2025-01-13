@@ -14,6 +14,40 @@ void test_case_add() {
     Tools::assert_equals((int)zero, 0, "Devrait être égal à 0");
 }
 
+void test_case_sub() {
+    WhileStandard::Tree zero;
+    WhileStandard::Tree un = zero;
+    un+=1;
+    WhileStandard::Tree deux = fun_add(un,un);
+    WhileStandard::Tree trois = fun_add(deux,un);
+
+    Tools::assert_equals((int)fun_sub(trois,zero), 3, "Devrait être égal à 3");
+
+    Tools::assert_equals((int)fun_sub(trois,un), 2, "Devrait être égal à 2");
+    Tools::assert_equals((int)fun_sub(deux,zero), 2, "Devrait être égal à 2");
+
+    Tools::assert_equals((int)fun_sub(trois,deux), 1, "Devrait être égal à 1");
+    Tools::assert_equals((int)fun_sub(deux,un), 1, "Devrait être égal à 1");
+    Tools::assert_equals((int)fun_sub(un,zero), 1, "Devrait être égal à 1");
+
+    Tools::assert_equals((int)fun_sub(zero,zero), 0, "Devrait être égal à 0");
+    Tools::assert_equals((int)fun_sub(un,un), 0, "Devrait être égal à 0");
+    Tools::assert_equals((int)fun_sub(deux,deux), 0, "Devrait être égal à 0");
+    Tools::assert_equals((int)fun_sub(trois,trois), 0, "Devrait être égal à 0");
+}
+
+void test_case_mul() {
+    WhileStandard::Tree zero;
+    WhileStandard::Tree un;
+    un += 1;
+    WhileStandard::Tree deux = fun_add(un,un);
+    WhileStandard::Tree trois = fun_add(deux,un);
+
+    Tools::assert_equals((int)fun_mul(trois,deux), 6, "Devrait être égal à 6");
+    Tools::assert_equals((int)fun_mul(deux,trois), 6, "Devrait être égal à 6");
+    Tools::assert_equals((int)fun_mul(trois,zero), 0, "Devrait être égal à 0");
+}
+
 int main(int argc, char** argv)
 {
     std::cout << "--------- test --------" << std::endl;
@@ -22,5 +56,18 @@ int main(int argc, char** argv)
     std::cout << "Error Code : " << result1 << std::endl;
     std::cout << "---- test finished ----" << std::endl;
 
-    return result1;
+
+    std::cout << "--------- test --------" << std::endl;
+    std::cout << "Description : fonction sub" << std::endl;
+    const int result2 = Tools::test(test_case_sub);
+    std::cout << "Error Code : " << result2 << std::endl;
+    std::cout << "---- test finished ----" << std::endl;
+
+    std::cout << "--------- test --------" << std::endl;
+    std::cout << "Description : fonction mul" << std::endl;
+    const int result3 = Tools::test(test_case_mul);
+    std::cout << "Error Code : " << result3 << std::endl;
+    std::cout << "---- test finished ----" << std::endl;
+
+    return result1 + result2 + result3;
 }
