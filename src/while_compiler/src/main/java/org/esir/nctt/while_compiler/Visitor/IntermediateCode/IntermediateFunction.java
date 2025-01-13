@@ -179,35 +179,29 @@ public class IntermediateFunction extends FunctionSignature {
         outputsLabel.add(label);
     }
 
-    public int createCall(IntermediateFunction function, int[] addresses) {
+    public int createCall(IntermediateFunction function, int[] retours, int[] addresses) {
         String[] inputs = new String[addresses.length];
 
         for (int i = 0; i < addresses.length; i++) {
             inputs[i] = registerFromAddress(addresses[i]);
         }
 
-        int retourAd = instructionsCount();
-
-        // création registres de retour
-        for (int i = 0; i < function.getOutputs(); i++) {
-            createDefine();
-        }
-
         String returns = createDefine();
+
         int callAddress = addInstruction(new Call(returns, function.getName(), inputs, function.isSTD()));
 
         // récupère de la stack et met dans les registres préalablement définis
-        if (function.getOutputs() == 1){
-            createMov(registerFromAddress(callAddress - 2 ),returns);
-        }
-        else{
+        if ( function.getOutputs() > 1){
             for (int i = 0; i < function.getOutputs(); i++) {
-                createGetHead(returns, registerFromAddress(callAddress - 1 - function.getOutputs() + i));
+                createGetHead(returns, registerFromAddress(retours[i]));
                 createGetTail(returns, returns);
             }
         }
+        else {
+            createMov(returns, registerFromAddress(retours[0]));
+        }
 
-        return retourAd;
+        return retours[0];
     }
 
     public void createInc(String register, int value) {
