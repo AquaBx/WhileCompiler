@@ -48,5 +48,3 @@
 //         }
 //     }
 // }
-cons fg fd
-cons fg 
