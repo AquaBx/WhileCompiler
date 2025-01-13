@@ -198,7 +198,7 @@ public class IntermediateFunction extends FunctionSignature {
             }
         }
         else {
-            createMov(returns, registerFromAddress(retours[0]));
+            createMov(registerFromAddress(retours[0]),returns);
         }
 
         return retours[0];
