@@ -29,4 +29,3 @@ incluant :
 
 - La documentation de la bibliothèque « runtime » java de ANTLR est consultable à cette adresse : [Overview (ANTLR 3 Runtime 3.5.3 API)](https://www.antlr3.org/api/Java/index.html).
 - L’interface correspondant à un nœud de l’AST est fournie ici : [Tree (ANTLR 3 Runtime 3.5.3 API)](https://www.antlr3.org/api/Java/org/antlr/runtime/tree/Tree.html). 
-

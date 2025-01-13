@@ -1,0 +1,13 @@
+stages:
+  - test
+
+jobpre:
+  image: alpine
+  stage: test
+  run:
+    - name: init
+      script: "/sbin/apk update && /sbin/apk add clang++ lld cmake openjdk21 maven"
+    - name: build
+      script: "mvn -f src/while_compiler/pom.xml install"
+    - name: test
+      script: "./tests.sh"
