@@ -12,8 +12,8 @@ add_custom_command (
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(test_bools bools_build.cpp)
+# add_library(test_bools bools_build.cpp)
 
 enable_testing()
-add_executable(bools ${CMAKE_CURRENT_SOURCE_DIR}/test/bools.cpp bools_build.cpp )
+add_executable(bools ${CMAKE_CURRENT_SOURCE_DIR}/test/bools.cpp)
 add_test(NAME TestBools COMMAND bools)
