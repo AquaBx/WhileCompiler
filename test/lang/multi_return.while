@@ -1,0 +1,16 @@
+function test1 : 
+read
+%
+    Result1 := salut1;
+    Result2 := salut2
+%
+write Result1,Result2
+
+function main : 
+read
+%
+    Result1,Result2 := (test1);
+    Result := (print Result1);
+    Result := (print Result2)
+%
+write Result
