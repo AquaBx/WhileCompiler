@@ -37,3 +37,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
