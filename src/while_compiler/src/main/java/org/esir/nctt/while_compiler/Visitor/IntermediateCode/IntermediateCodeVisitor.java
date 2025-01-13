@@ -140,6 +140,14 @@ public class IntermediateCodeVisitor extends Visitor {
         Tree parameters = tree.getChild(1);
 
         int[] addresses = new int[parameters.getChildCount()];
+        int[] retAddresses = new int[functions.get(label).getOutputs()];
+
+        // création registres de retour
+        for (int i = 0; i < functions.get(label).getOutputs(); i++) {
+            int addressOfParam = functionActual.instructionsCount();
+            functionActual.createDefine();
+            retAddresses[i] = addressOfParam;
+        }
 
         for (int i = 0; i < parameters.getChildCount(); i++) {
             int addressOfParam = functionActual.instructionsCount();
@@ -147,19 +155,23 @@ public class IntermediateCodeVisitor extends Visitor {
             addresses[i] = addressOfParam;
         }
 
-        functionActual.createCall(functions.get(label), addresses);
+        functionActual.createCall(functions.get(label),retAddresses, addresses);
     }
 
     @Override
     protected void visit_expr_compare(Tree tree) {
         // seems ok
 
+        int retour = functionActual.instructionsCount();
+        functionActual.createDefine();
+
+
         int i1 = functionActual.instructionsCount();
         visit_expression(tree.getChild(0));
         int i2 = functionActual.instructionsCount();
         visit_expression(tree.getChild(1));
 
-        functionActual.createCall(functions.get("compare"), new int[]{i1, i2});
+        functionActual.createCall(functions.get("compare"),new int[]{retour}, new int[]{i1, i2});
     }
 
     @Override
@@ -189,7 +201,12 @@ public class IntermediateCodeVisitor extends Visitor {
         // seems ok
         Tree expression = tree.getChild(0);
         int expressionAddress = functionActual.instructionsCount();
+
+        System.out.println(functionActual.instructionsCount());
+
         visit_expression(expression);
+        System.out.println(functionActual.instructionsCount());
+
 
         functionActual.createIf(functionActual.registerFromAddress(expressionAddress));
         int gotoElseAddress = functionActual.createGoto(null);
@@ -229,9 +246,12 @@ public class IntermediateCodeVisitor extends Visitor {
         int itemAddress = functionActual.instructionsCount();
         String itemRegister = functionActual.createDefine();
 
+        int retour = functionActual.instructionsCount();
+        functionActual.createDefine();
+
         // compare liste et nil
         String compareCall = functionActual.createLabel();
-        int retour = functionActual.createCall(functions.get("compare"), new int[]{listeAddress, nilAddress});
+        functionActual.createCall(functions.get("compare"), new int[]{retour },new int[]{listeAddress, nilAddress});
 
         functionActual.createIf(functionActual.registerFromAddress(retour));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
@@ -285,8 +305,11 @@ public class IntermediateCodeVisitor extends Visitor {
         int counterAddress = functionActual.instructionsCount();
         String counterRegister = functionActual.createDefine();
 
+        int retour = functionActual.instructionsCount();
+        functionActual.createDefine();
+
         String compareCall = functionActual.createLabel();
-        int retour = functionActual.createCall(functions.get("compare"), new int[]{valueAddress, counterAddress});
+        functionActual.createCall(functions.get("compare"), new int[]{retour},new int[]{valueAddress, counterAddress});
 
         functionActual.createIf(functionActual.registerFromAddress(retour));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
