@@ -219,7 +219,7 @@ public class IntermediateFunction extends FunctionSignature {
         }
 
         ArrayList<String> params = new ArrayList<>();
-        inputsLabel.forEach(val -> params.add(String.format("WhileStandard::Tree %s", val)));
+        inputsLabel.forEach(val -> params.add(String.format("const WhileStandard::Tree & %s", val)));
 
         String returnT = getOutputs() == 0 ? "void" : "WhileStandard::Tree";
 
