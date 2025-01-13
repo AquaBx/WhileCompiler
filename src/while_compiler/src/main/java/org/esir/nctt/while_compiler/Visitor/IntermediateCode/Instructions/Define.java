@@ -14,8 +14,8 @@ public class Define extends Instruction {
     @Override
     public String toCpp() {
         if (getArg2().isEmpty()) {
-            return String.format("WhileStandard::Tree * %s = new WhileStandard::Tree();", this.getArg1());
+            return String.format("WhileStandard::Tree %s;", this.getArg1());
         }
-        return String.format("WhileStandard::Tree * %s = new WhileStandard::Tree(\"%s\");", this.getArg1(), getArg2());
+        return String.format("WhileStandard::Tree %s(\"%s\");", this.getArg1(), getArg2());
     }
 }

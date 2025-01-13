@@ -16,6 +16,12 @@ public class LibraryFunctions {
             print.setOutputs(1);
             target.put("print", print);
 
+            T printInt = constructor.get();
+            printInt.setName("printInt");
+            printInt.setInputs(1);
+            printInt.setOutputs(1);
+            target.put("printInt", printInt);
+
             T compare = constructor.get();
             compare.setName("compare");
             compare.setInputs(2);
@@ -41,6 +47,7 @@ public class LibraryFunctions {
     public static void addTo(SymbolTable target) {
         // définitions des fonctions standards prises en charge par notre librairie
         target.put("print", null);
+        target.put("printInt", null);
         target.put("compare", null);
         target.put("generateSymbol", null);
         target.put("generateList", null);

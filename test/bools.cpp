@@ -2,34 +2,34 @@
 #include "tools.h"
 
 void test_case_true() {
-    WhileStandard::Tree * vTrue = fun_true();
-    Tools::assert_equals(vTrue->isNil(), false, "Valeur true pas bon");
+    WhileStandard::Tree vTrue = fun_true();
+    Tools::assert_equals(vTrue.isNil(), false, "Valeur true pas bon");
 }
 
 void test_case_false() {
-    WhileStandard::Tree * vFalse = fun_false();
-    Tools::assert_equals(vFalse->isNil(), true, "Valeur false pas bon");
+    WhileStandard::Tree vFalse = fun_false();
+    Tools::assert_equals(vFalse.isNil(), true, "Valeur false pas bon");
 }
 
 void test_case_not() {
-    WhileStandard::Tree * vFalse = fun_false();
-    WhileStandard::Tree * vTrue = fun_not(vFalse);
-    WhileStandard::Tree * vFalse2 = fun_not(vTrue);
+    WhileStandard::Tree vFalse = fun_false();
+    WhileStandard::Tree vTrue = fun_not(vFalse);
+    WhileStandard::Tree vFalse2 = fun_not(vTrue);
     
-    Tools::assert_equals(vFalse->isNil(), true, "Valeur false a été changé");
-    Tools::assert_equals(vTrue->isNil(), false, "Valeur not pas bon");
-    Tools::assert_equals(vTrue->isNil(), false, "Valeur true a été changé");
-    Tools::assert_equals(vFalse2->isNil(), true, "Valeur false2 pas bonne");
+    Tools::assert_equals(vFalse.isNil(), true, "Valeur false a été changé");
+    Tools::assert_equals(vTrue.isNil(), false, "Valeur not pas bon");
+    Tools::assert_equals(vTrue.isNil(), false, "Valeur true a été changé");
+    Tools::assert_equals(vFalse2.isNil(), true, "Valeur false2 pas bonne");
 }
 
 void test_case_and() {
-    WhileStandard::Tree * vFalse = fun_false();
-    WhileStandard::Tree * vTrue = fun_true();
+    WhileStandard::Tree vFalse = fun_false();
+    WhileStandard::Tree vTrue = fun_true();
     
-    Tools::assert_equals(fun_and(vFalse,vFalse)->isNil(), true, "1 Devrait être false");
-    Tools::assert_equals(fun_and(vFalse,vTrue)->isNil(), true, "2 Devrait être false");
-    Tools::assert_equals(fun_and(vTrue,vFalse)->isNil(), true, "3 Devrait être false");
-    Tools::assert_equals(fun_and(vTrue,vTrue)->isNil(), false, "4 Devrait être true");
+    Tools::assert_equals(fun_and(vFalse,vFalse).isNil(), true, "1 Devrait être false");
+    Tools::assert_equals(fun_and(vFalse,vTrue).isNil(), true, "2 Devrait être false");
+    Tools::assert_equals(fun_and(vTrue,vFalse).isNil(), true, "3 Devrait être false");
+    Tools::assert_equals(fun_and(vTrue,vTrue).isNil(), false, "4 Devrait être true");
 }
 
 int main(int argc, char** argv)

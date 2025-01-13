@@ -1,125 +1,199 @@
 #include <stack>
 #include <string>
 #include <iostream>
+#include <cassert>
 namespace WhileStandard
 {
 
     class Tree
     {
     private:
-        Tree * head;
-        Tree * tail;
+        Tree *head;
+        Tree *tail;
         std::string symbol;
 
     public:
-        bool isNil() {
-            return head == nullptr && tail == nullptr;
+        bool isNil() const
+        {
+            return !hasTail() && !hasHead();
         }
 
-        std::string getSymbol() { return symbol ;}
+        std::string getSymbol() const { return symbol; }
 
-        Tree(std::string symbol = "") : head(nullptr), tail(nullptr), symbol(symbol) {}
+        Tree() : head(nullptr), tail(nullptr), symbol("") {}
+        Tree(const std::string symbol) : head(nullptr), tail(nullptr), symbol(symbol) {}
 
-        Tree(Tree *old)
+        Tree(const Tree &old)
         {
-            if (old->getHead() != nullptr)
+            if (old.hasHead())
             {
-                this->head = new Tree(old->getHead());
+                this->setHead(old.getHead());
             }
-            if (old->getTail() != nullptr)
+            else
             {
-                this->tail = new Tree(old->getTail());
+                this->head = nullptr;
             }
-            this -> symbol = old->getSymbol();
+            if (old.hasTail())
+            {
+                this->setTail(old.getTail());
+            }
+            else
+            {
+                this->tail = nullptr;
+            }
+            this->symbol = old.getSymbol();
         }
 
-        Tree *getTail()
+        Tree &operator=(const Tree &old)
         {
-            return this->tail;
+            if (this != &old)
+            {
+                if (old.hasHead())
+                {
+                    delete this->head;
+                    this->setHead(old.getHead());
+                }
+                else
+                {
+                    this->head = nullptr;
+                }
+                if (old.hasTail())
+                {
+                    delete this->tail;
+                    this->setTail(old.getTail());
+                }
+                else
+                {
+                    this->tail = nullptr;
+                }
+                this->symbol = old.getSymbol();
+            }
+            return *this;
         }
 
-        Tree *getHead()
+        bool hasTail() const
         {
-            return this->head;
+            return this->tail != nullptr;
         }
 
-        void setTail(Tree *tail)
+        bool hasHead() const
+        {
+            return this->head != nullptr;
+        }
+
+        Tree getTail() const
+        {
+            assert(hasTail());
+            return Tree(*this->tail);
+        }
+
+        Tree getHead() const
+        {
+            assert(hasHead());
+            return Tree(*this->head);
+        }
+
+        void setTail(const Tree &tail)
         {
             this->tail = new Tree(tail);
         }
 
-        void setHead(Tree *head)
+        void setHead(const Tree &head)
         {
             this->head = new Tree(head);
         }
 
         ~Tree()
         {
-            if (head != nullptr)
+            if (hasHead())
             {
                 delete head;
             }
-            if (head != nullptr)
+            if (hasTail())
             {
                 delete tail;
             }
         }
 
-        Tree & operator += (int v){
-            for (int i = 0 ; i < v ; i++){
-                Tree * oldTail = this -> getTail();
-                Tree * newTail = new Tree();
-                newTail->setTail(oldTail);
-                this->setTail(newTail);
+        Tree &operator+=(int v)
+        {
+            for (int i = 0; i < v; i++)
+            {
+                if (this->hasTail())
+                {
+                    Tree newTail;
+                    newTail.setTail(this->getTail());
+                    this->setTail(newTail);
+                }
+                else
+                {
+                    this->setTail(Tree());
+                }
             }
+            return *this;
         }
 
-        operator int(){
-            if ( this -> isNil() ){
+        operator int() const
+        {
+            if (this->isNil())
+            {
                 return 0;
             }
-            return 1 + *(this -> getTail());
+            return 1 + static_cast<int>(this->getTail());
         }
-    }; 
+    };
 
-    bool compare2(Tree *t1, Tree *t2) {
-        if (t1->isNil() && t2->isNil()) {
-            return true;
-        } else if (t1 == nullptr || t2 == nullptr) {
-            return false;
-        } else {
-            bool cond1 = compare2(t1->getHead(), t2->getHead());
-            bool cond2 = compare2(t1->getTail(), t2->getTail());
-            return cond1 && cond2;
-        }
+    bool compare2(const Tree &t1, const Tree &t2)
+    {
+        if (t1.isNil() && t2.isNil()) return true;
+        if (t1.isNil() || t2.isNil()) return false;
+
+        bool cond1 = t1.hasHead() && t2.hasHead() ? compare2(t1.getHead(), t2.getHead()) : true;
+        bool cond2 = t1.hasTail() && t2.hasTail() ? compare2(t1.getTail(), t2.getTail()) : true;
+
+       return cond1 && cond2;
     }
 
-   /*
-    Compare 2 arbres
-    - Renvoie un arbre non vide si les deux sont égaux
-    - Renvoie un arbre vide sinon sinon
-    */
-    Tree * compare(Tree *t1, Tree *t2) {
-        Tree * temp1 = new Tree();
-        if (compare2(t1,t2)){
-            Tree * temp2 = new Tree();
+    /*
+     Compare 2 arbres
+     - Renvoie un arbre non vide si les deux sont égaux
+     - Renvoie un arbre vide sinon sinon
+     */
+    Tree compare(const Tree &t1, const Tree &t2)
+    {
+        Tree temp1;
+        if (compare2(t1, t2))
+        {
+            Tree temp2;
+            temp2.setTail(temp1);
             return temp2;
         }
-        return temp1;        
+        return temp1;
     }
 
     /*
     Print sur la sortie standard
     */
-    Tree * print(Tree * t)
+    Tree print(const Tree &t)
     {
-        if (t->getHead() != nullptr){
-            print(t->getHead());
-        }        
-        std::cout << t->getSymbol() << std::endl;
-        if (t->getTail() != nullptr){
-            print(t->getTail());
+        if (t.hasHead())
+        {
+            print(t.getHead());
         }
-        return new Tree();
+        std::cout << t.getSymbol() << std::endl;
+        if (t.hasTail())
+        {
+            print(t.getTail());
+        }
+        return t;
+    }
+
+     /*
+    Print sur la sortie standard
+    */
+    Tree printInt(const Tree &t)
+    {
+        std::cout << (int)t << std::endl;
+        return t;
     }
 };
