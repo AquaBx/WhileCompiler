@@ -6,14 +6,14 @@ set(CMAKE_CXX_STANDARD 26)
 
 # Tests
 
-enable_testing()
-
 add_custom_command ( 
-        OUTPUT bools.cpp
-        COMMAND java -jar ${CMAKE_CURRENT_SOURCE_DIR}/src/while_compiler/target/while_compiler-all.jar -i lang/bools.while -o out/bools.cpp
-        DEPENDS lang/bools.while
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test
+        OUTPUT bools_build.cpp
+        COMMAND java -jar ${CMAKE_CURRENT_SOURCE_DIR}/src/while_compiler/target/while_compiler-all.jar -i test/lang/bools.while -o ${CMAKE_BINARY_DIR}/bools_build.cpp
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(bools bools.cpp)
+add_executable(test_bools bools_build.cpp)
+
+enable_testing()
+add_executable(bools ${CMAKE_CURRENT_SOURCE_DIR}/test/bools.cpp bools_build.cpp )
 add_test(NAME TestBools COMMAND bools)
