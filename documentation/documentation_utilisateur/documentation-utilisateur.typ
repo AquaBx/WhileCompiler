@@ -1,8 +1,8 @@
 
-#let title = "Projet"
+#let title = "Documentation utilisateur"
 #let course_id = "TLC-S7"
 #let instructor = "LAMARCHE Fabrice"
-#let due_time = "../../.."
+#let due_time = "Pour le 26/01/2025"
 #set enum(numbering: "a)")
 
 #let prob(body) = {
@@ -101,15 +101,18 @@
   depth: 3,
 )
 
-#highlight(
-  "
-Il s’agit ici de fournir une documentation pédagogique et comportant des exemples. Cette
-documentation a deux rôles :
-• Expliquer à un utilisateur comment écrire un programme en langage WHILE (avec des
-exemples). Attention, si vous prenez en compte un sous ensemble du langage, ne décrire que
-ces sous ensemble.
-• Expliquer à un utilisateur comment utiliser votre compilateur pour générer, à partir d’un code
-source WHILE, un fichier exécutable. Il s’agira aussi d’expliquer comment lancer le programme
-compilé et lui passer des arguments. Si votre compilateur propose des options de compilation,
-n’oubliez pas de les indiquer.
+#pagebreak()
+= Ecriture d'un programme en langage WHILE
+
+#highlight("mettre des exemples")
+
+#pagebreak()
+= Compilation d'un programme en langage WHILE
+
+#highlight("
+Expliquer à un utilisateur comment utiliser notre compilateur pour générer, à partir d’un code source WHILE, un fichier exécutable.
+
+- Il s’agira aussi d’expliquer comment lancer le programme compilé et lui passer des arguments.
+
+- Si votre compilateur propose des options de compilation, n’oubliez pas de les indiquer.
 ")
