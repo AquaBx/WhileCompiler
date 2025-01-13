@@ -197,10 +197,16 @@ public class IntermediateFunction extends FunctionSignature {
         int callAddress = addInstruction(new Call(returns, function.getName(), inputs, function.isSTD()));
 
         // récupère de la stack et met dans les registres préalablement définis
-        for (int i = 1; i < function.getOutputs(); i++) {
-            createGetHead(returns, registerFromAddress(callAddress - 1 - function.getOutputs() + i));
-            createGetTail(returns, returns);
+        if (function.getOutputs() == 1){
+            createMov(registerFromAddress(callAddress - 2 ),returns);
         }
+        else{
+            for (int i = 0; i < function.getOutputs(); i++) {
+                createGetHead(returns, registerFromAddress(callAddress - 1 - function.getOutputs() + i));
+                createGetTail(returns, returns);
+            }
+        }
+
         return retourAd;
     }
 
