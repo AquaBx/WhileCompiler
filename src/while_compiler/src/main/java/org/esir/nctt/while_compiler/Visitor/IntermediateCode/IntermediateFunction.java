@@ -96,6 +96,9 @@ public class IntermediateFunction extends FunctionSignature {
     public void createIf(String register) {
         addInstruction(new If(register));
     }
+    public void createIfnot(String register) {
+        addInstruction(new Ifnot(register));
+    }
 
     public void createOpenContext() {
         addInstruction(new OpenContext());
@@ -216,9 +219,9 @@ public class IntermediateFunction extends FunctionSignature {
         }
 
         ArrayList<String> params = new ArrayList<>();
-        inputsLabel.forEach(val -> params.add(String.format("WhileStandard::Tree * %s", val)));
+        inputsLabel.forEach(val -> params.add(String.format("WhileStandard::Tree %s", val)));
 
-        String returnT = getOutputs() == 0 ? "void" : "WhileStandard::Tree *";
+        String returnT = getOutputs() == 0 ? "void" : "WhileStandard::Tree";
 
         return String.format("%s fun_%s(%s)", returnT, getName(), String.join(",", params));
     }

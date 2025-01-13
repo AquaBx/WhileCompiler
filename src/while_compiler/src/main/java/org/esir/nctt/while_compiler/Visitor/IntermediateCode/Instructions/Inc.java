@@ -16,6 +16,6 @@ public class Inc extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("*%s += %s;", getArg1(), value);
+        return String.format("%s += %s;", getArg1(), value);
     }
 }

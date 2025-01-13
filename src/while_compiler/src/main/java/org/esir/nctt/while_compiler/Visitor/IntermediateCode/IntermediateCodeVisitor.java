@@ -253,7 +253,7 @@ public class IntermediateCodeVisitor extends Visitor {
         String compareCall = functionActual.createLabel();
         functionActual.createCall(functions.get("compare"), new int[]{retour },new int[]{listeAddress, nilAddress});
 
-        functionActual.createIf(functionActual.registerFromAddress(retour));
+        functionActual.createIfnot(functionActual.registerFromAddress(retour));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
         functionActual.createOpenContext();
 
@@ -281,7 +281,7 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_expression(expression);
 
         String labelIf = functionActual.createLabel();
-        functionActual.createIf(functionActual.registerFromAddress(expressionAddress));
+        functionActual.createIfnot(functionActual.registerFromAddress(expressionAddress));
         int gotoEndWhileGotoAddress = functionActual.createGoto(null);
         functionActual.createOpenContext();
         visit_commands(commands);
@@ -311,7 +311,7 @@ public class IntermediateCodeVisitor extends Visitor {
         String compareCall = functionActual.createLabel();
         functionActual.createCall(functions.get("compare"), new int[]{retour},new int[]{valueAddress, counterAddress});
 
-        functionActual.createIf(functionActual.registerFromAddress(retour));
+        functionActual.createIfnot(functionActual.registerFromAddress(retour));
         int gotoEndForGotoAddress = functionActual.createGoto(null);
         functionActual.createOpenContext();
 

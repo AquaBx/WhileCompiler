@@ -15,6 +15,6 @@ public class GetHead extends Instruction {
 
     @Override
     public String toCpp() {
-        return String.format("%s = %s->getHead();", getArg2(), getArg1());
+        return String.format("%s = %s.getHead();", getArg2(), getArg1());
     }
 }
