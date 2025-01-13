@@ -1,0 +1,8 @@
+function main : 
+read
+%
+    Test := (cons a b);
+    Test2 := (cons) ;
+    Result := (print Test2)
+%
+write Result;

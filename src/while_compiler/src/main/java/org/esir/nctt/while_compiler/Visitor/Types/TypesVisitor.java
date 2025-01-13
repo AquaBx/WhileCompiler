@@ -9,6 +9,7 @@ import org.esir.nctt.while_compiler.Visitor.Visitor;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TypesVisitor extends Visitor {
 
@@ -74,6 +75,7 @@ public class TypesVisitor extends Visitor {
         Integer nbExpressions = visit_expressions2(tree.getChild(1));
 
         assertEquals(nbVariables, nbExpressions);
+        visit_expressions(tree.getChild(1));
     }
 
     @Override
@@ -116,6 +118,10 @@ public class TypesVisitor extends Visitor {
 
     @Override
     protected void visit_expr_constructor_cons(Tree tree) {
+        Tree listExpressions = tree.getChild(0);
+        int nbExpressions = listExpressions.getChildCount();
+        assertTrue("cons requires at least 1 argument, got 0.", nbExpressions > 0);
+        visit_expressions(listExpressions);
     }
 
     @Override
