@@ -12,15 +12,7 @@ namespace WhileStandard
         Tree *tail;
         std::string symbol;
 
-        
-
     public:
-        static Tree createReturn( const Tree & value ){
-            Tree retour;
-            retour.setHead(value);
-            return retour;
-        }
-
         bool isNil() const
         {
             return !hasTail() && !hasHead();
@@ -174,9 +166,9 @@ namespace WhileStandard
         {
             Tree temp2;
             temp2.setTail(temp1);
-            return Tree::createReturn(temp2);
+            return temp2;
         }
-        return Tree::createReturn(temp1);
+        return temp1;
     }
 
     /*
@@ -193,7 +185,7 @@ namespace WhileStandard
         {
             print(t.getTail());
         }
-        return Tree::createReturn(t);
+        return t;
     }
 
      /*
@@ -202,6 +194,119 @@ namespace WhileStandard
     Tree printInt(const Tree &t)
     {
         std::cout << (int)t << std::endl;
-        return Tree::createReturn(t);
+        return t;
     }
-};
+};WhileStandard::Tree fun_not(const WhileStandard::Tree & Op1);
+WhileStandard::Tree fun_and(const WhileStandard::Tree & Op1,const WhileStandard::Tree & Op2);
+WhileStandard::Tree fun_true();
+WhileStandard::Tree fun_false();
+WhileStandard::Tree fun_not(const WhileStandard::Tree & Op1) {
+    WhileStandard::Tree Result;
+    WhileStandard::Tree t1;
+    t1 = WhileStandard::Tree(Op1);
+    if ( t1.isNil() )
+    goto label14;
+    {
+    WhileStandard::Tree t6;
+    WhileStandard::Tree t7;
+    t7 = fun_false();
+    t6 = t7.getHead();
+    Result = WhileStandard::Tree(t6);
+    goto label21;
+    }
+    {
+    label14 :
+    WhileStandard::Tree t15;
+    WhileStandard::Tree t16;
+    t16 = fun_true();
+    t15 = t16.getHead();
+    Result = WhileStandard::Tree(t15);
+    }
+    label21 :
+    WhileStandard::Tree t22;
+    Result.setHead(Result);
+    WhileStandard::Tree t24;
+    t24.setHead(t22);
+    Result.setTail(t24);
+    return Result;
+}
+WhileStandard::Tree fun_and(const WhileStandard::Tree & Op1,const WhileStandard::Tree & Op2) {
+    WhileStandard::Tree Result;
+    WhileStandard::Tree t1;
+    WhileStandard::Tree t2;
+    t2 = WhileStandard::Tree(Op1);
+    WhileStandard::Tree t4;
+    t4 = fun_not(t2);
+    t1 = t4.getHead();
+    if ( t1.isNil() )
+    goto label18;
+    {
+    WhileStandard::Tree t10;
+    WhileStandard::Tree t11;
+    t11 = fun_false();
+    t10 = t11.getHead();
+    Result = WhileStandard::Tree(t10);
+    goto label45;
+    }
+    {
+    label18 :
+    WhileStandard::Tree t19;
+    WhileStandard::Tree t20;
+    t20 = WhileStandard::Tree(Op2);
+    WhileStandard::Tree t22;
+    t22 = fun_not(t20);
+    t19 = t22.getHead();
+    if ( t19.isNil() )
+    goto label36;
+    {
+    WhileStandard::Tree t28;
+    WhileStandard::Tree t29;
+    t29 = fun_false();
+    t28 = t29.getHead();
+    Result = WhileStandard::Tree(t28);
+    goto label43;
+    }
+    {
+    label36 :
+    WhileStandard::Tree t37;
+    WhileStandard::Tree t38;
+    t38 = fun_true();
+    t37 = t38.getHead();
+    Result = WhileStandard::Tree(t37);
+    }
+    label43 :
+    }
+    label45 :
+    WhileStandard::Tree t46;
+    Result.setHead(Result);
+    WhileStandard::Tree t48;
+    t48.setHead(t46);
+    Result.setTail(t48);
+    return Result;
+}
+WhileStandard::Tree fun_true() {
+    WhileStandard::Tree Result;
+    WhileStandard::Tree t1;
+    WhileStandard::Tree t2;
+    WhileStandard::Tree t3;
+    t1.setHead(t2);
+    t1.setTail(t3);
+    Result = WhileStandard::Tree(t1);
+    WhileStandard::Tree t7;
+    Result.setHead(Result);
+    WhileStandard::Tree t9;
+    t9.setHead(t7);
+    Result.setTail(t9);
+    return Result;
+}
+WhileStandard::Tree fun_false() {
+    WhileStandard::Tree Result;
+    WhileStandard::Tree t1;
+    Result = WhileStandard::Tree(t1);
+    WhileStandard::Tree t3;
+    Result.setHead(Result);
+    WhileStandard::Tree t5;
+    t5.setHead(t3);
+    Result.setTail(t5);
+    return Result;
+}
