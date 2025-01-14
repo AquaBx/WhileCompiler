@@ -1,6 +1,7 @@
 package org.esir.nctt.while_compiler.Visitor.IntermediateCode;
 
 import org.antlr.runtime.tree.Tree;
+import org.esir.nctt.antlr.WhileGrammarLexer;
 import org.esir.nctt.while_compiler.LibraryFunctions;
 import org.esir.nctt.while_compiler.Visitor.Visitor;
 
@@ -58,13 +59,17 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_outputs(tree.getChild(2));
         visit_commands(tree.getChild(3));
 
-        for (int i = functionActual.getOutputs() - 1; i > 0; i--) { // strict à 0 normal
-            String child = functionActual.getOutput(i);
-            String parent = functionActual.getOutput(i - 1);
-            functionActual.createSetHead(parent, parent);
-            functionActual.createSetTail(parent, child);
+        System.out.println("ici");
+
+        String retours = functionActual.createDefine();
+
+        functionActual.createSetHead(retours, functionActual.getOutput(0 ));
+        for (int i =  1 ; i <functionActual.getOutputs() ; i++) { // strict à 0 normal
+            functionActual.createSetTail(retours, retours);
+            functionActual.createSetHead(retours, functionActual.getOutput(i));
         }
-        System.out.println(functionActual);
+
+        functionActual.createMov(functionActual.getOutput(0),retours);
     }
 
     @Override
@@ -74,12 +79,19 @@ public class IntermediateCodeVisitor extends Visitor {
         Tree expressions = tree.getChild(1);
         Tree variables = tree.getChild(0);
 
+        int variablesI = 0;
+
         for (int i = 0; i < expressions.getChildCount(); i++) {
             // todo problème si plusieurs assignations à gauche et une seule à droite (exemple fonction)
             int size = functionActual.instructionsCount();
-            visit_expression(expressions.getChild(i));
-            String label = variables.getChild(i).getText();
-            functionActual.createMov(label, functionActual.registerFromAddress(size));
+            Tree expr = expressions.getChild(i);
+            visit_expression(expr);
+            int retours = expr.getType() == WhileGrammarLexer.EXPR_CALL ? functions.get(expr.getChild(0).getText()).getOutputs() : 1;
+            for (int j = 0; j < retours ; j ++){
+                String label = variables.getChild(variablesI).getText();
+                functionActual.createMov(label, functionActual.registerFromAddress(size+j));
+                variablesI+=1;
+            }
         }
     }
 
