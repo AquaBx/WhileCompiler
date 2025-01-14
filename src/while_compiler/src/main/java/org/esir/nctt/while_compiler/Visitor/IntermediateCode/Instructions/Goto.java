@@ -8,7 +8,7 @@ public class Goto extends Instruction {
 
     @Override
     public String toString() {
-        return String.format("%s %s",getOperator(), getArg1());
+        return String.format("%s %s", getOperator(), getArg1());
     }
 
     @Override
