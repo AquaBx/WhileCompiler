@@ -237,7 +237,6 @@ public class IntermediateCodeVisitor extends Visitor {
     protected void visit_foreach(Tree tree) {
         // todo
 
-
         Tree item = tree.getChild(0);
         Tree liste = tree.getChild(1);
         Tree commands = tree.getChild(2);
