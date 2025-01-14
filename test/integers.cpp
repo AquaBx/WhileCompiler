@@ -3,8 +3,7 @@
 
 void test_case_add() {
     WhileStandard::Tree zero;
-    WhileStandard::Tree un;
-    un += 1;
+    WhileStandard::Tree un = zero + 1;
     WhileStandard::Tree deux = fun_add(un,un).getHead();
     WhileStandard::Tree trois = fun_add(deux,un).getHead();
 
@@ -16,10 +15,9 @@ void test_case_add() {
 
 void test_case_sub() {
     WhileStandard::Tree zero;
-    WhileStandard::Tree un = zero;
-    un+=1;
-    WhileStandard::Tree deux = fun_add(un,un).getHead();
-    WhileStandard::Tree trois = fun_add(deux,un).getHead();
+    WhileStandard::Tree un = zero + 1;
+    WhileStandard::Tree deux = zero + 2;
+    WhileStandard::Tree trois = zero + 3;
 
     Tools::assert_equals((int)fun_sub(trois,zero).getHead(), 3, "Devrait être égal à 3");
 
@@ -38,11 +36,11 @@ void test_case_sub() {
 
 void test_case_mul() {
     WhileStandard::Tree zero;
-    WhileStandard::Tree un;
-    un += 1;
-    WhileStandard::Tree deux = fun_add(un,un).getHead();
-    WhileStandard::Tree trois = fun_add(deux,un).getHead();
+    WhileStandard::Tree un = zero + 1;
+    WhileStandard::Tree deux = zero + 2;
+    WhileStandard::Tree trois = zero + 3;
 
+    Tools::assert_equals((int)fun_mul(trois,trois).getHead(), 9, "Devrait être égal à 9");
     Tools::assert_equals((int)fun_mul(trois,deux).getHead(), 6, "Devrait être égal à 6");
     Tools::assert_equals((int)fun_mul(deux,trois).getHead(), 6, "Devrait être égal à 6");
     Tools::assert_equals((int)fun_mul(trois,zero).getHead(), 0, "Devrait être égal à 0");

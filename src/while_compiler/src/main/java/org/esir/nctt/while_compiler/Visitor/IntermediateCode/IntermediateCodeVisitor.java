@@ -59,8 +59,6 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_outputs(tree.getChild(2));
         visit_commands(tree.getChild(3));
 
-        System.out.println("ici");
-
         String retours = functionActual.createDefine();
 
         functionActual.createSetHead(retours, functionActual.getOutput(0 ));
@@ -344,6 +342,23 @@ public class IntermediateCodeVisitor extends Visitor {
     protected void visit_variables(Tree tree) {
         // I think we do not need, except refactor
     }
+
+    @Override
+    protected void visit_expr_tail(Tree tree) {
+        String reg = functionActual.createDefine();
+        int ad = functionActual.instructionsCount();
+        visit_expression(tree.getChild(0));
+        functionActual.createGetTail(reg,functionActual.registerFromAddress(ad));
+    }
+
+    @Override
+    protected void visit_expr_head(Tree tree) {
+        String reg = functionActual.createDefine();
+        int ad = functionActual.instructionsCount();
+        visit_expression(tree.getChild(0));
+        functionActual.createGetHead(reg,functionActual.registerFromAddress(ad));
+    }
+
 
 
 }
