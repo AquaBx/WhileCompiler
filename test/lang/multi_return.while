@@ -6,11 +6,16 @@ read
 %
 write Result1,Result2
 
-function main : 
+function recup1 : 
 read
 %
     Result1,Result2 := (test1);
-    Result := (print Result1);
-    Result := (print Result2)
 %
-write Result
+write Result1
+
+function recup2 : 
+read
+%
+    Result1,Result2 := (test1);
+%
+write Result2
