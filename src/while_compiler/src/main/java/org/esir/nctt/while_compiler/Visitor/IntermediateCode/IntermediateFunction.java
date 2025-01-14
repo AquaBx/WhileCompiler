@@ -96,6 +96,7 @@ public class IntermediateFunction extends FunctionSignature {
     public void createIf(String register) {
         addInstruction(new If(register));
     }
+
     public void createIfnot(String register) {
         addInstruction(new Ifnot(register));
     }
@@ -237,7 +238,7 @@ public class IntermediateFunction extends FunctionSignature {
         }
 
         out.append("    ");
-        
+
         // 
         if (Objects.equals(getName(), "main")) {
             out.append(String.format("return *%s;\n", outputsLabel.getFirst()));
