@@ -348,7 +348,7 @@ public class IntermediateCodeVisitor extends Visitor {
         String reg = functionActual.createDefine();
         int ad = functionActual.instructionsCount();
         visit_expression(tree.getChild(0));
-        functionActual.createGetTail(reg,functionActual.registerFromAddress(ad));
+        functionActual.createGetTail(functionActual.registerFromAddress(ad),reg);
     }
 
     @Override
@@ -356,7 +356,7 @@ public class IntermediateCodeVisitor extends Visitor {
         String reg = functionActual.createDefine();
         int ad = functionActual.instructionsCount();
         visit_expression(tree.getChild(0));
-        functionActual.createGetHead(reg,functionActual.registerFromAddress(ad));
+        functionActual.createGetHead(functionActual.registerFromAddress(ad),reg);
     }
 
 
