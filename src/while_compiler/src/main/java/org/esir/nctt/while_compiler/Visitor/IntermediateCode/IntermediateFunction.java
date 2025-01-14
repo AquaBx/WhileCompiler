@@ -230,7 +230,7 @@ public class IntermediateFunction extends FunctionSignature {
 
         out.append(String.format("%s {\n", this.toCppSignature()));
 
-        // Ajouter des instruction dans la fonction
+        // Ajouter des instructions dans la fonction
         for (Instruction ins : instructions) {
             out.append("    ");
             out.append(ins.toCpp());
@@ -239,12 +239,7 @@ public class IntermediateFunction extends FunctionSignature {
 
         out.append("    ");
 
-        // 
-        if (Objects.equals(getName(), "main")) {
-            out.append(String.format("return *%s;\n", outputsLabel.getFirst()));
-        } else {
-            out.append(String.format("return %s;\n", outputsLabel.getFirst()));
-        }
+        out.append(String.format("return %s;\n", outputsLabel.getFirst()));
 
         out.append("}\n");
         return out.toString();

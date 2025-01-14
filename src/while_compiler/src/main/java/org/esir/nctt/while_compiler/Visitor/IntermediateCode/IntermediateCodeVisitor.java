@@ -245,20 +245,11 @@ public class IntermediateCodeVisitor extends Visitor {
         String listeRegister = functionActual.registerFromAddress(listeAddress);
         visit_expression(liste);
 
-        int nilAddress = functionActual.instructionsCount();
-        String nilRegister = functionActual.createDefine();
+        String itemRegister = functionActual.createDefine(item.getText());
 
-        int itemAddress = functionActual.instructionsCount();
-        String itemRegister = functionActual.createDefine();
+        String foreach = functionActual.createLabel();
 
-        int retour = functionActual.instructionsCount();
-        functionActual.createDefine();
-
-        // compare liste et nil
-        String compareCall = functionActual.createLabel();
-        functionActual.createCall(functions.get("compare"), new int[]{retour}, new int[]{listeAddress, nilAddress});
-
-        functionActual.createIfnot(functionActual.registerFromAddress(retour));
+        functionActual.createIf(listeRegister);
         functionActual.createOpenContext();
 
         functionActual.createGetHead(listeRegister, itemRegister);
@@ -268,7 +259,7 @@ public class IntermediateCodeVisitor extends Visitor {
         functionActual.createGetTail(listeRegister, listeRegister);
 
         int gotoStartWhileGotoAddress = functionActual.createGoto(null);
-        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(compareCall);
+        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(foreach);
 
         functionActual.createCloseContext();
     }

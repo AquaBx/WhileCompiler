@@ -1,0 +1,10 @@
+function main : 
+read
+% 
+    Iter := (list a b c d e); 
+    Result := ( print Iter );
+    foreach X in Iter do 
+        Result := ( print X )
+    od
+% 
+write Result 
