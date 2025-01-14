@@ -141,6 +141,25 @@ namespace WhileStandard
             return *this;
         }
 
+        Tree operator+(int v) const
+        {
+            Tree newT(*this);
+            for (int i = 0; i < v; i++)
+            {
+                if (newT.hasTail())
+                {
+                    Tree newTail;
+                    newTail.setTail(newT.getTail());
+                    newT.setTail(newTail);
+                }
+                else
+                {
+                    newT.setTail(Tree());
+                }
+            }
+            return newT;
+        }
+
         operator int() const
         {
             if (this->isNil())
