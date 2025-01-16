@@ -21,7 +21,7 @@ namespace Tools
         }
     }
 
-    int test(const vFunctionCall function)
+    int test(std::string testName, const vFunctionCall function)
     {
         try
         {
@@ -30,6 +30,7 @@ namespace Tools
         }
         catch (std::exception& e)
         {
+            std::cout << testName << " " << "failed" << std::endl;
             std::cout << e.what() << std::endl;
             return 1;
         }
