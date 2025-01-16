@@ -208,6 +208,10 @@ public class IntermediateFunction extends FunctionSignature {
         addInstruction(new Inc(register, value));
     }
 
+    public void createDec(String register, int value) {
+        addInstruction(new Dec(register, value));
+    }
+
     public String toCppSignature() {
         assertFalse("STD function, do no call this method", isSTD);
 
