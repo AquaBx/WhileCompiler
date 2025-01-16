@@ -34,29 +34,10 @@ void test_case_and() {
 
 int main(int argc, char** argv)
 {
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction true" << std::endl;
-    const int result1 = Tools::test(test_case_true);
-    std::cout << "Error Code : " << result1 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
-
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction false" << std::endl;
-    const int result2 = Tools::test(test_case_false);
-    std::cout << "Error Code : " << result2 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
-
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction not" << std::endl;
-    const int result3 = Tools::test(test_case_not);
-    std::cout << "Error Code : " << result3 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
-
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction and" << std::endl;
-    const int result4 = Tools::test(test_case_and);
-    std::cout << "Error Code : " << result4 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
+    const int result1 = Tools::test("fonction true",test_case_true);
+    const int result2 = Tools::test("fonction false",test_case_false);
+    const int result3 = Tools::test("fonction not",test_case_not);
+    const int result4 = Tools::test("fonction and",test_case_and);
 
     return result1+result2+result3+result4;
 }

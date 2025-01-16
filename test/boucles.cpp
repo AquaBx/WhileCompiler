@@ -8,11 +8,6 @@ void test_case_2returns() {
 
 int main(int argc, char** argv)
 {
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction 2 returns" << std::endl;
-    const int result1 = Tools::test(test_case_2returns);
-    std::cout << "Error Code : " << result1 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
-
+    const int result1 = Tools::test("Description : fonction 2 returns",test_case_2returns);
     return result1;
 }

@@ -48,24 +48,9 @@ void test_case_mul() {
 
 int main(int argc, char** argv)
 {
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction add" << std::endl;
-    const int result1 = Tools::test(test_case_add);
-    std::cout << "Error Code : " << result1 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
-
-
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction sub" << std::endl;
-    const int result2 = Tools::test(test_case_sub);
-    std::cout << "Error Code : " << result2 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
-
-    std::cout << "--------- test --------" << std::endl;
-    std::cout << "Description : fonction mul" << std::endl;
-    const int result3 = Tools::test(test_case_mul);
-    std::cout << "Error Code : " << result3 << std::endl;
-    std::cout << "---- test finished ----" << std::endl;
+    const int result1 = Tools::test("fonction add",test_case_add);
+    const int result2 = Tools::test("fonction sub",test_case_sub);
+    const int result3 = Tools::test("fonction mul",test_case_mul);
 
     return result1 + result2 + result3;
 }
