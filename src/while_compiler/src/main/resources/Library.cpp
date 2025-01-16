@@ -110,6 +110,7 @@ namespace WhileStandard
             }
         }
 
+
         Tree &operator+=(const int v)
         {
             for (int i = 0; i < v; i++)
@@ -131,19 +132,38 @@ namespace WhileStandard
         Tree operator+(const int v) const
         {
             Tree newT(*this);
+            newT += v;
+            return newT;
+        }
+
+        Tree &operator-=(const int v)
+        {
             for (int i = 0; i < v; i++)
             {
-                if (newT.hasTail())
+                if (this->hasTail())
                 {
-                    Tree newTail;
-                    newTail.setTail(newT.getTail());
-                    newT.setTail(newTail);
+                    Tree tTail = this->getTail();
+                    if (tTail.hasTail())
+                    {
+                        this->setTail(tTail.getTail());
+                    }
+                    else
+                    {
+                        this->tail  = nullptr;
+                    }
                 }
                 else
                 {
-                    newT.setTail(Tree());
+                    assert("cannot be negative");
                 }
             }
+            return *this;
+        }
+
+        Tree operator-(const int v) const
+        {
+            Tree newT(*this);
+            newT -= v;
             return newT;
         }
 

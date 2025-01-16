@@ -292,24 +292,19 @@ public class IntermediateCodeVisitor extends Visitor {
         int valueAddress = functionActual.instructionsCount();
         visit_expression(value);
 
-        int counterAddress = functionActual.instructionsCount();
         String counterRegister = functionActual.createDefine();
 
-        int retour = functionActual.instructionsCount();
-        functionActual.createDefine();
+        functionActual.createMov(counterRegister,functionActual.registerFromAddress(valueAddress));
 
-        String compareCall = functionActual.createLabel();
-        functionActual.createCall(functions.get("compare"), new int[]{retour}, new int[]{valueAddress, counterAddress});
-
-        functionActual.createIfnot(functionActual.registerFromAddress(retour));
+        String loop = functionActual.createLabel();
+        functionActual.createIf(counterRegister);
         functionActual.createOpenContext();
 
         visit_commands(commands);
 
-        functionActual.createInc(counterRegister, 1);
+        functionActual.createDec(counterRegister, 1);
 
-        int gotoStartWhileGotoAddress = functionActual.createGoto(null);
-        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(compareCall);
+        functionActual.createGoto(loop);
 
         functionActual.createCloseContext();
     }
