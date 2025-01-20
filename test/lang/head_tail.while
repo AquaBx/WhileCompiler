@@ -1,0 +1,15 @@
+function getHead: 
+read 
+% 
+    List := (cons (cons a b) (cons c d));
+    Result := (hd List)
+% 
+write Result
+
+function getTail: 
+read 
+% 
+    List := (cons (cons a b) (cons c d));
+    Result := (tl List)
+% 
+write Result

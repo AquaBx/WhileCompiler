@@ -120,13 +120,47 @@ public class IntermediateCodeVisitor extends Visitor {
     @Override
     protected void visit_expr_constructor_cons(Tree tree) {
         // seems ok
-        String register = functionActual.createDefine();
+        Tree parameters = tree.getChild(0);
 
-        int address = functionActual.instructionsCount();
-        visit_expressions(tree.getChild(0));
+        switch ( parameters.getChildCount() ) {
+            case 2: {
+                String register = functionActual.createDefine();
+                int addressOfHead = functionActual.instructionsCount();
+                visit_expression(parameters.getChild(0));
+                functionActual.createSetHead(register, functionActual.registerFromAddress(addressOfHead));
 
-        functionActual.createSetHead(register, functionActual.registerFromAddress(address));
-        functionActual.createSetTail(register, functionActual.registerFromAddress(address + 1));
+                int addressOfTail = functionActual.instructionsCount();
+                visit_expression(parameters.getChild(1));
+                functionActual.createSetTail(register, functionActual.registerFromAddress(addressOfTail));
+                break;
+            }
+            case 1: {
+                visit_expression(parameters.getChild(0));
+                break;
+            }
+            case 0:{
+                functionActual.createDefine();
+                break;
+            }
+            default:{
+                String ListR = functionActual.createDefine();
+
+                for (int i = parameters.getChildCount() - 2; i >= 0; i--) {
+                    if (i == parameters.getChildCount() - 2){
+                        int addressOfParam2 = functionActual.instructionsCount();
+                        visit_expression(parameters.getChild(i+1));
+                        functionActual.createSetTail(ListR,  functionActual.registerFromAddress(addressOfParam2));
+                    }
+                    else {
+                        functionActual.createSetTail(ListR, ListR);
+                    }
+                    int addressOfParam = functionActual.instructionsCount();
+                    visit_expression(parameters.getChild(i));
+                    functionActual.createSetHead(ListR, functionActual.registerFromAddress(addressOfParam));
+                }
+            }
+        }
+
     }
 
     @Override

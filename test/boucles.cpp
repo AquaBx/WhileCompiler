@@ -8,6 +8,7 @@ void test_case_2returns() {
 
 int main(int argc, char** argv)
 {
-    const int result1 = Tools::test("Description : fonction 2 returns",test_case_2returns);
-    return result1;
+    int result = 0;
+    result += Tools::test("Description : fonction 2 returns",test_case_2returns);
+    return result;
 }

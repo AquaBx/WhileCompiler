@@ -17,6 +17,7 @@ namespace Tools
     void assert_equals(T expected, T actual, std::string message )
     {
         if (expected != actual) {
+            std::cout << expected << "!=" << actual << std::endl;
             throw std::runtime_error(message);
         }
     }
@@ -26,6 +27,7 @@ namespace Tools
         try
         {
             function();
+            std::cout << testName << " " << "ok" << std::endl;
             return 0;
         }
         catch (std::exception& e)

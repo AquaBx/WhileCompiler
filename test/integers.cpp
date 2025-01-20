@@ -48,9 +48,10 @@ void test_case_mul() {
 
 int main(int argc, char** argv)
 {
-    const int result1 = Tools::test("fonction add",test_case_add);
-    const int result2 = Tools::test("fonction sub",test_case_sub);
-    const int result3 = Tools::test("fonction mul",test_case_mul);
+    int result = 0;
+    result += Tools::test("fonction add",test_case_add);
+    result += Tools::test("fonction sub",test_case_sub);
+    result += Tools::test("fonction mul",test_case_mul);
 
-    return result1 + result2 + result3;
+    return result;
 }

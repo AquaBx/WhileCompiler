@@ -34,10 +34,12 @@ void test_case_and() {
 
 int main(int argc, char** argv)
 {
-    const int result1 = Tools::test("fonction true",test_case_true);
-    const int result2 = Tools::test("fonction false",test_case_false);
-    const int result3 = Tools::test("fonction not",test_case_not);
-    const int result4 = Tools::test("fonction and",test_case_and);
+    int result = 0;
 
-    return result1+result2+result3+result4;
+    result += Tools::test("fonction true",test_case_true);
+    result += Tools::test("fonction false",test_case_false);
+    result += Tools::test("fonction not",test_case_not);
+    result += Tools::test("fonction and",test_case_and);
+
+    return result;
 }

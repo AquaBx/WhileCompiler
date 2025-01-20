@@ -1,8 +1,34 @@
-function main : 
+function consnil : 
 read
 %
-    Test := (cons a b);
-    Test2 := (cons) ;
-    Result := (print Test2)
+    Result := (cons)
 %
-write Result;
+write Result
+
+function consone : 
+read
+%
+    Result := (cons a)
+%
+write Result
+
+function constwo : 
+read
+%
+    Result := (cons a b)
+%
+write Result
+
+function consthree : 
+read
+%
+    Result := (cons a b c)
+%
+write Result
+
+function consnine : 
+read
+%
+    Result := (cons a b c d e f g h i)
+%
+write Result
