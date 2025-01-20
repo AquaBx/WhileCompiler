@@ -70,14 +70,24 @@ namespace WhileStandard
 
         Tree getTail() const
         {
-            assert(hasTail());
-            return *this->tail;
+            if (hasTail()){
+                return *this->tail;
+            }
+            else {
+                Tree nilTree;
+                return nilTree;
+            }
         }
 
         Tree getHead() const
         {
-            assert(hasHead());
-            return *this->head;
+            if(hasHead()){
+                return *this->head;
+            }
+            else {
+                Tree nilTree;
+                return nilTree;
+            }
         }
 
         void setTail(const Tree tail)
