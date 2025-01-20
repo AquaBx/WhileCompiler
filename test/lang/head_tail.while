@@ -13,3 +13,19 @@ read
     Result := (tl List)
 % 
 write Result
+
+function getHeadNil: 
+read 
+% 
+    List := nil;
+    Result := (hd List)
+% 
+write Result
+
+function getTailNil: 
+read 
+% 
+    List := nil;
+    Result := (tl List)
+% 
+write Result
