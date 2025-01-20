@@ -1,0 +1,27 @@
+function listnil : 
+read
+%
+    Result := (list)
+%
+write Result
+
+function listone : 
+read
+%
+    Result := (list a)
+%
+write Result
+
+function listtwo : 
+read
+%
+    Result := (list a b)
+%
+write Result
+
+function listnine : 
+read
+%
+    Result := (list a b c d e f g h i)
+%
+write Result
