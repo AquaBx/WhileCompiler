@@ -120,7 +120,7 @@ public class TypesVisitor extends Visitor {
     protected void visit_expr_constructor_cons(Tree tree) {
         Tree listExpressions = tree.getChild(0);
         int nbExpressions = listExpressions.getChildCount();
-        assertTrue("cons requires at least 1 argument, got 0.", nbExpressions > 0);
+        assertTrue("cons requires at least 1 argument, got 0.", nbExpressions >= 0);
         visit_expressions(listExpressions);
     }
 
