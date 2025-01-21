@@ -122,7 +122,7 @@ public class IntermediateCodeVisitor extends Visitor {
         // seems ok
         Tree parameters = tree.getChild(0);
 
-        switch ( parameters.getChildCount() ) {
+        switch (parameters.getChildCount()) {
             case 2: {
                 String register = functionActual.createDefine();
                 int addressOfHead = functionActual.instructionsCount();
@@ -138,20 +138,19 @@ public class IntermediateCodeVisitor extends Visitor {
                 visit_expression(parameters.getChild(0));
                 break;
             }
-            case 0:{
+            case 0: {
                 functionActual.createDefine();
                 break;
             }
-            default:{
+            default: {
                 String ListR = functionActual.createDefine();
 
                 for (int i = parameters.getChildCount() - 2; i >= 0; i--) {
-                    if (i == parameters.getChildCount() - 2){
+                    if (i == parameters.getChildCount() - 2) {
                         int addressOfParam2 = functionActual.instructionsCount();
-                        visit_expression(parameters.getChild(i+1));
-                        functionActual.createSetTail(ListR,  functionActual.registerFromAddress(addressOfParam2));
-                    }
-                    else {
+                        visit_expression(parameters.getChild(i + 1));
+                        functionActual.createSetTail(ListR, functionActual.registerFromAddress(addressOfParam2));
+                    } else {
                         functionActual.createSetTail(ListR, ListR);
                     }
                     int addressOfParam = functionActual.instructionsCount();
@@ -167,9 +166,7 @@ public class IntermediateCodeVisitor extends Visitor {
     protected void visit_expr_variable(Tree tree) {
         // seems ok
         String label = tree.getChild(0).getText();
-
-        String register = functionActual.createDefine();
-        functionActual.createMov(register, label);
+        functionActual.setRef(label);
     }
 
     @Override
@@ -246,11 +243,7 @@ public class IntermediateCodeVisitor extends Visitor {
         // seems ok
         Tree expression = tree.getChild(0);
         int expressionAddress = functionActual.instructionsCount();
-
-        System.out.println(functionActual.instructionsCount());
-
         visit_expression(expression);
-        System.out.println(functionActual.instructionsCount());
 
         functionActual.createIf(functionActual.registerFromAddress(expressionAddress));
         functionActual.createOpenContext();
@@ -263,8 +256,8 @@ public class IntermediateCodeVisitor extends Visitor {
             visit_commands(tree.getChild(2));
             functionActual.createCloseContext();
         }
-        String endifAd = functionActual.createLabel();
-        functionActual.getInstruction(gotoEndifAddress).setArg1(endifAd);
+        String endifReg = functionActual.createLabel();
+        functionActual.getInstruction(gotoEndifAddress).setArg1(endifReg);
     }
 
     @Override
@@ -276,8 +269,8 @@ public class IntermediateCodeVisitor extends Visitor {
         Tree commands = tree.getChild(2);
 
         int listeAddress = functionActual.instructionsCount();
-        String listeRegister = functionActual.registerFromAddress(listeAddress);
         visit_expression(liste);
+        String listeRegister = functionActual.registerFromAddress(listeAddress);
 
         String itemRegister = functionActual.createDefine(item.getText());
 
@@ -292,8 +285,7 @@ public class IntermediateCodeVisitor extends Visitor {
 
         functionActual.createGetTail(listeRegister, listeRegister);
 
-        int gotoStartWhileGotoAddress = functionActual.createGoto(null);
-        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(foreach);
+        functionActual.createGoto(foreach);
 
         functionActual.createCloseContext();
     }
@@ -308,12 +300,11 @@ public class IntermediateCodeVisitor extends Visitor {
         visit_expression(expression);
 
         String labelIf = functionActual.createLabel();
-        functionActual.createIfnot(functionActual.registerFromAddress(expressionAddress));
+        functionActual.createIf(functionActual.registerFromAddress(expressionAddress));
         functionActual.createOpenContext();
         visit_commands(commands);
 
-        int gotoStartWhileGotoAddress = functionActual.createGoto(null);
-        functionActual.getInstruction(gotoStartWhileGotoAddress).setArg1(labelIf);
+        functionActual.createGoto(labelIf);
         functionActual.createCloseContext();
     }
 
@@ -328,7 +319,7 @@ public class IntermediateCodeVisitor extends Visitor {
 
         String counterRegister = functionActual.createDefine();
 
-        functionActual.createMov(counterRegister,functionActual.registerFromAddress(valueAddress));
+        functionActual.createMov(counterRegister, functionActual.registerFromAddress(valueAddress));
 
         String loop = functionActual.createLabel();
         functionActual.createIf(counterRegister);
@@ -339,7 +330,6 @@ public class IntermediateCodeVisitor extends Visitor {
         functionActual.createDec(counterRegister, 1);
 
         functionActual.createGoto(loop);
-
         functionActual.createCloseContext();
     }
 

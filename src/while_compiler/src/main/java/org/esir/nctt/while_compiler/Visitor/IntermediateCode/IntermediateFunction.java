@@ -5,13 +5,13 @@ import org.esir.nctt.while_compiler.Visitor.IntermediateCode.Instructions.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.junit.Assert.assertFalse;
 
 public class IntermediateFunction extends FunctionSignature {
     private final ArrayList<Instruction> instructions = new ArrayList<>();
-    private final HashMap<String, Integer> registerToAddress = new HashMap<>();
     private final HashMap<Integer, String> addressToRegister = new HashMap<>();
 
     private final ArrayList<String> inputsLabel = new ArrayList<>();
@@ -45,8 +45,13 @@ public class IntermediateFunction extends FunctionSignature {
         return addressToRegister.getOrDefault(i, String.format("t%s", i));
     }
 
-    public int addressFromLabel(String label) {
-        return registerToAddress.getOrDefault(label, -1);
+    public int addressFromRegister(String label) {
+        for (Map.Entry<Integer, String> entry : addressToRegister.entrySet()) {
+            if (label.equals(entry.getValue())) {
+                return entry.getKey();
+            }
+        }
+        return -1;
     }
 
     public int addInstruction(Instruction i) {
@@ -88,7 +93,6 @@ public class IntermediateFunction extends FunctionSignature {
     public String createLabel() {
         String label = String.format("label%s", instructionsCount());
         int address = addInstruction(new Label(label));
-        registerToAddress.put(label, address);
         addressToRegister.put(address, label);
         return label;
     }
@@ -133,15 +137,22 @@ public class IntermediateFunction extends FunctionSignature {
         return createDefine(label, value);
     }
 
+    public String setRef(String value) {
+        int ad = addInstruction(null);
+        addressToRegister.put(ad, value);
+        return value;
+    }
+
     /*
     Crée un registre avec un label prédéfini (par exemple pour un input)
      */
     public String createDefine(String label, String value) {
-        if (!registerToAddress.containsKey(label)) {
-            registerToAddress.put(label, instructionsCount());
+        int nAddress = instructionsCount();
+        if (!addressToRegister.containsValue(label)) {
             addressToRegister.put(instructionsCount(), label);
+        } else {
+            nAddress = addressFromRegister(label);
         }
-        int nAddress = registerToAddress.getOrDefault(label, instructionsCount());
         String register = registerFromAddress(nAddress);
         addInstruction(new Define(label, value));
         return register;
@@ -151,7 +162,7 @@ public class IntermediateFunction extends FunctionSignature {
     Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
     public void createMov(String register, String source) {
-        if (addressFromLabel(register) == -1) {
+        if (!addressToRegister.containsValue(register)) {
             createDefine(register);
         }
         addInstruction(new Mov(register, source));
@@ -174,7 +185,6 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public void addInput(String label) {
-        registerToAddress.put(label, instructionsCount());
         addressToRegister.put(instructionsCount(), label);
         inputsLabel.add(label);
     }
@@ -236,6 +246,9 @@ public class IntermediateFunction extends FunctionSignature {
 
         // Ajouter des instructions dans la fonction
         for (Instruction ins : instructions) {
+            if (ins == null) {
+                continue;
+            }
             out.append("    ");
             out.append(ins.toCpp());
             out.append("\n");
