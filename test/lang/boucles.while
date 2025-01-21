@@ -1,10 +1,42 @@
-function main : 
-read
+function add : 
+read Op1, Op2 
 % 
-    Iter := (list a b c d e); 
-    Result := ( print Iter );
+    Result := Op1 ; 
+    for Op2 do 
+        printInt(Result);
+        Result := ( cons nil Result )  
+    od 
+% 
+write Result 
+
+function testforeach : 
+read A,B,C,D,E
+% 
+    Iter := (list A B C D E); 
+    Result := nil;
     foreach X in Iter do 
-        Result := ( print X )
+        Result := ( add Result X )
     od
 % 
 write Result 
+
+function testfor1 : 
+read
+% 
+    N := (cons nil nil nil nil); // 3
+    Result := nil;
+    for N do
+        Result := ( cons nil Result )
+    od
+%
+write Result 
+
+function testfor2 : 
+read
+% 
+    X := (cons nil nil nil nil); // 3
+    for X do 
+        X := (cons nil X) 
+    od // 6
+%
+write X 
