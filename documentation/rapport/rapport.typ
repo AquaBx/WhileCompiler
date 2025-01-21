@@ -194,30 +194,88 @@ Traduction complète d'un programme !!
 
 == Méthodologie utilisée
 
+Pour valider le compilateur, nous avons écrit plusieurs tests en langage while. Ils se situent dans le chemin `/test/lang/`.
+
 == Code coverage
+
+#highlight()[faire le code coverage]
 
 == Bilan
 
+#highlight()[faire le bilan]
+
 === Ce qui fonctionne
+
+#highlight()[dire ce qui fonctionne]
 
 === Ce qui ne fonctionne pas
 
-=== Fonctionnalités restant à implémenter ?
+#highlight()[dire ce qui fonctionne pas]
+
+=== Fonctionnalités restantes à implémenter
+
+#highlight()[dire Fonctionnalités restantes à implémenter]
 
 #pagebreak()
 = Description de la méthodologie de gestion de projet
 
 == Outils utilisés pour la gestion du projet
 
+Pour la gestion du projet, nous avons utilisé Gitlab pour le versionning et un groupe Discord pour communiquer entre nous, communiquer nos problèmes et s'appeler pour travailler en dehors des séances de TP.
+
 == Etapes de développement et découpage des tâches
 
 == Rapport de travail individuel
+
+Voici un rapport des activités de chacun sur le projet : 
+
+#table(
+  columns: (auto, auto),
+  [*Etape*], [*Membre(s)*],
+
+  [Décrire la grammaire de While en ANTLR],
+  [Tout le monde],
+
+  [Création de l'AST (et simplification)],
+  [Tout le monde, puis Tom pour l'optimiser],
+
+  [Analyse sémantique],
+  [
+    - Table des symboles : Célia
+    - Visiteur de base : Titouan
+    - Autres visiteurs : Tout le monde
+    - Validation du programme : Tom + tests écrits par tout le monde
+  ],
+
+  [Traduction en 3 adresses],
+  [Tout le monde, mais un peu plus Tom],
+
+  [Bibliothèque run time],
+  [??],
+
+  [Backend],
+  [Tom],
+  
+  [Script permettant d’enchaîner le compilateur While avec le compilateur du langage cible de manière à générer un exécutable],
+  [??],
+
+  [Documentation (rapport + documentation utilisateur)],
+  [Célia, avec relecture des autres]
+)
 
 #pagebreak()
 = Post mortem : Organisation du projet
 
 == Ce qui a bien fonctionné
 
+Travailler ensemble plutôt que séparés, en faisant du peer (ou plus) programming, a bien aidé, surtout au début du projet, pour s'entraider et mieux comprendre les attendus et les enjeux du projet. C'était plus pratique pour bien avoir une vision d'ensemble du projet.
+
 == Ce qui a moins bien fonctionné
 
+Le fait de souvent travailler ensemble nous a sûrement fait perdre du temps et nous a rendu moins efficace sur le projet.
+
+Aussi, puisque pendant les vacances de Noël et au retour des vacances la moitié du groupe était malade, cela a compliqué les communications et donc l'avancée sur le projet.
+
 == Avec plus de recul, que ferions-vous ?
+
+Maintenant que nous comprenons bien ce qui nous est demandé et que nous serions capable de le refaire seuls, nous pourrions travailler en autonomie sur les étapes du projet (tout en continuant de communiquer pour s'entraider et faire part de nos avancements). Cela nous permettrait de gagner du temps et de vraiment travailler en mode "projet".
