@@ -1,0 +1,20 @@
+function twoif :
+read Op1
+%
+    if Op1 then
+        Result := (cons nil nil)
+    else
+        Result := nil
+    fi
+%
+write Result
+
+function oneif :
+read Op1
+%
+    Result := nil;
+    if Op1 then
+        Result := (cons nil nil)
+    fi
+%
+write Result

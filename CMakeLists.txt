@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 26)
 # Tests
 
 
-list(APPEND testlist bools integers multi_return head_tail cons list)
+list(APPEND testlist bools integers multi_return head_tail cons list if)
 set (whilecompile java -jar ${CMAKE_CURRENT_SOURCE_DIR}/src/while_compiler/target/while_compiler-all.jar)
 
 enable_testing()
