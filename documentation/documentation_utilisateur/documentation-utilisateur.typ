@@ -109,10 +109,18 @@
 #pagebreak()
 = Compilation d'un programme en langage WHILE
 
-#highlight("
-Expliquer à un utilisateur comment utiliser notre compilateur pour générer, à partir d’un code source WHILE, un fichier exécutable.
+Pour utiliser notre compilateur pour générer, à partir d’un code source WHILE, un fichier exécutable, voici les commandes à exécuter : 
 
-- Il s’agira aussi d’expliquer comment lancer le programme compilé et lui passer des arguments.
+Pour Linux et MacOS : 
+```
+java -jar <path-to-while_compiler-all.jar> -i <path-to-while-file> -o <target-cpp-file>
+clang++ <target-cpp-file>
+./a.out
+```
 
-- Si votre compilateur propose des options de compilation, n’oubliez pas de les indiquer.
-")
+Pour Windows : 
+```
+java -jar <path-to-while_compiler-all.jar -i <path-to-while-file> -o <target-cpp-file>
+clang++ <target-cpp-file>
+./a.exe
+```

@@ -1,5 +1,8 @@
 # Project While
 
+Un fichier README expliquant la hiérarchie des répertoires, la manière de compiler votre 
+compilateur ainsi que la manière d’utiliser le script de compilation.
+
 Pass Réaliser: 
 - Collection les symbol
 - Check Si les symbole utiliser existe.
