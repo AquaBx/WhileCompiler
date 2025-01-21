@@ -40,3 +40,13 @@ read
     od // 6
 %
 write X 
+
+function testwhile : 
+read
+% 
+    X := (cons nil nil nil nil);
+    while X do 
+        X := (tl X) 
+    od
+%
+write X 

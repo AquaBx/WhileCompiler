@@ -7,16 +7,16 @@
 #include <string>
 #include <iostream>
 
-
 namespace Tools
 {
 
-    typedef void (* vFunctionCall)();
+    typedef void (*vFunctionCall)();
 
     template <typename T>
-    void assert_equals(T expected, T actual, std::string message )
+    void assert_equals(T expected, T actual, std::string message)
     {
-        if (expected != actual) {
+        if (expected != actual)
+        {
             std::cout << expected << "!=" << actual << std::endl;
             throw std::runtime_error(message);
         }
@@ -30,7 +30,7 @@ namespace Tools
             std::cout << testName << " " << "ok" << std::endl;
             return 0;
         }
-        catch (std::exception& e)
+        catch (std::exception &e)
         {
             std::cout << testName << " " << "failed" << std::endl;
             std::cout << e.what() << std::endl;
