@@ -26,7 +26,12 @@ namespace WhileStandard
 
         std::string getSymbol() const { return symbol; }
 
-        Tree() : head(nullptr), tail(nullptr) {}
+        Tree() : head(nullptr), tail(nullptr), symbol("") {}
+
+        Tree(const int & v) : head(nullptr), tail(nullptr), symbol("")  {
+            *this+=v;
+        }
+
         explicit Tree(std::string symbol) : head(nullptr), tail(nullptr), symbol(std::move(symbol)) {}
 
         Tree(const Tree &old) : head(nullptr), tail(nullptr), symbol(old.symbol)
@@ -254,5 +259,38 @@ namespace WhileStandard
     {
         std::cout << static_cast<int>(t) << std::endl;
         return Tree::createReturn(t);
+    }
+
+    void pp(const Tree &t)
+    {
+        WhileStandard::Tree head = t.getHead();
+        WhileStandard::Tree tail = t.getTail();
+        std::string headSymbol = head.getSymbol();
+
+        //   pp( (cons A B) ) avec 𝐴∉{𝑖𝑛𝑡,𝑏𝑜𝑜𝑙,𝑠𝑡𝑟𝑖𝑛𝑔 } -> (cons pp(A) pp(B))
+        if (t.getSymbol() != "")
+        {
+            std::cout << t.getSymbol() << std::endl;
+        }
+        else if (t.isNil())
+        {
+            std::cout << "nil" << std::endl;
+        }
+        else if (headSymbol == "int")
+        {
+            std::cout << static_cast<int>(tail) << std::endl;
+        }
+        else if (headSymbol == "bool")
+        {
+            std::cout << tail.isTrue() << std::endl;
+        }
+        else if (headSymbol == "string")
+        {
+            std::cout << static_cast<std::string>(tail) << std::endl;
+        }
+        else {
+            pp(head);
+            pp(tail);
+        }
     }
 };
