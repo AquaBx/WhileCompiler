@@ -268,10 +268,10 @@ public class IntermediateFunction extends FunctionSignature {
                         WhileStandard::pp( fun_main( %s ) );
                         return 0;
                     }
-                    std::cout << "Not enough arguments" << std::endl;
+                    std::cout << "Invalid number of arguments, %d required" << std::endl;
                     return 1;
                 }
-            """, getInputs()+1, String.join(",", params)));
+            """, getInputs()+1, String.join(",", params),getInputs()));
         }
 
         return out.toString();

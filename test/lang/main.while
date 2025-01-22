@@ -2,6 +2,9 @@ function main :
 read Op1,Op2
 %
     Result1 := (cons int Op1);
-    Result2 := (cons int Op2)
+    Result2 := (cons string test);
+    Result3 := (cons bool nil);
+    Result4 := (cons bool (cons nil nil));
+    Result5 := (cons int Op2)
 %
-write Result1,Result2
+write Result1,Result2,Result3,Result4,Result5
