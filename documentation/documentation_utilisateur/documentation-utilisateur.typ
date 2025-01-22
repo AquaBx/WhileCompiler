@@ -111,25 +111,38 @@ Le langage While est conçu pour manipuler uniquement des arbres binaires. Il pe
 
 === Arbres binaires
 
-Comme dit en introduction, le langage While manipule uniquement des arbres binaires. Voici les éléments principaux pour travailler avec ce type de données :
+Comme dit en introduction, le langage While manipule uniquement des arbres binaires. Voici les éléments principaux pour travailler avec ce type de données :
 
 - `nil` : Arbre vide.
 
-- `cons(A, B)` : Crée un arbre binaire avec `A` comme fils gauche et `B` comme fils droit.
+- `(cons)` : Equivalent à nil
 
-- `list(T1, T2, ..., Tn)`: Crée une liste chaînée d'éléments.
+- `(cons A)` : Crée une copie de A
+
+- `(cons A B)` : Crée un arbre binaire avec `A` comme fils gauche et `B` comme fils droit.
+
+- `(cons A B C)` : Equivalent à `(cons A (cons B C))`
+
+- `(list T1 T2 ... Tn)`: Crée une liste chaînée d'éléments.
 
 === Simulation de types
 
-- Booléens : `true` qui est encodé comme `(cons nil nil)` et `false` qui est encodé comme `nil`.
+- Booléens : `true` qui est encodé comme tout sauf un arbre sans enfants (exemple :`(cons nil nil)`) et `false` qui est encodé comme `nil`.
 
-- Entiers : Un entier `n >= 0` est encodé comme une liste de `n` nœuds `(cons nil ...)`.
+- Entiers : Un entier `n >= 0` est encodé comme un arbre de `n-1` nœuds à droite. Les nœuds à gauche ne sont pas comptabilisé.
+  
+  Exemple : 
+  - `nil = 0`
+  - `(cons nil nil) = 1`
+  - `(cons (cons nil nil) nil) = 1` ( car seul les nœuds à droite comptent )
+  - `(cons nil (cons nil nil)) = 2`
+  - `(cons nil nil nil) = 2`
 
-- Chaînes de caractères : Encodées comme des listes où chaque caractère est un nœud.
+- Chaînes de caractères : Encodées comme un arbre où chaque nœud possède une chaîne de caractères. L'interprétation de l'arbre se fait alors comme la concaténation du `fils gauche + chaîne du nœud actuel + fils droit`
 
 == Commandes et structures de Contrôle
 
-Voici les principales commandes et structures de contrôle :
+Voici les principales commandes et structures de contrôle :
 
 === Commandes simples
 - `nop` : Ne fait rien (utile pour tester).
@@ -197,26 +210,21 @@ _Remarques :_
 
 === Programme principal
 
-Le programme principal est défini dans une fonction appelée `main`. C'est la fonction principale. Voici un exemple :
+Le programme principal est défini dans une fonction appelée `main`. C'est la fonction principale. Voici un exemple :
 
 ```while
 function main :
-  read X, Y
+read X, T
 %
-  Z := (cons X Y);
-  if Z =? nil then
-    Result := (list X Y)
-  else
-    Result := Z
-  fi
+  Result := (cons int (add X Y))
 %
-  write Result
+write Result
 ```
 
 - `Entrées` : `X`, `Y`.
 - `Commandes` :
-  - Construction d'un arbre binaire avec `X` et `Y`.
-  - Condition pour vérifier si l'arbre est vide.
+  - Appel de la fonction add avec `X` et `Y`.
+  - Stockage du résultat de la fonction dans Result avec un pretty printing en int
 - `Sortie` : `Result`.
 
 #pagebreak()
