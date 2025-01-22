@@ -122,7 +122,7 @@ Proposition de Language cible:
 
 == AST
 
-Voici notre AST. Nous avons essayé de le rendre le plus propre possible. Nous l'avons contruit à partir du fichier `full.while` (répertoire `test/lang`) :
+Voici notre AST. Nous avons essayé de le rendre le plus propre possible. Nous l'avons contruit à partir du fichier `integers.while` (répertoire `test/lang`) :
 
 #image("resources/ast.jpg")
 
@@ -190,11 +190,19 @@ parler de FunctionSignature - les types (`TypesVisitor.java`)
 Traduction complète d'un programme !!
 ]
 
-== Optimisation de code #highlight()[si elle a été réalisée]
+//== Optimisation de code #highlight()[si elle a été réalisée]
 
 == Génération de code à partir du code 3 adresses
 
+On itère sur toutes nos instructions sotckées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode toCpp(), cela nous repartit le travail à faire. Ensuite il nous reste juste à concaténer toutes nos instructions générer en C++ et à les enregistrer dans un fichier.
+
 == Bibliothèque runtime de WHILE écrite dans le langage cible
+
+La bibliothèque fourni la gestion des arbres ainsi que l'apport de certaines fonctions et méthodes standards.
+
+Par exemple, on a ajouté un operateur de cast vers des chaines de caractères ou vers des entiers pour éviter de faire trop souvent la conversion à la main.
+
+On a apporté des fonctions print et printInt afin de mieux débuguer lors de l'éxécution.
 
 #pagebreak()
 = Description de la validation du compilateur
@@ -215,13 +223,19 @@ Pour valider le compilateur, nous avons écrit plusieurs tests en langage while.
 
 #highlight()[dire ce qui fonctionne]
 
+D'après les tests, la transpilation fonctionne pour tout.
+
 === Ce qui ne fonctionne pas
 
 #highlight()[dire ce qui fonctionne pas]
 
+Si quelque chose ne fonctionne pas, on ne l'a pas détecté.
+
 === Fonctionnalités restantes à implémenter
 
 #highlight()[dire Fonctionnalités restantes à implémenter]
+
+Il nous manque cependant lors du passage d'arguments sous forme d'arbre à l'éxécutable. Seuls les entiers sont supportés.
 
 #pagebreak()
 = Description de la méthodologie de gestion de projet
@@ -258,7 +272,7 @@ Voici un rapport des activités de chacun sur le projet :
   [Tout le monde, mais un peu plus Tom],
 
   [Bibliothèque run time],
-  [??],
+  [Tom],
 
   [Backend],
   [Tom],
