@@ -104,6 +104,13 @@
 #highlight()[
 Le rapport de projet aborde à la fois la partie technique de la réalisation du compilateur ainsi que la
 partie organisationnelle du projet.
+
+Point Important:
+- Gestion de la mémoire
+    - Life Time (Suppression des element nom utile)
+
+Proposition de Language cible:
+- C++ (meilleur pour la gestion de la memoire (share pointer))
 ]
 
 #pagebreak()
