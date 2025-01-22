@@ -236,12 +236,14 @@ Pour Linux et MacOS :
 ```
 java -jar <path-to-while_compiler-all.jar> -i <path-to-while-file> -o <target-cpp-file>
 clang++ <target-cpp-file>
-./a.out
+./a.out <args>
 ```
 
 Pour Windows : 
 ```
 java -jar <path-to-while_compiler-all.jar -i <path-to-while-file> -o <target-cpp-file>
 clang++ <target-cpp-file>
-./a.exe
+./a.exe <args>
 ```
+
+⚠ : Seuls les arguments sous forme d'entier sont supportés
