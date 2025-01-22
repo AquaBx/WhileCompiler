@@ -101,18 +101,6 @@
   depth: 3,
 )
 
-#highlight()[
-Le rapport de projet aborde à la fois la partie technique de la réalisation du compilateur ainsi que la
-partie organisationnelle du projet.
-
-Point Important:
-- Gestion de la mémoire
-    - Life Time (Suppression des element nom utile)
-
-Proposition de Language cible:
-- C++ (meilleur pour la gestion de la memoire (share pointer))
-]
-
 #pagebreak()
 = Description technique
 
@@ -194,15 +182,17 @@ Traduction complète d'un programme !!
 
 == Génération de code à partir du code 3 adresses
 
-On itère sur toutes nos instructions sotckées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode toCpp(), cela nous repartit le travail à faire. Ensuite il nous reste juste à concaténer toutes nos instructions générer en C++ et à les enregistrer dans un fichier.
+Nous avons choisit C++ comme langage cible, car il nous semble être l'un des meilleurs langages que nous connaissions tous dans notre groupe pour la gestion de la mémoire, notamment avec la présence des shared pointers.
+
+On itère sur toutes nos instructions stockées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode `toCpp()`, cela nous répartit le travail à faire. Ensuite, il nous reste juste à concaténer toutes nos instructions générées en C++ et à les enregistrer dans un fichier.
 
 == Bibliothèque runtime de WHILE écrite dans le langage cible
 
-La bibliothèque fourni la gestion des arbres ainsi que l'apport de certaines fonctions et méthodes standards.
+Cette bibliothèque fournit la gestion des arbres ainsi que l'apport de certaines fonctions et méthodes standards.
 
-Par exemple, on a ajouté un operateur de cast vers des chaines de caractères ou vers des entiers pour éviter de faire trop souvent la conversion à la main.
+Par exemple, on a ajouté un opérateur de cast vers des chaines de caractères ou vers des entiers pour éviter de faire trop souvent la conversion à la main.
 
-On a apporté des fonctions print et printInt afin de mieux débuguer lors de l'éxécution.
+On a également apporté des fonctions `print` et `printInt` afin de mieux débuguer lors de l'éxécution.
 
 #pagebreak()
 = Description de la validation du compilateur
@@ -221,21 +211,15 @@ Pour valider le compilateur, nous avons écrit plusieurs tests en langage while.
 
 === Ce qui fonctionne
 
-#highlight()[dire ce qui fonctionne]
-
 D'après les tests, la transpilation fonctionne pour tout.
 
 === Ce qui ne fonctionne pas
-
-#highlight()[dire ce qui fonctionne pas]
 
 Si quelque chose ne fonctionne pas, on ne l'a pas détecté.
 
 === Fonctionnalités restantes à implémenter
 
-#highlight()[dire Fonctionnalités restantes à implémenter]
-
-Il nous manque cependant lors du passage d'arguments sous forme d'arbre à l'éxécutable. Seuls les entiers sont supportés.
+Il nous manque cependant, lors du passage d'arguments, le support sous forme d'arbre à l'exécutable. Seuls les entiers sont supportés.
 
 #pagebreak()
 = Description de la méthodologie de gestion de projet
