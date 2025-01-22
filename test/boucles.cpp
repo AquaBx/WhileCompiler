@@ -3,12 +3,12 @@
 
 void test_case_foreach()
 {
-    WhileStandard::Tree zero;
-    WhileStandard::Tree un = zero + 1;
-    WhileStandard::Tree deux = un + 1;
-    WhileStandard::Tree trois = deux + 1;
-    WhileStandard::Tree quatre = trois + 1;
-    WhileStandard::Tree cinq = quatre + 1;
+    WhileStandard::Tree zero(0);
+    WhileStandard::Tree un(1);
+    WhileStandard::Tree deux(2);
+    WhileStandard::Tree trois(3);
+    WhileStandard::Tree quatre(4);
+    WhileStandard::Tree cinq(5);
 
     Tools::assert_equals(static_cast<int>(fun_testforeach(un, deux, trois, quatre, cinq).getHead()), 15, "Devrait être 15");
 }
