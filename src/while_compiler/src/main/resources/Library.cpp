@@ -267,6 +267,7 @@ namespace WhileStandard
             Tree a(std::stoi(input));
             return a;
         }
+        throw std::invalid_argument("Invalid tree syntax");
     }
 
     void pp(const Tree &t)
