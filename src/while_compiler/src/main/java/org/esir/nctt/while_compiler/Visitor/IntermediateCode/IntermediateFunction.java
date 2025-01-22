@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertFalse;
 
@@ -225,10 +226,6 @@ public class IntermediateFunction extends FunctionSignature {
     public String toCppSignature() {
         assertFalse("STD function, do no call this method", isSTD);
 
-        if (Objects.equals(getName(), "main")) {
-            return String.format("int %s()", getName());
-        }
-
         ArrayList<String> params = new ArrayList<>();
         inputsLabel.forEach(val -> params.add(String.format("const WhileStandard::Tree & %s", val)));
 
@@ -259,6 +256,24 @@ public class IntermediateFunction extends FunctionSignature {
         out.append(String.format("return %s;\n", outputsLabel.getFirst()));
 
         out.append("}\n");
+
+        if (Objects.equals(getName(), "main")) {
+            ArrayList<String> params = new ArrayList<>();
+            AtomicInteger i= new AtomicInteger(1);
+            inputsLabel.forEach(val -> params.add(String.format("WhileStandard::parseTree(argv[%s])", i.getAndIncrement())));
+
+            out.append( String.format("""
+                int main(int argc, char** argv){
+                    if(argc == %d){
+                        WhileStandard::pp( fun_main( %s ) );
+                        return 0;
+                    }
+                    std::cout << "Not enough arguments" << std::endl;
+                    return 1;
+                }
+            """, getInputs()+1, String.join(",", params)));
+        }
+
         return out.toString();
     }
 }

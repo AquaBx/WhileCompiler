@@ -1,6 +1,7 @@
 #include <cassert>
 #include <iostream>
 #include <string>
+#include <regex>
 
 namespace WhileStandard
 {
@@ -259,6 +260,13 @@ namespace WhileStandard
     {
         std::cout << static_cast<int>(t) << std::endl;
         return Tree::createReturn(t);
+    }
+
+    Tree parseTree(const char * const input){
+        if (std::regex_match(input, std::regex("[0-9]+"))){
+            Tree a(std::stoi(input));
+            return a;
+        }
     }
 
     void pp(const Tree &t)
