@@ -290,7 +290,8 @@ namespace WhileStandard
         }
         else if (headSymbol == "bool")
         {
-            std::cout << tail.isTrue() << std::endl;
+            std::string outBool = tail.isTrue() ? "true" : "false";
+            std::cout << outBool << std::endl;
         }
         else if (headSymbol == "string")
         {
