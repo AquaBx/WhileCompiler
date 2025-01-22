@@ -1,0 +1,7 @@
+function main : 
+read Op1,Op2
+%
+    Result1 := (cons int Op1);
+    Result2 := (cons int Op2)
+%
+write Result1,Result2
