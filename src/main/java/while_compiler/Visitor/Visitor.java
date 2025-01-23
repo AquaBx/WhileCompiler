@@ -18,7 +18,7 @@ public abstract class Visitor {
 
     protected abstract void visit_expr_symbol(Tree tree);
 
-    protected abstract void visit_expr_variable(Tree tree);
+    protected abstract void visit_expr_variable(Tree tree) throws Exception;
 
     protected abstract void visit_expr_nil(Tree tree);
 

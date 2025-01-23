@@ -175,7 +175,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_variable(Tree tree) {
+    protected void visit_expr_variable(Tree tree)throws Exception {
         // seems ok
         String label = tree.getChild(0).getText();
         functionActual.setRef(label);

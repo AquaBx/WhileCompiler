@@ -107,7 +107,7 @@ public class TypesVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_variable(Tree tree) {
+    protected void visit_expr_variable(Tree tree) throws Exception {
     }
 
     @Override
