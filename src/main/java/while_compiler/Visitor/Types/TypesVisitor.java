@@ -8,7 +8,7 @@ import while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TypesVisitor extends Visitor {
 

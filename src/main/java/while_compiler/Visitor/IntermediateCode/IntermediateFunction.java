@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class IntermediateFunction extends FunctionSignature {
     private final ArrayList<Instruction> instructions = new ArrayList<>();
