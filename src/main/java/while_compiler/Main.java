@@ -1,29 +1,9 @@
 package while_compiler;
 
-import org.antlr.grammar.v3.ANTLRv3Parser.throwsSpec_return;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
-import org.antlr.runtime.tree.Tree;
-import antlr.WhileGrammarLexer;
-import antlr.WhileGrammarParser;
-import while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
-import while_compiler.Visitor.Symbols.SymbolsVisitor;
-import while_compiler.Visitor.Types.TypesVisitor;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 
 class Main {
-    public static void main(String[] args) throws RecognitionException, Exception {
+    public static void main(String[] args) throws Exception {
         Command command = new Command();
 
         if (args.length == 0) {

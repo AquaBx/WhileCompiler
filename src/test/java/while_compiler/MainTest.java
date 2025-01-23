@@ -1,11 +1,12 @@
 package while_compiler;
 
+import antlr.WhileGrammarLexer;
+import antlr.WhileGrammarParser;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.Tree;
-import antlr.WhileGrammarLexer;
-import antlr.WhileGrammarParser;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
