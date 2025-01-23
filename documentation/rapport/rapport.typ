@@ -97,12 +97,11 @@ Puis, avons créé un visiteur qui parcourt l'AST effectue ces vérifications à
 
 Nous avons également un visiteur qui vérifie lors d'un assignement que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction si il y a un appel de fonction à droite.
 
-#highlight()[
 == Génération de code 3 adresses à partir de l’AST
 
-- visiteur pour le code 3 adresses (`IntermediateCodeVisitor.java`)
+Un visiteur se charge de générer le code 3 adresses (`IntermediateCodeVisitor.java`).
 
-parler de FunctionSignature - les types (`TypesVisitor.java`)
+Voici les instructions du code intermédiaire que nous avons décidé de faire :
 
 #table(
   columns: (auto, auto, auto, auto, auto),
@@ -209,12 +208,14 @@ parler de FunctionSignature - les types (`TypesVisitor.java`)
   [create a label],
 )
 
-Traduction complète d'un programme !!
+#highlight()[
+  - PARLER DE FUNCTION SIGNATURE
+  - TODO ADD CODE TROIS ADRESSE D'UN PRGM
 ]
 
 == Génération de code à partir du code 3 adresses
 
-Nous avons choisit C++ comme langage cible. Pour ce faire, on itère sur toutes nos instructions en code 3 adresses stockées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode `toCpp()`, cela nous répartit le travail à faire. Ensuite, il nous reste juste à concaténer toutes nos instructions générées en C++ et à les enregistrer dans un fichier.
+Nous avons choisit C++ comme langage cible. Pour ce faire, on itère sur toutes nos instructions en code 3 adresses stockées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode `toCpp()`, il suffit d'appeler cette méthode pour obtenir l'instruction 3 adresses en C++. Ensuite, il nous reste juste à concaténer toutes nos instructions générées en C++ et à les enregistrer dans un fichier.
 
 == Bibliothèque runtime de WHILE écrite dans le langage cible
 
@@ -222,7 +223,7 @@ Cette bibliothèque fournit la gestion des arbres ainsi que l'apport de certaine
 
 Par exemple, on a ajouté un opérateur de cast vers des chaines de caractères ou vers des entiers pour éviter de faire trop souvent la conversion à la main.
 
-On a également apporté des fonctions `print` et `printInt` afin de mieux débuguer lors de l'éxécution.
+On a également ajouté une fonction de pretty printing `pp` afin de mieux débuguer lors de l'éxécution.
 
 #pagebreak()
 = Description de la validation du compilateur
@@ -238,17 +239,14 @@ faire le code coverage et commenter
 
 == Bilan
 
-=== Ce qui fonctionne
+=== Ce qui fonctionne... Ou non
 
 D'après les tests, la transpilation fonctionne pour tout.
-
-=== Ce qui ne fonctionne pas
-
-Si quelque chose ne fonctionne pas, on ne l'a pas détecté.
+Nous n'avons pas détecté d'erreur à partir des tests que nous avons fait.
 
 === Fonctionnalités restantes à implémenter
 
-Il nous manque cependant, lors du passage d'arguments, le support sous forme d'arbre à l'exécutable. Seuls les entiers sont supportés.
+Lorsque l'on crée l'exécutable d'un fichier while, les arguments de ligne de commande ne sont pas supportés par l'exécutable, excepté les entiers, qui fonctionnent. 
 
 #pagebreak()
 = Description de la méthodologie de gestion de projet
@@ -259,7 +257,6 @@ Pour la gestion du projet, nous avons utilisé Gitlab pour le versionning et un 
 
 == Etapes de développement et découpage des tâches
 
-#highlight()[
 == Rapport de travail individuel
 
 Voici un rapport des activités de chacun sur le projet : 
@@ -272,18 +269,18 @@ Voici un rapport des activités de chacun sur le projet :
   [Tout le monde],
 
   [Création de l'AST (et simplification)],
-  [Tout le monde, puis Tom pour l'optimiser],
+  [Tout le monde],
 
   [Analyse sémantique],
   [
     - Table des symboles : Célia
     - Visiteur de base : Titouan
-    - Autres visiteurs : Tout le monde
+    - Autres visiteurs : Tom et Nicolas
     - Validation du programme : Tom + tests écrits par tout le monde
   ],
 
   [Traduction en 3 adresses],
-  [Tout le monde, mais un peu plus Tom],
+  [Tout le monde, mais Tom plus que les autres],
 
   [Bibliothèque run time],
   [Tom],
@@ -292,12 +289,11 @@ Voici un rapport des activités de chacun sur le projet :
   [Tom],
   
   [Script permettant d’enchaîner le compilateur While avec le compilateur du langage cible de manière à générer un exécutable],
-  [??],
+  [Titouan],
 
   [Documentation (rapport + documentation utilisateur)],
-  [Célia, avec relecture des autres]
+  [Célia & Nicolas, avec relecture des autres]
 )
-]
 
 #pagebreak()
 = Post mortem : Organisation du projet
