@@ -77,6 +77,7 @@ public class IntermediateFunction extends FunctionSignature {
         StringBuilder out = new StringBuilder();
         out.append(String.format("function %s\n", getName()));
         for (int i = 0; i < instructionsCount(); i++) {
+            if (getInstruction(i)==null) continue;
             out.append(String.format("%s : %s\n", i, getInstruction(i)));
         }
         out.append("end\n");

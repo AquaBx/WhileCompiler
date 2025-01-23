@@ -18,6 +18,10 @@ public class ArgsManager {
                     case "-o", "--output":
                         actualArg = "outputFile";
                         break;
+                    case "-a", "--asm":
+                        argMap.put("asm", "true");
+                        actualArg = "skip";
+                        break;
                     default:
                         actualArg = "skip";
                         System.out.printf("Unknown argument : %s\n", arg);
@@ -32,5 +36,9 @@ public class ArgsManager {
     String getArg(String key) {
         assertTrue(String.format("Key %s not set", key), argMap.containsKey(key));
         return argMap.get(key);
+    }
+
+    String getArgOrDefault(String key,String def) {
+        return argMap.getOrDefault(key,def);
     }
 }

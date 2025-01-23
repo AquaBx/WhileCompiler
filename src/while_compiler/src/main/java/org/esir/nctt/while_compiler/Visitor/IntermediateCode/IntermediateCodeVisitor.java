@@ -11,6 +11,18 @@ public class IntermediateCodeVisitor extends Visitor {
     HashMap<String, IntermediateFunction> functions = new HashMap<>();
     IntermediateFunction functionActual;
 
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+
+        for (IntermediateFunction fun : functions.values()) {
+            if (!fun.isSTD()) {
+                out.append(String.format("%s\n", fun.toString()));
+            }
+        }
+
+        return out.toString();
+    }
+
     public String toCpp() {
         StringBuilder out = new StringBuilder();
 
