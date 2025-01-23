@@ -120,10 +120,6 @@ public class TypesVisitor extends Visitor {
     @Override
     protected void visit_expr_constructor_cons(Tree tree) throws Exception {
         Tree listExpressions = tree.getChild(0);
-        int nbExpressions = listExpressions.getChildCount();
-        if ( nbExpressions >= 0 ) {
-            throw new Exception("cons requires at least 1 argument, got 0.");
-        }
         visit_expressions(listExpressions);
     }
 
