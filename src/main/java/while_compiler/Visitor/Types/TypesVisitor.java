@@ -8,6 +8,8 @@ import while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertEquals;
+
 public class TypesVisitor extends Visitor {
 
     HashMap<String, FunctionSignature> functionSignatures = new HashMap<>();
