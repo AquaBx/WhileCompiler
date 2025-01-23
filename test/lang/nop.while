@@ -1,0 +1,10 @@
+function nop :
+read
+% 
+    if (nil ?= nil) then
+        Result := nil
+    else
+        Result := (cons nil nil)
+    fi ; nop
+% 
+write Result 
