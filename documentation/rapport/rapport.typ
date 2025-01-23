@@ -159,6 +159,9 @@ Nous avons besoin d'une table des symboles pour vérifier que les variables et l
 
 Puis, avons créé un visiteur qui parcourt l'AST effectue ces vérifications à l'aide de la table des symboles.
 
+=== Vérification des assignements et des paramètres
+
+Nous avons également un visiteur qui vérifie lors d'un assignement que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction si il y a un appel de fonction à droite.
 
 #highlight()[
 == Génération de code 3 adresses à partir de l’AST
