@@ -5,8 +5,6 @@ import org.antlr.runtime.tree.Tree;
 import while_compiler.LibraryFunctions;
 import while_compiler.Visitor.Visitor;
 
-import static org.junit.Assert.assertEquals;
-
 public class SymbolsVisitor extends Visitor {
     SymbolTable lookupTable = new SymbolTable();
 

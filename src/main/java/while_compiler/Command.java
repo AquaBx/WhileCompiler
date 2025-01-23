@@ -1,5 +1,16 @@
 package while_compiler;
 
+import antlr.WhileGrammarLexer;
+import antlr.WhileGrammarParser;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.Tree;
+import while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
+import while_compiler.Visitor.Symbols.SymbolsVisitor;
+import while_compiler.Visitor.Types.TypesVisitor;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,23 +19,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
-import org.antlr.runtime.tree.Tree;
-import antlr.WhileGrammarLexer;
-import antlr.WhileGrammarParser;
-import while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
-import while_compiler.Visitor.Symbols.SymbolsVisitor;
-import while_compiler.Visitor.Types.TypesVisitor;
-
 public class Command {
-    
+
     String helpMessage() {
         return """
                     A While Compiler
-
+                
                     Usage:
                         compile INPUT_PATH [OPTION]
                             - Generate executable or IR
@@ -32,10 +32,10 @@ public class Command {
                             - Run .while file
                         help
                             - Print this help message
-
+                
                     Arguments:
                         INPUT_PATH: Path to the .while file
-
+                
                     Options:
                         compile:
                             -o, --output <OUTPUT_PATH>: Path to the result file
@@ -55,7 +55,7 @@ public class Command {
 
         // Check input file
         if (!input_path.endsWith(".while")) {
-            System.err.println(String.format("Error: Unrecognized input (%s)", input_path));
+            System.err.printf("Error: Unrecognized input (%s)%n", input_path);
             System.out.println(this.helpMessage());
             return;
         }
@@ -87,7 +87,7 @@ public class Command {
 
         // Check input file
         if (!input_path.endsWith(".while")) {
-            System.err.println(String.format("Error: Unrecognized input (%s)", input_path));
+            System.err.printf("Error: Unrecognized input (%s)%n", input_path);
             System.out.println(this.helpMessage());
             return;
         }
@@ -107,7 +107,7 @@ public class Command {
                     break;
 
                 default:
-                    System.err.println(String.format("Error: Unknow argument: %s", args[i]));
+                    System.err.printf("Error: Unknow argument: %s%n", args[i]);
                     System.out.println(this.helpMessage());
                     return;
             }
@@ -146,21 +146,21 @@ public class Command {
     void run(String input_path) throws IOException, RecognitionException {
         String code = FileManager.readFile(FileManager.getPath(input_path).toFile());
         String cpp_code = generateCpp(code);
-        
-        Path tmpfile_exe = Files.createTempFile("while_executable",".exe");
-        
-        
+
+        Path tmpfile_exe = Files.createTempFile("while_executable", ".exe");
+
+
         // Run shell command is OS-dependant
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-        
+
         // Compile Cpp
         {
-            Path tmpfile_cpp = Files.createTempFile("while_executable",".cpp");
+            Path tmpfile_cpp = Files.createTempFile("while_executable", ".cpp");
             FileManager.writeFile(tmpfile_cpp.toFile(), cpp_code);
 
             // Generate Command
-            String command = String.format("clang++ %s -o %s",tmpfile_cpp,tmpfile_exe);
-            ProcessBuilder processBuilder= new ProcessBuilder();
+            String command = String.format("clang++ %s -o %s", tmpfile_cpp, tmpfile_exe);
+            ProcessBuilder processBuilder = new ProcessBuilder();
             if (!isWindows) {
                 processBuilder.command("cmd.exe", "/c", command);
             } else {
@@ -187,8 +187,8 @@ public class Command {
         // Run executable
         {
             // Generate Command
-            String command = String.format("./%s",tmpfile_exe);
-            ProcessBuilder processBuilder= new ProcessBuilder();
+            String command = String.format("./%s", tmpfile_exe);
+            ProcessBuilder processBuilder = new ProcessBuilder();
             if (!isWindows) {
                 processBuilder.command("cmd.exe", "/c", command);
             } else {
