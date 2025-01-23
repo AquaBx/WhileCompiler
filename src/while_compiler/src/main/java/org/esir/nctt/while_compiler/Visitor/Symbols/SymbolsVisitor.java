@@ -160,7 +160,7 @@ public class SymbolsVisitor extends Visitor {
         String function_name = function_symbol.getText();
         if (!lookupTable.inScope(function_name)) {
             // TODO make better error
-            System.err.printf("Error: Function %s is not defined\n", function_name);
+            throw new Exception(String.format("Error: Function %s is not defined\n", function_name));
         }
         visit_expressions(tree.getChild(1));
     }
