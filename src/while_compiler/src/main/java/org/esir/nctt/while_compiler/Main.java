@@ -55,7 +55,7 @@ class Main {
 
             FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), stringexp);
         } catch (Exception e) {
-            System.err.println(e);
+            throw new Exception(e);
         }
     }
 }
