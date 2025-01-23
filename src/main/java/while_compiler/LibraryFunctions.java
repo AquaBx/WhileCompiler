@@ -15,6 +15,12 @@ public class LibraryFunctions {
             pp.setInputs(1);
             pp.setOutputs(1);
             target.put("pp", pp);
+
+            T compare = constructor.get();
+            compare.setName("compare");
+            compare.setInputs(2);
+            compare.setOutputs(1);
+            target.put("compare", compare);
         } catch (Exception e) {
             throw new Exception(String.format("Cannot initialize Function from STD %s\n", e));
         }
@@ -23,5 +29,6 @@ public class LibraryFunctions {
     public static void addTo(SymbolTable target) {
         // définitions des fonctions standards prises en charge par notre librairie
         target.put("pp", null);
+        target.put("compare", null);
     }
 }
