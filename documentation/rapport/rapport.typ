@@ -167,23 +167,110 @@ Puis, avons créé un visiteur qui parcourt l'AST effectue ces vérifications à
 
 parler de FunctionSignature - les types (`TypesVisitor.java`)
 
-```
-+-----------+----------------------+----------------------+
-| Operation |         arg1         |         arg2         |
-+-----------+----------------------+----------------------+
-| input     | input name           | stack position       |
-| return    |                      | register's address   |
-| define    | new register's label | tree                 |
-| retrieve  | new register's label | register's address   |
-| mov       | register's label     | register's address   |
-| setHead   | register's label     | register's address   |
-| setTail   | register's label     | register's address   |
-| call      | function's label     | number of parameters |
-| param     |                      | register's address   |
-| return    |                      | register's address   |
-+-----------+----------------------+----------------------+
-```
+#table(
+  columns: (auto, auto, auto, auto, auto),
+  [*Operation*],
+  [*arg1*],
+  [*arg2*],
+  [*arg3*],
+  [*explaination*],
 
+  [define],
+  [new register's label],
+  [],
+  [],
+  [create a new nil tree],
+
+  [define],
+  [new register's label],
+  [value],
+  [],
+  [create a new nil tree with a string value],
+
+  [mov],
+  [R1],
+  [R2],
+  [],
+  [copy the R2's value into R1],
+
+  [setHead],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R2 as the head of R1],
+
+  [setTail],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R2 as the tail of R1],
+
+  [getHead],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R1's Head into R2],
+
+  [getTail],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R1's Tail into R2],
+
+  [call],
+  [function's label],
+  [R1],
+  [R[]],
+  [call the function with parameters stored in R, and store the return in R1],
+
+  [if],
+  [R1],
+  [],
+  [],
+  [check if R1 is true and if it is the case execute the next context],
+
+  [ifnot],
+  [R1],
+  [],
+  [],
+  [check if R1 is false and if it is the case execute the next context],
+
+  [goto],
+  [label],
+  [],
+  [],
+  [jump to the label],
+
+  [inc],
+  [R1],
+  [value],
+  [],
+  [increment R1 by the value],
+
+  [dec],
+  [R1],
+  [value],
+  [],
+  [decrement R1 by the value],
+
+  [closecontext],
+  [],
+  [],
+  [],
+  [close a code context],
+
+  [opencontext],
+  [],
+  [],
+  [],
+  [open a code context],
+
+  [label],
+  [],
+  [],
+  [],
+  [create a label],
+)
 
 Traduction complète d'un programme !!
 ]
