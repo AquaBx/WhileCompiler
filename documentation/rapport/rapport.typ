@@ -133,19 +133,35 @@ Sur cet AST, nous remarquons que notre programme contient 3 fonctions :
   - 1 paramètre de sortie : `Result`
   - Une bouce `for` itérant sur `Op1`. Elle stocke dans `Result` le résultat de la fonction `add` qui est appelée sur les paramètres `Result` et `Op2`
 
-== Table des symboles
+#pagebreak()
+== Architecture 
+
+Ci-dessous notre diagramme de classe de notre compilateur.
+#image("resources/class_diagram.svg")
+
+=== Design Pattern Visiteur
+
+Nous avons mis en place une classe abstraite `Visitor.java` se basant sur le Design Pattern visitor. Elle permet de visiter n'importe quel label présent dans l'AST (fonctions, inputs, outputs, expressions, variables etc.)
+
+Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table des symboles (`SymbolsVisitor.java`). Le visiteur est classe permettant de naviguer dans l'arbre de navigation syntaxique depuis la racine de l'arbre jusqu'aux feuilles. 
+
+== Analyse syntaxique et sémantique
 
 Dans cette partie et les suivantes, nous traiterons de notre méthodologie pour effectuer les analyses syntaxique et sémantiques
+
+=== Table des symboles
+
+Nous avons besoin d'une table des symboles pour vérifier que les variables et les fonctions sont bien initialisées avant d'êtres appelées, et pour vérifier types. Pour cela :
 
 - Nous avons implémenté une classe `SymbolInfo` qui a pour attributs `line` (numéro de ligne), `column` (numéro de colonne) et `content` (contenu du symbol). Elle permet d'énumérer les informations concernant le symbole.
 
 - Ensuite, nous avons implémenté `SymbolTable`, la table des symboles. Nous l'avons représenté en `Stack<Map<String, SymbolInfo>>`. Nous y avons implémenté plusieurs méthodes pour ajouter des symboles à un contexte, ajouter un contexte à la table des symboles, vérifier si le symbole est dans un contexte etc.
 
-== Design Pattern Visiteur
+Puis, avons créé un visiteur qui parcourt l'AST effectue ces vérifications à l'aide de la table des symboles.
 
-Nous avons mis en place une classe abstraite `Visitor.java` se basant sur le Design Pattern visitor. Elle permet de visiter n'importe quel label présent dans l'AST (fonctions, inputs, outputs, expressions, variables etc.)
+=== Vérification des assignements et des paramètres
 
-Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table des symboles (`SymbolsVisitor.java`).
+Nous avons également un visiteur qui vérifie lors d'un assignement que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction si il y a un appel de fonction à droite.
 
 #highlight()[
 == Génération de code 3 adresses à partir de l’AST
@@ -154,23 +170,110 @@ Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table 
 
 parler de FunctionSignature - les types (`TypesVisitor.java`)
 
-```
-+-----------+----------------------+----------------------+
-| Operation |         arg1         |         arg2         |
-+-----------+----------------------+----------------------+
-| input     | input name           | stack position       |
-| return    |                      | register's address   |
-| define    | new register's label | tree                 |
-| retrieve  | new register's label | register's address   |
-| mov       | register's label     | register's address   |
-| setHead   | register's label     | register's address   |
-| setTail   | register's label     | register's address   |
-| call      | function's label     | number of parameters |
-| param     |                      | register's address   |
-| return    |                      | register's address   |
-+-----------+----------------------+----------------------+
-```
+#table(
+  columns: (auto, auto, auto, auto, auto),
+  [*Operation*],
+  [*arg1*],
+  [*arg2*],
+  [*arg3*],
+  [*explaination*],
 
+  [define],
+  [new register's label],
+  [],
+  [],
+  [create a new nil tree],
+
+  [define],
+  [new register's label],
+  [value],
+  [],
+  [create a new nil tree with a string value],
+
+  [mov],
+  [R1],
+  [R2],
+  [],
+  [copy the R2's value into R1],
+
+  [setHead],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R2 as the head of R1],
+
+  [setTail],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R2 as the tail of R1],
+
+  [getHead],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R1's Head into R2],
+
+  [getTail],
+  [R1],
+  [R2],
+  [],
+  [set a copy of R1's Tail into R2],
+
+  [call],
+  [function's label],
+  [R1],
+  [R[]],
+  [call the function with parameters stored in R, and store the return in R1],
+
+  [if],
+  [R1],
+  [],
+  [],
+  [check if R1 is true and if it is the case execute the next context],
+
+  [ifnot],
+  [R1],
+  [],
+  [],
+  [check if R1 is false and if it is the case execute the next context],
+
+  [goto],
+  [label],
+  [],
+  [],
+  [jump to the label],
+
+  [inc],
+  [R1],
+  [value],
+  [],
+  [increment R1 by the value],
+
+  [dec],
+  [R1],
+  [value],
+  [],
+  [decrement R1 by the value],
+
+  [closecontext],
+  [],
+  [],
+  [],
+  [close a code context],
+
+  [opencontext],
+  [],
+  [],
+  [],
+  [open a code context],
+
+  [label],
+  [],
+  [],
+  [],
+  [create a label],
+)
 
 Traduction complète d'un programme !!
 ]
