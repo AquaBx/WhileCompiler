@@ -3,8 +3,6 @@ package while_compiler.Visitor;
 import antlr.WhileGrammarLexer;
 import org.antlr.runtime.tree.Tree;
 
-import static org.junit.Assert.assertEquals;
-
 public abstract class Visitor {
     public abstract void visit_program(Tree program) throws Exception;
 
