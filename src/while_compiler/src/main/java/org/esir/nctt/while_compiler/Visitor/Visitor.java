@@ -6,9 +6,9 @@ import org.esir.nctt.antlr.WhileGrammarLexer;
 import static org.junit.Assert.assertEquals;
 
 public abstract class Visitor {
-    public abstract void visit_program(Tree program);
+    public abstract void visit_program(Tree program) throws Exception;
 
-    protected abstract void visit_function(Tree tree);
+    protected abstract void visit_function(Tree tree) throws Exception;
 
     protected abstract void visit_inputs(Tree tree);
 
@@ -22,29 +22,29 @@ public abstract class Visitor {
 
     protected abstract void visit_expr_nil(Tree tree);
 
-    protected abstract void visit_expr_constructor_list(Tree tree);
+    protected abstract void visit_expr_constructor_list(Tree tree) throws Exception;
 
-    protected abstract void visit_expr_constructor_cons(Tree tree);
+    protected abstract void visit_expr_constructor_cons(Tree tree) throws Exception;
 
-    protected abstract void visit_expr_call(Tree tree);
+    protected abstract void visit_expr_call(Tree tree) throws Exception;
 
-    protected abstract void visit_expr_compare(Tree tree);
+    protected abstract void visit_expr_compare(Tree tree) throws Exception;
 
     protected abstract void visit_variables(Tree tree);
 
-    protected void visit_expr_head(Tree tree) {
+    protected void visit_expr_head(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_HEAD, tree.getType());
 
         visit_expression(tree.getChild(0));
     }
 
-    protected void visit_expr_tail(Tree tree) {
+    protected void visit_expr_tail(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_TAIL, tree.getType());
 
         visit_expression(tree.getChild(0));
     }
 
-    protected void visit_command(Tree command) {
+    protected void visit_command(Tree command) throws Exception {
         if (command.getType() == WhileGrammarLexer.IF) {
             visit_if(command);
         } else if (command.getType() == WhileGrammarLexer.WHILE) {
@@ -60,7 +60,7 @@ public abstract class Visitor {
         }
     }
 
-    protected void visit_expression(Tree expression) {
+    protected void visit_expression(Tree expression) throws Exception {
         if (expression.getType() == WhileGrammarLexer.EXPR_SYMBOL) {
             visit_expr_symbol(expression);
         } else if (expression.getType() == WhileGrammarLexer.EXPR_VARIABLE) {
@@ -82,7 +82,7 @@ public abstract class Visitor {
         }
     }
 
-    protected void visit_expressions(Tree tree) {
+    protected void visit_expressions(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPRESSIONS, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
@@ -91,7 +91,7 @@ public abstract class Visitor {
         }
     }
 
-    protected void visit_commands(Tree tree) {
+    protected void visit_commands(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.COMMANDS, tree.getType());
 
         for (int i = 0; i < tree.getChildCount(); i++) {
@@ -99,7 +99,7 @@ public abstract class Visitor {
         }
     }
 
-    protected void visit_if(Tree tree) {
+    protected void visit_if(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.IF, tree.getType());
 
         visit_expression(tree.getChild(0));
@@ -109,21 +109,21 @@ public abstract class Visitor {
         }
     }
 
-    protected void visit_while(Tree tree) {
+    protected void visit_while(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.WHILE, tree.getType());
 
         visit_expression(tree.getChild(0));
         visit_commands(tree.getChild(1));
     }
 
-    protected void visit_for(Tree tree) {
+    protected void visit_for(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.FOR, tree.getType());
 
         visit_expression(tree.getChild(0));
         visit_commands(tree.getChild(1));
     }
 
-    protected void visit_assignement(Tree tree) {
+    protected void visit_assignement(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.ASSIGNMENT, tree.getType());
 
         // Important: we visit expressions before the variables
@@ -131,7 +131,7 @@ public abstract class Visitor {
         visit_variables(tree.getChild(0));
     }
 
-    protected void visit_foreach(Tree tree) {
+    protected void visit_foreach(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.FOREACH, tree.getType());
 
         visit_expression(tree.getChild(1));

@@ -44,7 +44,7 @@ public class IntermediateCodeVisitor extends Visitor {
     // Visitor
 
     @Override
-    public void visit_program(Tree program) {
+    public void visit_program(Tree program) throws Exception {
 
         LibraryFunctions.addTo(functions, IntermediateFunction::new);
 
@@ -62,7 +62,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_function(Tree tree) {
+    protected void visit_function(Tree tree) throws Exception {
 
         String functionLabel = tree.getChild(0).getText();
         functionActual = functions.get(functionLabel);
@@ -83,7 +83,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_assignement(Tree tree) {
+    protected void visit_assignement(Tree tree) throws Exception {
         // seems ok
 
         Tree expressions = tree.getChild(1);
@@ -130,7 +130,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_constructor_cons(Tree tree) {
+    protected void visit_expr_constructor_cons(Tree tree) throws Exception {
         // seems ok
         Tree parameters = tree.getChild(0);
 
@@ -187,7 +187,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_call(Tree tree) {
+    protected void visit_expr_call(Tree tree) throws Exception {
         // seems ok
 
         String label = tree.getChild(0).getText();
@@ -213,7 +213,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_compare(Tree tree) {
+    protected void visit_expr_compare(Tree tree) throws Exception {
         // seems ok
 
         int retour = functionActual.instructionsCount();
@@ -229,7 +229,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_constructor_list(Tree tree) {
+    protected void visit_expr_constructor_list(Tree tree) throws Exception {
         // seems ok
         Tree parameters = tree.getChild(0);
         String ListR = functionActual.createDefine();
@@ -251,7 +251,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_if(Tree tree) {
+    protected void visit_if(Tree tree) throws Exception {
         // seems ok
         Tree expression = tree.getChild(0);
         int expressionAddress = functionActual.instructionsCount();
@@ -273,7 +273,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_foreach(Tree tree) {
+    protected void visit_foreach(Tree tree) throws Exception {
         // todo
 
         Tree item = tree.getChild(0);
@@ -303,7 +303,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_while(Tree tree) {
+    protected void visit_while(Tree tree) throws Exception {
         // to be tested
         Tree expression = tree.getChild(0);
         Tree commands = tree.getChild(1);
@@ -321,7 +321,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_for(Tree tree) {
+    protected void visit_for(Tree tree) throws Exception {
         // to be tested
         Tree value = tree.getChild(0);
         Tree commands = tree.getChild(1);
@@ -351,7 +351,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_tail(Tree tree) {
+    protected void visit_expr_tail(Tree tree) throws Exception {
         String reg = functionActual.createDefine();
         int ad = functionActual.instructionsCount();
         visit_expression(tree.getChild(0));
@@ -359,7 +359,7 @@ public class IntermediateCodeVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_head(Tree tree) {
+    protected void visit_expr_head(Tree tree) throws Exception {
         String reg = functionActual.createDefine();
         int ad = functionActual.instructionsCount();
         visit_expression(tree.getChild(0));

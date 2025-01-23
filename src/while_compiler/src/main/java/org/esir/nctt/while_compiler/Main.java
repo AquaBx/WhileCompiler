@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 class Main {
-    public static void main(String[] args) throws RecognitionException {
+    public static void main(String[] args) throws Exception {
         ArgsManager ArgM = new ArgsManager(args);
 
         String inputFilePath = ArgM.getArg("inputFile");

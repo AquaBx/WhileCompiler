@@ -16,7 +16,7 @@ public class TypesVisitor extends Visitor {
     HashMap<String, FunctionSignature> functionSignatures = new HashMap<>();
 
     @Override
-    public void visit_program(Tree program) {
+    public void visit_program(Tree program) throws Exception {
 
         LibraryFunctions.addTo(functionSignatures, FunctionSignature::new);
 
@@ -39,7 +39,7 @@ public class TypesVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_function(Tree tree) {
+    protected void visit_function(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.FUNCTION, tree.getType());
 
         // Visit Commands
@@ -47,7 +47,7 @@ public class TypesVisitor extends Visitor {
 
     }
 
-    protected Integer visit_expression2(Tree expression) {
+    protected Integer visit_expression2(Tree expression) throws Exception {
         if (expression.getType() == WhileGrammarLexer.EXPR_CALL) {
             visit_expr_call(expression);
             return functionSignatures.get(expression.getChild(0).getText()).getOutputs();
@@ -56,7 +56,7 @@ public class TypesVisitor extends Visitor {
         }
     }
 
-    protected Integer visit_expressions2(Tree tree) {
+    protected Integer visit_expressions2(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPRESSIONS, tree.getType());
         Integer sum = 0;
         for (int i = 0; i < tree.getChildCount(); i++) {
@@ -67,25 +67,26 @@ public class TypesVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_assignement(Tree tree) {
+    protected void visit_assignement(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.ASSIGNMENT, tree.getType());
 
         // Important: we visit expressions before the variables
         Integer nbVariables = tree.getChild(0).getChildCount();
         Integer nbExpressions = visit_expressions2(tree.getChild(1));
 
-        assertEquals(nbVariables, nbExpressions);
+        if (!nbVariables.equals(nbExpressions)) {
+            throw new Exception(String.format("%s variables and %s expressions on assignment",nbVariables,nbExpressions));
+        }
         visit_expressions(tree.getChild(1));
     }
 
     @Override
-    protected void visit_expr_call(Tree tree) {
+    protected void visit_expr_call(Tree tree) throws Exception {
         int nbParameters = visit_expressions2(tree.getChild(1));
-        assertEquals(
-                String.format("%s", tree.getChild(0).getText()),
-                functionSignatures.get(tree.getChild(0).getText()).getInputs(),
-                nbParameters
-        );
+        int nbRequired = functionSignatures.get(tree.getChild(0).getText()).getInputs();
+        if ( nbRequired != nbParameters) {
+            throw new Exception(String.format("%d parameters provided instead of %d in %s",nbParameters,nbRequired, tree.getChild(0).getText()));
+        }
     }
 
     @Override
@@ -117,10 +118,12 @@ public class TypesVisitor extends Visitor {
     }
 
     @Override
-    protected void visit_expr_constructor_cons(Tree tree) {
+    protected void visit_expr_constructor_cons(Tree tree) throws Exception {
         Tree listExpressions = tree.getChild(0);
         int nbExpressions = listExpressions.getChildCount();
-        assertTrue("cons requires at least 1 argument, got 0.", nbExpressions >= 0);
+        if ( nbExpressions >= 0 ) {
+            throw new Exception("cons requires at least 1 argument, got 0.");
+        }
         visit_expressions(listExpressions);
     }
 

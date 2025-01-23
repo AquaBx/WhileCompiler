@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 public class LibraryFunctions {
 
-    public static <T extends FunctionSignature> void addTo(HashMap<String, T> target, Supplier<T> constructor) {
+    public static <T extends FunctionSignature> void addTo(HashMap<String, T> target, Supplier<T> constructor) throws Exception {
         // définitions des fonctions standards prises en charge par notre librairie
         try {
             T pp = constructor.get();
