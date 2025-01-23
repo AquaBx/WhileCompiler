@@ -1,11 +1,7 @@
 package while_compiler;
 
-import antlr.WhileGrammarLexer;
-import antlr.WhileGrammarParser;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.Tree;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +10,7 @@ import java.util.stream.Stream;
 
 import static while_compiler.FileManager.getPath;
 import static while_compiler.FileManager.readFile;
+import while_compiler.Command;
 
 public class MainTest {
     public static void visitor(Tree tree, Integer depth) {
@@ -28,22 +25,15 @@ public class MainTest {
             System.out.printf("%s%s%s\n", "-".repeat(10), path.toString(), "-".repeat(10));
 
             String code = readFile(path.toFile());
+            Command command = new Command();
+            command.generateCpp(code);
 
-            ANTLRStringStream antlrStream = new ANTLRStringStream(code);
-
-            WhileGrammarLexer lexer = new WhileGrammarLexer(antlrStream);
-            TokenStream tokenStream = new CommonTokenStream(lexer);
-            WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
-
-            Tree tree = (Tree) parser.program().getTree();
-
-            visitor(tree, 0);
-            System.out.println();
         } catch (Exception e) {
         }
     }
 
-    public void main() {
+    @Test
+    public void run_while_files() {
         try (Stream<Path> paths = Files.walk(getPath("./test/lang"))) {
             paths.filter(Files::isRegularFile).forEach(MainTest::execute);
         } catch (IOException e) {
