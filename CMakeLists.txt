@@ -9,7 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 list(APPEND testlist bools integers multi_return head_tail cons list if boucles)
-set (whilecompile java -jar ${CMAKE_CURRENT_SOURCE_DIR}/src/while_compiler/target/while_compiler-all.jar)
+set (whilecompile java -jar ${CMAKE_CURRENT_SOURCE_DIR}/target/while_compiler-all.jar)
 
 enable_testing()
 
