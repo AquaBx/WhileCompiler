@@ -209,7 +209,6 @@ Voici les instructions du code intermédiaire que nous avons décidé de faire :
 )
 
 #highlight()[
-  - PARLER DE FUNCTION SIGNATURE
   - TODO ADD CODE TROIS ADRESSE D'UN PRGM
 ]
 
@@ -232,19 +231,21 @@ On a également ajouté une fonction de pretty printing `pp` afin de mieux débu
 
 Pour valider le compilateur, nous avons écrit plusieurs tests en langage while. Ils se situent dans le chemin `/test/lang/`.
 
-#highlight()[
 == Code coverage
-faire le code coverage et commenter 
-]
 
-== Bilan
+Pour le code coverage, nous avons utilisé le plugin Maven JaCoCo (Java Code Coverage). Avec ce plugin, nous avons obtenu un code coverage global de 79%.
 
-=== Ce qui fonctionne... Ou non
+#image("resources/jacoco.png")
+
+
+= Bilan
+
+== Ce qui fonctionne... Ou non
 
 D'après les tests, la transpilation fonctionne pour tout.
 Nous n'avons pas détecté d'erreur à partir des tests que nous avons fait.
 
-=== Fonctionnalités restantes à implémenter
+== Fonctionnalités restantes à implémenter
 
 Lorsque l'on crée l'exécutable d'un fichier while, les arguments de ligne de commande ne sont pas supportés par l'exécutable, excepté les entiers, qui fonctionnent. 
 
@@ -292,7 +293,10 @@ Voici un rapport des activités de chacun sur le projet :
   [Titouan],
 
   [Documentation (rapport + documentation utilisateur)],
-  [Célia & Nicolas, avec relecture des autres]
+  [Célia & Nicolas, avec relecture des autres],
+
+  [Test Junit et code coverage],
+  [Nicolas]
 )
 
 #pagebreak()
