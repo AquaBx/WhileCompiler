@@ -5,7 +5,7 @@ import org.antlr.runtime.tree.Tree;
 import while_compiler.LibraryFunctions;
 import while_compiler.Visitor.Visitor;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SymbolsVisitor extends Visitor {
     SymbolTable lookupTable = new SymbolTable();
@@ -113,11 +113,11 @@ public class SymbolsVisitor extends Visitor {
 
         /*
          * c'est une string
-         * 
+         *
          * if (!lookupTable.inScope(symbol_string)) {
          * System.out.printf("Error: Symbol %s is not defined\n", symbol_string);
          * }
-         * 
+         *
          */
     }
 

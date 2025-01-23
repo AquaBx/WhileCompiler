@@ -2,7 +2,7 @@ package while_compiler;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArgsManager {
 
