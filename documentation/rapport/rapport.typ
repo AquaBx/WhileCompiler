@@ -196,13 +196,10 @@ Pour valider le compilateur, nous avons écrit plusieurs tests en langage while.
 
 #highlight()[
 == Code coverage
-faire le code coverage
+faire le code coverage et commenter 
 ]
 
-#highlight()[
 == Bilan
-faire le bilan
-]
 
 === Ce qui fonctionne
 
