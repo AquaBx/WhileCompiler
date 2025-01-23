@@ -19,27 +19,39 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.Tree;
+import antlr.WhileGrammarLexer;
+import antlr.WhileGrammarParser;
+import while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
+import while_compiler.Visitor.Symbols.SymbolsVisitor;
+import while_compiler.Visitor.Types.TypesVisitor;
+
 public class Command {
 
     String helpMessage() {
         return """
                     A While Compiler
-                
+
                     Usage:
                         compile INPUT_PATH [OPTION]
-                            - Generate executable or IR
+                            - Generate executable or C++ or IR
                         run INPUT_PATH
                             - Run .while file
                         help
                             - Print this help message
-                
+
                     Arguments:
                         INPUT_PATH: Path to the .while file
-                
+
                     Options:
                         compile:
                             -o, --output <OUTPUT_PATH>: Path to the result file
                             --asm: Generate only IR code
+                            --cpp: Generate only C++ code
                 """;
     }
 
@@ -60,18 +72,22 @@ public class Command {
             return;
         }
 
-        // Process Optional Args
-        if (args.length > 1) {
-            System.err.println("There is too many arguments");
-            System.out.println(this.helpMessage());
-            return;
+        // Process Exe Args
+        StringBuilder exe_args = new StringBuilder("");
+        if (args.length - 1 >= 1) {
+            if (args[1].equals("--")) {
+                for (int i = 2; i < args.length; i++) {
+                    exe_args.append(args[i]);
+                    exe_args.append(" ");
+                }
+            }
         }
 
         // Execute command
         try {
-            run(input_path);
+            run(input_path, exe_args.toString());
         } catch (Exception e) {
-            // TODO: handle exception
+            System.err.println(e.getMessage());
         }
     }
 
@@ -95,6 +111,7 @@ public class Command {
         // Process Optional Args
         String output_path = null;
         Boolean asm_output = false;
+        Boolean cpp_output = false;
         for (int i = 1; i < args.length; i++) {
             switch (args[i]) {
                 case "-o", "--output":
@@ -106,11 +123,20 @@ public class Command {
                     asm_output = true;
                     break;
 
+                case "--cpp":
+                    cpp_output = true;
+                    break;
+
                 default:
                     System.err.printf("Error: Unknow argument: %s%n", args[i]);
                     System.out.println(this.helpMessage());
                     return;
             }
+        }
+
+        if (asm_output && cpp_output) {
+            System.err.println(String.format("Error: --asm and --cpp can't be activated at the same time."));
+            System.out.println(this.helpMessage());
         }
 
         if (output_path == null) {
@@ -120,97 +146,108 @@ public class Command {
 
         // Execute command
         try {
-            compile(input_path, output_path, asm_output);
+            compile(input_path, output_path, asm_output, cpp_output);
         } catch (Exception e) {
-            // TODO: handle exception
+            System.err.println(e.getMessage());
         }
     }
 
-    void compile(String input_path, String output_path, Boolean asm_output) throws RecognitionException {
+    void compile(String input_path, String output_path, Boolean asm_output, Boolean cpp_output)
+            throws RecognitionException, IOException {
         String code = FileManager.readFile(FileManager.getPath(input_path).toFile());
 
-        String stringexp = null;
-
         if (asm_output) {
-            // Get IR
-            stringexp = generateIR(code);
+            // generate IR
+            String stringexp = generateIR(code);
+            FileManager.writeFile(FileManager.getPath(output_path).toFile(), stringexp);
+        } else if (cpp_output) {
+            // generate C++
+            String stringexp = generateCpp(code);
+            FileManager.writeFile(FileManager.getPath(output_path).toFile(), stringexp);
         } else {
-            // Get Cpp
-            stringexp = generateIR(code);
+            // generate binarie
+            String cpp_code = generateCpp(code);
+            compile_cpp(FileManager.getPath(output_path), cpp_code);
+        }
+    }
+
+    void compile_cpp(Path executable_path, String cpp_code) throws IOException {
+        System.out.println("Compile Cpp");
+
+        Path tmpfile_cpp = Files.createTempFile("while_executable", ".cpp");
+        FileManager.writeFile(tmpfile_cpp.toFile(), cpp_code);
+
+        // Run shell command is OS-dependant
+        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+
+        // Generate Command
+        String command = String.format("clang++ %s -o %s", tmpfile_cpp, executable_path);
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (isWindows) {
+            processBuilder.command("cmd.exe", "/c", command);
+        } else {
+            processBuilder.command("sh", "-c", command);
         }
 
-        FileManager.writeFile(FileManager.getPath(output_path).toFile(), stringexp);
+        // Start Process
+        Process process = processBuilder.start();
+
+        // Read Output
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+
+        try {
+            int exitCode = process.waitFor();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    void execute(Path executable_path, String exe_args) throws IOException {
+        System.out.println("Execute Code");
+
+        // Run shell command is OS-dependant
+        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+
+        // Generate Command
+        String command = String.format("%s %s", executable_path, exe_args);
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (isWindows) {
+            processBuilder.command("cmd.exe", "/c", command);
+        } else {
+            processBuilder.command("sh", "-c", command);
+        }
+
+        // Start Process
+        Process process = processBuilder.start();
+
+        // Read Output
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        System.out.println("");
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+
+        try {
+            int exitCode = process.waitFor();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     // Execute .while file
-    void run(String input_path) throws IOException, RecognitionException {
+    void run(String input_path, String exe_args) throws IOException, RecognitionException {
         String code = FileManager.readFile(FileManager.getPath(input_path).toFile());
         String cpp_code = generateCpp(code);
 
         Path tmpfile_exe = Files.createTempFile("while_executable", ".exe");
 
-
-        // Run shell command is OS-dependant
-        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-
-        // Compile Cpp
-        {
-            Path tmpfile_cpp = Files.createTempFile("while_executable", ".cpp");
-            FileManager.writeFile(tmpfile_cpp.toFile(), cpp_code);
-
-            // Generate Command
-            String command = String.format("clang++ %s -o %s", tmpfile_cpp, tmpfile_exe);
-            ProcessBuilder processBuilder = new ProcessBuilder();
-            if (!isWindows) {
-                processBuilder.command("cmd.exe", "/c", command);
-            } else {
-                processBuilder.command("sh", "-c", command);
-            }
-
-            // Start Process
-            Process process = processBuilder.start();
-
-            // Read Output
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            try {
-                int exitCode = process.waitFor();
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
-        }
-
-        // Run executable
-        {
-            // Generate Command
-            String command = String.format("./%s", tmpfile_exe);
-            ProcessBuilder processBuilder = new ProcessBuilder();
-            if (!isWindows) {
-                processBuilder.command("cmd.exe", "/c", command);
-            } else {
-                processBuilder.command("sh", "-c", command);
-            }
-
-            // Start Process
-            Process process = processBuilder.start();
-
-            // Read Output
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            try {
-                int exitCode = process.waitFor();
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
-        }
+        compile_cpp(tmpfile_exe, cpp_code);
+        execute(tmpfile_exe, exe_args);
     }
 
     // From a while code String output the IR
