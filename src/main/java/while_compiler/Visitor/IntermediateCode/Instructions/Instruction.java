@@ -2,7 +2,7 @@ package while_compiler.Visitor.IntermediateCode.Instructions;
 
 public abstract class Instruction {
     private String arg1;
-    private String arg2;
+    private final String arg2;
 
     public Instruction(String arg1, String arg2) {
         this.arg1 = arg1;
@@ -26,24 +26,8 @@ public abstract class Instruction {
         return arg2;
     }
 
-    public void setArg2(String arg) {
-        this.arg2 = arg;
-    }
-
     public abstract String toString();
 
     public abstract String toCpp();
-
-    // setters
-
-    public void setRes1(String arg) {
-        this.arg1 = arg;
-    }
-
-    public void setRes2(String arg) {
-        this.arg2 = arg;
-    }
-
-    // methods
 
 }
