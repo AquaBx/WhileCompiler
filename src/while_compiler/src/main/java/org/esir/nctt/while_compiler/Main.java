@@ -1,5 +1,6 @@
 package org.esir.nctt.while_compiler;
 
+import org.antlr.grammar.v3.ANTLRv3Parser.throwsSpec_return;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -11,51 +12,42 @@ import org.esir.nctt.while_compiler.Visitor.IntermediateCode.IntermediateCodeVis
 import org.esir.nctt.while_compiler.Visitor.Symbols.SymbolsVisitor;
 import org.esir.nctt.while_compiler.Visitor.Types.TypesVisitor;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 
 class Main {
-    public static void main(String[] args) throws Exception {
-        ArgsManager ArgM = new ArgsManager(args);
+    public static void main(String[] args) throws RecognitionException, Exception {
+        Command command = new Command();
 
-        String inputFilePath = ArgM.getArg("inputFile");
-        String outputFilePath = ArgM.getArg("outputFile");
-        String code = FileManager.readFile(FileManager.getPath(inputFilePath).toFile());
+        if (args.length == 0) {
+            System.out.println(command.helpMessage());
+            return;
+        }
 
-        ANTLRStringStream antlrStream = new ANTLRStringStream(code);
-        WhileGrammarLexer lexer = new WhileGrammarLexer(antlrStream);
-        TokenStream tokenStream = new CommonTokenStream(lexer);
-        WhileGrammarParser parser = new WhileGrammarParser(tokenStream);
+        switch (args[0]) {
+            case "compile":
+                command.compile_command(Arrays.copyOfRange(args, 1, args.length));
+                break;
 
-        Tree ast = (Tree) parser.program().getTree();
-        SymbolsVisitor symbolsVisitor = new SymbolsVisitor();
-        TypesVisitor typesVisitor = new TypesVisitor();
-        IntermediateCodeVisitor intermediateCodeVisitor = new IntermediateCodeVisitor();
+            case "run":
+                command.run_command(Arrays.copyOfRange(args, 1, args.length));
+                break;
 
-        try {
-            System.out.println("Symbols analysis");
-            symbolsVisitor.visit_program(ast);
+            case "help":
+                System.out.println(command.helpMessage());
+                break;
 
-            System.out.println("Types analysis");
-            typesVisitor.visit_program(ast);
-
-            System.out.println("Three-address code generation");
-            intermediateCodeVisitor.visit_program(ast);
-
-            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-            InputStream library = classloader.getResourceAsStream("Library.cpp");
-            assert library != null;
-            String lib = new String(library.readAllBytes(), StandardCharsets.UTF_8);
-
-            String stringexp = intermediateCodeVisitor.toString();
-            if (ArgM.getArgOrDefault("asm","false").equals("false")){
-                System.out.println("C++ generation");
-                stringexp = lib + intermediateCodeVisitor.toCpp();
-            }
-
-            FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), stringexp);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+            default:
+                System.out.println(command.helpMessage());
+                break;
         }
     }
+
 }
