@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import static while_compiler.FileManager.getPath;
 import static while_compiler.FileManager.readFile;
-import while_compiler.Command;
 
 public class MainTest {
     public static void visitor(Tree tree, Integer depth) {
