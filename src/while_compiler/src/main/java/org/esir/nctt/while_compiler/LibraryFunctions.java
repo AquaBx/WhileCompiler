@@ -10,23 +10,11 @@ public class LibraryFunctions {
     public static <T extends FunctionSignature> void addTo(HashMap<String, T> target, Supplier<T> constructor) {
         // définitions des fonctions standards prises en charge par notre librairie
         try {
-            T print = constructor.get();
-            print.setName("print");
-            print.setInputs(1);
-            print.setOutputs(1);
-            target.put("print", print);
-
-            T printInt = constructor.get();
-            printInt.setName("printInt");
-            printInt.setInputs(1);
-            printInt.setOutputs(1);
-            target.put("printInt", printInt);
-
-            T compare = constructor.get();
-            compare.setName("compare");
-            compare.setInputs(2);
-            compare.setOutputs(1);
-            target.put("compare", compare);
+            T pp = constructor.get();
+            pp.setName("pp");
+            pp.setInputs(1);
+            pp.setOutputs(1);
+            target.put("pp", pp);
 
             T generateSymbol = constructor.get();
             generateSymbol.setName("generateSymbol");
@@ -46,9 +34,7 @@ public class LibraryFunctions {
 
     public static void addTo(SymbolTable target) {
         // définitions des fonctions standards prises en charge par notre librairie
-        target.put("print", null);
-        target.put("printInt", null);
-        target.put("compare", null);
+        target.put("pp", null);
         target.put("generateSymbol", null);
         target.put("generateList", null);
     }
