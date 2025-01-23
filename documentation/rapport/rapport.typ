@@ -104,9 +104,7 @@
 #pagebreak()
 = Description technique
 
-== #highlight()[Architecture du compilateur et de la chaine de compilation]
-
-(depuis le code source en WHILE à la récupération d’un programme exécutable)
+Dans cette partie, il s'agira de montrer une vue d'ensemble de l'architecture du compilateur et ainsi que de la chaine de compilation
 
 == AST
 
@@ -137,13 +135,11 @@ Sur cet AST, nous remarquons que notre programme contient 3 fonctions :
 
 == Table des symboles
 
-- Nous avons implémenté une classe `SymbolInfo` qui a pour attributs `line` (numéro de ligne), `column` (numéro de colonne) et `content` (contenu du symbol). Elle permetd'énumérer les informatation concernant le symbole.
+Dans cette partie et les suivantes, nous traiterons de notre méthodologie pour effectuer les analyses syntaxique et sémantiques
+
+- Nous avons implémenté une classe `SymbolInfo` qui a pour attributs `line` (numéro de ligne), `column` (numéro de colonne) et `content` (contenu du symbol). Elle permet d'énumérer les informations concernant le symbole.
 
 - Ensuite, nous avons implémenté `SymbolTable`, la table des symboles. Nous l'avons représenté en `Stack<Map<String, SymbolInfo>>`. Nous y avons implémenté plusieurs méthodes pour ajouter des symboles à un contexte, ajouter un contexte à la table des symboles, vérifier si le symbole est dans un contexte etc.
-
-#highlight()[
-attention symbols enum c'est de la d ça sert null part, je fais un git blame pour voir c'est qui qui a fait 
-]
 
 == Design Pattern Visiteur
 
@@ -151,6 +147,7 @@ Nous avons mis en place une classe abstraite `Visitor.java` se basant sur le Des
 
 Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table des symboles (`SymbolsVisitor.java`).
 
+#highlight()[
 == Génération de code 3 adresses à partir de l’AST
 
 - visiteur pour le code 3 adresses (`IntermediateCodeVisitor.java`)
@@ -174,17 +171,13 @@ parler de FunctionSignature - les types (`TypesVisitor.java`)
 +-----------+----------------------+----------------------+
 ```
 
-#highlight()[
+
 Traduction complète d'un programme !!
 ]
 
-//== Optimisation de code #highlight()[si elle a été réalisée]
-
 == Génération de code à partir du code 3 adresses
 
-Nous avons choisit C++ comme langage cible, car il nous semble être l'un des meilleurs langages que nous connaissions tous dans notre groupe pour la gestion de la mémoire, notamment avec la présence des shared pointers.
-
-On itère sur toutes nos instructions stockées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode `toCpp()`, cela nous répartit le travail à faire. Ensuite, il nous reste juste à concaténer toutes nos instructions générées en C++ et à les enregistrer dans un fichier.
+Nous avons choisit C++ comme langage cible. Pour ce faire, on itère sur toutes nos instructions en code 3 adresses stockées dans une ArrayList. Comme chacune de ces instructions possèdent une méthode `toCpp()`, cela nous répartit le travail à faire. Ensuite, il nous reste juste à concaténer toutes nos instructions générées en C++ et à les enregistrer dans un fichier.
 
 == Bibliothèque runtime de WHILE écrite dans le langage cible
 
@@ -201,13 +194,12 @@ On a également apporté des fonctions `print` et `printInt` afin de mieux débu
 
 Pour valider le compilateur, nous avons écrit plusieurs tests en langage while. Ils se situent dans le chemin `/test/lang/`.
 
+#highlight()[
 == Code coverage
-
-#highlight()[faire le code coverage]
+faire le code coverage et commenter 
+]
 
 == Bilan
-
-#highlight()[faire le bilan]
 
 === Ce qui fonctionne
 
@@ -230,6 +222,7 @@ Pour la gestion du projet, nous avons utilisé Gitlab pour le versionning et un 
 
 == Etapes de développement et découpage des tâches
 
+#highlight()[
 == Rapport de travail individuel
 
 Voici un rapport des activités de chacun sur le projet : 
@@ -267,6 +260,7 @@ Voici un rapport des activités de chacun sur le projet :
   [Documentation (rapport + documentation utilisateur)],
   [Célia, avec relecture des autres]
 )
+]
 
 #pagebreak()
 = Post mortem : Organisation du projet
