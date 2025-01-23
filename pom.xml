@@ -112,6 +112,11 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
+                <configuration>
+                    <excludes>
+                        <exclude>antlr/**/*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                 <execution>
                     <id>default-prepare-agent</id>
@@ -145,6 +150,11 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>antlr/**/*</exclude>
+                    </excludes>
+                </configuration>
                 <reportSets>
                 <reportSet>
                     <reports>
