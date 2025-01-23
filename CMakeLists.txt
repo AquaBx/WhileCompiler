@@ -17,7 +17,7 @@ foreach(X IN LISTS testlist)
  
 add_custom_command ( 
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} OUTPUT ${X}_build.cpp 
-        COMMAND ${whilecompile} -i test/lang/${X}.while -o ${CMAKE_BINARY_DIR}/${X}_build.cpp
+        COMMAND ${whilecompile} compile test/lang/${X}.while --cpp -o ${CMAKE_BINARY_DIR}/${X}_build.cpp
 )
 add_library(test_${X} ${X}_build.cpp)
 
