@@ -27,6 +27,7 @@ public class MainTest {
             String code = readFile(path.toFile());
             Command command = new Command();
             command.generateCpp(code);
+            command.generateIR(code);
 
         } catch (Exception e) {
         }

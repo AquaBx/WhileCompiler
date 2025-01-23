@@ -165,23 +165,11 @@ Voici les instructions du code intermédiaire que nous avons décidé de faire :
   [],
   [check if R1 is true and if it is the case execute the next context],
 
-  [ifnot],
-  [R1],
-  [],
-  [],
-  [check if R1 is false and if it is the case execute the next context],
-
   [goto],
   [label],
   [],
   [],
   [jump to the label],
-
-  [inc],
-  [R1],
-  [value],
-  [],
-  [increment R1 by the value],
 
   [dec],
   [R1],
