@@ -19,23 +19,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
-import org.antlr.runtime.tree.Tree;
-import antlr.WhileGrammarLexer;
-import antlr.WhileGrammarParser;
-import while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
-import while_compiler.Visitor.Symbols.SymbolsVisitor;
-import while_compiler.Visitor.Types.TypesVisitor;
-
 public class Command {
 
     String helpMessage() {
         return """
                     A While Compiler
-
+                
                     Usage:
                         compile INPUT_PATH [OPTION]
                             - Generate executable or C++ or IR
@@ -43,10 +32,10 @@ public class Command {
                             - Run .while file
                         help
                             - Print this help message
-
+                
                     Arguments:
                         INPUT_PATH: Path to the .while file
-
+                
                     Options:
                         compile:
                             -o, --output <OUTPUT_PATH>: Path to the result file
@@ -73,7 +62,7 @@ public class Command {
         }
 
         // Process Exe Args
-        StringBuilder exe_args = new StringBuilder("");
+        StringBuilder exe_args = new StringBuilder();
         if (args.length - 1 >= 1) {
             if (args[1].equals("--")) {
                 for (int i = 2; i < args.length; i++) {
@@ -135,7 +124,7 @@ public class Command {
         }
 
         if (asm_output && cpp_output) {
-            System.err.println(String.format("Error: --asm and --cpp can't be activated at the same time."));
+            System.err.println("Error: --asm and --cpp can't be activated at the same time.");
             System.out.println(this.helpMessage());
         }
 
@@ -226,7 +215,7 @@ public class Command {
 
         // Read Output
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        System.out.println("");
+        System.out.println();
         String line = "";
         while ((line = reader.readLine()) != null) {
             System.out.println(line);
