@@ -1,0 +1,175 @@
+@startuml class_diagram
+
+package Visitor {
+
+    abstract Visitor {
+        Abstract methods:
+        + {abstract} void visit_program(Tree program)
+        # {abstract} void visit_function(Tree tree)
+        # {abstract} void visit_inputs(Tree tree)
+        # {abstract} void visit_outputs(Tree tree)
+        # {abstract} void visit_nop(Tree tree)
+        # {abstract} void visit_expr_symbol(Tree tree)
+        # {abstract} void visit_expr_variable(Tree tree)
+        # {abstract} void visit_expr_nil(Tree tree)
+        # {abstract} void visit_expr_constructor_list(Tree tree)
+        # {abstract} void visit_expr_constructor_cons(Tree tree)
+        # {abstract} void visit_expr_call(Tree tree)
+        # {abstract} void visit_expr_compare(Tree tree)
+        --
+        Implemented methods:
+        # void visit_expr_head(Tree tree)
+        # void visit_expr_tail(Tree tree)
+        # void visit_command(Tree tree)
+        # void visit_commands(Tree tree)
+        # void visit_expression(Tree tree)
+        # void visit_expressions(Tree tree)
+        # void visit_if(Tree tree)
+        # void visit_while(Tree tree)
+        # void visit_for(Tree tree)
+        # void visit_foreach(Tree tree)
+    } 
+    
+    package Type {
+        class TypeVisitor
+    }
+    Visitor <|-- TypeVisitor
+
+    package Symbols {
+        class SymbolTable {
+            - Stack<Map<String, SymbolInfo>> scopes
+
+            + void beginScope()
+            + void endScope()
+            + void put(String symbol, SymbolInfo symbolInfo)
+            + boolean inScope(String symbol)
+            + String toString()
+        }
+
+        class SymbolInfo {
+            - int line
+            - int column
+            - String content 
+
+            --
+            ... getters and setters
+        } 
+        SymbolTable *- SymbolInfo
+
+        class SymbolsVisitor {
+            - SymbolTable lookupTable
+        }
+        SymbolsVisitor *-- SymbolTable
+
+    }
+    Visitor <|-- SymbolsVisitor
+
+
+    package IntermediateCode {
+        class IntermediateCodeVisitor
+
+        class IntermediateFunction {
+            - ArrayList<Instruction> instructions
+            - HashMap<Integer, String> addressToRegister
+            - ArrayList<String> inputsLabel
+            - ArrayList<String> inputsLabel
+            - ArrayList<String> outputsLabel
+            - boolean isSTD = false
+
+            --
+            getters and setters...
+            --
+            + String createGoto(String Label)
+            + String createLabel()
+            + String createIf(String register)
+            + String createIfnot(String register)
+            + void createIfnot(String register)
+            + void createOpenContext()
+            + void createCloseContext()
+            + String createDefine(String label)
+            + String createDefine()
+            + String createSymbol(String value)
+            + String setRef(String value)
+            + String createDefine(String label, String value)
+            + void createMov(String register, String source)
+            + void createSetHead(String register, String source)
+            + void createSetTail(String register, String source)
+            + void createGetHead(String source, String dest)
+            + void createGetTail(String source, String dest)
+            + void addInput(String label)
+            + void addOutput(String label)
+            + createCall(IntermediateFunction function, int[] retours, int[] addresses)
+            + void createInc(String register, int value)
+            + void createDec(String register, int value)
+            + String toCppSignature()
+            + String toCpp()
+        }
+
+        package Instruction {
+            abstract Instruction {
+                - String arg1
+                - String ar2
+                --
+                getters and setters...
+                --
+                String toString()
+                String toCpp()
+            }
+
+            class Call
+            Instruction <|-- Call
+
+
+            class CloseContext
+            Instruction <|-- CloseContext
+
+
+            class Dec
+            Instruction <|-- Dec
+
+
+            class Define
+            Instruction <|-- Define
+
+
+            class GetHead
+            Instruction <|-- GetHead
+        }
+
+    }
+    Visitor <|-- IntermediateCodeVisitor
+    IntermediateCodeVisitor *-- IntermediateFunction
+
+}
+
+
+class ArgsManager {
+    - HashMap<String, String> argMap
+    + String getArg(String key)
+}
+
+class FileManager {
+    + Path getPath(String Path)
+    + String readFile(File file)
+    + void writeFile(File file, String data)
+}
+
+class FunctionSignature {
+    - String name
+    - int inputs 
+    - int outputs 
+
+    --
+    ... getters and setters
+}
+IntermediateFunction --|> FunctionSignature
+LibraryFunctions ..> FunctionSignature : uses
+TypeVisitor ..> FunctionSignature : uses
+
+class LibraryFunctions {
+    + void addTo(HashMap<String, T> target, Supplier<T> constructor)
+    + void addTo(SymbolTable target)
+}
+SymbolTable <.. LibraryFunctions : uses
+
+@enduml
