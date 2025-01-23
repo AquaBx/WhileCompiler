@@ -1,8 +1,8 @@
 package while_compiler.Visitor.IntermediateCode.Instructions;
 
 public abstract class Instruction {
-    private String arg1;
     private final String arg2;
+    private String arg1;
 
     public Instruction(String arg1, String arg2) {
         this.arg1 = arg1;
