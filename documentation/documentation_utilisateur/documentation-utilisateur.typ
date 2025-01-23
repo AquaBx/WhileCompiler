@@ -2,7 +2,7 @@
 #let title = "Documentation utilisateur"
 #let course_id = "TLC-S7"
 #let instructor = "LAMARCHE Fabrice"
-#let due_time = "Pour le 26/01/2025"
+#let due_time = "Pour le 24/01/2025"
 #set enum(numbering: "a)")
 
 #let prob(body) = {
