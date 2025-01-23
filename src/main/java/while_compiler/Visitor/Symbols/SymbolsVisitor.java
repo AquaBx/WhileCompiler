@@ -5,7 +5,7 @@ import org.antlr.runtime.tree.Tree;
 import while_compiler.LibraryFunctions;
 import while_compiler.Visitor.Visitor;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SymbolsVisitor extends Visitor {
     SymbolTable lookupTable = new SymbolTable();
@@ -28,9 +28,7 @@ public class SymbolsVisitor extends Visitor {
                     new SymbolInfo(
                             function_name.getLine(),
                             function_name.getCharPositionInLine(),
-                            function_name_string
-                    )
-            );
+                            function_name_string));
         }
         // visit each function
         for (int i = 0; i < program.getChildCount(); i++) {
@@ -114,13 +112,13 @@ public class SymbolsVisitor extends Visitor {
         String symbol_string = symbol.getText();
 
         /*
-        c'est une string
-
-        if (!lookupTable.inScope(symbol_string)) {
-            System.out.printf("Error: Symbol %s is not defined\n", symbol_string);
-        }
-
-        */
+         * c'est une string
+         * 
+         * if (!lookupTable.inScope(symbol_string)) {
+         * System.out.printf("Error: Symbol %s is not defined\n", symbol_string);
+         * }
+         * 
+         */
     }
 
     protected void visit_expr_variable(Tree tree) {
@@ -185,6 +183,5 @@ public class SymbolsVisitor extends Visitor {
             }
         }
     }
-
 
 }

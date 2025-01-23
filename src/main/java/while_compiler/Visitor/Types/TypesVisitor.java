@@ -8,7 +8,7 @@ import while_compiler.Visitor.Visitor;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TypesVisitor extends Visitor {
 
@@ -74,7 +74,8 @@ public class TypesVisitor extends Visitor {
         Integer nbExpressions = visit_expressions2(tree.getChild(1));
 
         if (!nbVariables.equals(nbExpressions)) {
-            throw new Exception(String.format("%s variables and %s expressions on assignment", nbVariables, nbExpressions));
+            throw new Exception(
+                    String.format("%s variables and %s expressions on assignment", nbVariables, nbExpressions));
         }
         visit_expressions(tree.getChild(1));
     }
@@ -84,7 +85,8 @@ public class TypesVisitor extends Visitor {
         int nbParameters = visit_expressions2(tree.getChild(1));
         int nbRequired = functionSignatures.get(tree.getChild(0).getText()).getInputs();
         if (nbRequired != nbParameters) {
-            throw new Exception(String.format("%d parameters provided instead of %d in %s", nbParameters, nbRequired, tree.getChild(0).getText()));
+            throw new Exception(String.format("%d parameters provided instead of %d in %s", nbParameters, nbRequired,
+                    tree.getChild(0).getText()));
         }
     }
 
