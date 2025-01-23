@@ -110,25 +110,16 @@ public class SymbolsVisitor extends Visitor {
 
         Tree symbol = tree.getChild(0);
         String symbol_string = symbol.getText();
-
-        /*
-         * c'est une string
-         *
-         * if (!lookupTable.inScope(symbol_string)) {
-         * System.out.printf("Error: Symbol %s is not defined\n", symbol_string);
-         * }
-         *
-         */
     }
 
-    protected void visit_expr_variable(Tree tree) {
+    protected void visit_expr_variable(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_VARIABLE, tree.getType());
 
         Tree variable = tree.getChild(0);
         String variable_string = variable.getText();
 
         if (!lookupTable.inScope(variable_string)) {
-            System.out.printf("Error: Variable %s is not defined\n", variable_string);
+            throw new Exception(String.format("Error: Variable %s is not defined\n", variable_string));
         }
     }
 

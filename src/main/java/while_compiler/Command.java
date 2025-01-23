@@ -41,10 +41,11 @@ public class Command {
                             -o, --output <OUTPUT_PATH>: Path to the result file
                             --asm: Generate only IR code
                             --cpp: Generate only C++ code
+                            --debug: Add backtrace
                 """;
     }
 
-    void run_command(String[] args) throws IOException {
+    void run_command(String[] args)  {
         if (args.length == 0) {
             System.err.println("Error: There is no input");
             System.out.println(this.helpMessage());
@@ -142,7 +143,7 @@ public class Command {
     }
 
     void compile(String input_path, String output_path, Boolean asm_output, Boolean cpp_output)
-            throws RecognitionException, IOException {
+    throws Exception {
         String code = FileManager.readFile(FileManager.getPath(input_path).toFile());
 
         if (asm_output) {
@@ -160,7 +161,7 @@ public class Command {
         }
     }
 
-    void compile_cpp(Path executable_path, String cpp_code) throws IOException {
+    void compile_cpp(Path executable_path, String cpp_code) throws Exception{
         System.out.println("Compile Cpp");
 
         Path tmpfile_cpp = Files.createTempFile("while_executable", ".cpp");
@@ -170,7 +171,7 @@ public class Command {
         boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 
         // Generate Command
-        String command = String.format("clang++ %s -o %s", tmpfile_cpp, executable_path);
+        String command = String.format("clang++ %s -O3 -o %s", tmpfile_cpp, executable_path);
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (isWindows) {
             processBuilder.command("cmd.exe", "/c", command);
@@ -188,14 +189,10 @@ public class Command {
             System.out.println(line);
         }
 
-        try {
-            int exitCode = process.waitFor();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        int _exitCode = process.waitFor();
     }
 
-    void execute(Path executable_path, String exe_args) throws IOException {
+    void execute(Path executable_path, String exe_args) throws Exception{
         System.out.println("Execute Code");
 
         // Run shell command is OS-dependant
@@ -221,15 +218,11 @@ public class Command {
             System.out.println(line);
         }
 
-        try {
-            int exitCode = process.waitFor();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        int _exitCode = process.waitFor();
     }
 
     // Execute .while file
-    void run(String input_path, String exe_args) throws IOException, RecognitionException {
+    void run(String input_path, String exe_args)throws Exception{
         String code = FileManager.readFile(FileManager.getPath(input_path).toFile());
         String cpp_code = generateCpp(code);
 
@@ -240,13 +233,13 @@ public class Command {
     }
 
     // From a while code String output the IR
-    String generateIR(String code) throws RecognitionException {
+    String generateIR(String code) throws  Exception {
         IntermediateCodeVisitor IR = generateIRVisitor(code);
         return IR.toString();
     }
 
     // From a while code String output the Cpp Code
-    String generateCpp(String code) throws IOException, RecognitionException {
+    String generateCpp(String code) throws  Exception {
         IntermediateCodeVisitor IR = generateIRVisitor(code);
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -258,7 +251,7 @@ public class Command {
     }
 
     // From a while code String output the IRVisitor
-    IntermediateCodeVisitor generateIRVisitor(String code) throws RecognitionException {
+    IntermediateCodeVisitor generateIRVisitor(String code) throws Exception {
         // Init ANTLR classes
         ANTLRStringStream antlrStream = new ANTLRStringStream(code);
         WhileGrammarLexer lexer = new WhileGrammarLexer(antlrStream);
@@ -271,21 +264,18 @@ public class Command {
         TypesVisitor typesVisitor = new TypesVisitor();
         IntermediateCodeVisitor intermediateCodeVisitor = new IntermediateCodeVisitor();
 
-        try {
-            if (parser.getNumberOfSyntaxErrors() > 0) {
-                throw new Exception(String.format("Error Syntax: %d error detected", parser.getNumberOfSyntaxErrors()));
-            }
-            System.out.println("Symbols analysis");
-            symbolsVisitor.visit_program(ast);
-
-            System.out.println("Types analysis");
-            typesVisitor.visit_program(ast);
-
-            System.out.println("Three-address code generation");
-            intermediateCodeVisitor.visit_program(ast);
-        } catch (Exception e) {
-            System.err.println(e);
+        if (parser.getNumberOfSyntaxErrors() > 0) {
+            throw new Exception(String.format("Error Syntax: %d error detected", parser.getNumberOfSyntaxErrors()));
         }
+        System.out.println("Symbols analysis");
+        symbolsVisitor.visit_program(ast);
+
+        System.out.println("Types analysis");
+        typesVisitor.visit_program(ast);
+
+        System.out.println("Three-address code generation");
+        intermediateCodeVisitor.visit_program(ast);
+
         return intermediateCodeVisitor;
     }
 }
