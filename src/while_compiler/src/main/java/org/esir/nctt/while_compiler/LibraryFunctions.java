@@ -16,7 +16,7 @@ public class LibraryFunctions {
             pp.setOutputs(1);
             target.put("pp", pp);
         } catch (Exception e) {
-            System.err.printf("Cannot initialize Function from STD %s\n", e);
+            throw new Exception(String.format("Cannot initialize Function from STD %s\n", e));
         }
     }
 
