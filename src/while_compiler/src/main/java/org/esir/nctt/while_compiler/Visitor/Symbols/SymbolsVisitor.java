@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class SymbolsVisitor extends Visitor {
     SymbolTable lookupTable = new SymbolTable();
 
-    public void visit_program(Tree program) {
+    public void visit_program(Tree program) throws Exception {
         // Start the global scope
         lookupTable.beginScope();
 
@@ -41,7 +41,7 @@ public class SymbolsVisitor extends Visitor {
         lookupTable.endScope();
     }
 
-    protected void visit_function(Tree tree) {
+    protected void visit_function(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.FUNCTION, tree.getType());
 
         lookupTable.beginScope();
@@ -86,7 +86,7 @@ public class SymbolsVisitor extends Visitor {
         }
     }
 
-    protected void visit_foreach(Tree tree) {
+    protected void visit_foreach(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.FOREACH, tree.getType());
 
         visit_expression(tree.getChild(1));
@@ -140,32 +140,31 @@ public class SymbolsVisitor extends Visitor {
         // Nothings to do with the looking table here
     }
 
-    protected void visit_expr_constructor_list(Tree tree) {
+    protected void visit_expr_constructor_list(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_CONSTRUCTOR_LIST, tree.getType());
 
         visit_expressions(tree.getChild(0));
     }
 
-    protected void visit_expr_constructor_cons(Tree tree) {
+    protected void visit_expr_constructor_cons(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_CONSTRUCTOR_CONS, tree.getType());
 
         visit_expressions(tree.getChild(0));
     }
 
-    protected void visit_expr_call(Tree tree) {
+    protected void visit_expr_call(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_CALL, tree.getType());
 
         // check if function symbol exist
         Tree function_symbol = tree.getChild(0);
         String function_name = function_symbol.getText();
         if (!lookupTable.inScope(function_name)) {
-            // TODO make better error
             throw new Exception(String.format("Error: Function %s is not defined\n", function_name));
         }
         visit_expressions(tree.getChild(1));
     }
 
-    protected void visit_expr_compare(Tree tree) {
+    protected void visit_expr_compare(Tree tree) throws Exception {
         assertEquals(WhileGrammarLexer.EXPR_COMPARE, tree.getType());
 
         visit_expression(tree.getChild(0));
