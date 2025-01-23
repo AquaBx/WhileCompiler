@@ -10,9 +10,7 @@
 | getTail       | R1                   | R2     |        | set a copy of R1's Tail into R2                                           |
 | call          | function's label     | R1     | R[]    | call the function with parameters stored in R, and store the return in R1 |
 | if            | R1                   |        |        | check if R1 is true and if it is the case execute the next context        |
-| ifnot         | R1                   |        |        | check if R1 is false and if it is the case execute the next context       |
 | goto          | label                |        |        | jump to the label                                                         |
-| inc           | R1                   | value  |        | increment R1 by the value                                                 |
 | dec           | R1                   | value  |        | decrement R1 by the value                                                 |
 | closecontext  |                      |        |        | close a code context                                                      |
 | opencontext   |                      |        |        | open a code context                                                       |
