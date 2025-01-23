@@ -106,10 +106,6 @@ public class IntermediateFunction extends FunctionSignature {
         addInstruction(new If(register));
     }
 
-    public void createIfnot(String register) {
-        addInstruction(new Ifnot(register));
-    }
-
     public void createOpenContext() {
         addInstruction(new OpenContext());
     }
@@ -216,10 +212,6 @@ public class IntermediateFunction extends FunctionSignature {
         }
 
         return retours[0];
-    }
-
-    public void createInc(String register, int value) {
-        addInstruction(new Inc(register, value));
     }
 
     public void createDec(String register, int value) {
