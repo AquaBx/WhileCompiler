@@ -244,24 +244,6 @@ namespace WhileStandard
         return Tree::createReturn(temp1);
     }
 
-    /*
-    Print sur la sortie standard
-    */
-    Tree print(const Tree &t)
-    {
-        std::cout << static_cast<std::string>(t) << std::endl;
-        return Tree::createReturn(t);
-    }
-
-    /*
-   Print sur la sortie standard
-   */
-    Tree printInt(const Tree &t)
-    {
-        std::cout << static_cast<int>(t) << std::endl;
-        return Tree::createReturn(t);
-    }
-
     Tree parseTree(const char * const input){
         if (std::regex_match(input, std::regex("[0-9]+"))){
             Tree a(std::stoi(input));
@@ -270,7 +252,7 @@ namespace WhileStandard
         throw std::invalid_argument("Invalid tree syntax");
     }
 
-    void pp(const Tree &t)
+    Tree pp(const Tree &t)
     {
         WhileStandard::Tree head = t.getHead();
         WhileStandard::Tree tail = t.getTail();
@@ -302,5 +284,7 @@ namespace WhileStandard
             pp(head);
             pp(tail);
         }
+        Tree r;
+        return r;
     }
 };
