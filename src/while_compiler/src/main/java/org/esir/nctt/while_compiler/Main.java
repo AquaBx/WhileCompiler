@@ -42,12 +42,18 @@ class Main {
             System.out.println("Three-address code generation");
             intermediateCodeVisitor.visit_program(ast);
 
-            System.out.println("C++ generation");
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
             InputStream library = classloader.getResourceAsStream("Library.cpp");
             assert library != null;
             String lib = new String(library.readAllBytes(), StandardCharsets.UTF_8);
-            FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), lib + intermediateCodeVisitor.toCpp());
+
+            String stringexp = intermediateCodeVisitor.toString();
+            if (ArgM.getArgOrDefault("asm","false").equals("false")){
+                System.out.println("C++ generation");
+                stringexp = lib + intermediateCodeVisitor.toCpp();
+            }
+
+            FileManager.writeFile(FileManager.getPath(outputFilePath).toFile(), stringexp);
         } catch (Exception e) {
             System.err.println(e);
         }
