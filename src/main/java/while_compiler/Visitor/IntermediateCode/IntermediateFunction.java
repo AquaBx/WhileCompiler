@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IntermediateFunction extends FunctionSignature {
     private final ArrayList<Instruction> instructions = new ArrayList<>();
@@ -29,10 +29,11 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     /*
-        Getters & Setters
+     * Getters & Setters
      */
 
-    // constructeur de fonction de la lib standard, le code sera déjà importé donc pas besoin de le générer
+    // constructeur de fonction de la lib standard, le code sera déjà importé donc
+    // pas besoin de le générer
     public IntermediateFunction() {
         super();
         isSTD = true;
@@ -73,11 +74,13 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toString() {
-        if (isSTD()) return "";
+        if (isSTD())
+            return "";
         StringBuilder out = new StringBuilder();
         out.append(String.format("function %s\n", getName()));
         for (int i = 0; i < instructionsCount(); i++) {
-            if (getInstruction(i) == null) continue;
+            if (getInstruction(i) == null)
+                continue;
             out.append(String.format("%s : %s\n", i, getInstruction(i)));
         }
         out.append("end\n");
@@ -85,7 +88,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     /*
-    Création des instructions
+     * Création des instructions
      */
 
     public int createGoto(String label) {
@@ -115,16 +118,15 @@ public class IntermediateFunction extends FunctionSignature {
         addInstruction(new CloseContext());
     }
 
-
     /*
-    Crée un registre avec un label automatique
+     * Crée un registre avec un label automatique
      */
     public String createDefine(String label) {
         return createDefine(label, "");
     }
 
     /*
-    Crée un registre à partir d'un label
+     * Crée un registre à partir d'un label
      */
     public String createDefine() {
         String label = registerFromAddress(instructionsCount());
@@ -132,7 +134,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     /*
-    Crée un registre avec un label automatique
+     * Crée un registre avec un label automatique
      */
     public String createSymbol(String value) {
         String label = registerFromAddress(instructionsCount());
@@ -146,7 +148,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     /*
-    Crée un registre avec un label prédéfini (par exemple pour un input)
+     * Crée un registre avec un label prédéfini (par exemple pour un input)
      */
     public String createDefine(String label, String value) {
         int nAddress = instructionsCount();
@@ -161,7 +163,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     /*
-    Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
+     * Crée un appel de mov qui copie la valeur à l'adresse dans le registre label
      */
     public void createMov(String register, String source) {
         if (!addressToRegister.containsValue(register)) {
@@ -225,7 +227,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toCppSignature() {
-        assertFalse("STD function, do no call this method", isSTD);
+        assertFalse(isSTD, "STD function, do no call this method");
 
         ArrayList<String> params = new ArrayList<>();
         inputsLabel.forEach(val -> params.add(String.format("const WhileStandard::Tree & %s", val)));
@@ -236,7 +238,7 @@ public class IntermediateFunction extends FunctionSignature {
     }
 
     public String toCpp() {
-        assertFalse("STD function, do no call this method", isSTD());
+        assertFalse(isSTD(), "STD function, do no call this method");
 
         StringBuilder out = new StringBuilder();
 
@@ -261,7 +263,8 @@ public class IntermediateFunction extends FunctionSignature {
         if (Objects.equals(getName(), "main")) {
             ArrayList<String> params = new ArrayList<>();
             AtomicInteger i = new AtomicInteger(1);
-            inputsLabel.forEach(val -> params.add(String.format("WhileStandard::parseTree(argv[%s])", i.getAndIncrement())));
+            inputsLabel.forEach(
+                    val -> params.add(String.format("WhileStandard::parseTree(argv[%s])", i.getAndIncrement())));
 
             out.append(String.format("""
                         int main(int argc, char** argv){

@@ -2,9 +2,10 @@ package while_compiler;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArgsManager {
+
     HashMap<String, String> argMap = new HashMap<>();
 
     ArgsManager(String[] args) {
@@ -34,7 +35,7 @@ public class ArgsManager {
     }
 
     String getArg(String key) {
-        assertTrue(String.format("Key %s not set", key), argMap.containsKey(key));
+        assertTrue(argMap.containsKey(key), String.format("Key %s not set", key));
         return argMap.get(key);
     }
 

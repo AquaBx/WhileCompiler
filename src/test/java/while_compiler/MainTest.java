@@ -18,13 +18,13 @@ public class MainTest {
     public static void visitor(Tree tree, Integer depth) {
         System.out.println("  ".repeat(depth) + tree.getText());
         for (int i = 0; i < tree.getChildCount(); i++) {
-            visitor(tree.getChild(i), depth+1);
+            visitor(tree.getChild(i), depth + 1);
         }
     }
 
-    public static void execute(Path path)  {
+    public static void execute(Path path) {
         try {
-            System.out.printf("%s%s%s\n", "-".repeat(10),path.toString(),"-".repeat(10));
+            System.out.printf("%s%s%s\n", "-".repeat(10), path.toString(), "-".repeat(10));
 
             String code = readFile(path.toFile());
 
@@ -36,10 +36,9 @@ public class MainTest {
 
             Tree tree = (Tree) parser.program().getTree();
 
-            visitor(tree,0);
+            visitor(tree, 0);
             System.out.println();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
         }
     }
 
