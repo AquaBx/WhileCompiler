@@ -166,6 +166,8 @@ java -jar <path-to-while_compiler-all.jar> compile test.while -o test.exe
 # ...
 ```
 
+⚠ : La fonction `main` doit être définie
+
 ### Compilation vers du C++
 
 ```bash
@@ -194,3 +196,5 @@ java -jar <path-to-while_compiler-all.jar> run test.while -- 1 2
 ⚠ : Seuls les arguments sous forme d'entier sont supportés par le fichier binaire produit
 
 ⚠ : Des fichiers sont generés dans `/tmp` ou `%TEMP%`
+
+⚠ : La fonction `main` doit être définie
