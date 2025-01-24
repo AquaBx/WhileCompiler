@@ -16,8 +16,8 @@ Rapports :
 
 ```text
 documentation
-├───conception : contient un diagramme de classes       
-├───consignes : contient tous les documents de consignes fournis      
+├───conception : contient un diagramme de classes
+├───consignes : contient tous les documents de consignes fournis
 ├───documentation_utilisateur
 └───rapport
 
@@ -25,7 +25,7 @@ src
 ├───main
 │   ├───antlr3
 │   │       WhileGrammar.g
-│   │       
+│   │
 │   └───java
 │       │
 │       └───while_compiler
@@ -127,7 +127,7 @@ src
 
 test
 │   <fichiers cpp générés par les codes while>
-│   
+│
 └───lang
         <fichiers écrits en while>
 
@@ -143,10 +143,54 @@ tests.sh
 
 ## Compilation du compilateur
 
-Pour compiler le compilateur, exécuter les commandes suivantes :
+Prérequis : [Maven](https://maven.apache.org/), [clang++](https://clang.llvm.org/), [JDK 21.0.5](https://www.java.com/fr/)
 
-METTRE COMME DANS LA DOC UTILISATEUR
+Pour compiler le compilateur et créer le fichier jar du compilateur, exécuter les commandes suivantes :
+
+```bash
+cd s7-tlc-projet
+mvn install
+mvn package # crée le fichier jar dans le dossier 'target'
+mvn test    # exécute les tests unitaires
+mvn site    # crée les rapports (notamment jacoco) dans 'target/site'
+```
 
 ## Utilisation du script de compilation
 
-Todo
+### Compilation vers un executable
+
+```bash
+java -jar <path-to-while_compiler-all.jar> compile test.while -o test.exe
+# ...
+./test.exe 1 2
+# ...
+```
+
+### Compilation vers du C++
+
+```bash
+java -jar <path-to-while_compiler-all.jar> compile test.while  --cpp -o test.cpp
+# ...
+cat ./test.cpp
+# ...
+```
+
+### Compilation vers du code 3 addresse
+
+```bash
+java -jar <path-to-while_compiler-all.jar> compile test.while  --asm -o test.asm
+# ...
+cat ./test.asm
+# ...
+```
+
+### Command run avec arguments
+
+```bash
+java -jar <path-to-while_compiler-all.jar> run test.while -- 1 2
+# ...
+```
+
+⚠ : Seuls les arguments sous forme d'entier sont supportés
+
+⚠ : Des fichier sont generé dans `/tmp` ou `%TEMP%`
