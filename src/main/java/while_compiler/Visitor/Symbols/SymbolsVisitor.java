@@ -119,7 +119,9 @@ public class SymbolsVisitor extends Visitor {
         String variable_string = variable.getText();
 
         if (!lookupTable.inScope(variable_string)) {
-            throw new Exception(String.format("Error: Variable %s is not defined\n", variable_string));
+            int row = variable.getLine();
+            int col = variable.getCharPositionInLine();
+            throw new Exception(String.format("Error: Variable %s (%d:%d) is not defined\n", variable_string, row, col));
         }
     }
 
@@ -148,7 +150,9 @@ public class SymbolsVisitor extends Visitor {
         Tree function_symbol = tree.getChild(0);
         String function_name = function_symbol.getText();
         if (!lookupTable.inScope(function_name)) {
-            throw new Exception(String.format("Error: Function %s is not defined\n", function_name));
+            int row = function_symbol.getLine();
+            int col = function_symbol.getCharPositionInLine();
+            throw new Exception(String.format("Error: Function %s (%d:%d) is not defined\n", function_name, row, col));
         }
         visit_expressions(tree.getChild(1));
     }
