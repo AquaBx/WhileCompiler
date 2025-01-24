@@ -71,7 +71,7 @@ Sur cet AST, nous remarquons que notre programme contient 3 fonctions :
 == Architecture 
 
 Ci-dessous notre diagramme de classe de notre compilateur.
-#image("resources/class_diagram.svg")
+#image("resources/class_diagram.png")
 
 === Design Pattern Visiteur
 
