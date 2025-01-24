@@ -190,13 +190,15 @@ function Symbol :
 
 ==== Librairie standard 
 
-+ `pp(Tree)` : 
-  - `pp(nil)` affiche `nil`
-  - `pp(symbole)` affiche le symbole 
-  - `pp((cons int A))` affiche A (un entier)
-  - `pp((cons bool A))` affiche A (un booléen, donc True ou False)
-  - `pp((cons string A))` affiche A (une chaîne de caractères)
-  - `pp((cons A B))` affiche `(cons pp(A) pp(B))` avec A qui n'est ni un int, un string ou un nil.
++ `(pp Tree)` : 
+  - `(pp nil)` affiche `nil`
+  - `(pp symbole)` affiche le symbole 
+  - `(pp (cons int A))` affiche A (un entier)
+  - `(pp (cons bool A))` affiche A (un booléen, donc True ou False)
+  - `(pp (cons string A))` affiche A (une chaîne de caractères)
+  - `(pp (cons A B))` affiche `(cons (pp A) (pp B))` avec A qui n'est ni un int, un string ou un nil.
+
+⚠️ : la fonction pp renvoit un arbre nil, il faut récuperer la valeur.
 
 #pagebreak()
 
