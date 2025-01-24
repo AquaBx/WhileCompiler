@@ -28,7 +28,7 @@ public class Command {
             Usage:
                 compile INPUT_PATH [OPTION]
                     - Generate executable or C++ or IR
-                run INPUT_PATH
+                run INPUT_PATH [-- args..]
                     - Run .while file
                 help
                     - Print this help message
@@ -42,6 +42,8 @@ public class Command {
                     --asm: Generate only IR code
                     --cpp: Generate only C++ code
                     --debug: Add backtrace
+                run:
+                    -- <args..>: Pass args to the while executable
                 """;
     }
 
