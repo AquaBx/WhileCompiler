@@ -264,7 +264,7 @@ Voici un rapport des activités de chacun sur le projet :
   [
     - Table des symboles : Célia
     - Visiteur de base : Titouan
-    - Autres visiteurs : Tom et Nicolas
+    - Autres visiteurs : Tom, Nicolas et Célia
     - Validation du programme : Tom + tests écrits par tout le monde
   ],
 
@@ -281,7 +281,7 @@ Voici un rapport des activités de chacun sur le projet :
   [Titouan],
 
   [Documentation (rapport + documentation utilisateur)],
-  [Célia & Nicolas, avec relecture des autres],
+  [Célia et Nicolas, avec relecture des autres],
 
   [Test Junit et code coverage],
   [Nicolas]
