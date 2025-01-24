@@ -47,6 +47,8 @@ Vous pourrez trouver une documentation pour utiliser le compilateur dans le fich
 
 Dans cette partie, il s'agira de montrer une vue d'ensemble de l'architecture du compilateur et ainsi que de la chaîne de compilation
 
+A noter que nous avons utilisé Maven pour générer le lexer et le parser à partir de la grammaire ANTLR (WhileGrammar.g).
+
 == AST
 
 Voici notre AST, généré par ANTLR. Nous avons essayé de le rendre le plus simple possible afin de simplifier le traitement de celui-ci lors des analyses sémantiques et syntaxique. Nous l'avons construit à partir du fichier `integers.while` (répertoire `test/lang`) :
