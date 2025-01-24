@@ -23,25 +23,25 @@ public class Command {
 
     String helpMessage() {
         return """
-                    A While Compiler
-                
-                    Usage:
-                        compile INPUT_PATH [OPTION]
-                            - Generate executable or C++ or IR
-                        run INPUT_PATH
-                            - Run .while file
-                        help
-                            - Print this help message
-                
-                    Arguments:
-                        INPUT_PATH: Path to the .while file
-                
-                    Options:
-                        compile:
-                            -o, --output <OUTPUT_PATH>: Path to the result file
-                            --asm: Generate only IR code
-                            --cpp: Generate only C++ code
-                            --debug: Add backtrace
+            A While Compiler
+        
+            Usage:
+                compile INPUT_PATH [OPTION]
+                    - Generate executable or C++ or IR
+                run INPUT_PATH
+                    - Run .while file
+                help
+                    - Print this help message
+        
+            Arguments:
+                INPUT_PATH: Path to the .while file
+        
+            Options:
+                compile:
+                    -o, --output <OUTPUT_PATH>: Path to the result file
+                    --asm: Generate only IR code
+                    --cpp: Generate only C++ code
+                    --debug: Add backtrace
                 """;
     }
 
@@ -189,7 +189,10 @@ public class Command {
             System.out.println(line);
         }
 
-        int _exitCode = process.waitFor();
+        int exitCode = process.waitFor();
+        if (exitCode != 0) {
+            throw new Exception(String.format("Issue while compiling the cpp file: see %s", tmpfile_cpp));
+        }
     }
 
     void execute(Path executable_path, String exe_args) throws Exception{
@@ -218,7 +221,11 @@ public class Command {
             System.out.println(line);
         }
 
-        int _exitCode = process.waitFor();
+        int exitCode = process.waitFor();
+
+        if (exitCode != 0) {
+            throw new Exception(String.format("Issue while executing the binary: see %s", executable_path));
+        }
     }
 
     // Execute .while file
