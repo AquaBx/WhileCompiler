@@ -251,7 +251,20 @@ On peut compiler un ficher `.while` avec la command `compile` vers:
 
 On peut aussi simplement executer le fichier `.while` avec la commande `run`.
 
-== Dépendance 
+== Compiler le CLI 
+
+Vous aurez besoin de l'utilitaire Maven, ainsi que JDK 21. 
+
+Pour créer le fichier jar du compilateur, exécuter les commandes suivantes :
+
+```bash
+cd s7-tlc-projet
+mvn install
+mvn package # crée le fichier jar dans le dossier 'target'
+mvn test    # exécute les tests unitaires
+mvn site    # crée les rapports (notamment jacoco) dans 'target/site'
+mvn clean   # nettoie le dossier 'target'
+```
 
 Le cli est compatible Windows et Linux.
 
