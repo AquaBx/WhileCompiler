@@ -36,13 +36,20 @@
 )
 
 #pagebreak()
+= Introduction
+
+Nous allons dans ce rapport présenter notre projet. Nous allons détailler le fonctionnement d'un compilateur pour le language while, ainsi que notre méthodologie de travail.
+Nous avons choisi d'implémenter le compilteur en java, et le language cible de ce compilateur est du C++.
+
+Vous pourrez trouvez une documentation pour utiliser le compilteur dans le fichier `documentation-utilisateur.pdf`. 
+
 = Description technique
 
 Dans cette partie, il s'agira de montrer une vue d'ensemble de l'architecture du compilateur et ainsi que de la chaine de compilation
 
 == AST
 
-Voici notre AST. Nous avons essayé de le rendre le plus propre possible. Nous l'avons contruit à partir du fichier `integers.while` (répertoire `test/lang`) :
+Voici notre AST, généré par ANTLR. Nous avons essayé de le rendre le plus simple possible afin de simplifier le traitement de celui-ci lors des analyses sémantiques et syntaxique. Nous l'avons contruit à partir du fichier `integers.while` (répertoire `test/lang`) :
 
 #image("resources/ast.jpg")
 
@@ -218,12 +225,16 @@ On a également ajouté une fonction de pretty printing `pp` afin de mieux débu
 == Méthodologie utilisée
 
 Pour valider le compilateur, nous avons écrit plusieurs tests en langage while. Ils se situent dans le chemin `/test/lang/`.
+Nous effectuons ensuite un test qui exécute tous les fichiers while présent dans ce dossier. Cela nous permet d'avoir des cas varier et de vérifier le bon fonctionnement des visiteurs. 
+En effet, si les visteurs ont un mauvais code coverage cela signifie que nous avons du dead code, ou que nos tests ne reprennent pas toute la spécification du language while. 
 
 == Code coverage
 
-Pour le code coverage, nous avons utilisé le plugin Maven JaCoCo (Java Code Coverage). Avec ce plugin, nous avons obtenu un code coverage global de 79%.
+Pour le code coverage, nous avons utilisé le plugin Maven JaCoCo (Java Code Coverage). Avec ce plugin, nous avons obtenu un code coverage global de 78%.
 
 #image("resources/jacoco.png")
+
+Nous pouvons voir que nous avons un code coverage de 97% pour les visiteurs ce qui est très positif. 
 
 
 = Bilan
@@ -235,14 +246,14 @@ Nous n'avons pas détecté d'erreur à partir des tests que nous avons fait.
 
 == Fonctionnalités restantes à implémenter
 
-Lorsque l'on crée l'exécutable d'un fichier while, les arguments de ligne de commande ne sont pas supportés par l'exécutable, excepté les entiers, qui fonctionnent. 
+Lorsque l'on crée l'exécutable d'un fichier while, les arguments de ligne de commande ne sont pas supportés par l'exécutable, excepté les entiers. Les arguments sous forme de chaine de caractères ou de d'arbre avec les instructions `cons` ne fonctionnent pas. 
 
 #pagebreak()
 = Description de la méthodologie de gestion de projet
 
 == Outils utilisés pour la gestion du projet
 
-Pour la gestion du projet, nous avons utilisé Gitlab pour le versionning et un groupe Discord pour communiquer entre nous, communiquer nos problèmes et s'appeler pour travailler en dehors des séances de TP.
+Pour la gestion du projet, nous avons utilisé Gitlab pour le versionning et un groupe Discord pour communiquer entre nous, partager nos problèmes et s'appeler pour travailler en dehors des séances de TP.
 
 == Etapes de développement et découpage des tâches
 
@@ -292,11 +303,11 @@ Voici un rapport des activités de chacun sur le projet :
 
 == Ce qui a bien fonctionné
 
-Travailler ensemble plutôt que séparés, en faisant du peer (ou plus) programming, a bien aidé, surtout au début du projet, pour s'entraider et mieux comprendre les attendus et les enjeux du projet. C'était plus pratique pour bien avoir une vision d'ensemble du projet.
+Travailler ensemble plutôt que séparés, en faisant du pair (ou plus) programming, a bien aidé, surtout au début du projet, pour s'entraider et mieux comprendre les attendus et les enjeux du projet. C'était plus pratique pour bien avoir une vision d'ensemble du projet.
 
 == Ce qui a moins bien fonctionné
 
-Le fait de souvent travailler ensemble nous a sûrement fait perdre du temps et nous a rendu moins efficace sur le projet.
+Le fait de souvent travailler ensemble (à plusieurs sur un seul clavier) nous a sûrement fait perdre du temps et nous a rendu moins efficace.
 
 Aussi, puisque pendant les vacances de Noël et au retour des vacances la moitié du groupe était malade, cela a compliqué les communications et donc l'avancée sur le projet.
 
