@@ -14,131 +14,79 @@ Rapports :
 
 ## Hiérarchie des répertoires : expliquée et simplifiée
 
-```text
-documentation
-├───conception : contient un diagramme de classes
-├───consignes : contient tous les documents de consignes fournis
-├───documentation_utilisateur
-└───rapport
+```
+README.md
+CMakeLists.txt  # fichier cmake
+pom.xml         # fichier de configuration maven
+tests.sh        # fichier pour lancer les tests des fichiers cpp
 
-src
-├───main
-│   ├───antlr3
-│   │       WhileGrammar.g
-│   │
-│   └───java
-│       │
-│       └───while_compiler
-│           │   ArgsManager.java
-│           │   Command.java
-│           │   FileManager.java
-│           │   FunctionSignature.java
-│           │   LibraryFunctions.java
-│           │   Main.java
-│           │
-│           └───Visitor
-│               │   Visitor.java
-│               │
-│               ├───IntermediateCode
-│               │   │   IntermediateCodeVisitor.java
-│               │   │   IntermediateFunction.java
-│               │   │
-│               │   └───Instructions : Liste des instructions (call, CloseContext, Dec, Define)
-│               │
-│               ├───Symbols
-│               │       SymbolInfo.java
-│               │       SymbolsVisitor.java
-│               │       SymbolTable.java
-│               │
-│               └───Types
-│                       TypesVisitor.java
-│
-├───resources
-│       Library.cpp
-│
-├───test
-│   └───java
-│       └───while_compiler
-│           │   MainTest.java
-│           │
-│           └───Visitor
-│               └───Symbols
-│                       SymbolsVisitorTest.java
-│
-└───while_compiler
-    ├───src
-    │   └───main
-    │       ├───antlr3
-    │       │   │
-    │       │   └───output
-    │       │
-    │       └───java
-    │           └───org
-    │               └───esir
-    │                   └───nctt
-    │                       └───antlr
-    │                               WhileGrammar.tokens
-    │                               WhileGrammarLexer.java
-    │                               WhileGrammarParser.java
-    │
-    └───target
-        │   original-while_compiler-all.jar
-        │   while_compiler-1.0-SNAPSHOT-shaded.jar
-        │   while_compiler-1.0-SNAPSHOT.jar
-        │   while_compiler-all.jar
-        │
-        ├───classes
-        │   └───org
-        │       └───esir
-        │           └───nctt
-        │               ├───antlr
-        │               │       WhileGrammar.tokens
-        │               │
-        │               └───while_compiler
-        │                   └───Visitor
-        │                       ├───IntermediateCode
-        │                       │   └───Instructions
-        │                       ├───Symbols
-        │                       └───Types
-        ├───generated-sources
-        │   └───annotations
-        ├───generated-test-sources
-        │   └───test-annotations
-        ├───maven-archiver
-        │       pom.properties
-        │
-        ├───maven-status
-        │   └───maven-compiler-plugin
-        │       ├───compile
-        │       │   └───default-compile
-        │       │           createdFiles.lst
-        │       │           inputFiles.lst
-        │       │
-        │       └───testCompile
-        │           └───default-testCompile
-        │                   createdFiles.lst
-        │                   inputFiles.lst
-        │
-        └───test-classes
-            └───org
-                └───esir
-                    └───nctt
-                        └───while_compiler
+documentation
+├── conception                  # diagramme de classe
+├── consignes                   # consignes pour le projet
+├── documentation_utilisateur   # pdf pour utiliser le compilateur
+└── rapport                     # pdf rapport
+
+src # source code
+├── main
+│   ├── antlr3
+│   │   └── WhileGrammar.g # notre grammaire antlr
+│   └── java
+│       └── while_compiler
+│           ├── Command.java
+│           ├── FileManager.java
+│           ├── FunctionSignature.java
+│           ├── LibraryFunctions.java
+│           ├── Main.java
+│           └── Visitor
+│               ├── IntermediateCode
+│               │   ├── Instructions
+│               │   │   ├── Call.java
+│               │   │   ├── CloseContext.java
+│               │   │   ├── ...
+│               │   │   ├── SetHead.java
+│               │   │   └── SetTail.java
+│               │   ├── IntermediateCodeVisitor.java
+│               │   └── IntermediateFunction.java
+│               ├── Symbols
+│               │   ├── SymbolInfo.java
+│               │   ├── SymbolsVisitor.java
+│               │   └── SymbolTable.java
+│               ├── Types
+│               │   └── TypesVisitor.java
+│               └── Visitor.java
+├── resources
+│   └── Library.cpp
+├── test # tests
+│   └── java
+│       └── while_compiler
+│           ├── MainTest.java
+│           └── Visitor
+│               └── Symbols
+│                   └── SymbolsVisitorTest.java
+└── while_compiler # fichiers java générés par antlr
 
 test
-│   <fichiers cpp générés par les codes while>
-│
-└───lang
-        <fichiers écrits en while>
+├── lang # fichiers while pour test
+│   ├── bools.while
+│   ├── boucles.while
+│   ├── ...
+│   └── nop.while
+├── lang_error # fichiers while devant provoquer une erreur
+│   ├── function_not_defined.while
+│   ├── ill_formated_function.while
+│   ├── keyword_function_name.while
+│   └── table_symboles.while
+├── bools.cpp # fichiers while en cpp
+├── ...
+└── tools.h
 
-.gitignore
-.gitlab-ci.yml
-CMakeLists.txt
-integer.cpp
-pom.xml
-README.md
-tests.bat
-tests.sh
+target # dossier généré par maven
+├── classes # fichiers java compilés
+├── ...
+├── site # fichiers html pour les rapports
+│   └── index.html
+├── while_compiler-1.0-SNAPSHOT.jar
+└── while_compiler-all.jar # fichier jar produit par maven package
 ```
 
 ## Compilation du compilateur
