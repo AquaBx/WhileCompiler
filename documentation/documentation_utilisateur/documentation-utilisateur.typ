@@ -102,7 +102,7 @@
 )
 
 #pagebreak()
-= Ecriture d'un programme en langage WHILE
+= Écriture d'un programme en langage WHILE
 
 == Brève introduction
 Le langage While est conçu pour manipuler uniquement des arbres binaires. Il permet de simuler d'autres types de données (entiers, booléens, chaînes de caractères etc.) grâce à des encodages spécifiques. 
@@ -242,9 +242,9 @@ write Result
 
 = Command Line Interface
 
-Le CLI est utiliser pour compiler ou run un fichier `.while`. 
+Le CLI est utilisé pour compiler ou run un fichier `.while`. 
 
-On peut compiler un ficher `.while` avec la command `compile` vers:
+On peut compiler un ficher `.while` avec la commande `compile` vers:
   - Un executable (Windows ou \*NIX)
   - Un fichier `cpp`
   - `IR`, le code 3 addresse. 
@@ -281,7 +281,7 @@ clang++ --version
 
 === Windows
 
-Sous Windows, le compilateur `clang++` et la command `java` doivent etre disponible. Il vous devra aussi surment avoir `Visual Studio` d'intaller.
+Sous Windows, le compilateur `clang++` et la command `java` doivent etre disponible. Il vous faudra aussi surement avoir `VisualStudio` d'installé.
 
 #pagebreak()
 
@@ -334,7 +334,7 @@ cat ./test.cpp
 # ...
 ```
 
-==== Compilation vers du code 3 addresse
+==== Compilation vers du code 3 addresses
 
 ```bash
 java -jar <path-to-while_compiler-all.jar> compile test.while  --asm -o test.asm
@@ -343,13 +343,13 @@ cat ./test.asm
 # ...
 ```
 
-=== Command run avec arguments
+=== Commande run avec arguments
 
 ```bash
 java -jar <path-to-while_compiler-all.jar> run test.while -- 1 2 
 # ...
 ```
 
-⚠ : Seuls les arguments sous forme d'entier sont supportés
+⚠ : Seuls les arguments sous forme d'entier sont supportés par le fichier binaire généré
 
-⚠ : Des fichier sont generé dans `/tmp` ou `%TEMP%`
+⚠ : Des fichiers sont generé dans `/tmp` ou `%TEMP%`

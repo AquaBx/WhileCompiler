@@ -12,7 +12,7 @@ Rapports :
 - [Rapport technique](documentation/rapport/rapport.pdf)
 - [Documentation utilisateur](documentation/documentation_utilisateur/documentation-utilisateur.pdf)
 
-## Hiérarchie des répertoires : expliquer et simplifier
+## Hiérarchie des répertoires : expliquée et simplifiée
 
 ```text
 documentation
@@ -175,7 +175,7 @@ cat ./test.cpp
 # ...
 ```
 
-### Compilation vers du code 3 addresse
+### Compilation vers du code 3 addresses
 
 ```bash
 java -jar <path-to-while_compiler-all.jar> compile test.while  --asm -o test.asm
@@ -191,6 +191,6 @@ java -jar <path-to-while_compiler-all.jar> run test.while -- 1 2
 # ...
 ```
 
-⚠ : Seuls les arguments sous forme d'entier sont supportés
+⚠ : Seuls les arguments sous forme d'entier sont supportés par le fichier binaire produit
 
-⚠ : Des fichier sont generé dans `/tmp` ou `%TEMP%`
+⚠ : Des fichiers sont generés dans `/tmp` ou `%TEMP%`
