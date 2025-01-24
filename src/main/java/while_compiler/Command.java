@@ -8,6 +8,7 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.Tree;
 import while_compiler.Visitor.IntermediateCode.IntermediateCodeVisitor;
+import while_compiler.Visitor.IntermediateCode.IntermediateFunction;
 import while_compiler.Visitor.Symbols.SymbolsVisitor;
 import while_compiler.Visitor.Types.TypesVisitor;
 
@@ -18,6 +19,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 public class Command {
 
@@ -250,6 +252,12 @@ public class Command {
     // From a while code String output the Cpp Code
     String generateCpp(String code) throws  Exception {
         IntermediateCodeVisitor IR = generateIRVisitor(code);
+
+        HashMap<String, IntermediateFunction> functions = IR.getFuntions();
+
+        if (functions.get("main") == null) {
+            System.out.println("Warning: No main function. Can only generate C++ or ASM not binary");
+        }
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream library = classloader.getResourceAsStream("Library.cpp");
