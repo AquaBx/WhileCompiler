@@ -11,6 +11,10 @@ public class IntermediateCodeVisitor extends Visitor {
     HashMap<String, IntermediateFunction> functions = new HashMap<>();
     IntermediateFunction functionActual;
 
+    public HashMap<String, IntermediateFunction> getFuntions() {
+        return functions;
+    }
+
     public String toString() {
         StringBuilder out = new StringBuilder();
 
