@@ -51,7 +51,7 @@ A noter que nous avons utilisé Maven pour générer le lexer et le parser à pa
 
 == AST
 
-Voici notre AST, généré par ANTLR. Nous avons essayé de le rendre le plus simple possible afin de simplifier le traitement de celui-ci lors des analyses sémantiques et syntaxique. Nous l'avons construit à partir du fichier `integers.while` (répertoire `test/lang`) :
+Voici notre AST, généré par ANTLR. Nous avons essayé de le rendre le plus simple possible afin de simplifier le traitement de celui-ci lors des analyses sémantique et syntaxique. Nous l'avons construit à partir du fichier `integers.while` (répertoire `test/lang`) :
 
 #image("resources/ast.jpg")
 
@@ -74,19 +74,19 @@ Sur cet AST, nous remarquons que notre programme contient 3 fonctions :
 - Une fonction `mul`
   - 2 paramètres d'entrée : `Op1` et `Op2`
   - 1 paramètre de sortie : `Result`
-  - Une bouce `for` itérant sur `Op1`. Elle stocke dans `Result` le résultat de la fonction `add` qui est appelée sur les paramètres `Result` et `Op2`
+  - Une boucle `for` itérant sur `Op1`. Elle stocke dans `Result` le résultat de la fonction `add` qui est appelée sur les paramètres `Result` et `Op2`
 
 #pagebreak()
 == Architecture 
 
-Ci-dessous notre diagramme de classe de notre compilateur.
+Ci-dessous le diagramme de classe de notre compilateur.
 #image("resources/class_diagram.png")
 
 === Design Pattern Visiteur
 
 Nous avons mis en place une classe abstraite `Visitor.java` se basant sur le Design Pattern visitor. Elle permet de visiter n'importe quel label présent dans l'AST (fonctions, inputs, outputs, expressions, variables etc.)
 
-Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table des symboles (`SymbolsVisitor.java`). Le visiteur est classe permettant de naviguer dans l'arbre de navigation syntaxique depuis la racine de l'arbre jusqu'aux feuilles. 
+Grâce à cette classe abstraite, nous avons pu faire un visiteur pour la table des symboles (`SymbolsVisitor.java`). Le visiteur est une classe abstraite permettant de naviguer dans l'arbre de syntaxe abstraite depuis la racine de l'arbre jusqu'aux feuilles. 
 
 == Analyse syntaxique et sémantique
 
@@ -96,7 +96,7 @@ Dans cette partie et les suivantes, nous traiterons de notre méthodologie pour 
 
 Nous avons besoin d'une table des symboles pour vérifier que les variables et les fonctions sont bien initialisées avant d'êtres appelées, et pour vérifier types. Pour cela :
 
-- Nous avons implémenté une classe `SymbolInfo` qui a pour attributs `line` (numéro de ligne), `column` (numéro de colonne) et `content` (contenu du symbol). Elle permet d'énumérer les informations concernant le symbole.
+- Nous avons implémenté une classe `SymbolInfo` qui a pour attributs `line` (numéro de ligne), `column` (numéro de colonne) et `content` (contenu du symbole). Elle permet d'énumérer les informations concernant le symbole.
 
 - Ensuite, nous avons implémenté `SymbolTable`, la table des symboles. Nous l'avons représenté en `Stack<Map<String, SymbolInfo>>`. Nous y avons implémenté plusieurs méthodes pour ajouter des symboles à un contexte, ajouter un contexte à la table des symboles, vérifier si le symbole est dans un contexte etc.
 
@@ -271,7 +271,7 @@ On a également ajouté une fonction de pretty printing `pp` afin de mieux débo
 == Méthodologie utilisée
 
 Pour valider le compilateur, nous avons écrit plusieurs tests en langage while. Ils se situent dans le chemin `/test/lang/`.
-Nous effectuons ensuite un test qui exécute tous les fichiers while présent dans ce dossier. Cela nous permet d'avoir des cas varier et de vérifier le bon fonctionnement des visiteurs. 
+Nous effectuons ensuite un test qui exécute tous les fichiers while présent dans ce dossier. Cela nous permet d'avoir des cas variés et de vérifier le bon fonctionnement des visiteurs. 
 En effet, si les visteurs ont un mauvais code coverage cela signifie que nous avons du dead code, ou que nos tests ne reprennent pas toute la spécification du language while. 
 
 == Code coverage
@@ -349,7 +349,7 @@ Voici un rapport des activités de chacun sur le projet :
 
 == Ce qui a bien fonctionné
 
-Travailler ensemble plutôt que séparés, en faisant du pair (ou plus) programming, a bien aidé, surtout au début du projet, pour s'entraider et mieux comprendre les attendus et les enjeux du projet. C'était plus pratique pour bien avoir une vision d'ensemble du projet.
+Travailler ensemble plutôt que séparés, en faisant du pair (ou plus) programming, a bien aidé, surtout au début du projet, pour s'entraider et mieux comprendre les attendus et les enjeux du projet. C'était plus pratique pour bien avoir une vision commune du projet.
 
 == Ce qui a moins bien fonctionné
 
