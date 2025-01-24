@@ -104,7 +104,7 @@ Puis, avons créé un visiteur qui parcourt l'AST effectue ces vérifications à
 
 === Vérification des assignations et des paramètres
 
-Nous avons également un visiteur qui vérifie lors d'un assignation que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction si il y a un appel de fonction à droite.
+Nous avons également un visiteur qui vérifie lors d'un assignation que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction s'il y a un appel de fonction à droite.
 
 == Génération de code 3 adresses à partir de l’AST
 
