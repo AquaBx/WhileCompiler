@@ -239,22 +239,104 @@ write Result
 - `Sortie` : `Result`.
 
 #pagebreak()
-= Compilation d'un programme en langage WHILE
 
-Pour utiliser notre compilateur pour générer, à partir d’un code source WHILE, un fichier exécutable, voici les commandes à exécuter : 
+= Command Line Interface
 
-Pour Linux et MacOS : 
-```
-java -jar <path-to-while_compiler-all.jar> -i <path-to-while-file> -o <target-cpp-file>
-clang++ <target-cpp-file>
-./a.out <args>
+Le CLI est utiliser pour compiler ou run un fichier `.while`. 
+
+On peut compiler un ficher `.while` avec la command `compile` vers:
+  - Un executable (Windows ou \*NIX)
+  - Un fichier `cpp`
+  - `IR`, le code 3 addresse. 
+
+On peut aussi simplement executer le fichier `.while` avec la commande `run`.
+
+== Dépendance 
+
+Le cli est compatible Windows et Linux.
+
+=== Linux / Macos
+
+Sous Linux/MacOS, le compilateur `clang++` et la command `java` doivent etre disponible.
+
+```bash
+java --version
+# openjdk 21.0.5
+clang++ --version
+# clang version 18.1.8
 ```
 
-Pour Windows : 
+=== Windows
+
+Sous Windows, le compilateur `clang++` et la command `java` doivent etre disponible. Il vous devra aussi surment avoir `Visual Studio` d'intaller.
+
+#pagebreak()
+
+== Example Commands
+
+=== Command help
+
+```bash
+java -jar <path-to-while_compiler-all.jar>
+# A While Compiler
+# 
+# Usage:
+#     compile INPUT_PATH [OPTION]
+#         - Generate executable or C++ or IR
+#     run INPUT_PATH [-- args..]
+#         - Run .while file
+#     help
+#         - Print this help message
+# 
+# Arguments:
+#     INPUT_PATH: Path to the .while file
+# 
+# Options:
+#     compile:
+#         -o, --output <OUTPUT_PATH>: Path to the result file
+#         --asm: Generate only IR code
+#         --cpp: Generate only C++ code
+#         --debug: Add backtrace
+#     run:
+#         -- <args..>: Pass args to the while executable
 ```
-java -jar <path-to-while_compiler-all.jar -i <path-to-while-file> -o <target-cpp-file>
-clang++ <target-cpp-file>
-./a.exe <args>
+
+=== Command compile
+
+==== Compilation vers un executable
+
+```bash
+java -jar <path-to-while_compiler-all.jar> compile test.while -o test.exe
+# ...
+./test.exe 1 2
+# ...
+```
+
+==== Compilation vers du C++
+
+```bash
+java -jar <path-to-while_compiler-all.jar> compile test.while  --cpp -o test.cpp
+# ...
+cat ./test.cpp
+# ...
+```
+
+==== Compilation vers du code 3 addresse
+
+```bash
+java -jar <path-to-while_compiler-all.jar> compile test.while  --asm -o test.asm
+# ...
+cat ./test.asm
+# ...
+```
+
+=== Command run avec arguments
+
+```bash
+java -jar <path-to-while_compiler-all.jar> run test.while -- 1 2 
+# ...
 ```
 
 ⚠ : Seuls les arguments sous forme d'entier sont supportés
+
+⚠ : Des fichier sont generé dans `/tmp` ou `%TEMP%`

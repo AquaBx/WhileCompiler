@@ -78,7 +78,7 @@ Sur cet AST, nous remarquons que notre programme contient 3 fonctions :
 == Architecture 
 
 Ci-dessous notre diagramme de classe de notre compilateur.
-#image("resources/class_diagram.svg")
+#image("resources/class_diagram.png")
 
 === Design Pattern Visiteur
 
@@ -203,9 +203,53 @@ Voici les instructions du code intermédiaire que nous avons décidé de faire :
   [create a label],
 )
 
-#highlight()[
-  - TODO ADD CODE TROIS ADRESSE D'UN PRGM
-]
+#pagebreak()
+
+Exemple de code 3 adresses :
+```
+function add
+0 : Define Result
+2 : Mov Result Op1
+4 : Define t4
+5 : Mov t4 Op2
+6 : Label label6
+7 : If t4
+8 : OpenContext
+9 : Define t9
+10 : Define t10
+11 : SetHead t9 t10
+13 : SetTail t9 Result
+14 : Mov Result t9
+15 : Dec t4 1
+16 : Goto label6
+17 : CloseContext
+18 : Define t18
+19 : SetHead t18 Result
+20 : Mov Result t18
+end
+
+function mul
+0 : Define Result
+2 : Define t2
+3 : Mov t2 Op1
+4 : Label label4
+5 : If t2
+6 : OpenContext
+7 : Define t7
+10 : Define t10
+11 : Call add t10 [Result,Op2]
+12 : GetHead t10 t7
+13 : Mov Result t7
+14 : Dec t2 1
+15 : Goto label4
+16 : CloseContext
+17 : Define t17
+18 : SetHead t17 Result
+19 : Mov Result t17
+end
+```
+#pagebreak()
+
 
 == Génération de code à partir du code 3 adresses
 
