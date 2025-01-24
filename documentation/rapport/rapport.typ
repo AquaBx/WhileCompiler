@@ -39,17 +39,17 @@
 = Introduction
 
 Nous allons dans ce rapport présenter notre projet. Nous allons détailler le fonctionnement d'un compilateur pour le language while, ainsi que notre méthodologie de travail.
-Nous avons choisi d'implémenter le compilteur en java, et le language cible de ce compilateur est du C++.
+Nous avons choisi d'implémenter le compilateur en java, et le language cible de ce compilateur est du C++.
 
-Vous pourrez trouvez une documentation pour utiliser le compilteur dans le fichier `documentation-utilisateur.pdf`. 
+Vous pourrez trouver une documentation pour utiliser le compilateur dans le fichier `documentation-utilisateur.pdf`. 
 
 = Description technique
 
-Dans cette partie, il s'agira de montrer une vue d'ensemble de l'architecture du compilateur et ainsi que de la chaine de compilation
+Dans cette partie, il s'agira de montrer une vue d'ensemble de l'architecture du compilateur et ainsi que de la chaîne de compilation
 
 == AST
 
-Voici notre AST, généré par ANTLR. Nous avons essayé de le rendre le plus simple possible afin de simplifier le traitement de celui-ci lors des analyses sémantiques et syntaxique. Nous l'avons contruit à partir du fichier `integers.while` (répertoire `test/lang`) :
+Voici notre AST, généré par ANTLR. Nous avons essayé de le rendre le plus simple possible afin de simplifier le traitement de celui-ci lors des analyses sémantiques et syntaxique. Nous l'avons construit à partir du fichier `integers.while` (répertoire `test/lang`) :
 
 #image("resources/ast.jpg")
 
@@ -100,9 +100,9 @@ Nous avons besoin d'une table des symboles pour vérifier que les variables et l
 
 Puis, avons créé un visiteur qui parcourt l'AST effectue ces vérifications à l'aide de la table des symboles.
 
-=== Vérification des assignements et des paramètres
+=== Vérification des assignations et des paramètres
 
-Nous avons également un visiteur qui vérifie lors d'un assignement que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction si il y a un appel de fonction à droite.
+Nous avons également un visiteur qui vérifie lors d'un assignation que le nombre de variables à gauche est égal au nombre d'expressions à droites, ou au nombre de paramètres renvoyés par une fonction si il y a un appel de fonction à droite.
 
 == Génération de code 3 adresses à partir de l’AST
 
@@ -261,7 +261,7 @@ Cette bibliothèque fournit la gestion des arbres ainsi que l'apport de certaine
 
 Par exemple, on a ajouté un opérateur de cast vers des chaines de caractères ou vers des entiers pour éviter de faire trop souvent la conversion à la main.
 
-On a également ajouté une fonction de pretty printing `pp` afin de mieux débuguer lors de l'éxécution.
+On a également ajouté une fonction de pretty printing `pp` afin de mieux déboguer lors de l’exécution.
 
 #pagebreak()
 = Description de la validation du compilateur
@@ -299,7 +299,7 @@ Lorsque l'on crée l'exécutable d'un fichier while, les arguments de ligne de c
 
 Pour la gestion du projet, nous avons utilisé Gitlab pour le versionning et un groupe Discord pour communiquer entre nous, partager nos problèmes et s'appeler pour travailler en dehors des séances de TP.
 
-== Etapes de développement et découpage des tâches
+== Étapes de développement et découpage des tâches
 
 == Rapport de travail individuel
 

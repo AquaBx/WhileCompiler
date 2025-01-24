@@ -195,7 +195,7 @@ function Symbol :
   - `pp(symbole)` affiche le symbole 
   - `pp((cons int A))` affiche A (un entier)
   - `pp((cons bool A))` affiche A (un booléen, donc True ou False)
-  - `pp((cons string A))` affiche A (une chaine de caractères)
+  - `pp((cons string A))` affiche A (une chaîne de caractères)
   - `pp((cons A B))` affiche `(cons pp(A) pp(B))` avec A qui n'est ni un int, un string ou un nil.
 
 
@@ -247,7 +247,7 @@ Le CLI est utilisé pour compiler ou run un fichier `.while`.
 On peut compiler un ficher `.while` avec la commande `compile` vers:
   - Un executable (Windows ou \*NIX)
   - Un fichier `cpp`
-  - `IR`, le code 3 addresse. 
+  - `IR`, le code 3 addresses. 
 
 On peut aussi simplement executer le fichier `.while` avec la commande `run`.
 
@@ -270,7 +270,7 @@ Le cli est compatible Windows et Linux.
 
 === Linux / Macos
 
-Sous Linux/MacOS, le compilateur `clang++` et la command `java` doivent etre disponible.
+Sous Linux/MacOS, le compilateur `clang++` et la command `java` doivent être disponible.
 
 ```bash
 java --version
@@ -281,7 +281,7 @@ clang++ --version
 
 === Windows
 
-Sous Windows, le compilateur `clang++` et la command `java` doivent etre disponible. Il vous faudra aussi surement avoir `VisualStudio` d'installé.
+Sous Windows, le compilateur `clang++` et la command `java` doivent être disponible. Il vous faudra aussi sûrement avoir `VisualStudio` d'installé.
 
 #pagebreak()
 
@@ -354,6 +354,6 @@ java -jar <path-to-while_compiler-all.jar> run test.while -- 1 2
 
 ⚠ : Seuls les arguments sous forme d'entier sont supportés par le fichier binaire généré
 
-⚠ : Des fichiers sont generé dans `/tmp` ou `%TEMP%`
+⚠ : Des fichiers sont généré dans `/tmp` ou `%TEMP%`
 
 ⚠ : La fonction `main` doit être définie
